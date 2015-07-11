@@ -190,6 +190,75 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Nginx-Tomcat-Memcached-Cluster" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/11/Nginx-Tomcat-Memcached-Cluster/" class="article-date">
+  	<time datetime="2015-07-11T06:22:46.104Z" itemprop="datePublished">2015-07-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/11/Nginx-Tomcat-Memcached-Cluster/">Nginx+Tomcat+Memcached集群</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="部署环境">部署环境</h2><p>系统：Centos<br>软件及依赖包：<br>Nginx:<br>nginx-1.6.2.tar.gz<br>(<a href="http://nginx.org/download/nginx-1.6.2.tar.gz">http://nginx.org/download/nginx-1.6.2.tar.gz</a>)<br>pcre-8.36.tar.gz (ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz)<br>zlib-1.2.8.tar.gz(<a href="http://zlib.net/zlib-1.2.8.tar.gz">http://zlib.net/zlib-1.2.8.tar.gz</a>)</p>
+<p>memcached：<br>memcached-1.4.22.tar.gz(<a href="http://memcached.org/files/memcached-1.4.22.tar.gz">http://memcached.org/files/memcached-1.4.22.tar.gz</a>)<br>libevent-2.0.22-stable.tar.gz(<a href="http://libevent.org/">http://libevent.org/</a>)</p>
+<p>memcached-session-manager：<br><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/">下载地址</a></p>
+<p>Tomcat：<br>apache-tomcat-7.0.59.tar.gz (<a href="http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.tar.gz">http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.tar.gz</a>)<br>jdk-7u72-linux-x64.tar.gz</p>
+<p>jar包：<br>我采用的是截止目前最新的版本，其中序列化方式是可选的。<br>序列化方式使用kryo时,jar包：<a href="http://wy-uploads.qiniudn.com/MSM_kryo.zip">下载地址</a><br><img src="http://wy-uploads.qiniudn.com/MSM_1.png" alt="此处输入图片的描述"></p>
+<p>序列化方式使用javolution时,jar包：<a href="http://wy-uploads.qiniudn.com/MSM_javolution.zip">下载地址</a><br><img src="http://wy-uploads.qiniudn.com/MSM_2.png" alt="此处输入图片的描述"></p>
+<p>了解到kryo序列化方式效率最高。</p>
+<p>相关序列方式，所需不同jar包，可参考<a href="https://code.google.com/p/memcached-session-manager/wiki/SetupAndConfiguration">官方文档</a></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/集群/">集群</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/11/Nginx-Tomcat-Memcached-Cluster/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-Shell-Study" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -246,72 +315,6 @@ cat /dev/null &gt; messages
       
         <p class="article-more-link">
           <a  href="/2015/07/11/Shell-Study/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-CentOS-Oracle-installation" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/CentOS-Oracle-installation/" class="article-date">
-  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/CentOS-Oracle-installation/">CentOS下Oracle安装</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="安装前准备">安装前准备</h1><h2 id="安装依赖包">安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binutils-2.17.50.0.6&#10;compat-libstdc++-33-3.2.3&#10;compat-libstdc++-33-3.2.3 (32 bit)&#10;elfutils-libelf-0.125&#10;elfutils-libelf-devel-0.125&#10;gcc-4.1.2&#10;gcc-c++-4.1.2&#10;glibc-2.5-24&#10;glibc-2.5-24 (32 bit)&#10;glibc-common-2.5&#10;glibc-devel-2.5&#10;glibc-devel-2.5 (32 bit)&#10;glibc-headers-2.5&#10;ksh-20060214&#10;libaio-0.3.106&#10;libaio-0.3.106 (32 bit)&#10;libaio-devel-0.3.106&#10;libaio-devel-0.3.106 (32 bit)&#10;libgcc-4.1.2&#10;libgcc-4.1.2 (32 bit)&#10;libstdc++-4.1.2&#10;libstdc++-4.1.2 (32 bit)&#10;libstdc++-devel 4.1.2&#10;make-3.81&#10;sysstat-7.0.2&#10;unixODBC-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-2.2.14-11.el6.i686 or later&#10;unixODBC-devel-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-devel-2.2.14-11.el6.i686 or later&#10;libXp</span><br></pre></td></tr></table></figure>
-<p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
-<p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#27880;&#24847;&#65306;&#35813;&#31243;&#24207;&#21253;&#19982;ksh&#20914;&#31361;&#65292;&#22914;&#26524;&#24050;&#32463;&#23433;&#35013;ksh&#65292;&#24314;&#35758;&#20351;&#29992;&#21629;&#20196; rpm -e ksh-* &#21368;&#36733;&#10;&#10;rpm -ivh pdksh-5.2.14-37.el5_8.1.x86_64.rpm</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/CentOS-Oracle-installation/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -723,10 +726,10 @@ cat /dev/null &gt; messages
 
 
   
-    <article id="post-Nginx-Tomcat-Memcached-cluster" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CentOS-Oracle-installation" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/11/Nginx-Tomcat-Memcached-cluster/" class="article-date">
+      <a href="/2015/07/11/CentOS-Oracle-installation/" class="article-date">
   	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
 </a>
     </div>
@@ -740,7 +743,7 @@ cat /dev/null &gt; messages
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/Nginx-Tomcat-Memcached-cluster/">Nginx+Tomcat+Memcached集群</a>
+      <a class="article-title" href="/2015/07/11/CentOS-Oracle-installation/">CentOS下Oracle安装</a>
     </h1>
   
 
@@ -749,14 +752,11 @@ cat /dev/null &gt; messages
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="部署环境">部署环境</h2><p>系统：Centos<br>软件及依赖包：<br>Nginx:<br>nginx-1.6.2.tar.gz<br>(<a href="http://nginx.org/download/nginx-1.6.2.tar.gz">http://nginx.org/download/nginx-1.6.2.tar.gz</a>)<br>pcre-8.36.tar.gz (ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz)<br>zlib-1.2.8.tar.gz(<a href="http://zlib.net/zlib-1.2.8.tar.gz">http://zlib.net/zlib-1.2.8.tar.gz</a>)</p>
-<p>memcached：<br>memcached-1.4.22.tar.gz(<a href="http://memcached.org/files/memcached-1.4.22.tar.gz">http://memcached.org/files/memcached-1.4.22.tar.gz</a>)<br>libevent-2.0.22-stable.tar.gz(<a href="http://libevent.org/">http://libevent.org/</a>)</p>
-<p>memcached-session-manager：<br><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/">下载地址</a></p>
-<p>Tomcat：<br>apache-tomcat-7.0.59.tar.gz (<a href="http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.tar.gz">http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.tar.gz</a>)<br>jdk-7u72-linux-x64.tar.gz</p>
-<p>jar包：<br>我采用的是截止目前最新的版本，其中序列化方式是可选的。<br>序列化方式使用kryo时,jar包：<a href="http://wy-uploads.qiniudn.com/MSM_kryo.zip">下载地址</a><br><img src="http://wy-uploads.qiniudn.com/MSM_1.png" alt="此处输入图片的描述"></p>
-<p>序列化方式使用javolution时,jar包：<a href="http://wy-uploads.qiniudn.com/MSM_javolution.zip">下载地址</a><br><img src="http://wy-uploads.qiniudn.com/MSM_2.png" alt="此处输入图片的描述"></p>
-<p>了解到kryo序列化方式效率最高。</p>
-<p>相关序列方式，所需不同jar包，可参考<a href="https://code.google.com/p/memcached-session-manager/wiki/SetupAndConfiguration">官方文档</a></p>
+        <h1 id="安装前准备">安装前准备</h1><h2 id="安装依赖包">安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binutils-2.17.50.0.6&#10;compat-libstdc++-33-3.2.3&#10;compat-libstdc++-33-3.2.3 (32 bit)&#10;elfutils-libelf-0.125&#10;elfutils-libelf-devel-0.125&#10;gcc-4.1.2&#10;gcc-c++-4.1.2&#10;glibc-2.5-24&#10;glibc-2.5-24 (32 bit)&#10;glibc-common-2.5&#10;glibc-devel-2.5&#10;glibc-devel-2.5 (32 bit)&#10;glibc-headers-2.5&#10;ksh-20060214&#10;libaio-0.3.106&#10;libaio-0.3.106 (32 bit)&#10;libaio-devel-0.3.106&#10;libaio-devel-0.3.106 (32 bit)&#10;libgcc-4.1.2&#10;libgcc-4.1.2 (32 bit)&#10;libstdc++-4.1.2&#10;libstdc++-4.1.2 (32 bit)&#10;libstdc++-devel 4.1.2&#10;make-3.81&#10;sysstat-7.0.2&#10;unixODBC-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-2.2.14-11.el6.i686 or later&#10;unixODBC-devel-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-devel-2.2.14-11.el6.i686 or later&#10;libXp</span><br></pre></td></tr></table></figure>
+<p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
+<p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#27880;&#24847;&#65306;&#35813;&#31243;&#24207;&#21253;&#19982;ksh&#20914;&#31361;&#65292;&#22914;&#26524;&#24050;&#32463;&#23433;&#35013;ksh&#65292;&#24314;&#35758;&#20351;&#29992;&#21629;&#20196; rpm -e ksh-* &#21368;&#36733;&#10;&#10;rpm -ivh pdksh-5.2.14-37.el5_8.1.x86_64.rpm</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -764,7 +764,7 @@ cat /dev/null &gt; messages
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/集群/">集群</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
 	</div>
 
       
@@ -775,7 +775,7 @@ cat /dev/null &gt; messages
 
       
         <p class="article-more-link">
-          <a  href="/2015/07/11/Nginx-Tomcat-Memcached-cluster/#more">more >></a>
+          <a  href="/2015/07/11/CentOS-Oracle-installation/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
