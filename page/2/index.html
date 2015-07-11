@@ -125,7 +125,9 @@
 				<section class="switch-part switch-part3">
 					<div id="js-friends">
 					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.mr-wang.cn/">Mr-wang的博客</a>
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html">Linux工具箱</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://linux.51yip.com/">Linux命令手册</a>
 			        
 			        </div>
 				</section>
@@ -189,70 +191,6 @@
 	</div>
 </nav>
       <div class="body-wrap">
-  
-    <article id="post-Linux-Boot-Sequence" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/Linux-Boot-Sequence/" class="article-date">
-  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/Linux-Boot-Sequence/">linux的运行级别及自启动程序</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Linux运行级别：">Linux运行级别：</h2><p>Linux运行级别有七种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 - &#20572;&#26426;&#65288;&#21315;&#19975;&#19981;&#33021;&#25226;initdefault &#35774;&#32622;&#20026;0 &#65289;&#10;1 - &#21333;&#29992;&#25143;&#27169;&#24335;&#10;2 - &#22810;&#29992;&#25143;&#65292;&#27809;&#26377; NFS&#10;3 - &#23436;&#20840;&#22810;&#29992;&#25143;&#27169;&#24335;(&#26631;&#20934;&#30340;&#36816;&#34892;&#32423;)&#10;4 - &#27809;&#26377;&#29992;&#21040;&#10;5 - X11 &#65288;xwindow)&#10;6 - &#37325;&#26032;&#21551;&#21160; &#65288;&#21315;&#19975;&#19981;&#35201;&#25226;initdefault &#35774;&#32622;&#20026;6 &#65289;</span><br></pre></td></tr></table></figure>
-<p>默认的运行级别在/etc/inittab文件中进行设置。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/Linux-Boot-Sequence/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
   
     <article id="post-CentOS-System-Performance-tuning" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -318,11 +256,11 @@
 
 
   
-    <article id="book-book-list-of-2014" class="article article-type-book" itemscope itemprop="blogPost">
+    <article id="post-CentOS-Oracle-installation" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/11/book-list-of-2014/" class="article-date">
-  	<time datetime="2015-07-11T05:24:49.216Z" itemprop="datePublished">2015-07-11</time>
+      <a href="/2015/07/11/CentOS-Oracle-installation/" class="article-date">
+  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
 </a>
     </div>
   
@@ -335,7 +273,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/book-list-of-2014/">2014阅读书单</a>
+      <a class="article-title" href="/2015/07/11/CentOS-Oracle-installation/">CentOS下Oracle安装</a>
     </h1>
   
 
@@ -344,19 +282,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="安装前准备">安装前准备</h1><h2 id="安装依赖包">安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binutils-2.17.50.0.6&#10;compat-libstdc++-33-3.2.3&#10;compat-libstdc++-33-3.2.3 (32 bit)&#10;elfutils-libelf-0.125&#10;elfutils-libelf-devel-0.125&#10;gcc-4.1.2&#10;gcc-c++-4.1.2&#10;glibc-2.5-24&#10;glibc-2.5-24 (32 bit)&#10;glibc-common-2.5&#10;glibc-devel-2.5&#10;glibc-devel-2.5 (32 bit)&#10;glibc-headers-2.5&#10;ksh-20060214&#10;libaio-0.3.106&#10;libaio-0.3.106 (32 bit)&#10;libaio-devel-0.3.106&#10;libaio-devel-0.3.106 (32 bit)&#10;libgcc-4.1.2&#10;libgcc-4.1.2 (32 bit)&#10;libstdc++-4.1.2&#10;libstdc++-4.1.2 (32 bit)&#10;libstdc++-devel 4.1.2&#10;make-3.81&#10;sysstat-7.0.2&#10;unixODBC-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-2.2.14-11.el6.i686 or later&#10;unixODBC-devel-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-devel-2.2.14-11.el6.i686 or later&#10;libXp</span><br></pre></td></tr></table></figure>
+<p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
+<p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#27880;&#24847;&#65306;&#35813;&#31243;&#24207;&#21253;&#19982;ksh&#20914;&#31361;&#65292;&#22914;&#26524;&#24050;&#32463;&#23433;&#35013;ksh&#65292;&#24314;&#35758;&#20351;&#29992;&#21629;&#20196; rpm -e ksh-* &#21368;&#36733;&#10;&#10;rpm -ivh pdksh-5.2.14-37.el5_8.1.x86_64.rpm</span><br></pre></td></tr></table></figure>
       
     </div>
     
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/读书/">读书</a>
+	<a class="article-category-link" href="/categories/技术/">技术</a>
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/11/CentOS-Oracle-installation/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

@@ -4,7 +4,7 @@
   <subtitle><![CDATA[运维笔记]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.mr-wang.cn/"/>
-  <updated>2015-07-11T06:22:46.104Z</updated>
+  <updated>2015-07-11T06:42:36.913Z</updated>
   <id>http://www.mr-wang.cn/</id>
   
   <author>
@@ -13,6 +13,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[阅读书单]]></title>
+    <link href="http://www.mr-wang.cn/2015/07/11/book-list/"/>
+    <id>http://www.mr-wang.cn/2015/07/11/book-list/</id>
+    <published>2015-07-11T06:42:36.913Z</published>
+    <updated>2015-07-11T06:42:36.913Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li><strong>2015.07阅读清单</strong><ul>
+<li>[x] Linux系统命令及Shell脚本实践指南（纸质）</li>
+<li>[ ] 高性能Linux服务器构建实战——系统安全、故障排查、自动化运维与集群架构（纸质）</li>
+<li>[ ] 构建高性能Web站点（纸质）</li>
+<li>[ ] 深入理解Nginx（纸质）</li>
+<li>[ ] 这才是马云（电子书）</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<ul>
+<li><strong>2015.07阅读清单</strong><ul>
+<li>[x] Linux系统命令及Shell脚本实践指南（纸质）</li>
+<li>[ ] 高性能Linux服务器构建实战——系统安全、故障排查、自动化运维与集群架构（纸质）</li>
+<li>]]>
+    </summary>
+    
+      <category term="读书" scheme="http://www.mr-wang.cn/categories/%E8%AF%BB%E4%B9%A6/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Nginx+Tomcat+Memcached集群]]></title>
@@ -68,6 +97,113 @@
     </summary>
     
       <category term="集群" scheme="http://www.mr-wang.cn/tags/%E9%9B%86%E7%BE%A4/"/>
+    
+      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Netbois协议导致网络阻塞]]></title>
+    <link href="http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/"/>
+    <id>http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/</id>
+    <published>2015-07-11T05:24:49.220Z</published>
+    <updated>2015-03-23T11:25:18.000Z</updated>
+    <content type="html"><![CDATA[<p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
+<p>在网上有这样的解释：</p>
+<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终竟然导致接入交换机和汇聚交换机、核心交换机间的链路阻塞，使得网络变得基本不通。<br>初步分析了一下捕获到的数据，基本认定原因在于好多个人计算机内包含恶意/流氓软件，会不停地访问btamail.net、bar.baidu.com、 sobar.baidu.com等域名，同时，windows的名字解析机制的顺序是：</p>
+<ol>
+<li>hosts</li>
+<li>net bios, wins, lmhosts</li>
+<li>dns<br>所以，就会在网络中产生大量nbns的数据包</li>
+</ol>
+<p>然后，在那台电脑上杀进程，找到恶意软件。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
+<p>在网上有这样的解释：</p>
+<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终]]>
+    </summary>
+    
+      <category term="网络" scheme="http://www.mr-wang.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[AMH重新编译Nginx，使其支持静态页面post]]></title>
+    <link href="http://www.mr-wang.cn/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/"/>
+    <id>http://www.mr-wang.cn/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/</id>
+    <published>2015-07-11T05:24:49.220Z</published>
+    <updated>2015-04-06T02:59:38.000Z</updated>
+    <content type="html"><![CDATA[<p>在实际使用AMH的过程中，公司出现通过post请求静态页面；默认的nginx上，是拒绝通过post方式访问静态页面的。</p>
+<p>网上有2种方法解决这个问题，但是在实际的过程中，发现方法1不奏效,于是使用方法2，重新编译nginx解决问题。</p>
+<a id="more"></a>
+<p>方法1：</p>
+<p>修改nginc.conf配置文件，改变“405错误”为“200 ok”，并配置location来解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/vhost/domain.com.conf</span><br></pre></td></tr></table></figure>
+<p>添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error_page 405 =200 @405;&#10;location @405&#10;&#123;&#10;    root /home/wwwroot/web/doamin.com;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>方法2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/amh_install/&#10;wget http://code.amysql.com/files/nginx-1.4.4.tar.gz&#10;tar zxvf nginx-1.4.4.tar.gz&#10;cd nginx-1.4.4/src/http/modules/&#10;&#10;vi ngx_http_static_module.c&#10;#&#23558;&#36825;&#27573;&#23631;&#34109;&#25481;&#65307;&#10;/*&#10;if (r-&#62;method &#38; NGX_HTTP_POST) &#123;&#10;     return NGX_HTTP_NOT_ALLOWED;&#10;&#125;&#10;*/</span><br></pre></td></tr></table></figure>
+<p>重新编译：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure &#8211;prefix=/usr/local/nginx &#8211;user=www &#8211;group=www &#8211;with-http_ssl_module &#8211;with-http_static_module &#8211;with-http_gzip_static_module &#8211;without-mail_pop3_module &#8211;without-mail_imap_module &#8211;without-mail_smtp_module &#8211;without-http_uwsgi_module &#8211;without-http_scgi_module&#10;make</span><br></pre></td></tr></table></figure>
+<p>编译完成后不要再执行 make install，不然会把原有的配置文件覆盖，正确的方法是直接删除旧的，把新的复制过去后再执行make upgrade。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak&#10;cp ./objs/nginx /usr/local/nginx/sbin/&#10;make upgrade</span><br></pre></td></tr></table></figure>
+<p>重载一下nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/nginx reload</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在实际使用AMH的过程中，公司出现通过post请求静态页面；默认的nginx上，是拒绝通过post方式访问静态页面的。</p>
+<p>网上有2种方法解决这个问题，但是在实际的过程中，发现方法1不奏效,于是使用方法2，重新编译nginx解决问题。</p>]]>
+    
+    </summary>
+    
+      <category term="Nginx" scheme="http://www.mr-wang.cn/tags/Nginx/"/>
+    
+      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2013年版通达OA与飞信集成]]></title>
+    <link href="http://www.mr-wang.cn/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/"/>
+    <id>http://www.mr-wang.cn/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/</id>
+    <published>2015-07-11T05:24:49.220Z</published>
+    <updated>2015-04-06T02:59:17.000Z</updated>
+    <content type="html"><![CDATA[<p>基于PHP-fetion进行修改。</p>
+<p>作者博客：<a href="http://blog.quanhz.com/" target="_blank" rel="external">http://blog.quanhz.com/</a></p>
+<p>PHP-fetion代码：<a href="https://code.google.com/p/php-fetion/" target="_blank" rel="external">https://code.google.com/p/php-fetion/</a></p>
+<p>对定时发送页面做了修改：</p>
+<p>fetion_send_sms.php(2013年版通达OA)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">//定时任务发送飞信手机短信</span><br><span class="line">    include_once (“inc/conn.php”);</span><br><span class="line">    include_once (“inc/fetion.php”); //账号密码</span><br><span class="line">    require_once (“inc/class.fetion.php”); //飞信发送类</span><br><span class="line">    require_once (“inc/class.gateway.php”); //其他API接口发送</span><br><span class="line">    $cur_time = date(“Y-m-d H:i:s”); //获得当前时间</span><br><span class="line">    $query = “SELECT `SMS_ID`,`PHONE`,`CONTENT` FROM `SMS2` WHERE `SEND_TIME` &lt;= ‘&#123;$cur_time&#125;’ AND `SEND_FLAG` = ‘3’ LIMIT 1″; //检测短信时间及状态</span><br><span class="line">    $cursor = exequery($connection, $query); //连接数据库</span><br><span class="line">    //无短信需要发送</span><br><span class="line">    if (0 == mysql_num_rows($cursor)) &#123;</span><br><span class="line">        echo “No message to send”;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">    //发送飞信</span><br><span class="line">    $ROW = mysql_fetch_array($cursor);</span><br><span class="line">    $PHONE = $ROW['PHONE'];</span><br><span class="line">    $CONTENT = $ROW['CONTENT'];</span><br><span class="line">    $SMS_ID = $ROW['SMS_ID'];</span><br><span class="line">    //登陆飞信</span><br><span class="line">    $fetion = new PHPFetion($mobile, $password);</span><br><span class="line">    //发送飞信短信</span><br><span class="line">    $result = $fetion-&gt;send($PHONE, iconv(“gbk”, “utf-8″, $CONTENT));</span><br><span class="line">    //发送短信读取手机号，及信息内容转换代码</span><br><span class="line">    $result = iconv(“utf-8″, “gbk”, $result); //返回值</span><br><span class="line">    //判定飞信发送是否成功</span><br><span class="line">    if (strpos($result, “成功”) === FALSE) &#123;</span><br><span class="line">        $JIEGUO = 0; //失败，状态更新至待网关发送</span><br><span class="line">        echo “One message to sent by MAS”;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        $JIEGUO = 1; //成功</span><br><span class="line">        echo “One message to sent by Fetion”;</span><br><span class="line">    &#125;</span><br><span class="line">    //更新短信发送状态</span><br><span class="line">    $query2 = “UPDATE `SMS2` SET `SEND_FLAG` = ‘&#123;$JIEGUO&#125;’ WHERE `SMS_ID`='&#123;$SMS_ID&#125;'”;</span><br><span class="line">    exequery($connection, $query2);</span><br><span class="line">    //结束会话</span><br><span class="line">    $fetion-&gt;_logout();</span><br><span class="line">    &#125;</span><br><span class="line">    /* End of the file */</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>其余代码，点击下载：<a href="http://mr-wang.qiniudn.com/2013%E5%B9%B4%E7%89%88OA%E4%B8%8E%E9%A3%9E%E4%BF%A1%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88.zip" target="_blank" rel="external">2013年版OA与飞信集成方案</a></p>
+<p>将文件在OA服务器wwwroot目录下进行覆盖，将task目录下的fetion_send_sms.php加入到通达OA的定时任务中。</p>
+<p>注：OA自带的定时任务的最小时间间隔为1分钟，飞信发送缓慢。</p>
+<p>这里提供2种解决方案：</p>
+<p>1、windows下</p>
+<p>创建一个cron.bat的批处理文件并用记事本打开输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@echo off&#10;:fetion&#10;ping -n 2 127.0.0.1 &#62;&#62;nul&#10;start http://188.188.0.9/fetion_send_sms.php&#10;ping -n 3 127.0.0.1 &#62;&#62;nul&#10;taskkill /f /im &#34;iexplore.exe&#34;&#10;goto fetion&#10;pause</span><br></pre></td></tr></table></figure>
+<p>2.linux下</p>
+<p>在/root/shell下创建一个fetion.sh的shell脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh&#10;curl http://188.188.0.9/fetion_send_sms.php&#10;#&#23616;&#22495;&#32593;&#35775;&#38382;php&#20195;&#30721;&#30340;&#22320;&#22336;</span><br></pre></td></tr></table></figure>
+<p>然后，每隔5s钟访问指定php脚本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e&#10;* * * * * /root/shell/fetion.sh&#10;* * * * * sleep 5 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 10 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 15 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 20 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 25 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 30 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 35 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 40 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 45 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 50 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 55 &#38;amp;&#38;amp; /root/shell/fetion.sh</span><br></pre></td></tr></table></figure>
+<p>2014.5.18日，更新统计飞信、mas发送次数，删除root邮件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh&#10;Fetion_DateName=Fetion_Date_$(date +&#8220;%Y%m%d&#8221;).txt&#10;MAS_DateName=MAS_Date_$(date +&#8220;%Y%m%d&#8221;).txt&#10;grep &#8216;One message to sent by Fetion&#8217; /var/spool/mail/root | wc -l &#62;&#62; /root/shell/Date_Fetion/$Fetion_DateName&#10;grep &#8216;One message to sent by MAS&#8217; /var/spool/mail/root | wc -l &#62;&#62; /root/shell/Date_Fetion/$MAS_DateName&#10;cat /dev/null &#62; /var/spool/mail/root</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>基于PHP-fetion进行修改。</p>
+<p>作者博客：<a href="http://blog.quanhz.com/">http://blog.quanhz.com/</a></p>
+<p>PHP-fetion代码：<a href="https://code.google.com/p/php-fetion/">https://code.google.com/p/php-fetion/</a></p>
+<p>对定时发送页面做了修改：</p>
+<p>fetion_send_sms.php(2013年版通达OA)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">//定时任务发送飞信手机短信</span><br><span class="line">    include_once (“inc/conn.php”);</span><br><span class="line">    include_once (“inc/fetion.php”); //账号密码</span><br><span class="line">    require_once (“inc/class.fetion.php”); //飞信发送类</span><br><span class="line">    require_once (“inc/class.gateway.php”); //其他API接口发送</span><br><span class="line">    $cur_time = date(“Y-m-d H:i:s”); //获得当前时间</span><br><span class="line">    $query = “SELECT `SMS_ID`,`PHONE`,`CONTENT` FROM `SMS2` WHERE `SEND_TIME` &lt;= ‘&#123;$cur_time&#125;’ AND `SEND_FLAG` = ‘3’ LIMIT 1″; //检测短信时间及状态</span><br><span class="line">    $cursor = exequery($connection, $query); //连接数据库</span><br><span class="line">    //无短信需要发送</span><br><span class="line">    if (0 == mysql_num_rows($cursor)) &#123;</span><br><span class="line">        echo “No message to send”;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">    //发送飞信</span><br><span class="line">    $ROW = mysql_fetch_array($cursor);</span><br><span class="line">    $PHONE = $ROW['PHONE'];</span><br><span class="line">    $CONTENT = $ROW['CONTENT'];</span><br><span class="line">    $SMS_ID = $ROW['SMS_ID'];</span><br><span class="line">    //登陆飞信</span><br><span class="line">    $fetion = new PHPFetion($mobile, $password);</span><br><span class="line">    //发送飞信短信</span><br><span class="line">    $result = $fetion-&gt;send($PHONE, iconv(“gbk”, “utf-8″, $CONTENT));</span><br><span class="line">    //发送短信读取手机号，及信息内容转换代码</span><br><span class="line">    $result = iconv(“utf-8″, “gbk”, $result); //返回值</span><br><span class="line">    //判定飞信发送是否成功</span><br><span class="line">    if (strpos($result, “成功”) === FALSE) &#123;</span><br><span class="line">        $JIEGUO = 0; //失败，状态更新至待网关发送</span><br><span class="line">        echo “One message to sent by MAS”;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        $JIEGUO = 1; //成功</span><br><span class="line">        echo “One message to sent by Fetion”;</span><br><span class="line">    &#125;</span><br><span class="line">    //更新短信发送状态</span><br><span class="line">    $query2 = “UPDATE `SMS2` SET `SEND_FLAG` = ‘&#123;$JIEGUO&#125;’ WHERE `SMS_ID`='&#123;$SMS_ID&#125;'”;</span><br><span class="line">    exequery($connection, $query2);</span><br><span class="line">    //结束会话</span><br><span class="line">    $fetion-&gt;_logout();</span><br><span class="line">    &#125;</span><br><span class="line">    /* End of the file */</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+      <category term="通达OA" scheme="http://www.mr-wang.cn/tags/%E9%80%9A%E8%BE%BEOA/"/>
     
       <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
     
@@ -193,6 +329,78 @@ cat /dev/null &gt; messages
   </entry>
   
   <entry>
+    <title><![CDATA[记网站服务器遭遇PHPDDOS攻击]]></title>
+    <link href="http://www.mr-wang.cn/2015/07/11/The-web-server-encountered-PHPDDOS/"/>
+    <id>http://www.mr-wang.cn/2015/07/11/The-web-server-encountered-PHPDDOS/</id>
+    <published>2015-07-11T05:24:49.220Z</published>
+    <updated>2015-04-06T02:59:23.000Z</updated>
+    <content type="html"><![CDATA[<p>2014年4月10–11日，公司web服务器遭遇PHPDDOS攻击，导致服务器宽带被大量占用，网络延迟很大，无法远程登陆服务器管理。</p>
+<p>开始以为是访问量太大导致的，10日发现服务器始终向某一固定IP发送UDP 53的包。采用iptables禁用IP。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I OUTPUT -s 119.42.149.69 -j DROP</span><br></pre></td></tr></table></figure>
+<p>然而服务器故障依旧，后来查询资料，发现原来服务器web网站被挂马，PHPDDOS。</p>
+<a id="more"></a>
+<p>现分享解决方法：</p>
+<p>1.在linux服务器中输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I OUTPUT -p udp &#8211;-dport 53 -d 202.103.44.150 -j ACCEPT&#10;iptables -I OUTPUT -p udp &#8211;-dport 53 -d 202.103.24.68 -j ACCEPT&#10;iptables -A OUTPUT -p udp -j REJECT&#10;/etc/rc.d/init.d/iptables save&#10;service iptables restart</span><br></pre></td></tr></table></figure>
+<p>暂时通过iptables来屏蔽服务器向外发包。</p>
+<p>2.查看网站日志，在日志中搜索IP：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep  &#8216;119.42.149.69&#8217;  /usr/local/nginx/logs/access.log</span><br></pre></td></tr></table></figure>
+<p>寻找服务器中的攻击文件，删除。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>2014年4月10–11日，公司web服务器遭遇PHPDDOS攻击，导致服务器宽带被大量占用，网络延迟很大，无法远程登陆服务器管理。</p>
+<p>开始以为是访问量太大导致的，10日发现服务器始终向某一固定IP发送UDP 53的包。采用iptables禁用IP。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I OUTPUT -s 119.42.149.69 -j DROP</span><br></pre></td></tr></table></figure>
+<p>然而服务器故障依旧，后来查询资料，发现原来服务器web网站被挂马，PHPDDOS。</p>]]>
+    
+    </summary>
+    
+      <category term="Iptables" scheme="http://www.mr-wang.cn/tags/Iptables/"/>
+    
+      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[linux的运行级别及自启动程序]]></title>
+    <link href="http://www.mr-wang.cn/2015/07/11/Linux-Boot-Sequence/"/>
+    <id>http://www.mr-wang.cn/2015/07/11/Linux-Boot-Sequence/</id>
+    <published>2015-07-11T05:24:49.220Z</published>
+    <updated>2015-04-06T02:58:41.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Linux运行级别：">Linux运行级别：</h2><p>Linux运行级别有七种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 - &#20572;&#26426;&#65288;&#21315;&#19975;&#19981;&#33021;&#25226;initdefault &#35774;&#32622;&#20026;0 &#65289;&#10;1 - &#21333;&#29992;&#25143;&#27169;&#24335;&#10;2 - &#22810;&#29992;&#25143;&#65292;&#27809;&#26377; NFS&#10;3 - &#23436;&#20840;&#22810;&#29992;&#25143;&#27169;&#24335;(&#26631;&#20934;&#30340;&#36816;&#34892;&#32423;)&#10;4 - &#27809;&#26377;&#29992;&#21040;&#10;5 - X11 &#65288;xwindow)&#10;6 - &#37325;&#26032;&#21551;&#21160; &#65288;&#21315;&#19975;&#19981;&#35201;&#25226;initdefault &#35774;&#32622;&#20026;6 &#65289;</span><br></pre></td></tr></table></figure>
+<p>默认的运行级别在/etc/inittab文件中进行设置。</p>
+<a id="more"></a>
+<h2 id="加载开机启动程序">加载开机启动程序</h2><p>Linux系统启动确定运行级别后，加载运行级别下的自启动程序。</p>
+<p>那么不同运行级别的，自启动程序不同，对应的启动程序目录也不同。如果需要查看3级别用户的启动程序，可以通过/etc/rc3.d 目录来查看。</p>
+<p>目录名中的”rc”，表示run command（运行程序），最后的d表示directory（目录）。<br>下面让我们看看 /etc/rc3.d, 目录中到底指定了哪些程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@dbserver etc]# ls /etc/rc3.d/&#10;K01numad K01smartd K02oddjobd&#10;S01sysstat S02lvm2-monitor S08iptables&#10;...</span><br></pre></td></tr></table></figure>
+<p>从目录名，我们可以看出，目录均是以“字母K或S+2位数字+程序名”的形式。<br>字母K表示：kill，从其他运行级别切换到这一级别时，需要关闭的程序。<br>字母S表示：start，需要启动的程序。<br>数字表示：表示处理顺序，数字越小，处理得越早。数字相同时，按照程序首字母顺序启动。</p>
+<p>前面提到，不同运行级别的，自启动程序不同，对应的启动程序目录也不同。不难想到，如果多个”运行级别”需要启动同一个程序，那么这个程序的启动脚本，就会在每一个目录里都有一个拷贝。</p>
+<p>这样会造成管理上的困扰：如果要修改启动脚本，岂不是每个目录都要改一遍？</p>
+<p>Linux的解决办法，就是七个 /etc/rcN.d 目录里列出的程序，都设为链接文件，指向另外一个目录 /etc/init.d ，真正的启动脚本都统一放在这个目录中。init进程逐一加载开机启动程序，其实就是运行这个目录里的启动脚本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@dbserver rc3.d]# ll /etc/rc3.d/&#10;&#24635;&#29992;&#37327; 0&#10;lrwxrwxrwx. 1 root root 15 3&#26376;  25 17:30 K01numad -&#62; ../init.d/numad&#10;lrwxrwxrwx. 1 root root 16 3&#26376;  25 17:30 K01smartd -&#62; ../init.d/smartd&#10;lrwxrwxrwx. 1 root root 17 3&#26376;  25 17:27 K02oddjobd -&#62; ../init.d/oddjobd&#10;lrwxrwxrwx. 1 root root 16 3&#26376;  25 17:31 K10psacct -&#62; ../init.d/psacct&#10;lrwxrwxrwx. 1 root root 19 3&#26376;  25 17:27 K10saslauthd -&#62; ../init.d/saslauthd&#10;lrwxrwxrwx. 1 root root 20 3&#26376;  25 17:25 K50netconsole -&#62; ../init.d/netconsole&#10;lrwxrwxrwx. 1 root root 13 3&#26376;  25 17:26 K60nfs -&#62; ../init.d/nfs</span><br></pre></td></tr></table></figure>
+<p>再看看链接指向的init.d文件，发现还是一个链接文件。所以最终的脚本文件在/etc/rc.d/init.d</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@dbserver etc]# ll /etc/init.d&#10;lrwxrwxrwx. 1 root root 11 3&#26376;  25 17:15 init.d -&#62; rc.d/init.d</span><br></pre></td></tr></table></figure>
+<p>链接文件目录：/etc/rcN.d<br>程序脚本文件目录：/etc/rc.d/init.d<br>用户自定义脚本：/etc/rc.d/init.d/rc.local</p>
+<h2 id="Shell配置文件">Shell配置文件</h2><p>Shell的配置文件有如下五个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/profile&#10;/etc/bashrc&#10;~/.bash_profile&#10;~/.bash_loginout&#10;~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>他们之间的区别：<br><code>/etc/profile</code> 这是对所有用户都有效的配置，文件修改后，需要source生效重启；<br><code>~/.bash_profile</code> 这是对当前用户有效的配置，文件修改后，需要source生效或重启；<br><code>/etc/bashrc</code> 桌面状态下，打开一个不需要登陆的Shell时调用，对所有用户都有效，文件修改后，重新打开一个Shell就生效；<br><code>~/.bashrc</code> 桌面状态下，打开一个不需要登陆的Shell时调用，对当前用户有效，文件修改后，重新打开一个Shell就生效；<br><code>~/.bash_loginout</code> 当每次退出系统(退出bash shell)时,执行该文件。</p>
+<p>参考<br><a href="http://blog.csdn.net/firedb/article/details/8205136" target="_blank" rel="external">linux /etc/rc.d/init.d自启动程序说明</a><br><a href="http://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html" target="_blank" rel="external">Linux系统的启动流程</a><br><a href="http://blog.csdn.net/lxlj2006/article/details/5828705" target="_blank" rel="external">系统运行级别(/etc/inittab)</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Linux运行级别：">Linux运行级别：</h2><p>Linux运行级别有七种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 - &#20572;&#26426;&#65288;&#21315;&#19975;&#19981;&#33021;&#25226;initdefault &#35774;&#32622;&#20026;0 &#65289;&#10;1 - &#21333;&#29992;&#25143;&#27169;&#24335;&#10;2 - &#22810;&#29992;&#25143;&#65292;&#27809;&#26377; NFS&#10;3 - &#23436;&#20840;&#22810;&#29992;&#25143;&#27169;&#24335;(&#26631;&#20934;&#30340;&#36816;&#34892;&#32423;)&#10;4 - &#27809;&#26377;&#29992;&#21040;&#10;5 - X11 &#65288;xwindow)&#10;6 - &#37325;&#26032;&#21551;&#21160; &#65288;&#21315;&#19975;&#19981;&#35201;&#25226;initdefault &#35774;&#32622;&#20026;6 &#65289;</span><br></pre></td></tr></table></figure>
+<p>默认的运行级别在/etc/inittab文件中进行设置。</p>]]>
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.mr-wang.cn/tags/Linux/"/>
+    
+      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[让AMH虚拟主机支持PATHINFO]]></title>
     <link href="http://www.mr-wang.cn/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/"/>
     <id>http://www.mr-wang.cn/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/</id>
@@ -288,133 +496,38 @@ cat /dev/null &gt; messages
   </entry>
   
   <entry>
-    <title><![CDATA[AMH重新编译Nginx，使其支持静态页面post]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/"/>
-    <id>http://www.mr-wang.cn/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/</id>
+    <title><![CDATA[CentOS 安装与调优配置]]></title>
+    <link href="http://www.mr-wang.cn/2015/07/11/CentOS-System-Performance-tuning/"/>
+    <id>http://www.mr-wang.cn/2015/07/11/CentOS-System-Performance-tuning/</id>
     <published>2015-07-11T05:24:49.220Z</published>
-    <updated>2015-04-06T02:59:38.000Z</updated>
-    <content type="html"><![CDATA[<p>在实际使用AMH的过程中，公司出现通过post请求静态页面；默认的nginx上，是拒绝通过post方式访问静态页面的。</p>
-<p>网上有2种方法解决这个问题，但是在实际的过程中，发现方法1不奏效,于是使用方法2，重新编译nginx解决问题。</p>
+    <updated>2015-04-06T02:57:53.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="分区">分区</h2><p>至少2个分区，/以及swap分区。另外设置独立/boot分区。<br>所以生产环境分3个分区。</p>
+<p>分区案例：<a href="http://oldboy.blog.51cto.com/2561410/634725" target="_blank" rel="external">http://oldboy.blog.51cto.com/2561410/634725</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#20998;&#21306;&#26597;&#30475;&#10;df -Th&#10;&#10;Filesystem     Type   Size  Used Avail Use% Mounted on&#10;/dev/sda2      ext4   8.6G  2.5G  5.7G  31% /&#10;tmpfs          tmpfs  242M     0  242M   0% /dev/shm&#10;/dev/sda1      ext4   190M   53M  128M  30% /boot</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>方法1：</p>
-<p>修改nginc.conf配置文件，改变“405错误”为“200 ok”，并配置location来解决</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/vhost/domain.com.conf</span><br></pre></td></tr></table></figure>
-<p>添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error_page 405 =200 @405;&#10;location @405&#10;&#123;&#10;    root /home/wwwroot/web/doamin.com;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>方法2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/amh_install/&#10;wget http://code.amysql.com/files/nginx-1.4.4.tar.gz&#10;tar zxvf nginx-1.4.4.tar.gz&#10;cd nginx-1.4.4/src/http/modules/&#10;&#10;vi ngx_http_static_module.c&#10;#&#23558;&#36825;&#27573;&#23631;&#34109;&#25481;&#65307;&#10;/*&#10;if (r-&#62;method &#38; NGX_HTTP_POST) &#123;&#10;     return NGX_HTTP_NOT_ALLOWED;&#10;&#125;&#10;*/</span><br></pre></td></tr></table></figure>
-<p>重新编译：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure &#8211;prefix=/usr/local/nginx &#8211;user=www &#8211;group=www &#8211;with-http_ssl_module &#8211;with-http_static_module &#8211;with-http_gzip_static_module &#8211;without-mail_pop3_module &#8211;without-mail_imap_module &#8211;without-mail_smtp_module &#8211;without-http_uwsgi_module &#8211;without-http_scgi_module&#10;make</span><br></pre></td></tr></table></figure>
-<p>编译完成后不要再执行 make install，不然会把原有的配置文件覆盖，正确的方法是直接删除旧的，把新的复制过去后再执行make upgrade。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak&#10;cp ./objs/nginx /usr/local/nginx/sbin/&#10;make upgrade</span><br></pre></td></tr></table></figure>
-<p>重载一下nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/nginx reload</span><br></pre></td></tr></table></figure>
+<h2 id="挂载新硬盘">挂载新硬盘</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#26597;&#30475;&#26032;&#21152;&#30828;&#30424;&#30340;&#25991;&#20214;&#21517;&#10;fdisk -l&#10;&#10;# &#23545;&#26032;&#30828;&#30424;&#36827;&#34892;&#20998;&#21306;&#10;fdisk /dev/sdb&#10;&#10;# &#26597;&#30475;&#20998;&#21306;&#30340;&#26684;&#24335;&#31867;&#22411;&#10;df -Th&#10;&#10;# &#23545;&#26032;&#20998;&#21306;&#36827;&#34892;&#26684;&#24335;&#21270;&#10;mkfs -t ext4 /dev/sdb1&#10;&#10;# &#26032;&#24314;&#30446;&#24405;&#65292;&#24182;&#23558;&#20998;&#21306;&#25346;&#36733;&#21040;&#30446;&#24405;&#19979;&#10;mkdir /data&#10;mount /dev/sdb1 /data&#10;&#10;# &#20462;&#25913;/etc/fstab&#25991;&#20214;&#65292;&#35753;&#24320;&#26426;&#33258;&#21160;&#25346;&#36733;&#10;/dev/sdb1   /data   ext4   defaults    1 2</span><br></pre></td></tr></table></figure>
+<h2 id="IP地址，DNS设置">IP地址，DNS设置</h2><h3 id="ip地址">ip地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth0&#10;&#10;DEVICE=eth0&#10;IPADDR=192.168.1.250&#10;NETMASK=255.255.255.0&#10;GATEWAY=192.168.1.1&#10;HWADDR=00:0C:29:F2:14:C7&#10;TYPE=Ethernet&#10;UUID=640ec151-26d6-4966-beb4-6de0c2306beb&#10;ONBOOT=yes&#10;NM_CONTROLLED=yes&#10;BOOTPROTO=static</span><br></pre></td></tr></table></figure>
+<h3 id="DNS设置">DNS设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/resolv.conf&#10;&#10;nameserver 114.114.114.114</span><br></pre></td></tr></table></figure>
+<h2 id="yum源修改">yum源修改</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d&#10;mv CentOS-Base.repo CentOS-Base.repo.bk &#10;wget http://mirrors.aliyun.com/repo/Centos-6.repo&#10;mv Centos-6.repo CentOS-Base.repo&#10;yum makecache&#10;&#10;#&#26356;&#26032;&#31995;&#32479;&#10;yum update&#10;&#10;#&#23433;&#35013;lrzsz&#19978;&#20256;&#19979;&#36733;&#24037;&#20855;&#10;yum install lrzsz</span><br></pre></td></tr></table></figure>
+<h2 id="开机启动项优化">开机启动项优化</h2><p>1、图形界面禁止或启动服务<br>使用<code>setup</code>或者<code>ntsysv</code>命令</p>
+<p>2、脚本实现禁止或启动服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#31105;&#27490;&#20840;&#37096;&#26381;&#21153;&#10;for service in `chkconfig --list | grep 3:&#21551;&#29992; | awk &#39;&#123;print $1&#125;&#39;`;do chkconfig --level 3 $service off;done&#10;&#10;#&#21551;&#29992;&#38656;&#35201;&#29992;&#21040;&#30340;&#26381;&#21153;&#10;for service in crond network sysstat sshd iptables;do chkconfig --level 3 $service on;done</span><br></pre></td></tr></table></figure>
+<h2 id="SSH登陆设置">SSH登陆设置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bk&#10;vi /etc/ssh/sshd_config &#10;&#10;###By Mr-wang 2015-03-20###&#10;    Port 22&#10;    PermitRootLogin no&#10;    PermitEmptyPasswords no&#10;    UseDNS no&#10;###By Mr-wang 2015-03-20###</span><br></pre></td></tr></table></figure>
+<p>sshd_config 中文手册：<a href="http://www.jinbuguo.com/openssh/sshd_config.html" target="_blank" rel="external">http://www.jinbuguo.com/openssh/sshd_config.html</a></p>
+<h2 id="修改中文显示">修改中文显示</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#39;LANG=&#34;zh_CN.UTF-8&#34;&#39; &#62; /etc/sysconfig/i18n</span><br></pre></td></tr></table></figure>
+<p>注：&gt; 代表重写入   &gt;&gt; 代表追加</p>
+<h2 id="服务器时间同步">服务器时间同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#39;0 0 */1 * * /usr/sbin/ntpdate 210.72.145.44 &#62; /dev/null 2&#62;&#38;1&#39; &#62;&#62; /var/spool/cron/root</span><br></pre></td></tr></table></figure>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>在实际使用AMH的过程中，公司出现通过post请求静态页面；默认的nginx上，是拒绝通过post方式访问静态页面的。</p>
-<p>网上有2种方法解决这个问题，但是在实际的过程中，发现方法1不奏效,于是使用方法2，重新编译nginx解决问题。</p>]]>
+    <![CDATA[<h2 id="分区">分区</h2><p>至少2个分区，/以及swap分区。另外设置独立/boot分区。<br>所以生产环境分3个分区。</p>
+<p>分区案例：<a href="http://oldboy.blog.51cto.com/2561410/634725">http://oldboy.blog.51cto.com/2561410/634725</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#20998;&#21306;&#26597;&#30475;&#10;df -Th&#10;&#10;Filesystem     Type   Size  Used Avail Use% Mounted on&#10;/dev/sda2      ext4   8.6G  2.5G  5.7G  31% /&#10;tmpfs          tmpfs  242M     0  242M   0% /dev/shm&#10;/dev/sda1      ext4   190M   53M  128M  30% /boot</span><br></pre></td></tr></table></figure>]]>
     
-    </summary>
-    
-      <category term="Nginx" scheme="http://www.mr-wang.cn/tags/Nginx/"/>
-    
-      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[记网站服务器遭遇PHPDDOS攻击]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/11/The-web-server-encountered-PHPDDOS/"/>
-    <id>http://www.mr-wang.cn/2015/07/11/The-web-server-encountered-PHPDDOS/</id>
-    <published>2015-07-11T05:24:49.220Z</published>
-    <updated>2015-04-06T02:59:23.000Z</updated>
-    <content type="html"><![CDATA[<p>2014年4月10–11日，公司web服务器遭遇PHPDDOS攻击，导致服务器宽带被大量占用，网络延迟很大，无法远程登陆服务器管理。</p>
-<p>开始以为是访问量太大导致的，10日发现服务器始终向某一固定IP发送UDP 53的包。采用iptables禁用IP。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I OUTPUT -s 119.42.149.69 -j DROP</span><br></pre></td></tr></table></figure>
-<p>然而服务器故障依旧，后来查询资料，发现原来服务器web网站被挂马，PHPDDOS。</p>
-<a id="more"></a>
-<p>现分享解决方法：</p>
-<p>1.在linux服务器中输入如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I OUTPUT -p udp &#8211;-dport 53 -d 202.103.44.150 -j ACCEPT&#10;iptables -I OUTPUT -p udp &#8211;-dport 53 -d 202.103.24.68 -j ACCEPT&#10;iptables -A OUTPUT -p udp -j REJECT&#10;/etc/rc.d/init.d/iptables save&#10;service iptables restart</span><br></pre></td></tr></table></figure>
-<p>暂时通过iptables来屏蔽服务器向外发包。</p>
-<p>2.查看网站日志，在日志中搜索IP：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep  &#8216;119.42.149.69&#8217;  /usr/local/nginx/logs/access.log</span><br></pre></td></tr></table></figure>
-<p>寻找服务器中的攻击文件，删除。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>2014年4月10–11日，公司web服务器遭遇PHPDDOS攻击，导致服务器宽带被大量占用，网络延迟很大，无法远程登陆服务器管理。</p>
-<p>开始以为是访问量太大导致的，10日发现服务器始终向某一固定IP发送UDP 53的包。采用iptables禁用IP。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I OUTPUT -s 119.42.149.69 -j DROP</span><br></pre></td></tr></table></figure>
-<p>然而服务器故障依旧，后来查询资料，发现原来服务器web网站被挂马，PHPDDOS。</p>]]>
-    
-    </summary>
-    
-      <category term="Iptables" scheme="http://www.mr-wang.cn/tags/Iptables/"/>
-    
-      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2013年版通达OA与飞信集成]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/"/>
-    <id>http://www.mr-wang.cn/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/</id>
-    <published>2015-07-11T05:24:49.220Z</published>
-    <updated>2015-04-06T02:59:17.000Z</updated>
-    <content type="html"><![CDATA[<p>基于PHP-fetion进行修改。</p>
-<p>作者博客：<a href="http://blog.quanhz.com/" target="_blank" rel="external">http://blog.quanhz.com/</a></p>
-<p>PHP-fetion代码：<a href="https://code.google.com/p/php-fetion/" target="_blank" rel="external">https://code.google.com/p/php-fetion/</a></p>
-<p>对定时发送页面做了修改：</p>
-<p>fetion_send_sms.php(2013年版通达OA)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">//定时任务发送飞信手机短信</span><br><span class="line">    include_once (“inc/conn.php”);</span><br><span class="line">    include_once (“inc/fetion.php”); //账号密码</span><br><span class="line">    require_once (“inc/class.fetion.php”); //飞信发送类</span><br><span class="line">    require_once (“inc/class.gateway.php”); //其他API接口发送</span><br><span class="line">    $cur_time = date(“Y-m-d H:i:s”); //获得当前时间</span><br><span class="line">    $query = “SELECT `SMS_ID`,`PHONE`,`CONTENT` FROM `SMS2` WHERE `SEND_TIME` &lt;= ‘&#123;$cur_time&#125;’ AND `SEND_FLAG` = ‘3’ LIMIT 1″; //检测短信时间及状态</span><br><span class="line">    $cursor = exequery($connection, $query); //连接数据库</span><br><span class="line">    //无短信需要发送</span><br><span class="line">    if (0 == mysql_num_rows($cursor)) &#123;</span><br><span class="line">        echo “No message to send”;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">    //发送飞信</span><br><span class="line">    $ROW = mysql_fetch_array($cursor);</span><br><span class="line">    $PHONE = $ROW['PHONE'];</span><br><span class="line">    $CONTENT = $ROW['CONTENT'];</span><br><span class="line">    $SMS_ID = $ROW['SMS_ID'];</span><br><span class="line">    //登陆飞信</span><br><span class="line">    $fetion = new PHPFetion($mobile, $password);</span><br><span class="line">    //发送飞信短信</span><br><span class="line">    $result = $fetion-&gt;send($PHONE, iconv(“gbk”, “utf-8″, $CONTENT));</span><br><span class="line">    //发送短信读取手机号，及信息内容转换代码</span><br><span class="line">    $result = iconv(“utf-8″, “gbk”, $result); //返回值</span><br><span class="line">    //判定飞信发送是否成功</span><br><span class="line">    if (strpos($result, “成功”) === FALSE) &#123;</span><br><span class="line">        $JIEGUO = 0; //失败，状态更新至待网关发送</span><br><span class="line">        echo “One message to sent by MAS”;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        $JIEGUO = 1; //成功</span><br><span class="line">        echo “One message to sent by Fetion”;</span><br><span class="line">    &#125;</span><br><span class="line">    //更新短信发送状态</span><br><span class="line">    $query2 = “UPDATE `SMS2` SET `SEND_FLAG` = ‘&#123;$JIEGUO&#125;’ WHERE `SMS_ID`='&#123;$SMS_ID&#125;'”;</span><br><span class="line">    exequery($connection, $query2);</span><br><span class="line">    //结束会话</span><br><span class="line">    $fetion-&gt;_logout();</span><br><span class="line">    &#125;</span><br><span class="line">    /* End of the file */</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>其余代码，点击下载：<a href="http://mr-wang.qiniudn.com/2013%E5%B9%B4%E7%89%88OA%E4%B8%8E%E9%A3%9E%E4%BF%A1%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88.zip" target="_blank" rel="external">2013年版OA与飞信集成方案</a></p>
-<p>将文件在OA服务器wwwroot目录下进行覆盖，将task目录下的fetion_send_sms.php加入到通达OA的定时任务中。</p>
-<p>注：OA自带的定时任务的最小时间间隔为1分钟，飞信发送缓慢。</p>
-<p>这里提供2种解决方案：</p>
-<p>1、windows下</p>
-<p>创建一个cron.bat的批处理文件并用记事本打开输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@echo off&#10;:fetion&#10;ping -n 2 127.0.0.1 &#62;&#62;nul&#10;start http://188.188.0.9/fetion_send_sms.php&#10;ping -n 3 127.0.0.1 &#62;&#62;nul&#10;taskkill /f /im &#34;iexplore.exe&#34;&#10;goto fetion&#10;pause</span><br></pre></td></tr></table></figure>
-<p>2.linux下</p>
-<p>在/root/shell下创建一个fetion.sh的shell脚本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh&#10;curl http://188.188.0.9/fetion_send_sms.php&#10;#&#23616;&#22495;&#32593;&#35775;&#38382;php&#20195;&#30721;&#30340;&#22320;&#22336;</span><br></pre></td></tr></table></figure>
-<p>然后，每隔5s钟访问指定php脚本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e&#10;* * * * * /root/shell/fetion.sh&#10;* * * * * sleep 5 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 10 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 15 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 20 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 25 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 30 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 35 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 40 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 45 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 50 &#38;amp;&#38;amp; /root/shell/fetion.sh&#10;* * * * * sleep 55 &#38;amp;&#38;amp; /root/shell/fetion.sh</span><br></pre></td></tr></table></figure>
-<p>2014.5.18日，更新统计飞信、mas发送次数，删除root邮件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh&#10;Fetion_DateName=Fetion_Date_$(date +&#8220;%Y%m%d&#8221;).txt&#10;MAS_DateName=MAS_Date_$(date +&#8220;%Y%m%d&#8221;).txt&#10;grep &#8216;One message to sent by Fetion&#8217; /var/spool/mail/root | wc -l &#62;&#62; /root/shell/Date_Fetion/$Fetion_DateName&#10;grep &#8216;One message to sent by MAS&#8217; /var/spool/mail/root | wc -l &#62;&#62; /root/shell/Date_Fetion/$MAS_DateName&#10;cat /dev/null &#62; /var/spool/mail/root</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>基于PHP-fetion进行修改。</p>
-<p>作者博客：<a href="http://blog.quanhz.com/">http://blog.quanhz.com/</a></p>
-<p>PHP-fetion代码：<a href="https://code.google.com/p/php-fetion/">https://code.google.com/p/php-fetion/</a></p>
-<p>对定时发送页面做了修改：</p>
-<p>fetion_send_sms.php(2013年版通达OA)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">//定时任务发送飞信手机短信</span><br><span class="line">    include_once (“inc/conn.php”);</span><br><span class="line">    include_once (“inc/fetion.php”); //账号密码</span><br><span class="line">    require_once (“inc/class.fetion.php”); //飞信发送类</span><br><span class="line">    require_once (“inc/class.gateway.php”); //其他API接口发送</span><br><span class="line">    $cur_time = date(“Y-m-d H:i:s”); //获得当前时间</span><br><span class="line">    $query = “SELECT `SMS_ID`,`PHONE`,`CONTENT` FROM `SMS2` WHERE `SEND_TIME` &lt;= ‘&#123;$cur_time&#125;’ AND `SEND_FLAG` = ‘3’ LIMIT 1″; //检测短信时间及状态</span><br><span class="line">    $cursor = exequery($connection, $query); //连接数据库</span><br><span class="line">    //无短信需要发送</span><br><span class="line">    if (0 == mysql_num_rows($cursor)) &#123;</span><br><span class="line">        echo “No message to send”;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">    //发送飞信</span><br><span class="line">    $ROW = mysql_fetch_array($cursor);</span><br><span class="line">    $PHONE = $ROW['PHONE'];</span><br><span class="line">    $CONTENT = $ROW['CONTENT'];</span><br><span class="line">    $SMS_ID = $ROW['SMS_ID'];</span><br><span class="line">    //登陆飞信</span><br><span class="line">    $fetion = new PHPFetion($mobile, $password);</span><br><span class="line">    //发送飞信短信</span><br><span class="line">    $result = $fetion-&gt;send($PHONE, iconv(“gbk”, “utf-8″, $CONTENT));</span><br><span class="line">    //发送短信读取手机号，及信息内容转换代码</span><br><span class="line">    $result = iconv(“utf-8″, “gbk”, $result); //返回值</span><br><span class="line">    //判定飞信发送是否成功</span><br><span class="line">    if (strpos($result, “成功”) === FALSE) &#123;</span><br><span class="line">        $JIEGUO = 0; //失败，状态更新至待网关发送</span><br><span class="line">        echo “One message to sent by MAS”;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        $JIEGUO = 1; //成功</span><br><span class="line">        echo “One message to sent by Fetion”;</span><br><span class="line">    &#125;</span><br><span class="line">    //更新短信发送状态</span><br><span class="line">    $query2 = “UPDATE `SMS2` SET `SEND_FLAG` = ‘&#123;$JIEGUO&#125;’ WHERE `SMS_ID`='&#123;$SMS_ID&#125;'”;</span><br><span class="line">    exequery($connection, $query2);</span><br><span class="line">    //结束会话</span><br><span class="line">    $fetion-&gt;_logout();</span><br><span class="line">    &#125;</span><br><span class="line">    /* End of the file */</span><br></pre></td></tr></table></figure>]]>
-    
-    </summary>
-    
-      <category term="通达OA" scheme="http://www.mr-wang.cn/tags/%E9%80%9A%E8%BE%BEOA/"/>
-    
-      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Linux常用资源]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/11/general-linux-resources/"/>
-    <id>http://www.mr-wang.cn/2015/07/11/general-linux-resources/</id>
-    <published>2015-07-11T05:24:49.220Z</published>
-    <updated>2015-03-23T11:25:18.000Z</updated>
-    <content type="html"><![CDATA[<p><a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank" title="LINUX工具">LINUX工具</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank" title="LINUX工具">LINUX工具</a></p>
-]]>
     </summary>
     
       <category term="Linux" scheme="http://www.mr-wang.cn/tags/Linux/"/>
     
-      <category term="资源" scheme="http://www.mr-wang.cn/categories/%E8%B5%84%E6%BA%90/"/>
+      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
@@ -514,124 +627,6 @@ cat /dev/null &gt; messages
       <category term="Oracle" scheme="http://www.mr-wang.cn/tags/Oracle/"/>
     
       <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Netbois协议导致网络阻塞]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/"/>
-    <id>http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/</id>
-    <published>2015-07-11T05:24:49.220Z</published>
-    <updated>2015-03-23T11:25:18.000Z</updated>
-    <content type="html"><![CDATA[<p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
-<p>在网上有这样的解释：</p>
-<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终竟然导致接入交换机和汇聚交换机、核心交换机间的链路阻塞，使得网络变得基本不通。<br>初步分析了一下捕获到的数据，基本认定原因在于好多个人计算机内包含恶意/流氓软件，会不停地访问btamail.net、bar.baidu.com、 sobar.baidu.com等域名，同时，windows的名字解析机制的顺序是：</p>
-<ol>
-<li>hosts</li>
-<li>net bios, wins, lmhosts</li>
-<li>dns<br>所以，就会在网络中产生大量nbns的数据包</li>
-</ol>
-<p>然后，在那台电脑上杀进程，找到恶意软件。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
-<p>在网上有这样的解释：</p>
-<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终]]>
-    </summary>
-    
-      <category term="网络" scheme="http://www.mr-wang.cn/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[linux的运行级别及自启动程序]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/11/Linux-Boot-Sequence/"/>
-    <id>http://www.mr-wang.cn/2015/07/11/Linux-Boot-Sequence/</id>
-    <published>2015-07-11T05:24:49.220Z</published>
-    <updated>2015-04-06T02:58:41.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="Linux运行级别：">Linux运行级别：</h2><p>Linux运行级别有七种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 - &#20572;&#26426;&#65288;&#21315;&#19975;&#19981;&#33021;&#25226;initdefault &#35774;&#32622;&#20026;0 &#65289;&#10;1 - &#21333;&#29992;&#25143;&#27169;&#24335;&#10;2 - &#22810;&#29992;&#25143;&#65292;&#27809;&#26377; NFS&#10;3 - &#23436;&#20840;&#22810;&#29992;&#25143;&#27169;&#24335;(&#26631;&#20934;&#30340;&#36816;&#34892;&#32423;)&#10;4 - &#27809;&#26377;&#29992;&#21040;&#10;5 - X11 &#65288;xwindow)&#10;6 - &#37325;&#26032;&#21551;&#21160; &#65288;&#21315;&#19975;&#19981;&#35201;&#25226;initdefault &#35774;&#32622;&#20026;6 &#65289;</span><br></pre></td></tr></table></figure>
-<p>默认的运行级别在/etc/inittab文件中进行设置。</p>
-<a id="more"></a>
-<h2 id="加载开机启动程序">加载开机启动程序</h2><p>Linux系统启动确定运行级别后，加载运行级别下的自启动程序。</p>
-<p>那么不同运行级别的，自启动程序不同，对应的启动程序目录也不同。如果需要查看3级别用户的启动程序，可以通过/etc/rc3.d 目录来查看。</p>
-<p>目录名中的”rc”，表示run command（运行程序），最后的d表示directory（目录）。<br>下面让我们看看 /etc/rc3.d, 目录中到底指定了哪些程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@dbserver etc]# ls /etc/rc3.d/&#10;K01numad K01smartd K02oddjobd&#10;S01sysstat S02lvm2-monitor S08iptables&#10;...</span><br></pre></td></tr></table></figure>
-<p>从目录名，我们可以看出，目录均是以“字母K或S+2位数字+程序名”的形式。<br>字母K表示：kill，从其他运行级别切换到这一级别时，需要关闭的程序。<br>字母S表示：start，需要启动的程序。<br>数字表示：表示处理顺序，数字越小，处理得越早。数字相同时，按照程序首字母顺序启动。</p>
-<p>前面提到，不同运行级别的，自启动程序不同，对应的启动程序目录也不同。不难想到，如果多个”运行级别”需要启动同一个程序，那么这个程序的启动脚本，就会在每一个目录里都有一个拷贝。</p>
-<p>这样会造成管理上的困扰：如果要修改启动脚本，岂不是每个目录都要改一遍？</p>
-<p>Linux的解决办法，就是七个 /etc/rcN.d 目录里列出的程序，都设为链接文件，指向另外一个目录 /etc/init.d ，真正的启动脚本都统一放在这个目录中。init进程逐一加载开机启动程序，其实就是运行这个目录里的启动脚本。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@dbserver rc3.d]# ll /etc/rc3.d/&#10;&#24635;&#29992;&#37327; 0&#10;lrwxrwxrwx. 1 root root 15 3&#26376;  25 17:30 K01numad -&#62; ../init.d/numad&#10;lrwxrwxrwx. 1 root root 16 3&#26376;  25 17:30 K01smartd -&#62; ../init.d/smartd&#10;lrwxrwxrwx. 1 root root 17 3&#26376;  25 17:27 K02oddjobd -&#62; ../init.d/oddjobd&#10;lrwxrwxrwx. 1 root root 16 3&#26376;  25 17:31 K10psacct -&#62; ../init.d/psacct&#10;lrwxrwxrwx. 1 root root 19 3&#26376;  25 17:27 K10saslauthd -&#62; ../init.d/saslauthd&#10;lrwxrwxrwx. 1 root root 20 3&#26376;  25 17:25 K50netconsole -&#62; ../init.d/netconsole&#10;lrwxrwxrwx. 1 root root 13 3&#26376;  25 17:26 K60nfs -&#62; ../init.d/nfs</span><br></pre></td></tr></table></figure>
-<p>再看看链接指向的init.d文件，发现还是一个链接文件。所以最终的脚本文件在/etc/rc.d/init.d</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@dbserver etc]# ll /etc/init.d&#10;lrwxrwxrwx. 1 root root 11 3&#26376;  25 17:15 init.d -&#62; rc.d/init.d</span><br></pre></td></tr></table></figure>
-<p>链接文件目录：/etc/rcN.d<br>程序脚本文件目录：/etc/rc.d/init.d<br>用户自定义脚本：/etc/rc.d/init.d/rc.local</p>
-<h2 id="Shell配置文件">Shell配置文件</h2><p>Shell的配置文件有如下五个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/profile&#10;/etc/bashrc&#10;~/.bash_profile&#10;~/.bash_loginout&#10;~/.bashrc</span><br></pre></td></tr></table></figure></p>
-<p>他们之间的区别：<br><code>/etc/profile</code> 这是对所有用户都有效的配置，文件修改后，需要source生效重启；<br><code>~/.bash_profile</code> 这是对当前用户有效的配置，文件修改后，需要source生效或重启；<br><code>/etc/bashrc</code> 桌面状态下，打开一个不需要登陆的Shell时调用，对所有用户都有效，文件修改后，重新打开一个Shell就生效；<br><code>~/.bashrc</code> 桌面状态下，打开一个不需要登陆的Shell时调用，对当前用户有效，文件修改后，重新打开一个Shell就生效；<br><code>~/.bash_loginout</code> 当每次退出系统(退出bash shell)时,执行该文件。</p>
-<p>参考<br><a href="http://blog.csdn.net/firedb/article/details/8205136" target="_blank" rel="external">linux /etc/rc.d/init.d自启动程序说明</a><br><a href="http://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html" target="_blank" rel="external">Linux系统的启动流程</a><br><a href="http://blog.csdn.net/lxlj2006/article/details/5828705" target="_blank" rel="external">系统运行级别(/etc/inittab)</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="Linux运行级别：">Linux运行级别：</h2><p>Linux运行级别有七种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 - &#20572;&#26426;&#65288;&#21315;&#19975;&#19981;&#33021;&#25226;initdefault &#35774;&#32622;&#20026;0 &#65289;&#10;1 - &#21333;&#29992;&#25143;&#27169;&#24335;&#10;2 - &#22810;&#29992;&#25143;&#65292;&#27809;&#26377; NFS&#10;3 - &#23436;&#20840;&#22810;&#29992;&#25143;&#27169;&#24335;(&#26631;&#20934;&#30340;&#36816;&#34892;&#32423;)&#10;4 - &#27809;&#26377;&#29992;&#21040;&#10;5 - X11 &#65288;xwindow)&#10;6 - &#37325;&#26032;&#21551;&#21160; &#65288;&#21315;&#19975;&#19981;&#35201;&#25226;initdefault &#35774;&#32622;&#20026;6 &#65289;</span><br></pre></td></tr></table></figure>
-<p>默认的运行级别在/etc/inittab文件中进行设置。</p>]]>
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://www.mr-wang.cn/tags/Linux/"/>
-    
-      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[CentOS 安装与调优配置]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/11/CentOS-System-Performance-tuning/"/>
-    <id>http://www.mr-wang.cn/2015/07/11/CentOS-System-Performance-tuning/</id>
-    <published>2015-07-11T05:24:49.220Z</published>
-    <updated>2015-04-06T02:57:53.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="分区">分区</h2><p>至少2个分区，/以及swap分区。另外设置独立/boot分区。<br>所以生产环境分3个分区。</p>
-<p>分区案例：<a href="http://oldboy.blog.51cto.com/2561410/634725" target="_blank" rel="external">http://oldboy.blog.51cto.com/2561410/634725</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#20998;&#21306;&#26597;&#30475;&#10;df -Th&#10;&#10;Filesystem     Type   Size  Used Avail Use% Mounted on&#10;/dev/sda2      ext4   8.6G  2.5G  5.7G  31% /&#10;tmpfs          tmpfs  242M     0  242M   0% /dev/shm&#10;/dev/sda1      ext4   190M   53M  128M  30% /boot</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="挂载新硬盘">挂载新硬盘</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#26597;&#30475;&#26032;&#21152;&#30828;&#30424;&#30340;&#25991;&#20214;&#21517;&#10;fdisk -l&#10;&#10;# &#23545;&#26032;&#30828;&#30424;&#36827;&#34892;&#20998;&#21306;&#10;fdisk /dev/sdb&#10;&#10;# &#26597;&#30475;&#20998;&#21306;&#30340;&#26684;&#24335;&#31867;&#22411;&#10;df -Th&#10;&#10;# &#23545;&#26032;&#20998;&#21306;&#36827;&#34892;&#26684;&#24335;&#21270;&#10;mkfs -t ext4 /dev/sdb1&#10;&#10;# &#26032;&#24314;&#30446;&#24405;&#65292;&#24182;&#23558;&#20998;&#21306;&#25346;&#36733;&#21040;&#30446;&#24405;&#19979;&#10;mkdir /data&#10;mount /dev/sdb1 /data&#10;&#10;# &#20462;&#25913;/etc/fstab&#25991;&#20214;&#65292;&#35753;&#24320;&#26426;&#33258;&#21160;&#25346;&#36733;&#10;/dev/sdb1   /data   ext4   defaults    1 2</span><br></pre></td></tr></table></figure>
-<h2 id="IP地址，DNS设置">IP地址，DNS设置</h2><h3 id="ip地址">ip地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth0&#10;&#10;DEVICE=eth0&#10;IPADDR=192.168.1.250&#10;NETMASK=255.255.255.0&#10;GATEWAY=192.168.1.1&#10;HWADDR=00:0C:29:F2:14:C7&#10;TYPE=Ethernet&#10;UUID=640ec151-26d6-4966-beb4-6de0c2306beb&#10;ONBOOT=yes&#10;NM_CONTROLLED=yes&#10;BOOTPROTO=static</span><br></pre></td></tr></table></figure>
-<h3 id="DNS设置">DNS设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/resolv.conf&#10;&#10;nameserver 114.114.114.114</span><br></pre></td></tr></table></figure>
-<h2 id="yum源修改">yum源修改</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d&#10;mv CentOS-Base.repo CentOS-Base.repo.bk &#10;wget http://mirrors.aliyun.com/repo/Centos-6.repo&#10;mv Centos-6.repo CentOS-Base.repo&#10;yum makecache&#10;&#10;#&#26356;&#26032;&#31995;&#32479;&#10;yum update&#10;&#10;#&#23433;&#35013;lrzsz&#19978;&#20256;&#19979;&#36733;&#24037;&#20855;&#10;yum install lrzsz</span><br></pre></td></tr></table></figure>
-<h2 id="开机启动项优化">开机启动项优化</h2><p>1、图形界面禁止或启动服务<br>使用<code>setup</code>或者<code>ntsysv</code>命令</p>
-<p>2、脚本实现禁止或启动服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#31105;&#27490;&#20840;&#37096;&#26381;&#21153;&#10;for service in `chkconfig --list | grep 3:&#21551;&#29992; | awk &#39;&#123;print $1&#125;&#39;`;do chkconfig --level 3 $service off;done&#10;&#10;#&#21551;&#29992;&#38656;&#35201;&#29992;&#21040;&#30340;&#26381;&#21153;&#10;for service in crond network sysstat sshd iptables;do chkconfig --level 3 $service on;done</span><br></pre></td></tr></table></figure>
-<h2 id="SSH登陆设置">SSH登陆设置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bk&#10;vi /etc/ssh/sshd_config &#10;&#10;###By Mr-wang 2015-03-20###&#10;    Port 22&#10;    PermitRootLogin no&#10;    PermitEmptyPasswords no&#10;    UseDNS no&#10;###By Mr-wang 2015-03-20###</span><br></pre></td></tr></table></figure>
-<p>sshd_config 中文手册：<a href="http://www.jinbuguo.com/openssh/sshd_config.html" target="_blank" rel="external">http://www.jinbuguo.com/openssh/sshd_config.html</a></p>
-<h2 id="修改中文显示">修改中文显示</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#39;LANG=&#34;zh_CN.UTF-8&#34;&#39; &#62; /etc/sysconfig/i18n</span><br></pre></td></tr></table></figure>
-<p>注：&gt; 代表重写入   &gt;&gt; 代表追加</p>
-<h2 id="服务器时间同步">服务器时间同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#39;0 0 */1 * * /usr/sbin/ntpdate 210.72.145.44 &#62; /dev/null 2&#62;&#38;1&#39; &#62;&#62; /var/spool/cron/root</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="分区">分区</h2><p>至少2个分区，/以及swap分区。另外设置独立/boot分区。<br>所以生产环境分3个分区。</p>
-<p>分区案例：<a href="http://oldboy.blog.51cto.com/2561410/634725">http://oldboy.blog.51cto.com/2561410/634725</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#20998;&#21306;&#26597;&#30475;&#10;df -Th&#10;&#10;Filesystem     Type   Size  Used Avail Use% Mounted on&#10;/dev/sda2      ext4   8.6G  2.5G  5.7G  31% /&#10;tmpfs          tmpfs  242M     0  242M   0% /dev/shm&#10;/dev/sda1      ext4   190M   53M  128M  30% /boot</span><br></pre></td></tr></table></figure>]]>
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://www.mr-wang.cn/tags/Linux/"/>
-    
-      <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2014阅读书单]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/11/book-list-of-2014/"/>
-    <id>http://www.mr-wang.cn/2015/07/11/book-list-of-2014/</id>
-    <published>2015-07-11T05:24:49.216Z</published>
-    <updated>2015-03-23T11:25:18.000Z</updated>
-    <content type="html"></content>
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="读书" scheme="http://www.mr-wang.cn/categories/%E8%AF%BB%E4%B9%A6/"/>
     
   </entry>
   
