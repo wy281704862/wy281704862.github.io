@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/通达OA/" style="font-size: 10px;">通达OA</a> <a href="/tags/集群/" style="font-size: 10px;">集群</a>
+						<a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/vsftp-ftp/" style="font-size: 10px;">vsftp,ftp</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/通达OA/" style="font-size: 10px;">通达OA</a> <a href="/tags/阅读-书单/" style="font-size: 10px;">阅读,书单</a> <a href="/tags/集群/" style="font-size: 10px;">集群</a>
 					</div>
 				</section>
 				
@@ -191,6 +191,76 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Let-AMH-virtual-host-support-PATHINFO" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/" class="article-date">
+  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/">让AMH虚拟主机支持PATHINFO</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在公司许多程序是在基于ThinkPHP框架上进行开发的， 然而基于此框架开发的程序，URL访问形式如下：</p>
+<p><a href="http://it.ctwoo.com/index.php/Login/index">http://it.ctwoo.com/index.php/Login/index</a></p>
+<p>默认Nginx是不支持PATHINFO的。</p>
+<p>AMH虚拟主机支持PATHINFO更改方法,更改需要支持PATHINFO的主机的配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/vhost/domain.com.conf</span><br></pre></td></tr></table></figure>
+<p>参考配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location ~ ^(.+\.php)(.*)$&#10;&#123;&#10;    fastcgi_pass  unix:/tmp/php-cgi-e-uncommon.com.sock;&#10;    fastcgi_index index.php;&#10;    //begin&#10;    fastcgi_split_path_info ^(.+\.php)(.*)$;&#10;    fastcgi_param PATH_INFO $fastcgi_path_info;&#10;    //end&#10;    include fcgi-host.conf;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>Esc :wq 保存退出。</p>
+<p>进入AMH后台重启Nginx即可。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-CentOS-System-Performance-tuning" class="article article-type-post" itemscope itemprop="blogPost">
   
