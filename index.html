@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/vsftp-ftp/" style="font-size: 10px;">vsftp,ftp</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/通达OA/" style="font-size: 10px;">通达OA</a> <a href="/tags/阅读-书单/" style="font-size: 10px;">阅读,书单</a> <a href="/tags/集群/" style="font-size: 10px;">集群</a>
+						<a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/vsftp-ftp/" style="font-size: 10px;">vsftp,ftp</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/通达OA/" style="font-size: 10px;">通达OA</a> <a href="/tags/阅读-书单/" style="font-size: 10px;">阅读,书单</a> <a href="/tags/集群/" style="font-size: 10px;">集群</a>
 					</div>
 				</section>
 				
@@ -191,6 +191,128 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-To-compile-Nginx-which-supports-static-post-pages" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/28/To-compile-Nginx-which-supports-static-post-pages/" class="article-date">
+  	<time datetime="2015-07-28T04:28:22.274Z" itemprop="datePublished">2015-07-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/28/To-compile-Nginx-which-supports-static-post-pages/">AMH重新编译Nginx，使其支持静态页面post</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在实际使用AMH的过程中，公司出现通过post请求静态页面；默认的nginx上，是拒绝通过post方式访问静态页面的。</p>
+<p>网上有2种方法解决这个问题，但是在实际的过程中，发现方法1不奏效,于是使用方法2，重新编译nginx解决问题。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/28/To-compile-Nginx-which-supports-static-post-pages/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-qq114-sql" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/21/qq114-sql/" class="article-date">
+  	<time datetime="2015-07-21T08:19:57.000Z" itemprop="datePublished">2015-07-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/21/qq114-sql/">工作sql脚本</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一个项目上，需要写一个sql查询客服的会话量及60s响应率。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--60&#31186;&#20869;&#21709;&#24212;&#29575;&#10;--#&#21495;&#26631;&#24535;&#22788;&#20026;&#21442;&#25968;&#26356;&#25913;&#22320;&#26041;&#65292;&#26356;&#25913;&#21442;&#25968;&#21487;&#20197;&#26597;&#35810;&#25351;&#23450;&#25216;&#33021;&#32452;&#19979;&#30340;&#30340;&#20250;&#35805;&#24773;&#20917;&#12290;&#10;DECLARE &#10;--&#26465;&#20214; &#36890;&#36807;&#26102;&#38388;&#27573;&#26597;&#25216;&#33021;&#32452;60&#31186;&#20869;&#21709;&#24212;&#29575;&#10;skillOrganId number; --&#25216;&#33021;&#32452;ID&#10;comefromid number; --&#28192;&#36947;ID&#10;startDate nvarchar2(20); --&#24320;&#22987;&#26102;&#38388;&#10;endDate nvarchar2(20); --&#32467;&#26463;&#26102;&#38388;&#10;&#10;--&#26631;&#35760;&#21464;&#37327;&#10;responseResult number;&#10;responseTime number;&#10;&#10;--&#32479;&#35745;&#32467;&#26524;&#10;sessionCount number;&#10;maxTotal number;&#10;serviceTotal number; --&#20154;&#24037;&#20250;&#35805;&#24635;&#25968;&#10;sumTotal number;--&#21512;&#35745;&#10;innerTotal number;--60&#31186;&#20869;&#24635;&#25968;&#10;&#10;&#10;BEGIN &#10;startDate:=to_char(to_date(&#39;2014-3-01 00:00:00&#39;,&#39;yyyy-mm-dd hh24:mi:ss&#39;),&#39;yyyy-mm-dd hh24:mi:ss&#39;); --# &#21442;&#25968;&#26356;&#25913;&#10;endDate:=to_char(to_date(&#39;2015-4-01 00:00:00&#39;,&#39;yyyy-mm-dd hh24:mi:ss&#39;),&#39;yyyy-mm-dd hh24:mi:ss&#39;); --# &#21442;&#25968;&#26356;&#25913;&#10;&#10;--QQ&#20026;1,webchat&#20026;4,&#24494;&#20449;&#20026;161&#10;comefromid:=1;&#10;&#10;--&#26597;&#35810;&#20250;&#35805;&#35760;&#24405;&#34920;&#20013;&#36890;&#36807;&#20154;&#24037;&#26381;&#21153;&#36827;&#20837;&#30340;&#20154;&#24037;&#20250;&#35805;&#21644;&#25490;&#38431;&#20250;&#35805;&#65292;&#23558;&#26597;&#35810;&#32467;&#26524;&#25554;&#20837;&#21040;serviceTotal&#10;&#10;SELECT count(DISTINCT r.SESSION_ID) INTO serviceTotal&#10;FROM VW_IM_RY_CONVERSATION_RECORD r&#10;WHERE r.DEV_TYPE=12&#10;  AND r.SESSION_TYPE=3&#10;  AND r.SESSION_ID in&#10;    (SELECT DISTINCT r.SESSION_ID&#10;     FROM VW_IM_RY_CONVERSATION_RECORD r&#10;     WHERE r.START_TIME&#62;to_date(startDate,&#39;yyyy-mm-dd hh24:mi:ss&#39;)&#10;       AND r.START_TIME&#60;to_date(endDate,&#39;yyyy-mm-dd hh24:mi:ss&#39;)&#10;       AND r.DEV_TYPE=11);&#10;&#10;sumTotal:=0;&#10;innerTotal:=0;&#10;&#10;FOR c in&#10;  (SELECT DISTINCT u.skill_group_id&#10;   FROM im_sm_user_skill_group u&#10;   WHERE u.skill_group_id &#60;&#62;4001008&#10;     AND u.skill_group_id=1000 --# &#21442;&#25968;&#35774;&#23450;,&#25351;&#23450;&#25216;&#33021;&#32452;ID  , &#23558;c.skill_group_id&#26367;&#25442;&#25351;&#23450;&#30340;&#25216;&#33021;&#32452;ID , &#21487;&#26597;&#35810;&#25351;&#23450;&#25216;&#33021;&#32452;&#19979;&#30340;&#21709;&#24212;&#29575;&#10; ) LOOP responseResult:=0;&#10;&#10; sessionCount:=0;&#10; maxTotal:=0;&#10; skillOrganId:=c.skill_group_id;&#10;&#10;&#10;FOR a IN&#10;  (SELECT DISTINCT u.user_id&#10;   FROM im_sm_user_skill_group u&#10;   WHERE u.skill_group_id=skillOrganId) LOOP&#10;FOR c1 IN&#10;  (SELECT DISTINCT o1.SESSION_ID&#10;   FROM VW_IM_RY_CONVERSATION_RECORD o1&#10;   WHERE o1.dev_type=12&#10;     AND o1.STATE=2&#10;     AND o1.COME_FROM=comefromid&#10;     AND o1.SESSION_TYPE=3&#10;     AND o1.ACCEPTER IN a.user_id&#10;     AND o1.SESSION_ID IN&#10;       (SELECT DISTINCT vm.SESSION_ID&#10;        FROM VW_IM_RY_CONVERSATION_RECORD vm&#10;        WHERE vm.STATE=2&#10;          AND vm.DEV_TYPE=11&#10;          AND vm.START_TIME&#62;to_date(startDate,&#39;yyyy-mm-dd hh24:mi:ss&#39;)&#10;          AND vm.end_TIME&#60;to_date(endDate,&#39;yyyy-mm-dd hh24:mi:ss&#39;)) ) LOOP&#10;FOR c2 IN&#10;  (SELECT min(o2.START_TIME) AS t1,&#10;          min(o3.START_TIME) AS t2&#10;   FROM VW_IM_RY_CONVERSATION_RECORD o2&#10;   LEFT JOIN VW_IM_RY_CONVERSATION_RECORD o3 ON o3.SESSION_ID=o2.SESSION_ID&#10;   AND o3.DEV_TYPE=12&#10;   WHERE o2.SESSION_ID=c1.session_id&#10;     AND o2.DEV_TYPE=11 ) LOOP &#10;     &#10;   responseTime:=(c2.t2-c2.t1)*24*60*60;&#10;&#10; NULL;&#10; END LOOP;&#10;&#10;IF responseTime&#60;60 AND responseTime&#62;=0 &#10;  THEN sessionCount:=sessionCount+1;&#10;  END IF;&#10;&#10;IF responseTime&#62;60 &#10;  THEN maxTotal:=maxTotal+1;&#10;  END IF;&#10;  NULL;&#10;  END LOOP;&#10;&#10;sumTotal:=sumTotal+maxTotal+sessionCount;&#10;innerTotal:=innerTotal+sessionCount;&#10;&#10;IF (maxTotal+sessionCount)&#62;0 AND sessionCount&#62;0&#10;  THEN responseResult:=sessionCount/(maxTotal+sessionCount)*100;&#10;  dbms_output.put_line(&#39;&#25216;&#33021;&#32452;ID: &#39;||&#39; &#39;||skillOrganId||&#39;   &#21592;&#24037;&#24037;&#21495;: &#39;||&#39; &#39;||a.user_id||&#39;  &#20250;&#35805;&#24635;&#25968;:&#39;||(maxTotal+sessionCount)||&#39;  60&#31186;&#21709;&#24212;&#25968;:&#39;||(sessionCount)||&#39;  60&#31186;&#21709;&#24212;&#23458;&#25143;&#29575;&#20026;: &#39;||trunc(responseResult,2)||&#39;%&#39;);&#10;  &#10;  sessionCount:=0;&#10;  maxTotal:=0;&#10;&#10; --dbms_output.put_line(&#39;&#39;);&#10;ELSE responseResult:=0;&#10;  dbms_output.put_line(&#39;&#25216;&#33021;&#32452;ID: &#39;||&#39; &#39;||skillOrganId||&#39;   &#21592;&#24037;&#24037;&#21495;: &#39;||&#39; &#39;||a.user_id||&#39;  &#20250;&#35805;&#24635;&#25968;:&#39;||(maxTotal+sessionCount)||&#39;  60&#31186;&#21709;&#24212;&#25968;:&#39;||(sessionCount)||&#39;  60&#31186;&#21709;&#24212;&#23458;&#25143;&#29575;&#20026;: &#39;||trunc(responseResult,2)||&#39;%&#39;);&#10;  --dbms_output.put_line(&#39;&#39;);&#10;  END IF;&#10;&#10;  END LOOP;&#10;END LOOP;&#10;&#10;IF sumTotal&#62;0&#10;AND innerTotal&#62;0 THEN --dbms_output.put_line(&#39;&#24179;&#22343;&#20540;&#20026;:&#39;||trunc(innerTotal/sumTotal*100,2)||&#39;%&#39;);&#10; dbms_output.put_line(&#39;&#39;);&#10;&#10; dbms_output.put_line(&#39;&#24635;&#35745;  &#20250;&#35805;&#24635;&#25968;:&#39;||sumTotal||&#39;  60&#31186;&#21709;&#24212;&#25968;:&#39;||(innerTotal)||&#39;  60&#31186;&#21709;&#24212;&#23458;&#25143;&#29575;&#20026;: &#39;||trunc(innerTotal/sumTotal*100,2)||&#39;%&#39;);&#10;&#10; END IF;&#10;&#10; --&#23458;&#25143;&#26469;&#35775;&#20154;&#24037;&#26381;&#21153;&#20250;&#35805;&#24635;&#25968;&#10; --dbms_output.put_line(&#39;&#23458;&#25143;&#26469;&#35775;&#20154;&#24037;&#26381;&#21153;&#20250;&#35805;&#30340;&#24635;&#25968;&#20043;&#21644;&#20026;:&#39;||serviceTotal);&#10;END;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-book-list" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -378,203 +500,6 @@
       
         <p class="article-more-link">
           <a  href="/2015/07/11/Nginx-Tomcat-Memcached-Cluster/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-Netbois-protocol-leads-to-network-congestion" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/" class="article-date">
-  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/">Netbois协议导致网络阻塞</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
-<p>在网上有这样的解释：</p>
-<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终竟然导致接入交换机和汇聚交换机、核心交换机间的链路阻塞，使得网络变得基本不通。<br>初步分析了一下捕获到的数据，基本认定原因在于好多个人计算机内包含恶意/流氓软件，会不停地访问btamail.net、bar.baidu.com、 sobar.baidu.com等域名，同时，windows的名字解析机制的顺序是：</p>
-<ol>
-<li>hosts</li>
-<li>net bios, wins, lmhosts</li>
-<li>dns<br>所以，就会在网络中产生大量nbns的数据包</li>
-</ol>
-<p>然后，在那台电脑上杀进程，找到恶意软件。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-To-compile-Nginx-which-supports-static-post-pages" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/" class="article-date">
-  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/">AMH重新编译Nginx，使其支持静态页面post</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在实际使用AMH的过程中，公司出现通过post请求静态页面；默认的nginx上，是拒绝通过post方式访问静态页面的。</p>
-<p>网上有2种方法解决这个问题，但是在实际的过程中，发现方法1不奏效,于是使用方法2，重新编译nginx解决问题。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-The-tongda-of-OA-with-Fetion-integrated-access" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/" class="article-date">
-  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/">2013年版通达OA与飞信集成</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>基于PHP-fetion进行修改。</p>
-<p>作者博客：<a href="http://blog.quanhz.com/">http://blog.quanhz.com/</a></p>
-<p>PHP-fetion代码：<a href="https://code.google.com/p/php-fetion/">https://code.google.com/p/php-fetion/</a></p>
-<p>对定时发送页面做了修改：</p>
-<p>fetion_send_sms.php(2013年版通达OA)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">//定时任务发送飞信手机短信</span><br><span class="line">    include_once (“inc/conn.php”);</span><br><span class="line">    include_once (“inc/fetion.php”); //账号密码</span><br><span class="line">    require_once (“inc/class.fetion.php”); //飞信发送类</span><br><span class="line">    require_once (“inc/class.gateway.php”); //其他API接口发送</span><br><span class="line">    $cur_time = date(“Y-m-d H:i:s”); //获得当前时间</span><br><span class="line">    $query = “SELECT `SMS_ID`,`PHONE`,`CONTENT` FROM `SMS2` WHERE `SEND_TIME` &lt;= ‘&#123;$cur_time&#125;’ AND `SEND_FLAG` = ‘3’ LIMIT 1″; //检测短信时间及状态</span><br><span class="line">    $cursor = exequery($connection, $query); //连接数据库</span><br><span class="line">    //无短信需要发送</span><br><span class="line">    if (0 == mysql_num_rows($cursor)) &#123;</span><br><span class="line">        echo “No message to send”;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">    //发送飞信</span><br><span class="line">    $ROW = mysql_fetch_array($cursor);</span><br><span class="line">    $PHONE = $ROW['PHONE'];</span><br><span class="line">    $CONTENT = $ROW['CONTENT'];</span><br><span class="line">    $SMS_ID = $ROW['SMS_ID'];</span><br><span class="line">    //登陆飞信</span><br><span class="line">    $fetion = new PHPFetion($mobile, $password);</span><br><span class="line">    //发送飞信短信</span><br><span class="line">    $result = $fetion-&gt;send($PHONE, iconv(“gbk”, “utf-8″, $CONTENT));</span><br><span class="line">    //发送短信读取手机号，及信息内容转换代码</span><br><span class="line">    $result = iconv(“utf-8″, “gbk”, $result); //返回值</span><br><span class="line">    //判定飞信发送是否成功</span><br><span class="line">    if (strpos($result, “成功”) === FALSE) &#123;</span><br><span class="line">        $JIEGUO = 0; //失败，状态更新至待网关发送</span><br><span class="line">        echo “One message to sent by MAS”;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        $JIEGUO = 1; //成功</span><br><span class="line">        echo “One message to sent by Fetion”;</span><br><span class="line">    &#125;</span><br><span class="line">    //更新短信发送状态</span><br><span class="line">    $query2 = “UPDATE `SMS2` SET `SEND_FLAG` = ‘&#123;$JIEGUO&#125;’ WHERE `SMS_ID`='&#123;$SMS_ID&#125;'”;</span><br><span class="line">    exequery($connection, $query2);</span><br><span class="line">    //结束会话</span><br><span class="line">    $fetion-&gt;_logout();</span><br><span class="line">    &#125;</span><br><span class="line">    /* End of the file */</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通达OA/">通达OA</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -847,6 +772,76 @@ cat /dev/null &gt; messages
       
         <p class="article-more-link">
           <a  href="/2015/07/11/Linux-Boot-Sequence/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-Let-AMH-virtual-host-support-PATHINFO" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/" class="article-date">
+  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/">让AMH虚拟主机支持PATHINFO</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在公司许多程序是在基于ThinkPHP框架上进行开发的， 然而基于此框架开发的程序，URL访问形式如下：</p>
+<p><a href="http://it.ctwoo.com/index.php/Login/index">http://it.ctwoo.com/index.php/Login/index</a></p>
+<p>默认Nginx是不支持PATHINFO的。</p>
+<p>AMH虚拟主机支持PATHINFO更改方法,更改需要支持PATHINFO的主机的配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/vhost/domain.com.conf</span><br></pre></td></tr></table></figure>
+<p>参考配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location ~ ^(.+\.php)(.*)$&#10;&#123;&#10;    fastcgi_pass  unix:/tmp/php-cgi-e-uncommon.com.sock;&#10;    fastcgi_index index.php;&#10;    //begin&#10;    fastcgi_split_path_info ^(.+\.php)(.*)$;&#10;    fastcgi_param PATH_INFO $fastcgi_path_info;&#10;    //end&#10;    include fcgi-host.conf;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>Esc :wq 保存退出。</p>
+<p>进入AMH后台重启Nginx即可。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

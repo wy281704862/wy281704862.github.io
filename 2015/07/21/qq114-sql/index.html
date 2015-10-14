@@ -3,24 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>CentOS 安装与调优配置 | Mr-wang的博客 | 运维笔记</title>
+  <title>工作sql脚本 | Mr-wang的博客 | 运维笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分区至少2个分区，/以及swap分区。另外设置独立/boot分区。所以生产环境分3个分区。
-分区案例：http://oldboy.blog.51cto.com/2561410/634725
-1#&amp;#20998;&amp;#21306;&amp;#26597;&amp;#30475;&amp;#10;df -Th&amp;#10;&amp;#10;Filesystem     Type   Size  Used Avail Use% Mounte">
+  <meta name="description" content="一个项目上，需要写一个sql查询客服的会话量及60s响应率。
+1--60&amp;#31186;&amp;#20869;&amp;#21709;&amp;#24212;&amp;#29575;&amp;#10;--#&amp;#21495;&amp;#26631;&amp;#24535;&amp;#22788;&amp;#20026;&amp;#21442;&amp;#25968;&amp;#26356;&amp;#25913;&amp;#22320;&amp;#26041;&amp;#65292;&amp;#26356;&amp;#25913;&amp;#21">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 安装与调优配置">
-<meta property="og:url" content="http://www.mr-wang.cn/2015/07/11/CentOS-System-Performance-tuning/index.html">
+<meta property="og:title" content="工作sql脚本">
+<meta property="og:url" content="http://www.mr-wang.cn/2015/07/21/qq114-sql/index.html">
 <meta property="og:site_name" content="Mr-wang的博客 | 运维笔记">
-<meta property="og:description" content="分区至少2个分区，/以及swap分区。另外设置独立/boot分区。所以生产环境分3个分区。
-分区案例：http://oldboy.blog.51cto.com/2561410/634725
-1#&amp;#20998;&amp;#21306;&amp;#26597;&amp;#30475;&amp;#10;df -Th&amp;#10;&amp;#10;Filesystem     Type   Size  Used Avail Use% Mounte">
-<meta property="og:updated_time" content="2015-04-06T02:57:53.000Z">
+<meta property="og:description" content="一个项目上，需要写一个sql查询客服的会话量及60s响应率。
+1--60&amp;#31186;&amp;#20869;&amp;#21709;&amp;#24212;&amp;#29575;&amp;#10;--#&amp;#21495;&amp;#26631;&amp;#24535;&amp;#22788;&amp;#20026;&amp;#21442;&amp;#25968;&amp;#26356;&amp;#25913;&amp;#22320;&amp;#26041;&amp;#65292;&amp;#26356;&amp;#25913;&amp;#21">
+<meta property="og:updated_time" content="2015-07-28T04:30:16.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 安装与调优配置">
-<meta name="twitter:description" content="分区至少2个分区，/以及swap分区。另外设置独立/boot分区。所以生产环境分3个分区。
-分区案例：http://oldboy.blog.51cto.com/2561410/634725
-1#&amp;#20998;&amp;#21306;&amp;#26597;&amp;#30475;&amp;#10;df -Th&amp;#10;&amp;#10;Filesystem     Type   Size  Used Avail Use% Mounte">
+<meta name="twitter:title" content="工作sql脚本">
+<meta name="twitter:description" content="一个项目上，需要写一个sql查询客服的会话量及60s响应率。
+1--60&amp;#31186;&amp;#20869;&amp;#21709;&amp;#24212;&amp;#29575;&amp;#10;--#&amp;#21495;&amp;#26631;&amp;#24535;&amp;#22788;&amp;#20026;&amp;#21442;&amp;#25968;&amp;#26356;&amp;#25913;&amp;#22320;&amp;#26041;&amp;#65292;&amp;#26356;&amp;#25913;&amp;#21">
   
     <link rel="alternative" href="/atom.xml" title="Mr-wang的博客 | 运维笔记" type="application/atom+xml">
   
@@ -197,11 +194,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-CentOS-System-Performance-tuning" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-qq114-sql" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/11/CentOS-System-Performance-tuning/" class="article-date">
-  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
+      <a href="/2015/07/21/qq114-sql/" class="article-date">
+  	<time datetime="2015-07-21T08:19:57.000Z" itemprop="datePublished">2015-07-21</time>
 </a>
     </div>
   
@@ -214,7 +211,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CentOS 安装与调优配置
+      工作sql脚本
     </h1>
   
 
@@ -223,7 +220,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
 	</div>
 
         
@@ -238,23 +235,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="分区">分区</h2><p>至少2个分区，/以及swap分区。另外设置独立/boot分区。<br>所以生产环境分3个分区。</p>
-<p>分区案例：<a href="http://oldboy.blog.51cto.com/2561410/634725" target="_blank" rel="external">http://oldboy.blog.51cto.com/2561410/634725</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#20998;&#21306;&#26597;&#30475;&#10;df -Th&#10;&#10;Filesystem     Type   Size  Used Avail Use% Mounted on&#10;/dev/sda2      ext4   8.6G  2.5G  5.7G  31% /&#10;tmpfs          tmpfs  242M     0  242M   0% /dev/shm&#10;/dev/sda1      ext4   190M   53M  128M  30% /boot</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="挂载新硬盘">挂载新硬盘</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#26597;&#30475;&#26032;&#21152;&#30828;&#30424;&#30340;&#25991;&#20214;&#21517;&#10;fdisk -l&#10;&#10;# &#23545;&#26032;&#30828;&#30424;&#36827;&#34892;&#20998;&#21306;&#10;fdisk /dev/sdb&#10;&#10;# &#26597;&#30475;&#20998;&#21306;&#30340;&#26684;&#24335;&#31867;&#22411;&#10;df -Th&#10;&#10;# &#23545;&#26032;&#20998;&#21306;&#36827;&#34892;&#26684;&#24335;&#21270;&#10;mkfs -t ext4 /dev/sdb1&#10;&#10;# &#26032;&#24314;&#30446;&#24405;&#65292;&#24182;&#23558;&#20998;&#21306;&#25346;&#36733;&#21040;&#30446;&#24405;&#19979;&#10;mkdir /data&#10;mount /dev/sdb1 /data&#10;&#10;# &#20462;&#25913;/etc/fstab&#25991;&#20214;&#65292;&#35753;&#24320;&#26426;&#33258;&#21160;&#25346;&#36733;&#10;/dev/sdb1   /data   ext4   defaults    1 2</span><br></pre></td></tr></table></figure>
-<h2 id="IP地址，DNS设置">IP地址，DNS设置</h2><h3 id="ip地址">ip地址</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth0&#10;&#10;DEVICE=eth0&#10;IPADDR=192.168.1.250&#10;NETMASK=255.255.255.0&#10;GATEWAY=192.168.1.1&#10;HWADDR=00:0C:29:F2:14:C7&#10;TYPE=Ethernet&#10;UUID=640ec151-26d6-4966-beb4-6de0c2306beb&#10;ONBOOT=yes&#10;NM_CONTROLLED=yes&#10;BOOTPROTO=static</span><br></pre></td></tr></table></figure>
-<h3 id="DNS设置">DNS设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/resolv.conf&#10;&#10;nameserver 114.114.114.114</span><br></pre></td></tr></table></figure>
-<h2 id="yum源修改">yum源修改</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d&#10;mv CentOS-Base.repo CentOS-Base.repo.bk &#10;wget http://mirrors.aliyun.com/repo/Centos-6.repo&#10;mv Centos-6.repo CentOS-Base.repo&#10;yum makecache&#10;&#10;#&#26356;&#26032;&#31995;&#32479;&#10;yum update&#10;&#10;#&#23433;&#35013;lrzsz&#19978;&#20256;&#19979;&#36733;&#24037;&#20855;&#10;yum install lrzsz</span><br></pre></td></tr></table></figure>
-<h2 id="开机启动项优化">开机启动项优化</h2><p>1、图形界面禁止或启动服务<br>使用<code>setup</code>或者<code>ntsysv</code>命令</p>
-<p>2、脚本实现禁止或启动服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#31105;&#27490;&#20840;&#37096;&#26381;&#21153;&#10;for service in `chkconfig --list | grep 3:&#21551;&#29992; | awk &#39;&#123;print $1&#125;&#39;`;do chkconfig --level 3 $service off;done&#10;&#10;#&#21551;&#29992;&#38656;&#35201;&#29992;&#21040;&#30340;&#26381;&#21153;&#10;for service in crond network sysstat sshd iptables;do chkconfig --level 3 $service on;done</span><br></pre></td></tr></table></figure>
-<h2 id="SSH登陆设置">SSH登陆设置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bk&#10;vi /etc/ssh/sshd_config &#10;&#10;###By Mr-wang 2015-03-20###&#10;    Port 22&#10;    PermitRootLogin no&#10;    PermitEmptyPasswords no&#10;    UseDNS no&#10;###By Mr-wang 2015-03-20###</span><br></pre></td></tr></table></figure>
-<p>sshd_config 中文手册：<a href="http://www.jinbuguo.com/openssh/sshd_config.html" target="_blank" rel="external">http://www.jinbuguo.com/openssh/sshd_config.html</a></p>
-<h2 id="修改中文显示">修改中文显示</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#39;LANG=&#34;zh_CN.UTF-8&#34;&#39; &#62; /etc/sysconfig/i18n</span><br></pre></td></tr></table></figure>
-<p>注：&gt; 代表重写入   &gt;&gt; 代表追加</p>
-<h2 id="服务器时间同步">服务器时间同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#39;0 0 */1 * * /usr/sbin/ntpdate 210.72.145.44 &#62; /dev/null 2&#62;&#38;1&#39; &#62;&#62; /var/spool/cron/root</span><br></pre></td></tr></table></figure>
-
+        <p>一个项目上，需要写一个sql查询客服的会话量及60s响应率。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--60&#31186;&#20869;&#21709;&#24212;&#29575;&#10;--#&#21495;&#26631;&#24535;&#22788;&#20026;&#21442;&#25968;&#26356;&#25913;&#22320;&#26041;&#65292;&#26356;&#25913;&#21442;&#25968;&#21487;&#20197;&#26597;&#35810;&#25351;&#23450;&#25216;&#33021;&#32452;&#19979;&#30340;&#30340;&#20250;&#35805;&#24773;&#20917;&#12290;&#10;DECLARE &#10;--&#26465;&#20214; &#36890;&#36807;&#26102;&#38388;&#27573;&#26597;&#25216;&#33021;&#32452;60&#31186;&#20869;&#21709;&#24212;&#29575;&#10;skillOrganId number; --&#25216;&#33021;&#32452;ID&#10;comefromid number; --&#28192;&#36947;ID&#10;startDate nvarchar2(20); --&#24320;&#22987;&#26102;&#38388;&#10;endDate nvarchar2(20); --&#32467;&#26463;&#26102;&#38388;&#10;&#10;--&#26631;&#35760;&#21464;&#37327;&#10;responseResult number;&#10;responseTime number;&#10;&#10;--&#32479;&#35745;&#32467;&#26524;&#10;sessionCount number;&#10;maxTotal number;&#10;serviceTotal number; --&#20154;&#24037;&#20250;&#35805;&#24635;&#25968;&#10;sumTotal number;--&#21512;&#35745;&#10;innerTotal number;--60&#31186;&#20869;&#24635;&#25968;&#10;&#10;&#10;BEGIN &#10;startDate:=to_char(to_date(&#39;2014-3-01 00:00:00&#39;,&#39;yyyy-mm-dd hh24:mi:ss&#39;),&#39;yyyy-mm-dd hh24:mi:ss&#39;); --# &#21442;&#25968;&#26356;&#25913;&#10;endDate:=to_char(to_date(&#39;2015-4-01 00:00:00&#39;,&#39;yyyy-mm-dd hh24:mi:ss&#39;),&#39;yyyy-mm-dd hh24:mi:ss&#39;); --# &#21442;&#25968;&#26356;&#25913;&#10;&#10;--QQ&#20026;1,webchat&#20026;4,&#24494;&#20449;&#20026;161&#10;comefromid:=1;&#10;&#10;--&#26597;&#35810;&#20250;&#35805;&#35760;&#24405;&#34920;&#20013;&#36890;&#36807;&#20154;&#24037;&#26381;&#21153;&#36827;&#20837;&#30340;&#20154;&#24037;&#20250;&#35805;&#21644;&#25490;&#38431;&#20250;&#35805;&#65292;&#23558;&#26597;&#35810;&#32467;&#26524;&#25554;&#20837;&#21040;serviceTotal&#10;&#10;SELECT count(DISTINCT r.SESSION_ID) INTO serviceTotal&#10;FROM VW_IM_RY_CONVERSATION_RECORD r&#10;WHERE r.DEV_TYPE=12&#10;  AND r.SESSION_TYPE=3&#10;  AND r.SESSION_ID in&#10;    (SELECT DISTINCT r.SESSION_ID&#10;     FROM VW_IM_RY_CONVERSATION_RECORD r&#10;     WHERE r.START_TIME&#62;to_date(startDate,&#39;yyyy-mm-dd hh24:mi:ss&#39;)&#10;       AND r.START_TIME&#60;to_date(endDate,&#39;yyyy-mm-dd hh24:mi:ss&#39;)&#10;       AND r.DEV_TYPE=11);&#10;&#10;sumTotal:=0;&#10;innerTotal:=0;&#10;&#10;FOR c in&#10;  (SELECT DISTINCT u.skill_group_id&#10;   FROM im_sm_user_skill_group u&#10;   WHERE u.skill_group_id &#60;&#62;4001008&#10;     AND u.skill_group_id=1000 --# &#21442;&#25968;&#35774;&#23450;,&#25351;&#23450;&#25216;&#33021;&#32452;ID  , &#23558;c.skill_group_id&#26367;&#25442;&#25351;&#23450;&#30340;&#25216;&#33021;&#32452;ID , &#21487;&#26597;&#35810;&#25351;&#23450;&#25216;&#33021;&#32452;&#19979;&#30340;&#21709;&#24212;&#29575;&#10; ) LOOP responseResult:=0;&#10;&#10; sessionCount:=0;&#10; maxTotal:=0;&#10; skillOrganId:=c.skill_group_id;&#10;&#10;&#10;FOR a IN&#10;  (SELECT DISTINCT u.user_id&#10;   FROM im_sm_user_skill_group u&#10;   WHERE u.skill_group_id=skillOrganId) LOOP&#10;FOR c1 IN&#10;  (SELECT DISTINCT o1.SESSION_ID&#10;   FROM VW_IM_RY_CONVERSATION_RECORD o1&#10;   WHERE o1.dev_type=12&#10;     AND o1.STATE=2&#10;     AND o1.COME_FROM=comefromid&#10;     AND o1.SESSION_TYPE=3&#10;     AND o1.ACCEPTER IN a.user_id&#10;     AND o1.SESSION_ID IN&#10;       (SELECT DISTINCT vm.SESSION_ID&#10;        FROM VW_IM_RY_CONVERSATION_RECORD vm&#10;        WHERE vm.STATE=2&#10;          AND vm.DEV_TYPE=11&#10;          AND vm.START_TIME&#62;to_date(startDate,&#39;yyyy-mm-dd hh24:mi:ss&#39;)&#10;          AND vm.end_TIME&#60;to_date(endDate,&#39;yyyy-mm-dd hh24:mi:ss&#39;)) ) LOOP&#10;FOR c2 IN&#10;  (SELECT min(o2.START_TIME) AS t1,&#10;          min(o3.START_TIME) AS t2&#10;   FROM VW_IM_RY_CONVERSATION_RECORD o2&#10;   LEFT JOIN VW_IM_RY_CONVERSATION_RECORD o3 ON o3.SESSION_ID=o2.SESSION_ID&#10;   AND o3.DEV_TYPE=12&#10;   WHERE o2.SESSION_ID=c1.session_id&#10;     AND o2.DEV_TYPE=11 ) LOOP &#10;     &#10;   responseTime:=(c2.t2-c2.t1)*24*60*60;&#10;&#10; NULL;&#10; END LOOP;&#10;&#10;IF responseTime&#60;60 AND responseTime&#62;=0 &#10;  THEN sessionCount:=sessionCount+1;&#10;  END IF;&#10;&#10;IF responseTime&#62;60 &#10;  THEN maxTotal:=maxTotal+1;&#10;  END IF;&#10;  NULL;&#10;  END LOOP;&#10;&#10;sumTotal:=sumTotal+maxTotal+sessionCount;&#10;innerTotal:=innerTotal+sessionCount;&#10;&#10;IF (maxTotal+sessionCount)&#62;0 AND sessionCount&#62;0&#10;  THEN responseResult:=sessionCount/(maxTotal+sessionCount)*100;&#10;  dbms_output.put_line(&#39;&#25216;&#33021;&#32452;ID: &#39;||&#39; &#39;||skillOrganId||&#39;   &#21592;&#24037;&#24037;&#21495;: &#39;||&#39; &#39;||a.user_id||&#39;  &#20250;&#35805;&#24635;&#25968;:&#39;||(maxTotal+sessionCount)||&#39;  60&#31186;&#21709;&#24212;&#25968;:&#39;||(sessionCount)||&#39;  60&#31186;&#21709;&#24212;&#23458;&#25143;&#29575;&#20026;: &#39;||trunc(responseResult,2)||&#39;%&#39;);&#10;  &#10;  sessionCount:=0;&#10;  maxTotal:=0;&#10;&#10; --dbms_output.put_line(&#39;&#39;);&#10;ELSE responseResult:=0;&#10;  dbms_output.put_line(&#39;&#25216;&#33021;&#32452;ID: &#39;||&#39; &#39;||skillOrganId||&#39;   &#21592;&#24037;&#24037;&#21495;: &#39;||&#39; &#39;||a.user_id||&#39;  &#20250;&#35805;&#24635;&#25968;:&#39;||(maxTotal+sessionCount)||&#39;  60&#31186;&#21709;&#24212;&#25968;:&#39;||(sessionCount)||&#39;  60&#31186;&#21709;&#24212;&#23458;&#25143;&#29575;&#20026;: &#39;||trunc(responseResult,2)||&#39;%&#39;);&#10;  --dbms_output.put_line(&#39;&#39;);&#10;  END IF;&#10;&#10;  END LOOP;&#10;END LOOP;&#10;&#10;IF sumTotal&#62;0&#10;AND innerTotal&#62;0 THEN --dbms_output.put_line(&#39;&#24179;&#22343;&#20540;&#20026;:&#39;||trunc(innerTotal/sumTotal*100,2)||&#39;%&#39;);&#10; dbms_output.put_line(&#39;&#39;);&#10;&#10; dbms_output.put_line(&#39;&#24635;&#35745;  &#20250;&#35805;&#24635;&#25968;:&#39;||sumTotal||&#39;  60&#31186;&#21709;&#24212;&#25968;:&#39;||(innerTotal)||&#39;  60&#31186;&#21709;&#24212;&#23458;&#25143;&#29575;&#20026;: &#39;||trunc(innerTotal/sumTotal*100,2)||&#39;%&#39;);&#10;&#10; END IF;&#10;&#10; --&#23458;&#25143;&#26469;&#35775;&#20154;&#24037;&#26381;&#21153;&#20250;&#35805;&#24635;&#25968;&#10; --dbms_output.put_line(&#39;&#23458;&#25143;&#26469;&#35775;&#20154;&#24037;&#26381;&#21153;&#20250;&#35805;&#30340;&#24635;&#25968;&#20043;&#21644;&#20026;:&#39;||serviceTotal);&#10;END;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -263,18 +245,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/07/11/CentOS-Oracle-installation/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/07/28/To-compile-Nginx-which-supports-static-post-pages/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          CentOS下Oracle安装
+          AMH重新编译Nginx，使其支持静态页面post
         
       </div>
     </a>
   
   
-    <a href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Netbois协议导致网络阻塞</div>
+    <a href="/2015/07/16/book-list/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">阅读书单</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -303,7 +285,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="CentOS-System-Performance-tuning" data-title="CentOS 安装与调优配置" data-url="http://www.mr-wang.cn/2015/07/11/CentOS-System-Performance-tuning/"></div>
+	<div class="ds-thread" data-thread-key="qq114-sql" data-title="工作sql脚本" data-url="http://www.mr-wang.cn/2015/07/21/qq114-sql/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
