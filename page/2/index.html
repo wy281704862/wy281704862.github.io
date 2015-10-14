@@ -192,10 +192,10 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-The-tongda-of-OA-with-Fetion-integrated-access" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Linux-Boot-Sequence" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/" class="article-date">
+      <a href="/2015/07/11/Linux-Boot-Sequence/" class="article-date">
   	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
 </a>
     </div>
@@ -209,7 +209,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/">2013年版通达OA与飞信集成</a>
+      <a class="article-title" href="/2015/07/11/Linux-Boot-Sequence/">linux的运行级别及自启动程序</a>
     </h1>
   
 
@@ -218,12 +218,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>基于PHP-fetion进行修改。</p>
-<p>作者博客：<a href="http://blog.quanhz.com/">http://blog.quanhz.com/</a></p>
-<p>PHP-fetion代码：<a href="https://code.google.com/p/php-fetion/">https://code.google.com/p/php-fetion/</a></p>
-<p>对定时发送页面做了修改：</p>
-<p>fetion_send_sms.php(2013年版通达OA)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">//定时任务发送飞信手机短信</span><br><span class="line">    include_once (“inc/conn.php”);</span><br><span class="line">    include_once (“inc/fetion.php”); //账号密码</span><br><span class="line">    require_once (“inc/class.fetion.php”); //飞信发送类</span><br><span class="line">    require_once (“inc/class.gateway.php”); //其他API接口发送</span><br><span class="line">    $cur_time = date(“Y-m-d H:i:s”); //获得当前时间</span><br><span class="line">    $query = “SELECT `SMS_ID`,`PHONE`,`CONTENT` FROM `SMS2` WHERE `SEND_TIME` &lt;= ‘&#123;$cur_time&#125;’ AND `SEND_FLAG` = ‘3’ LIMIT 1″; //检测短信时间及状态</span><br><span class="line">    $cursor = exequery($connection, $query); //连接数据库</span><br><span class="line">    //无短信需要发送</span><br><span class="line">    if (0 == mysql_num_rows($cursor)) &#123;</span><br><span class="line">        echo “No message to send”;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">    //发送飞信</span><br><span class="line">    $ROW = mysql_fetch_array($cursor);</span><br><span class="line">    $PHONE = $ROW['PHONE'];</span><br><span class="line">    $CONTENT = $ROW['CONTENT'];</span><br><span class="line">    $SMS_ID = $ROW['SMS_ID'];</span><br><span class="line">    //登陆飞信</span><br><span class="line">    $fetion = new PHPFetion($mobile, $password);</span><br><span class="line">    //发送飞信短信</span><br><span class="line">    $result = $fetion-&gt;send($PHONE, iconv(“gbk”, “utf-8″, $CONTENT));</span><br><span class="line">    //发送短信读取手机号，及信息内容转换代码</span><br><span class="line">    $result = iconv(“utf-8″, “gbk”, $result); //返回值</span><br><span class="line">    //判定飞信发送是否成功</span><br><span class="line">    if (strpos($result, “成功”) === FALSE) &#123;</span><br><span class="line">        $JIEGUO = 0; //失败，状态更新至待网关发送</span><br><span class="line">        echo “One message to sent by MAS”;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        $JIEGUO = 1; //成功</span><br><span class="line">        echo “One message to sent by Fetion”;</span><br><span class="line">    &#125;</span><br><span class="line">    //更新短信发送状态</span><br><span class="line">    $query2 = “UPDATE `SMS2` SET `SEND_FLAG` = ‘&#123;$JIEGUO&#125;’ WHERE `SMS_ID`='&#123;$SMS_ID&#125;'”;</span><br><span class="line">    exequery($connection, $query2);</span><br><span class="line">    //结束会话</span><br><span class="line">    $fetion-&gt;_logout();</span><br><span class="line">    &#125;</span><br><span class="line">    /* End of the file */</span><br></pre></td></tr></table></figure>
+        <h2 id="Linux运行级别：">Linux运行级别：</h2><p>Linux运行级别有七种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 - &#20572;&#26426;&#65288;&#21315;&#19975;&#19981;&#33021;&#25226;initdefault &#35774;&#32622;&#20026;0 &#65289;&#10;1 - &#21333;&#29992;&#25143;&#27169;&#24335;&#10;2 - &#22810;&#29992;&#25143;&#65292;&#27809;&#26377; NFS&#10;3 - &#23436;&#20840;&#22810;&#29992;&#25143;&#27169;&#24335;(&#26631;&#20934;&#30340;&#36816;&#34892;&#32423;)&#10;4 - &#27809;&#26377;&#29992;&#21040;&#10;5 - X11 &#65288;xwindow)&#10;6 - &#37325;&#26032;&#21551;&#21160; &#65288;&#21315;&#19975;&#19981;&#35201;&#25226;initdefault &#35774;&#32622;&#20026;6 &#65289;</span><br></pre></td></tr></table></figure>
+<p>默认的运行级别在/etc/inittab文件中进行设置。</p>
       
     </div>
     
@@ -231,7 +228,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通达OA/">通达OA</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
 	</div>
 
       
@@ -242,7 +239,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/#more">more >></a>
+          <a  href="/2015/07/11/Linux-Boot-Sequence/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -259,10 +256,10 @@
 
 
   
-    <article id="post-CentOS-Oracle-installation" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Let-AMH-virtual-host-support-PATHINFO" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/11/CentOS-Oracle-installation/" class="article-date">
+      <a href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/" class="article-date">
   	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
 </a>
     </div>
@@ -276,7 +273,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/CentOS-Oracle-installation/">CentOS下Oracle安装</a>
+      <a class="article-title" href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/">让AMH虚拟主机支持PATHINFO</a>
     </h1>
   
 
@@ -285,11 +282,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="安装前准备">安装前准备</h1><h2 id="安装依赖包">安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binutils-2.17.50.0.6&#10;compat-libstdc++-33-3.2.3&#10;compat-libstdc++-33-3.2.3 (32 bit)&#10;elfutils-libelf-0.125&#10;elfutils-libelf-devel-0.125&#10;gcc-4.1.2&#10;gcc-c++-4.1.2&#10;glibc-2.5-24&#10;glibc-2.5-24 (32 bit)&#10;glibc-common-2.5&#10;glibc-devel-2.5&#10;glibc-devel-2.5 (32 bit)&#10;glibc-headers-2.5&#10;ksh-20060214&#10;libaio-0.3.106&#10;libaio-0.3.106 (32 bit)&#10;libaio-devel-0.3.106&#10;libaio-devel-0.3.106 (32 bit)&#10;libgcc-4.1.2&#10;libgcc-4.1.2 (32 bit)&#10;libstdc++-4.1.2&#10;libstdc++-4.1.2 (32 bit)&#10;libstdc++-devel 4.1.2&#10;make-3.81&#10;sysstat-7.0.2&#10;unixODBC-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-2.2.14-11.el6.i686 or later&#10;unixODBC-devel-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-devel-2.2.14-11.el6.i686 or later&#10;libXp</span><br></pre></td></tr></table></figure>
-<p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
-<p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#27880;&#24847;&#65306;&#35813;&#31243;&#24207;&#21253;&#19982;ksh&#20914;&#31361;&#65292;&#22914;&#26524;&#24050;&#32463;&#23433;&#35013;ksh&#65292;&#24314;&#35758;&#20351;&#29992;&#21629;&#20196; rpm -e ksh-* &#21368;&#36733;&#10;&#10;rpm -ivh pdksh-5.2.14-37.el5_8.1.x86_64.rpm</span><br></pre></td></tr></table></figure>
+        <p>现在公司许多程序是在基于ThinkPHP框架上进行开发的， 然而基于此框架开发的程序，URL访问形式如下：</p>
+<p><a href="http://it.ctwoo.com/index.php/Login/index">http://it.ctwoo.com/index.php/Login/index</a></p>
+<p>默认Nginx是不支持PATHINFO的。</p>
+<p>AMH虚拟主机支持PATHINFO更改方法,更改需要支持PATHINFO的主机的配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/vhost/domain.com.conf</span><br></pre></td></tr></table></figure>
+<p>参考配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location ~ ^(.+\.php)(.*)$&#10;&#123;&#10;    fastcgi_pass  unix:/tmp/php-cgi-e-uncommon.com.sock;&#10;    fastcgi_index index.php;&#10;    //begin&#10;    fastcgi_split_path_info ^(.+\.php)(.*)$;&#10;    fastcgi_param PATH_INFO $fastcgi_path_info;&#10;    //end&#10;    include fcgi-host.conf;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>Esc :wq 保存退出。</p>
+<p>进入AMH后台重启Nginx即可。</p>
       
     </div>
     
@@ -297,7 +298,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
 	</div>
 
       
@@ -308,7 +309,72 @@
 
       
         <p class="article-more-link">
-          <a  href="/2015/07/11/CentOS-Oracle-installation/#more">more >></a>
+          <a  href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-The-web-server-encountered-PHPDDOS" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/11/The-web-server-encountered-PHPDDOS/" class="article-date">
+  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/11/The-web-server-encountered-PHPDDOS/">记网站服务器遭遇PHPDDOS攻击</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>2014年4月10–11日，公司web服务器遭遇PHPDDOS攻击，导致服务器宽带被大量占用，网络延迟很大，无法远程登陆服务器管理。</p>
+<p>开始以为是访问量太大导致的，10日发现服务器始终向某一固定IP发送UDP 53的包。采用iptables禁用IP。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I OUTPUT -s 119.42.149.69 -j DROP</span><br></pre></td></tr></table></figure>
+<p>然而服务器故障依旧，后来查询资料，发现原来服务器web网站被挂马，PHPDDOS。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iptables/">Iptables</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/11/The-web-server-encountered-PHPDDOS/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -374,73 +440,6 @@
         <p class="article-more-link">
           <a  href="/2015/07/11/CentOS-System-Performance-tuning/#more">more >></a>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-Netbois-protocol-leads-to-network-congestion" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/" class="article-date">
-  	<time datetime="2015-07-11T05:24:49.220Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/">Netbois协议导致网络阻塞</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
-<p>在网上有这样的解释：</p>
-<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终竟然导致接入交换机和汇聚交换机、核心交换机间的链路阻塞，使得网络变得基本不通。<br>初步分析了一下捕获到的数据，基本认定原因在于好多个人计算机内包含恶意/流氓软件，会不停地访问btamail.net、bar.baidu.com、 sobar.baidu.com等域名，同时，windows的名字解析机制的顺序是：</p>
-<ol>
-<li>hosts</li>
-<li>net bios, wins, lmhosts</li>
-<li>dns<br>所以，就会在网络中产生大量nbns的数据包</li>
-</ol>
-<p>然后，在那台电脑上杀进程，找到恶意软件。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
       
       <div class="clearfix"></div>
     </div>
