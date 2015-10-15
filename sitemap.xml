@@ -2,18 +2,63 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.mr-wang.cn/2015/07/21/qq114-sql/</loc>
-    <lastmod>2015-07-28T04:30:16.048Z</lastmod>
+    <loc>http://www.mr-wang.cn/2015/07/16/To-compile-Nginx-which-supports-static-post-pages/</loc>
+    <lastmod>2015-10-15T12:59:25.968Z</lastmod>
   </url>
   
   <url>
-    <loc>http://www.mr-wang.cn/2015/07/28/To-compile-Nginx-which-supports-static-post-pages/</loc>
-    <lastmod>2015-07-28T04:28:22.274Z</lastmod>
+    <loc>http://www.mr-wang.cn/2015/07/11/The-web-server-encountered-PHPDDOS/</loc>
+    <lastmod>2015-10-15T12:59:16.969Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/</loc>
+    <lastmod>2015-10-15T12:59:07.213Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/16/CentOS-Oracle-installation/</loc>
+    <lastmod>2015-10-15T12:58:18.427Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/16/CentOS-nginx-installation/</loc>
+    <lastmod>2015-10-15T12:58:06.391Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/16/Shell-Study/</loc>
+    <lastmod>2015-10-15T12:57:58.251Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/16/Nginx-Tomcat-Memcached-Cluster/</loc>
+    <lastmod>2015-10-15T12:57:48.218Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/16/Linux-Boot-Sequence/</loc>
+    <lastmod>2015-10-15T12:57:29.993Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/</loc>
+    <lastmod>2015-10-15T12:57:18.428Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/11/dedecms-security-settings-on-Nginx/</loc>
+    <lastmod>2015-10-15T12:56:58.910Z</lastmod>
   </url>
   
   <url>
     <loc>http://www.mr-wang.cn/2015/07/16/book-list/</loc>
-    <lastmod>2015-07-16T12:46:05.037Z</lastmod>
+    <lastmod>2015-10-15T12:56:38.702Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/</loc>
+    <lastmod>2015-10-15T12:56:13.419Z</lastmod>
   </url>
   
   <url>
@@ -22,58 +67,8 @@
   </url>
   
   <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/Nginx-Tomcat-Memcached-Cluster/</loc>
-    <lastmod>2015-07-11T06:22:46.104Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/CentOS-Oracle-installation/</loc>
-    <lastmod>2015-04-14T14:48:37.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/The-web-server-encountered-PHPDDOS/</loc>
-    <lastmod>2015-04-06T02:59:23.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/</loc>
-    <lastmod>2015-04-06T02:59:17.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/Shell-Study/</loc>
-    <lastmod>2015-04-06T02:59:06.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/Linux-Boot-Sequence/</loc>
-    <lastmod>2015-04-06T02:58:41.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/</loc>
-    <lastmod>2015-04-06T02:58:34.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/dedecms-security-settings-on-Nginx/</loc>
-    <lastmod>2015-04-06T02:58:02.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.mr-wang.cn/2015/07/11/CentOS-System-Performance-tuning/</loc>
     <lastmod>2015-04-06T02:57:53.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/CentOS-nginx-installation/</loc>
-    <lastmod>2015-04-06T02:57:01.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/</loc>
-    <lastmod>2015-03-23T11:25:18.000Z</lastmod>
   </url>
   
 </urlset>
