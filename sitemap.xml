@@ -2,8 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.mr-wang.cn/2015/07/16/To-compile-Nginx-which-supports-static-post-pages/</loc>
-    <lastmod>2015-10-15T12:59:25.968Z</lastmod>
+    <loc>http://www.mr-wang.cn/2015/07/16/book-list/</loc>
+    <lastmod>2015-10-15T13:06:08.363Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/</loc>
+    <lastmod>2015-10-15T13:03:47.637Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/16/CentOS-System-Performance-tuning/</loc>
+    <lastmod>2015-10-15T13:01:48.804Z</lastmod>
   </url>
   
   <url>
@@ -52,11 +62,6 @@
   </url>
   
   <url>
-    <loc>http://www.mr-wang.cn/2015/07/16/book-list/</loc>
-    <lastmod>2015-10-15T12:56:38.702Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.mr-wang.cn/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/</loc>
     <lastmod>2015-10-15T12:56:13.419Z</lastmod>
   </url>
@@ -64,11 +69,6 @@
   <url>
     <loc>http://www.mr-wang.cn/2015/07/16/Install-Vsftpd/</loc>
     <lastmod>2015-07-16T12:43:28.081Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/CentOS-System-Performance-tuning/</loc>
-    <lastmod>2015-04-06T02:57:53.000Z</lastmod>
   </url>
   
 </urlset>

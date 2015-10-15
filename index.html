@@ -219,12 +219,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><strong>2015.07阅读清单</strong><ul>
+<li><p><strong>2015.07阅读清单</strong></p>
+<ul>
 <li>[x] Linux系统命令及Shell脚本实践指南（纸质）</li>
-<li>[ ] 高性能Linux服务器构建实战——系统安全、故障排查、自动化运维与集群架构（纸质）</li>
+<li>[x] 高性能Linux服务器构建实战——系统安全、故障排查、自动化运维与集群架构（纸质）</li>
+</ul>
+</li>
+<li><p><strong>2015.10阅读清单</strong></p>
+<ul>
 <li>[ ] 构建高性能Web站点（纸质）</li>
 <li>[ ] 深入理解Nginx（纸质）</li>
-<li>[ ] 这才是马云（电子书）</li>
 </ul>
 </li>
 </ul>
@@ -395,69 +399,6 @@
 
 
   
-    <article id="post-To-compile-Nginx-which-supports-static-post-pages" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/16/To-compile-Nginx-which-supports-static-post-pages/" class="article-date">
-  	<time datetime="2015-07-16T12:26:27.000Z" itemprop="datePublished">2015-07-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/16/To-compile-Nginx-which-supports-static-post-pages/">AMH重新编译Nginx，使其支持静态页面post</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在实际使用AMH的过程中，公司出现通过post请求静态页面；默认的nginx上，是拒绝通过post方式访问静态页面的。</p>
-<p>网上有2种方法解决这个问题，但是在实际的过程中，发现方法1不奏效,于是使用方法2，重新编译nginx解决问题。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/16/To-compile-Nginx-which-supports-static-post-pages/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
     <article id="post-CentOS-nginx-installation" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -588,6 +529,70 @@
 
 
   
+    <article id="post-Linux-Boot-Sequence" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/16/Linux-Boot-Sequence/" class="article-date">
+  	<time datetime="2015-07-16T12:26:27.000Z" itemprop="datePublished">2015-07-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/16/Linux-Boot-Sequence/">linux的运行级别及自启动程序</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Linux运行级别：">Linux运行级别：</h2><p>Linux运行级别有七种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 - &#20572;&#26426;&#65288;&#21315;&#19975;&#19981;&#33021;&#25226;initdefault &#35774;&#32622;&#20026;0 &#65289;&#10;1 - &#21333;&#29992;&#25143;&#27169;&#24335;&#10;2 - &#22810;&#29992;&#25143;&#65292;&#27809;&#26377; NFS&#10;3 - &#23436;&#20840;&#22810;&#29992;&#25143;&#27169;&#24335;(&#26631;&#20934;&#30340;&#36816;&#34892;&#32423;)&#10;4 - &#27809;&#26377;&#29992;&#21040;&#10;5 - X11 &#65288;xwindow)&#10;6 - &#37325;&#26032;&#21551;&#21160; &#65288;&#21315;&#19975;&#19981;&#35201;&#25226;initdefault &#35774;&#32622;&#20026;6 &#65289;</span><br></pre></td></tr></table></figure>
+<p>默认的运行级别在/etc/inittab文件中进行设置。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/16/Linux-Boot-Sequence/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-Shell-Study" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -660,10 +665,10 @@ cat /dev/null &gt; messages
 
 
   
-    <article id="post-Linux-Boot-Sequence" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CentOS-System-Performance-tuning" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/16/Linux-Boot-Sequence/" class="article-date">
+      <a href="/2015/07/16/CentOS-System-Performance-tuning/" class="article-date">
   	<time datetime="2015-07-16T12:26:27.000Z" itemprop="datePublished">2015-07-16</time>
 </a>
     </div>
@@ -677,7 +682,7 @@ cat /dev/null &gt; messages
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/16/Linux-Boot-Sequence/">linux的运行级别及自启动程序</a>
+      <a class="article-title" href="/2015/07/16/CentOS-System-Performance-tuning/">CentOS 安装与调优配置</a>
     </h1>
   
 
@@ -686,9 +691,9 @@ cat /dev/null &gt; messages
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Linux运行级别：">Linux运行级别：</h2><p>Linux运行级别有七种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 - &#20572;&#26426;&#65288;&#21315;&#19975;&#19981;&#33021;&#25226;initdefault &#35774;&#32622;&#20026;0 &#65289;&#10;1 - &#21333;&#29992;&#25143;&#27169;&#24335;&#10;2 - &#22810;&#29992;&#25143;&#65292;&#27809;&#26377; NFS&#10;3 - &#23436;&#20840;&#22810;&#29992;&#25143;&#27169;&#24335;(&#26631;&#20934;&#30340;&#36816;&#34892;&#32423;)&#10;4 - &#27809;&#26377;&#29992;&#21040;&#10;5 - X11 &#65288;xwindow)&#10;6 - &#37325;&#26032;&#21551;&#21160; &#65288;&#21315;&#19975;&#19981;&#35201;&#25226;initdefault &#35774;&#32622;&#20026;6 &#65289;</span><br></pre></td></tr></table></figure>
-<p>默认的运行级别在/etc/inittab文件中进行设置。</p>
+        <h2 id="分区">分区</h2><p>至少2个分区，/以及swap分区。另外设置独立/boot分区。<br>所以生产环境分3个分区。</p>
+<p>分区案例：<a href="http://oldboy.blog.51cto.com/2561410/634725">http://oldboy.blog.51cto.com/2561410/634725</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#20998;&#21306;&#26597;&#30475;&#10;df -Th&#10;&#10;Filesystem     Type   Size  Used Avail Use% Mounted on&#10;/dev/sda2      ext4   8.6G  2.5G  5.7G  31% /&#10;tmpfs          tmpfs  242M     0  242M   0% /dev/shm&#10;/dev/sda1      ext4   190M   53M  128M  30% /boot</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -707,75 +712,8 @@ cat /dev/null &gt; messages
 
       
         <p class="article-more-link">
-          <a  href="/2015/07/16/Linux-Boot-Sequence/#more">more >></a>
+          <a  href="/2015/07/16/CentOS-System-Performance-tuning/#more">more >></a>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-Netbois-protocol-leads-to-network-congestion" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/" class="article-date">
-  	<time datetime="2015-07-11T12:26:27.000Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/">Netbois协议导致网络阻塞</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
-<p>在网上有这样的解释：</p>
-<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终竟然导致接入交换机和汇聚交换机、核心交换机间的链路阻塞，使得网络变得基本不通。<br>初步分析了一下捕获到的数据，基本认定原因在于好多个人计算机内包含恶意/流氓软件，会不停地访问btamail.net、bar.baidu.com、 sobar.baidu.com等域名，同时，windows的名字解析机制的顺序是：</p>
-<ol>
-<li>hosts</li>
-<li>net bios, wins, lmhosts</li>
-<li>dns<br>所以，就会在网络中产生大量nbns的数据包</li>
-</ol>
-<p>然后，在那台电脑上杀进程，找到恶意软件。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
       
       <div class="clearfix"></div>
     </div>
@@ -847,6 +785,73 @@ cat /dev/null &gt; messages
         <p class="article-more-link">
           <a  href="/2015/07/11/dedecms-security-settings-on-Nginx/#more">more >></a>
         </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-Netbois-protocol-leads-to-network-congestion" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/" class="article-date">
+  	<time datetime="2015-07-11T12:26:27.000Z" itemprop="datePublished">2015-07-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/">Netbois协议导致网络阻塞</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
+<p>在网上有这样的解释：</p>
+<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终竟然导致接入交换机和汇聚交换机、核心交换机间的链路阻塞，使得网络变得基本不通。<br>初步分析了一下捕获到的数据，基本认定原因在于好多个人计算机内包含恶意/流氓软件，会不停地访问btamail.net、bar.baidu.com、 sobar.baidu.com等域名，同时，windows的名字解析机制的顺序是：</p>
+<ol>
+<li>hosts</li>
+<li>net bios, wins, lmhosts</li>
+<li>dns<br>所以，就会在网络中产生大量nbns的数据包</li>
+</ol>
+<p>然后，在那台电脑上杀进程，找到恶意软件。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
       
       <div class="clearfix"></div>
     </div>
