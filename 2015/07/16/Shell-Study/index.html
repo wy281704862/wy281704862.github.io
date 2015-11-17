@@ -3,42 +3,36 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Linux Shell | Mr-wang的博客 | 运维笔记</title>
+  <title>TIPS | Mr-wang的博客 | 运维笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Shell 学习Shell 删除系统日志第一种：
-#!/bin/sh
-cd /var/log
-cat /dev/null &amp;gt; messages
-echo &quot;Logs cleaned up&quot;
-缺陷：
-
-非root用户无法删除；
-未定义变量。">
+  <meta name="description" content="OPS运维工具Ansible中文手册
+正则表达式30分钟入门教程
+性能调优性能分析笔记
+Linux进程
+运维相关Linux Shell命令
+Linux 命令手册
+GSLB全局负载均衡系统是如何构建">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux Shell">
+<meta property="og:title" content="TIPS">
 <meta property="og:url" content="http://www.mr-wang.cn/2015/07/16/Shell-Study/index.html">
 <meta property="og:site_name" content="Mr-wang的博客 | 运维笔记">
-<meta property="og:description" content="Shell 学习Shell 删除系统日志第一种：
-#!/bin/sh
-cd /var/log
-cat /dev/null &amp;gt; messages
-echo &quot;Logs cleaned up&quot;
-缺陷：
-
-非root用户无法删除；
-未定义变量。">
-<meta property="og:updated_time" content="2015-10-15T12:57:58.251Z">
+<meta property="og:description" content="OPS运维工具Ansible中文手册
+正则表达式30分钟入门教程
+性能调优性能分析笔记
+Linux进程
+运维相关Linux Shell命令
+Linux 命令手册
+GSLB全局负载均衡系统是如何构建">
+<meta property="og:updated_time" content="2015-11-17T09:50:04.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux Shell">
-<meta name="twitter:description" content="Shell 学习Shell 删除系统日志第一种：
-#!/bin/sh
-cd /var/log
-cat /dev/null &amp;gt; messages
-echo &quot;Logs cleaned up&quot;
-缺陷：
-
-非root用户无法删除；
-未定义变量。">
+<meta name="twitter:title" content="TIPS">
+<meta name="twitter:description" content="OPS运维工具Ansible中文手册
+正则表达式30分钟入门教程
+性能调优性能分析笔记
+Linux进程
+运维相关Linux Shell命令
+Linux 命令手册
+GSLB全局负载均衡系统是如何构建">
   
     <link rel="alternative" href="/atom.xml" title="Mr-wang的博客 | 运维笔记" type="application/atom+xml">
   
@@ -232,7 +226,7 @@ echo &quot;Logs cleaned up&quot;
         
   
     <h1 class="article-title" itemprop="name">
-      Linux Shell
+      TIPS
     </h1>
   
 
@@ -256,43 +250,13 @@ echo &quot;Logs cleaned up&quot;
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Shell_学习">Shell 学习</h1><h2 id="Shell_删除系统日志">Shell 删除系统日志</h2><p>第一种：</p>
-<pre><code><span class="shebang">#!/bin/sh</span>
-<span class="built_in">cd</span> /var/<span class="built_in">log</span>
-cat /dev/null &gt; messages
-<span class="built_in">echo</span> <span class="string">"Logs cleaned up"</span>
-</code></pre><p>缺陷：</p>
-<ol>
-<li>非root用户无法删除；</li>
-<li>未定义变量。</li>
-</ol>
-<hr>
-<a id="more"></a>
-<p>第二种：<br>带有流程控制及变量的Shell</p>
-<pre><code><span class="comment"># 定义日志目录</span>
-Log_Dir=/var/<span class="built_in">log</span>
-<span class="comment"># 定义root的UID</span>
-Root_UID=<span class="number">0</span>
-
-<span class="comment"># 判断当前用户是否为root</span>
-<span class="keyword">if</span> [ <span class="variable">$UID</span> != <span class="variable">$Root_UID</span> ]
-<span class="keyword">then</span>
-        <span class="built_in">echo</span> <span class="string">"You must be root to run the script"</span>
-<span class="keyword">else</span>
-        <span class="built_in">cd</span> <span class="variable">$Log_Dir</span> || {
-        <span class="built_in">echo</span> <span class="variable">$Log_Dir</span> <span class="string">"is not directory!"</span>
-}
-<span class="keyword">fi</span>
-
-<span class="comment"># 删除系统日志</span>
-<span class="keyword">if</span> [ <span class="operator">-s</span> messages ]
-<span class="keyword">then</span>
-        cat /dev/null &gt; messages
-        <span class="built_in">echo</span> <span class="string">"Logs cleaned up!"</span>
-<span class="keyword">else</span>
-        <span class="built_in">echo</span> <span class="string">"Logfile is empty!"</span>
-<span class="keyword">fi</span>
-</code></pre><h2 id="FTP_web数据备份">FTP web数据备份</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;#&#36825;&#37324;&#38656;&#35201;&#24744;&#20462;&#25913;&#19979;&#10;FTP_USER=admin                       #&#20320;&#30340;&#19978;&#20256;ftp&#29992;&#25143;&#21517;&#10;FTP_PASS=123                         #&#20320;&#30340;&#19978;&#20256;ftp&#23494;&#30721;&#10;FTP_IP=188.188.0.25                  #&#20320;&#19978;&#20256;ftp&#30340;&#22320;&#22336;&#10;FTP_backup=backup                    #ftp&#19978;&#23384;&#25918;&#22791;&#20221;&#25991;&#20214;&#30340;&#30446;&#24405;(ftp&#20027;&#30446;&#24405;&#21363;&#20026;&#31354;)&#10;#MAIL_TO=suwubee@gmail.com           #&#25968;&#25454;&#24211;&#21457;&#36865;&#21040;&#30340;&#37038;&#31665;&#65292;&#22914;&#38656;&#20351;&#29992;&#35831;&#20808;&#23433;&#35013;mutt&#24182;&#21435;&#25481;&#27880;&#37322;&#10;WEB_DATA=/www/web                    #&#35201;&#22791;&#20221;&#30340;&#32593;&#31449;&#25968;&#25454;&#10;mysql_DATA=/www/wdlinux/mysql/var    #&#35201;&#22791;&#20221;&#30340;&#25968;&#25454;&#24211;&#30446;&#24405;&#10;&#10;#&#19979;&#38754;&#19968;&#33324;&#21487;&#20197;&#40664;&#35748;&#10;&#10;#&#23450;&#20041;&#25968;&#25454;&#24211;&#30340;&#21517;&#23383;&#21644;&#26087;&#25968;&#25454;&#24211;&#30340;&#21517;&#23383;&#10;DataBakName=Data_$(date +&#34;%Y%m%d&#34;).tar.gz&#10;WebBakName=Web_$(date +%Y%m%d).tar.gz&#10;OldData=Data_$(date -d -5day +&#34;%Y%m%d&#34;).tar.gz&#10;OldWeb=Web_$(date -d -5day +&#34;%Y%m%d&#34;).tar.gz&#10;&#10;#&#20197;&#19978;&#30340;-5day&#21363;&#26368;&#19979;&#38754;&#30340;&#21024;&#38500;ftp&#31354;&#38388;&#20013;5&#22825;&#21069;&#30340;&#25968;&#25454;&#65292;&#21487;&#33258;&#23450;&#20041;&#12290;&#10;&#10;#&#21024;&#38500;&#26412;&#22320;1&#22825;&#21069;&#30340;&#25968;&#25454;&#10;rm -rf /www/backup/Data_$(date -d -1day +&#34;%Y%m%d&#34;).tar.gz /www/backup/Web_$(date -d -1day +&#34;%Y%m%d&#34;).tar.gz &#10;&#10;#&#20320;&#21487;&#20197;&#20462;&#25913;1&#20026;&#20854;&#20182;&#25968;&#23383;&#65292;&#21363;&#33258;&#23450;&#20041;&#21024;&#38500;&#20960;&#22825;&#21069;&#30340;&#25968;&#25454;&#10;&#10;cd /www/backup&#10;&#10;#&#20572;&#27490;mysql&#65292;&#26159;&#20026;&#20102;&#38450;&#27490;&#25968;&#25454;&#35835;&#21462;&#36807;&#31243;&#20013;&#22791;&#20221;&#20986;&#38169;&#10;service mysql stop&#10;&#10;#&#25171;&#21253;mysql&#30446;&#24405;&#10;cd $mysql_DATA&#10;tar zcf /www/backup/$DataBakName ./*&#10;&#10;#&#36816;&#34892;mysql&#10;service mysql start&#10;&#10;#&#21387;&#32553;&#32593;&#31449;&#25968;&#25454;&#10;cd $WEB_DATA&#10;tar zcf /www/backup/$WebBakName ./*&#10;&#10;#&#22914;&#26524;&#38656;&#35201;&#23558;&#25968;&#25454;&#24211;&#22791;&#20221;&#21040;&#37038;&#31665;&#65292;&#35831;&#21435;&#25481;&#21069;&#38754;&#27880;&#37322;&#65292;&#22914;&#26524;&#25968;&#25454;&#24211;&#36807;&#22823;&#65292;&#19981;&#24314;&#35758;&#20351;&#29992;&#27492;&#21151;&#33021;&#10;#echo &#34;&#20027;&#39064;:&#25968;&#25454;&#24211;&#22791;&#20221;&#34; | mutt -a /home/backup/$DataBakName -s &#34;&#20869;&#23481;:&#25968;&#25454;&#24211;&#22791;&#20221;&#34; $MAIL_TO&#10;&#10;#&#19978;&#20256;&#21040;FTP&#31354;&#38388;,&#21024;&#38500;FTP&#31354;&#38388;5&#22825;&#21069;&#30340;&#25968;&#25454;&#10;cd /www/backup &#10;lftp $FTP_IP 21 -u $FTP_USER,$FTP_PASS &#60;&#60; EOF&#10;cd $FTP_backup&#10;mrm $OldData&#10;mrm $OldWeb&#10;mput $DataBakName&#10;mput $WebBakName&#10;bye&#10;EOF</span><br></pre></td></tr></table></figure>
+        <h2 id="OPS运维工具">OPS运维工具</h2><p><a href="http://mr-wang.qiniudn.com/Ansible-notes.pdf" target="_blank" rel="external">Ansible中文手册</a></p>
+<p><a href="http://www.cnblogs.com/deerchao/archive/2006/08/24/zhengzhe30fengzhongjiaocheng.html" target="_blank" rel="external">正则表达式30分钟入门教程</a></p>
+<h2 id="性能调优">性能调优</h2><p><a href="http://mr-wang.qiniudn.com/performance-optimization.pdf" target="_blank" rel="external">性能分析笔记</a></p>
+<p><a href="http://www.linuxprocess.com/" target="_blank" rel="external">Linux进程</a></p>
+<h2 id="运维相关">运维相关</h2><p><a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank" rel="external">Linux Shell命令</a></p>
+<p><a href="http://linux.51yip.com/" target="_blank" rel="external">Linux 命令手册</a></p>
+<p><a href="http://www.gslb.cn/list.htm" target="_blank" rel="external">GSLB全局负载均衡系统是如何构建</a></p>
 
       
     </div>
@@ -342,7 +306,7 @@ Root_UID=<span class="number">0</span>
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Shell-Study" data-title="Linux Shell" data-url="http://www.mr-wang.cn/2015/07/16/Shell-Study/"></div>
+	<div class="ds-thread" data-thread-key="Shell-Study" data-title="TIPS" data-url="http://www.mr-wang.cn/2015/07/16/Shell-Study/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

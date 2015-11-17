@@ -4,7 +4,7 @@
   <subtitle><![CDATA[运维笔记]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.mr-wang.cn/"/>
-  <updated>2015-10-15T13:06:08.363Z</updated>
+  <updated>2015-10-15T13:06:49.916Z</updated>
   <id>http://www.mr-wang.cn/</id>
   
   <author>
@@ -16,10 +16,10 @@
   
   <entry>
     <title><![CDATA[阅读书单]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/16/book-list/"/>
-    <id>http://www.mr-wang.cn/2015/07/16/book-list/</id>
-    <published>2015-07-16T13:26:27.000Z</published>
-    <updated>2015-10-15T13:06:08.363Z</updated>
+    <link href="http://www.mr-wang.cn/2015/10/15/book-list/"/>
+    <id>http://www.mr-wang.cn/2015/10/15/book-list/</id>
+    <published>2015-10-15T13:06:27.000Z</published>
+    <updated>2015-10-15T13:06:49.916Z</updated>
     <content type="html"><![CDATA[<ul>
 <li><p><strong>2015.07阅读清单</strong></p>
 <ul>
@@ -323,62 +323,22 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Linux Shell]]></title>
+    <title><![CDATA[TIPS]]></title>
     <link href="http://www.mr-wang.cn/2015/07/16/Shell-Study/"/>
     <id>http://www.mr-wang.cn/2015/07/16/Shell-Study/</id>
     <published>2015-07-16T12:26:27.000Z</published>
-    <updated>2015-10-15T12:57:58.251Z</updated>
-    <content type="html"><![CDATA[<h1 id="Shell_学习">Shell 学习</h1><h2 id="Shell_删除系统日志">Shell 删除系统日志</h2><p>第一种：</p>
-<pre><code><span class="shebang">#!/bin/sh</span>
-<span class="built_in">cd</span> /var/<span class="built_in">log</span>
-cat /dev/null &gt; messages
-<span class="built_in">echo</span> <span class="string">"Logs cleaned up"</span>
-</code></pre><p>缺陷：</p>
-<ol>
-<li>非root用户无法删除；</li>
-<li>未定义变量。</li>
-</ol>
-<hr>
-<a id="more"></a>
-<p>第二种：<br>带有流程控制及变量的Shell</p>
-<pre><code><span class="comment"># 定义日志目录</span>
-Log_Dir=/var/<span class="built_in">log</span>
-<span class="comment"># 定义root的UID</span>
-Root_UID=<span class="number">0</span>
-
-<span class="comment"># 判断当前用户是否为root</span>
-<span class="keyword">if</span> [ <span class="variable">$UID</span> != <span class="variable">$Root_UID</span> ]
-<span class="keyword">then</span>
-        <span class="built_in">echo</span> <span class="string">"You must be root to run the script"</span>
-<span class="keyword">else</span>
-        <span class="built_in">cd</span> <span class="variable">$Log_Dir</span> || {
-        <span class="built_in">echo</span> <span class="variable">$Log_Dir</span> <span class="string">"is not directory!"</span>
-}
-<span class="keyword">fi</span>
-
-<span class="comment"># 删除系统日志</span>
-<span class="keyword">if</span> [ <span class="operator">-s</span> messages ]
-<span class="keyword">then</span>
-        cat /dev/null &gt; messages
-        <span class="built_in">echo</span> <span class="string">"Logs cleaned up!"</span>
-<span class="keyword">else</span>
-        <span class="built_in">echo</span> <span class="string">"Logfile is empty!"</span>
-<span class="keyword">fi</span>
-</code></pre><h2 id="FTP_web数据备份">FTP web数据备份</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash&#10;&#10;#&#36825;&#37324;&#38656;&#35201;&#24744;&#20462;&#25913;&#19979;&#10;FTP_USER=admin                       #&#20320;&#30340;&#19978;&#20256;ftp&#29992;&#25143;&#21517;&#10;FTP_PASS=123                         #&#20320;&#30340;&#19978;&#20256;ftp&#23494;&#30721;&#10;FTP_IP=188.188.0.25                  #&#20320;&#19978;&#20256;ftp&#30340;&#22320;&#22336;&#10;FTP_backup=backup                    #ftp&#19978;&#23384;&#25918;&#22791;&#20221;&#25991;&#20214;&#30340;&#30446;&#24405;(ftp&#20027;&#30446;&#24405;&#21363;&#20026;&#31354;)&#10;#MAIL_TO=suwubee@gmail.com           #&#25968;&#25454;&#24211;&#21457;&#36865;&#21040;&#30340;&#37038;&#31665;&#65292;&#22914;&#38656;&#20351;&#29992;&#35831;&#20808;&#23433;&#35013;mutt&#24182;&#21435;&#25481;&#27880;&#37322;&#10;WEB_DATA=/www/web                    #&#35201;&#22791;&#20221;&#30340;&#32593;&#31449;&#25968;&#25454;&#10;mysql_DATA=/www/wdlinux/mysql/var    #&#35201;&#22791;&#20221;&#30340;&#25968;&#25454;&#24211;&#30446;&#24405;&#10;&#10;#&#19979;&#38754;&#19968;&#33324;&#21487;&#20197;&#40664;&#35748;&#10;&#10;#&#23450;&#20041;&#25968;&#25454;&#24211;&#30340;&#21517;&#23383;&#21644;&#26087;&#25968;&#25454;&#24211;&#30340;&#21517;&#23383;&#10;DataBakName=Data_$(date +&#34;%Y%m%d&#34;).tar.gz&#10;WebBakName=Web_$(date +%Y%m%d).tar.gz&#10;OldData=Data_$(date -d -5day +&#34;%Y%m%d&#34;).tar.gz&#10;OldWeb=Web_$(date -d -5day +&#34;%Y%m%d&#34;).tar.gz&#10;&#10;#&#20197;&#19978;&#30340;-5day&#21363;&#26368;&#19979;&#38754;&#30340;&#21024;&#38500;ftp&#31354;&#38388;&#20013;5&#22825;&#21069;&#30340;&#25968;&#25454;&#65292;&#21487;&#33258;&#23450;&#20041;&#12290;&#10;&#10;#&#21024;&#38500;&#26412;&#22320;1&#22825;&#21069;&#30340;&#25968;&#25454;&#10;rm -rf /www/backup/Data_$(date -d -1day +&#34;%Y%m%d&#34;).tar.gz /www/backup/Web_$(date -d -1day +&#34;%Y%m%d&#34;).tar.gz &#10;&#10;#&#20320;&#21487;&#20197;&#20462;&#25913;1&#20026;&#20854;&#20182;&#25968;&#23383;&#65292;&#21363;&#33258;&#23450;&#20041;&#21024;&#38500;&#20960;&#22825;&#21069;&#30340;&#25968;&#25454;&#10;&#10;cd /www/backup&#10;&#10;#&#20572;&#27490;mysql&#65292;&#26159;&#20026;&#20102;&#38450;&#27490;&#25968;&#25454;&#35835;&#21462;&#36807;&#31243;&#20013;&#22791;&#20221;&#20986;&#38169;&#10;service mysql stop&#10;&#10;#&#25171;&#21253;mysql&#30446;&#24405;&#10;cd $mysql_DATA&#10;tar zcf /www/backup/$DataBakName ./*&#10;&#10;#&#36816;&#34892;mysql&#10;service mysql start&#10;&#10;#&#21387;&#32553;&#32593;&#31449;&#25968;&#25454;&#10;cd $WEB_DATA&#10;tar zcf /www/backup/$WebBakName ./*&#10;&#10;#&#22914;&#26524;&#38656;&#35201;&#23558;&#25968;&#25454;&#24211;&#22791;&#20221;&#21040;&#37038;&#31665;&#65292;&#35831;&#21435;&#25481;&#21069;&#38754;&#27880;&#37322;&#65292;&#22914;&#26524;&#25968;&#25454;&#24211;&#36807;&#22823;&#65292;&#19981;&#24314;&#35758;&#20351;&#29992;&#27492;&#21151;&#33021;&#10;#echo &#34;&#20027;&#39064;:&#25968;&#25454;&#24211;&#22791;&#20221;&#34; | mutt -a /home/backup/$DataBakName -s &#34;&#20869;&#23481;:&#25968;&#25454;&#24211;&#22791;&#20221;&#34; $MAIL_TO&#10;&#10;#&#19978;&#20256;&#21040;FTP&#31354;&#38388;,&#21024;&#38500;FTP&#31354;&#38388;5&#22825;&#21069;&#30340;&#25968;&#25454;&#10;cd /www/backup &#10;lftp $FTP_IP 21 -u $FTP_USER,$FTP_PASS &#60;&#60; EOF&#10;cd $FTP_backup&#10;mrm $OldData&#10;mrm $OldWeb&#10;mput $DataBakName&#10;mput $WebBakName&#10;bye&#10;EOF</span><br></pre></td></tr></table></figure>
+    <updated>2015-11-17T09:50:04.717Z</updated>
+    <content type="html"><![CDATA[<h2 id="OPS运维工具">OPS运维工具</h2><p><a href="http://mr-wang.qiniudn.com/Ansible-notes.pdf" target="_blank" rel="external">Ansible中文手册</a></p>
+<p><a href="http://www.cnblogs.com/deerchao/archive/2006/08/24/zhengzhe30fengzhongjiaocheng.html" target="_blank" rel="external">正则表达式30分钟入门教程</a></p>
+<h2 id="性能调优">性能调优</h2><p><a href="http://mr-wang.qiniudn.com/performance-optimization.pdf" target="_blank" rel="external">性能分析笔记</a></p>
+<p><a href="http://www.linuxprocess.com/" target="_blank" rel="external">Linux进程</a></p>
+<h2 id="运维相关">运维相关</h2><p><a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank" rel="external">Linux Shell命令</a></p>
+<p><a href="http://linux.51yip.com/" target="_blank" rel="external">Linux 命令手册</a></p>
+<p><a href="http://www.gslb.cn/list.htm" target="_blank" rel="external">GSLB全局负载均衡系统是如何构建</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="Shell_学习">Shell 学习</h1><h2 id="Shell_删除系统日志">Shell 删除系统日志</h2><p>第一种：</p>
-<pre><code><span class="shebang">#!/bin/sh</span>
-<span class="built_in">cd</span> /var/<span class="built_in">log</span>
-cat /dev/null &gt; messages
-<span class="built_in">echo</span> <span class="string">"Logs cleaned up"</span>
-</code></pre><p>缺陷：</p>
-<ol>
-<li>非root用户无法删除；</li>
-<li>未定义变量。</li>
-</ol>
-<hr>]]>
-    
+    <![CDATA[<h2 id="OPS运维工具">OPS运维工具</h2><p><a href="http://mr-wang.qiniudn.com/Ansible-notes.pdf" target="_blank" rel="external">Ansible中文手册</a></p>
+<p]]>
     </summary>
     
       <category term="Linux" scheme="http://www.mr-wang.cn/tags/Linux/"/>
@@ -392,7 +352,7 @@ cat /dev/null &gt; messages
     <link href="http://www.mr-wang.cn/2015/07/16/CentOS-System-Performance-tuning/"/>
     <id>http://www.mr-wang.cn/2015/07/16/CentOS-System-Performance-tuning/</id>
     <published>2015-07-16T12:26:27.000Z</published>
-    <updated>2015-10-15T13:01:48.804Z</updated>
+    <updated>2015-10-15T13:01:51.360Z</updated>
     <content type="html"><![CDATA[<h2 id="分区">分区</h2><p>至少2个分区，/以及swap分区。另外设置独立/boot分区。<br>所以生产环境分3个分区。</p>
 <p>分区案例：<a href="http://oldboy.blog.51cto.com/2561410/634725" target="_blank" rel="external">http://oldboy.blog.51cto.com/2561410/634725</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#20998;&#21306;&#26597;&#30475;&#10;df -Th&#10;&#10;Filesystem     Type   Size  Used Avail Use% Mounted on&#10;/dev/sda2      ext4   8.6G  2.5G  5.7G  31% /&#10;tmpfs          tmpfs  242M     0  242M   0% /dev/shm&#10;/dev/sda1      ext4   190M   53M  128M  30% /boot</span><br></pre></td></tr></table></figure>
@@ -554,7 +514,7 @@ cat /dev/null &gt; messages
     <link href="http://www.mr-wang.cn/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/"/>
     <id>http://www.mr-wang.cn/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/</id>
     <published>2015-07-11T12:26:27.000Z</published>
-    <updated>2015-10-15T12:56:13.419Z</updated>
+    <updated>2015-10-15T13:02:03.284Z</updated>
     <content type="html"><![CDATA[<p>现在公司许多程序是在基于ThinkPHP框架上进行开发的， 然而基于此框架开发的程序，URL访问形式如下：</p>
 <p><a href="http://it.ctwoo.com/index.php/Login/index" target="_blank" rel="external">http://it.ctwoo.com/index.php/Login/index</a></p>
 <p>默认Nginx是不支持PATHINFO的。</p>
@@ -682,7 +642,7 @@ cat /dev/null &gt; messages
     <link href="http://www.mr-wang.cn/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/"/>
     <id>http://www.mr-wang.cn/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/</id>
     <published>2015-07-11T12:26:27.000Z</published>
-    <updated>2015-10-15T13:03:47.637Z</updated>
+    <updated>2015-10-15T13:03:48.721Z</updated>
     <content type="html"><![CDATA[<p>在实际使用AMH的过程中，公司出现通过post请求静态页面；默认的nginx上，是拒绝通过post方式访问静态页面的。</p>
 <p>网上有2种方法解决这个问题，但是在实际的过程中，发现方法1不奏效,于是使用方法2，重新编译nginx解决问题。</p>
 <a id="more"></a>
