@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.mr-wang.cn/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/</loc>
+    <lastmod>2016-03-21T03:22:53.349Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.mr-wang.cn/2015/07/16/Shell-Study/</loc>
-    <lastmod>2015-11-17T09:50:04.717Z</lastmod>
+    <lastmod>2015-11-17T09:50:07.085Z</lastmod>
   </url>
   
   <url>

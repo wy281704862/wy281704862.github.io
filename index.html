@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/vsftp-ftp/" style="font-size: 10px;">vsftp,ftp</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/通达OA/" style="font-size: 10px;">通达OA</a> <a href="/tags/阅读-书单/" style="font-size: 10px;">阅读,书单</a> <a href="/tags/集群/" style="font-size: 10px;">集群</a>
+						<a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/vsftp-ftp/" style="font-size: 10px;">vsftp,ftp</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/通达OA/" style="font-size: 10px;">通达OA</a> <a href="/tags/阅读-书单/" style="font-size: 10px;">阅读,书单</a> <a href="/tags/集群/" style="font-size: 10px;">集群</a>
 					</div>
 				</section>
 				
@@ -191,6 +191,70 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Mysql-Master-slave-Read-Write-Splitting-Amoeba" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/" class="article-date">
+  	<time datetime="2016-03-05T12:26:27.000Z" itemprop="datePublished">2016-03-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/">Mysql主从复制及读写分离的实现-Amoeba</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、Amoeba简介">一、Amoeba简介</h1><p>Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba for Mysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的 时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分离、可路由相关的到目标数据库、可并发请求多台数据库合并结果。 通过Amoeba你能够完成多数据源的高可用、负载均衡、数据切片的功能，目前Amoeba已在很多企业的生产线上面使用</p>
+<p>Amoeba优缺点<br>优点：<br>1、降低费用，简单易用<br>2、提高系统整体可用性<br>3、易于扩展处理能力与系统规模<br>4、可以直接实现读写分离及负载均衡效果，而不用修改代码<br>缺点：<br>1、不支持事务与存储过程<br>2、暂不支持分库分表，amoeba目前只做到分数据库实例<br>3、不适合从amoeba导数据的场景或者对大数据量查询的query并不合适（比如一次请求返回10w以上甚至更多数据的场合）</p>
+<p>Mysql GTID<br>Mysql 5.6的新特性之一，加入了全局事务性ID(GTID:Global Transactions Identifier)来强化数据库的主备一致性，故障恢复，以及容错能力;也使得复制功能的配置、监控及管理变得更加易于实现，且更加健壮。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-book-list" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -317,72 +381,6 @@
       
         <p class="article-more-link">
           <a  href="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-CentOS-Oracle-installation" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/16/CentOS-Oracle-installation/" class="article-date">
-  	<time datetime="2015-07-16T12:26:27.000Z" itemprop="datePublished">2015-07-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/16/CentOS-Oracle-installation/">CentOS下Oracle安装</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="安装前准备">安装前准备</h1><h2 id="安装依赖包">安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binutils-2.17.50.0.6&#10;compat-libstdc++-33-3.2.3&#10;compat-libstdc++-33-3.2.3 (32 bit)&#10;elfutils-libelf-0.125&#10;elfutils-libelf-devel-0.125&#10;gcc-4.1.2&#10;gcc-c++-4.1.2&#10;glibc-2.5-24&#10;glibc-2.5-24 (32 bit)&#10;glibc-common-2.5&#10;glibc-devel-2.5&#10;glibc-devel-2.5 (32 bit)&#10;glibc-headers-2.5&#10;ksh-20060214&#10;libaio-0.3.106&#10;libaio-0.3.106 (32 bit)&#10;libaio-devel-0.3.106&#10;libaio-devel-0.3.106 (32 bit)&#10;libgcc-4.1.2&#10;libgcc-4.1.2 (32 bit)&#10;libstdc++-4.1.2&#10;libstdc++-4.1.2 (32 bit)&#10;libstdc++-devel 4.1.2&#10;make-3.81&#10;sysstat-7.0.2&#10;unixODBC-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-2.2.14-11.el6.i686 or later&#10;unixODBC-devel-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-devel-2.2.14-11.el6.i686 or later&#10;libXp</span><br></pre></td></tr></table></figure>
-<p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
-<p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#27880;&#24847;&#65306;&#35813;&#31243;&#24207;&#21253;&#19982;ksh&#20914;&#31361;&#65292;&#22914;&#26524;&#24050;&#32463;&#23433;&#35013;ksh&#65292;&#24314;&#35758;&#20351;&#29992;&#21629;&#20196; rpm -e ksh-* &#21368;&#36733;&#10;&#10;rpm -ivh pdksh-5.2.14-37.el5_8.1.x86_64.rpm</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/16/CentOS-Oracle-installation/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -658,6 +656,72 @@
 
 
   
+    <article id="post-CentOS-Oracle-installation" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/16/CentOS-Oracle-installation/" class="article-date">
+  	<time datetime="2015-07-16T12:26:27.000Z" itemprop="datePublished">2015-07-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/16/CentOS-Oracle-installation/">CentOS下Oracle安装</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装前准备">安装前准备</h1><h2 id="安装依赖包">安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binutils-2.17.50.0.6&#10;compat-libstdc++-33-3.2.3&#10;compat-libstdc++-33-3.2.3 (32 bit)&#10;elfutils-libelf-0.125&#10;elfutils-libelf-devel-0.125&#10;gcc-4.1.2&#10;gcc-c++-4.1.2&#10;glibc-2.5-24&#10;glibc-2.5-24 (32 bit)&#10;glibc-common-2.5&#10;glibc-devel-2.5&#10;glibc-devel-2.5 (32 bit)&#10;glibc-headers-2.5&#10;ksh-20060214&#10;libaio-0.3.106&#10;libaio-0.3.106 (32 bit)&#10;libaio-devel-0.3.106&#10;libaio-devel-0.3.106 (32 bit)&#10;libgcc-4.1.2&#10;libgcc-4.1.2 (32 bit)&#10;libstdc++-4.1.2&#10;libstdc++-4.1.2 (32 bit)&#10;libstdc++-devel 4.1.2&#10;make-3.81&#10;sysstat-7.0.2&#10;unixODBC-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-2.2.14-11.el6.i686 or later&#10;unixODBC-devel-2.2.14-11.el6 (x86_64) or later&#10;unixODBC-devel-2.2.14-11.el6.i686 or later&#10;libXp</span><br></pre></td></tr></table></figure>
+<p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
+<p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#27880;&#24847;&#65306;&#35813;&#31243;&#24207;&#21253;&#19982;ksh&#20914;&#31361;&#65292;&#22914;&#26524;&#24050;&#32463;&#23433;&#35013;ksh&#65292;&#24314;&#35758;&#20351;&#29992;&#21629;&#20196; rpm -e ksh-* &#21368;&#36733;&#10;&#10;rpm -ivh pdksh-5.2.14-37.el5_8.1.x86_64.rpm</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oracle/">Oracle</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/16/CentOS-Oracle-installation/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-CentOS-System-Performance-tuning" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -706,77 +770,6 @@
       
         <p class="article-more-link">
           <a  href="/2015/07/16/CentOS-System-Performance-tuning/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-dedecms-security-settings-on-Nginx" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/dedecms-security-settings-on-Nginx/" class="article-date">
-  	<time datetime="2015-07-11T12:26:27.000Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/dedecms-security-settings-on-Nginx/">Nginx下dedecms安全设置</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="目录权限设置">目录权限设置</h2><p>织梦可读写、不可执行权限，禁止运行php程序目录：</p>
-<ul>
-<li>templets</li>
-<li>uploads</li>
-<li>data</li>
-<li>images</li>
-<li>a</li>
-</ul>
-<p>具体目录，可以通过后台一键更新时，寻找需要写入权限的目录</p>
-<p>思路：<br>web服务器(AMH)运行的用户应该是www，那么网站的所有者就应该不能设置为www，而应该设置为不同的用户，这里设置为ftpuser用户。同时www、ftpuser用户应该为同一组，这里设置同为www组。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/dedecms-security-settings-on-Nginx/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -870,7 +863,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2015 Mr-wang
+    		&copy; 2016 Mr-wang
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

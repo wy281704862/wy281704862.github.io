@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mysql主从复制及读写分离的实现-Amoeba | Mr-wang的博客 | 运维笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、Amoeba简介Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba for Mysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的 时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql主从复制及读写分离的实现-Amoeba">
+<meta property="og:url" content="http://www.mr-wang.cn/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/index.html">
+<meta property="og:site_name" content="Mr-wang的博客 | 运维笔记">
+<meta property="og:description" content="一、Amoeba简介Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba for Mysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的 时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分">
+<meta property="og:updated_time" content="2016-03-21T03:22:53.349Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql主从复制及读写分离的实现-Amoeba">
+<meta name="twitter:description" content="一、Amoeba简介Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba for Mysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的 时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分">
+  
+    <link rel="alternative" href="/atom.xml" title="Mr-wang的博客 | 运维笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://mr-wang.qiniudn.com/mr_wang.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Mr-wang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">运维笔记</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/categories/技术">技术</a></li>
+				        
+							<li><a href="/categories/资源">资源</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/xiaowang0624" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/vsftp-ftp/" style="font-size: 10px;">vsftp,ftp</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/通达OA/" style="font-size: 10px;">通达OA</a> <a href="/tags/阅读-书单/" style="font-size: 10px;">阅读,书单</a> <a href="/tags/集群/" style="font-size: 10px;">集群</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html">Linux工具箱</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://linux.51yip.com/">Linux命令手册</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是Mr.wang，运维工程师一枚。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Mr-wang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://mr-wang.qiniudn.com/mr_wang.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Mr-wang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">运维笔记</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/categories/技术">技术</a></li>
+		        
+					<li><a href="/categories/资源">资源</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/xiaowang0624" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Mysql-Master-slave-Read-Write-Splitting-Amoeba" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/" class="article-date">
+  	<time datetime="2016-03-05T12:26:27.000Z" itemprop="datePublished">2016-03-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mysql主从复制及读写分离的实现-Amoeba
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、Amoeba简介">一、Amoeba简介</h1><p>Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba for Mysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的 时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分离、可路由相关的到目标数据库、可并发请求多台数据库合并结果。 通过Amoeba你能够完成多数据源的高可用、负载均衡、数据切片的功能，目前Amoeba已在很多企业的生产线上面使用</p>
+<p>Amoeba优缺点<br>优点：<br>1、降低费用，简单易用<br>2、提高系统整体可用性<br>3、易于扩展处理能力与系统规模<br>4、可以直接实现读写分离及负载均衡效果，而不用修改代码<br>缺点：<br>1、不支持事务与存储过程<br>2、暂不支持分库分表，amoeba目前只做到分数据库实例<br>3、不适合从amoeba导数据的场景或者对大数据量查询的query并不合适（比如一次请求返回10w以上甚至更多数据的场合）</p>
+<p>Mysql GTID<br>Mysql 5.6的新特性之一，加入了全局事务性ID(GTID:Global Transactions Identifier)来强化数据库的主备一致性，故障恢复，以及容错能力;也使得复制功能的配置、监控及管理变得更加易于实现，且更加健壮。</p>
+<a id="more"></a>
+<h1 id="二、Mysql主从配置">二、Mysql主从配置</h1><h2 id="1、环境介绍：">1、环境介绍：</h2><p>两台Mysql数据库实现主从配置<br>Amoeba:172.16.14.1<br>Mysql Master:172.16.14.2<br>Mysql Slave:172.16.14.3</p>
+<h2 id="2、在Master服务器上安装并配置Mysql">2、在Master服务器上安装并配置Mysql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#23433;&#35013;Mysql&#24182;&#21152;&#20837;&#21040;&#31995;&#32479;&#26381;&#21153;&#10;[root@master ~]# tar xf mysql-5.6.13-linux-glibc2.5-x86_64.tar.gz -C /usr/local/&#10;[root@master ~]# cd /usr/local/&#10;[root@master local]# ln -s mysql-5.6.13-linux-glibc2.5-x86_64 mysql&#10;[root@master local]# cd mysql&#10;[root@master mysql]# cp support-files/mysql.server /etc/init.d/mysqld&#10;[root@master mysql]# chmod +x /etc/init.d/mysqld&#10;[root@master mysql]# chkconfig --add mysqld&#10;[root@master mysql]# echo &#34;PATH=/usr/local/mysql/bin:$PATH&#34; &#62;&#62; /etc/profile&#10;[root@master mysql]# . /etc/profile</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#25552;&#20379;&#20027;&#37197;&#32622;&#25991;&#20214;&#10;[root@master mysql]# vim /etc/my.cnf&#10;[client]&#10;#password       = your_password&#10;port            = 3306&#10;socket          = /tmp/mysql.sock&#10;[mysqld]&#10;port            = 3306&#10;socket          = /tmp/mysql.sock&#10;skip-external-locking&#10;key_buffer_size = 256M&#10;max_allowed_packet = 1M&#10;table_open_cache = 256&#10;sort_buffer_size = 1M&#10;read_buffer_size = 1M&#10;read_rnd_buffer_size = 4M&#10;myisam_sort_buffer_size = 64M&#10;thread_cache_size = 8&#10;query_cache_size= 16M&#10;thread_concurrency = 8&#10;binlog-format=ROW&#10;log-slave-updates=true&#10;gtid-mode=on&#10;enforce-gtid-consistency=true&#10;master-info-repository=TABLE&#10;relay-log-info-repository=TABLE&#10;sync-master-info=1&#10;slave-parallel-workers=2&#10;binlog-checksum=CRC32&#10;master-verify-checksum=1&#10;slave-sql-verify-checksum=1&#10;binlog-rows-query-log_events=1&#10;report-port=3306&#10;datadir=/data&#10;report-host=master.allen.com&#10;log-bin=mysql-bin&#10;server-id       = 10&#10;[mysqldump]&#10;quick&#10;max_allowed_packet = 16M&#10;[mysql]&#10;no-auto-rehash&#10;[myisamchk]&#10;key_buffer_size = 128M&#10;sort_buffer_size = 128M&#10;read_buffer = 2M&#10;write_buffer = 2M&#10;[mysqlhotcopy]&#10;interactive-timeout</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#21021;&#22987;&#21270;Mysql&#10;[root@master mysql]# useradd -r mysql&#10;[root@master mysql]# mkdir /data&#10;[root@master mysql]# chown -R mysql.mysql /data&#10;[root@master mysql]# chown -R root.mysql /usr/local/mysql/*&#10;[root@master mysql]# ./scripts/mysql_install_db --user=mysql --datadir=/data/&#10;[root@master ~]# service mysqld start</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#22312;Slave&#26381;&#21153;&#22120;&#19978;&#23433;&#35013;Mysql&#19982;&#22312;Master&#26381;&#21153;&#22120;&#19978;&#23433;&#35013;&#26041;&#27861;&#30456;&#21516;&#65292;&#32780;&#22312;Slave&#26381;&#21153;&#22120;&#19978;&#23433;&#35013;Mysql&#26377;&#20004;&#20010;&#21442;&#25968;&#19982;Master&#26381;&#21153;&#22120;&#19981;&#21516;&#65307;&#22914;&#19979;&#10;server-id=11&#10;report-host=slave.allen.com&#10;[root@slave ~]# service mysqld start</span><br></pre></td></tr></table></figure>
+<h2 id="3、在Master服务器上为Slave创建复制用户并测试连接">3、在Master服务器上为Slave创建复制用户并测试连接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# mysql&#10;mysql&#62; grant replication slave,replication client on *.* to &#39;slave&#39;@&#39;172.16.%.%&#39; identified by &#39;passwd&#39;;&#10;mysql&#62; flush privileges;&#10;------------------------------------------------------------------------&#10;######&#27979;&#35797;&#36830;&#25509;&#10;[root@slave ~]# mysql -uslave -ppasswd -h 172.16.14.2</span><br></pre></td></tr></table></figure>
+<h2 id="4、启动从节点的复制线程">4、启动从节点的复制线程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@slave ~]# mysql&#10;mysql&#62; change master to master_host=&#39;172.16.14.2&#39;,master_user=&#39;slave&#39;,master_password=&#39;passwd&#39;,master_auto_position=1;&#10;mysql&#62; start slave;&#10;mysql&#62; show slave status\G;&#10;*************************** 1. row ***************************&#10;               Slave_IO_State: Waiting for master to send event&#10;                  Master_Host: 172.16.14.2&#10;                  Master_User: slave&#10;                  Master_Port: 3306&#10;                Connect_Retry: 60&#10;              Master_Log_File: mysql-bin.000005&#10;          Read_Master_Log_Pos: 191&#10;               Relay_Log_File: slave-relay-bin.000003&#10;                Relay_Log_Pos: 401&#10;        Relay_Master_Log_File: mysql-bin.000005&#10;             Slave_IO_Running: Yes      #&#20027;&#35201;&#30475;&#36825;&#20004;&#39033;&#20026;&#8220;YES&#8221;&#35828;&#26126;&#25104;&#21151;&#10;            Slave_SQL_Running: Yes</span><br></pre></td></tr></table></figure>
+<h2 id="5、在Master服务器创建数据库查看Slave服务器是否更新">5、在Master服务器创建数据库查看Slave服务器是否更新</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# mysql -e &#39;create database allen;&#39;&#10;------------------------------------------------------------------------&#10;[root@slave ~]# mysql -e &#39;show databases;&#39;&#10;+--------------------+&#10;| Database           |&#10;+--------------------+&#10;| information_schema |&#10;| allen              |&#10;| mysql              |&#10;| performance_schema |&#10;| test               |&#10;+--------------------+&#10;#&#30001;&#19978;&#21487;&#35265;&#65292;&#26032;&#21019;&#24314;&#30340;&#34;allen&#34;&#25968;&#25454;&#24211;&#24050;&#25104;&#21151;&#21516;&#27493;</span><br></pre></td></tr></table></figure>
+<p>至此Mysql 5.6 基于GTID的复制已经完成，下面将介绍如何基于Mysql的主从复制架构做读写分离</p>
+<h1 id="三、读写分离配置">三、读写分离配置</h1><p>基于前面做的Mysql主从架构，然后在前端加一台服务器，用于实现Mysql的读写分离，IP地址为：172.16.14.1；由于Amoeba是java程序所研发，所以需要先安装JDK程序</p>
+<h2 id="1、安装JDK">1、安装JDK</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@amoeba ~]# tar xzvf jdk-7u72-linux-x64.tar.gz&#10;[root@amoeba ~]# chown -R /usr/local/java&#10;[root@amoeba ~]# mv jdk1.7.0_72 /usr/local/java&#10;[root@amoeba ~]# vim /etc/profile&#10;export JAVA_HOME=/usr/local/java/jdk1.7.0_72&#10;export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar&#10;export PATH=$PATH:$JAVA_HOME/bin&#10;[root@amoeba ~]# source /etc/profile&#10;[root@amoeba ~]# java -version&#10;java version &#34;1.7.0_72&#34;&#10;Java(TM) SE Runtime Environment (build 1.7.0_72-b14)&#10;Java HotSpot(TM) 64-Bit Server VM (build 24.72-b04, mixed mode)</span><br></pre></td></tr></table></figure>
+<h2 id="2、安装Amoeba">2、安装Amoeba</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@amoeba ~]# unzip amoeba-mysql-3.0.5-RC-distribution.zip &#10;[root@amoeba ~]# mv amoeba /usr/local/</span><br></pre></td></tr></table></figure>
+<h2 id="3、授权Mysql用户，用于实现前端Amoeba连接">3、授权Mysql用户，用于实现前端Amoeba连接</h2><p>由于上面授权的主从复制帐号不能同步”mysql”数据库，所以用户名也无法同步，要在两台数据库上同时授权，用户名密码保持一致</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#20027;mysql&#10;[root@master ~]# mysql&#10;mysql&#62; grant all on *.* to &#39;amoeba&#39;@&#39;172.16.%.%&#39; identified by &#39;amoebapass&#39;;&#10;mysql&#62; flush privileges;&#10;&#10;#&#22791;mysql&#10;[root@slave ~]# mysql&#10;mysql&#62; grant all on *.* to &#39;amoeba&#39;@&#39;172.16.%.%&#39; identified by &#39;amoebapass&#39;;&#10;mysql&#62; flush privileges;</span><br></pre></td></tr></table></figure>
+<h2 id="4、配置Amoeba">4、配置Amoeba</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@amoeba ~]# cd /usr/local/amoeba/conf/  #&#20027;&#35201;&#37197;&#32622;&#25991;&#20214;&#20026;&#20197;&#19979;&#20004;&#20010;&#10;amoeba.xml        #&#23450;&#20041;&#25968;&#25454;&#24211;&#35835;&#20889;&#20998;&#31163;&#21450;&#33410;&#28857;&#31649;&#29702;&#20449;&#24687;&#31561;&#10;dbServers.xml     #&#23450;&#20041;&#36830;&#25509;&#21518;&#31471;Mysql&#26381;&#21153;&#22120;&#20449;&#24687;&#10;------------------------------------------------------------------------&#10;[root@amoeba conf]# vim dbServers.xml&#10;&#60;?xml version=&#34;1.0&#34; encoding=&#34;gbk&#34;?&#62;&#10;&#60;!DOCTYPE amoeba:dbServers SYSTEM &#34;dbserver.dtd&#34;&#62;&#10;&#60;amoeba:dbServers xmlns:amoeba=&#34;http://amoeba.meidusa.com/&#34;&#62;&#10;        &#60;!--&#10;            Each dbServer needs to be configured into a Pool,&#10;            If you need to configure multiple dbServer with load balancing that can be simplified by the following configuration:&#10;             add attribute with name virtual = &#34;true&#34; in dbServer, but the configuration does not allow the element with name factoryConfig&#10;             such as &#39;multiPool&#39; dbServer&#10;        --&#62;&#10;    &#60;dbServer name=&#34;abstractServer&#34; abstractive=&#34;true&#34;&#62;&#10;        &#60;factoryConfig class=&#34;com.meidusa.amoeba.mysql.net.MysqlServerConnectionFactory&#34;&#62;&#10;            &#60;property name=&#34;manager&#34;&#62;$&#123;defaultManager&#125;&#60;/property&#62;&#10;            &#60;property name=&#34;sendBufferSize&#34;&#62;64&#60;/property&#62;&#10;            &#60;property name=&#34;receiveBufferSize&#34;&#62;128&#60;/property&#62;&#10;            &#60;!-- mysql port --&#62;&#10;            &#60;property name=&#34;port&#34;&#62;3306&#60;/property&#62;&#10;            #&#36830;&#25509;&#21518;&#31471;Mysql&#26381;&#21153;&#22120;&#31471;&#21475;&#10;            &#60;!-- mysql schema --&#62;&#10;            &#60;property name=&#34;schema&#34;&#62;test&#60;/property&#62;&#10;            #&#36830;&#25509;&#21040;&#21518;&#31471;Mysql&#20351;&#29992;&#30340;&#40664;&#35748;&#25968;&#25454;&#24211;&#10;            &#60;!-- mysql user --&#62;&#10;            &#60;property name=&#34;user&#34;&#62;amoeba&#60;/property&#62;&#10;            #&#36830;&#25509;&#21518;&#31471;Mysql&#25968;&#25454;&#24211;&#30340;&#29992;&#25143;&#21517;&#10;            &#60;property name=&#34;password&#34;&#62;amoebapass&#60;/property&#62;&#10;                #&#36830;&#25509;&#21518;&#31471;Mysql&#25968;&#25454;&#24211;&#30340;&#29992;&#25143;&#21517;&#10;        &#60;/factoryConfig&#62;&#10;        &#60;poolConfig class=&#34;com.meidusa.amoeba.net.poolable.PoolableObjectPool&#34;&#62;&#10;            &#60;property name=&#34;maxActive&#34;&#62;500&#60;/property&#62;&#10;            &#60;property name=&#34;maxIdle&#34;&#62;500&#60;/property&#62;&#10;            &#60;property name=&#34;minIdle&#34;&#62;10&#60;/property&#62;&#10;            &#60;property name=&#34;minEvictableIdleTimeMillis&#34;&#62;600000&#60;/property&#62;&#10;            &#60;property name=&#34;timeBetweenEvictionRunsMillis&#34;&#62;600000&#60;/property&#62;&#10;            &#60;property name=&#34;testOnBorrow&#34;&#62;true&#60;/property&#62;&#10;            &#60;property name=&#34;testOnReturn&#34;&#62;true&#60;/property&#62;&#10;            &#60;property name=&#34;testWhileIdle&#34;&#62;true&#60;/property&#62;&#10;        &#60;/poolConfig&#62;&#10;    &#60;/dbServer&#62;&#10;                        #&#23450;&#20041;&#34;master&#34;&#25968;&#25454;&#24211;&#33410;&#28857;,&#34;name&#34;&#21517;&#31216;&#21487;&#20197;&#33258;&#23450;&#20041;&#10;    &#60;dbServer name=&#34;master&#34;  parent=&#34;abstractServer&#34;&#62;&#10;        &#60;factoryConfig&#62;&#10;            &#60;!-- mysql ip --&#62;&#10;            &#60;property name=&#34;ipAddress&#34;&#62;172.16.14.2&#60;/property&#62;&#10;        &#60;/factoryConfig&#62;&#10;    &#60;/dbServer&#62;&#10;                       #&#23450;&#20041;&#34;slave&#34;&#25968;&#25454;&#24211;&#33410;&#28857;&#10;    &#60;dbServer name=&#34;slave&#34;  parent=&#34;abstractServer&#34;&#62;&#10;        &#60;factoryConfig&#62;&#10;            &#60;!-- mysql ip --&#62;&#10;            &#60;property name=&#34;ipAddress&#34;&#62;172.16.14.3&#60;/property&#62;&#10;        &#60;/factoryConfig&#62;&#10;    &#60;/dbServer&#62;&#10;&#10;    &#60;dbServer name=&#34;multiPool&#34; virtual=&#34;true&#34;&#62;&#10;        &#60;poolConfig class=&#34;com.meidusa.amoeba.server.MultipleServerPool&#34;&#62;&#10;            &#60;!-- Load balancing strategy: 1=ROUNDROBIN , 2=WEIGHTBASED , 3=HA--&#62; #&#36825;&#37324;&#27880;&#37322;&#30340;&#20026;&#31639;&#27861;&#10;            &#60;property name=&#34;loadbalance&#34;&#62;1&#60;/property&#62;&#10;            #&#23450;&#20041;&#36873;&#25321;&#21738;&#19968;&#31181;&#31639;&#27861;&#36827;&#34892;&#36127;&#36733;&#22343;&#34913;&#35843;&#24230;&#10;            &#60;!-- Separated by commas,such as: server1,server2,server1 --&#62;&#10;#&#23450;&#20041;&#25968;&#25454;&#24211;&#27744;,&#29992;&#20110;&#23454;&#29616;&#36127;&#36733;&#22343;&#34913;.&#34;slave&#34;&#20026;&#19978;&#38754;&#23450;&#20041;&#30340;&#20174;&#25968;&#25454;&#24211;&#33410;&#28857;&#65292;&#21487;&#20197;&#20889;&#22810;&#20010;&#29992;&#34;,&#34;&#20998;&#38548;;&#10;&#22914;:&#34;slave,slave,master&#34;&#21487;&#20197;&#23454;&#29616;&#22522;&#20110;&#26435;&#37325;&#36127;&#36733;&#30340;&#25928;&#26524;;&#24403;&#28982;&#36825;&#37324;&#20063;&#21487;&#20197;&#19981;&#29992;&#23450;&#20041;&#10;            &#60;property name=&#34;poolNames&#34;&#62;slave&#60;/property&#62;&#10;        &#60;/poolConfig&#62;&#10;    &#60;/dbServer&#62;&#10;&#60;/amoeba:dbServers&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">========================================================================&#10;[root@amoeba conf]# vim amoeba.xml&#10;&#60;?xml version=&#34;1.0&#34; encoding=&#34;gbk&#34;?&#62;&#10;&#60;!DOCTYPE amoeba:configuration SYSTEM &#34;amoeba.dtd&#34;&#62;&#10;&#60;amoeba:configuration xmlns:amoeba=&#34;http://amoeba.meidusa.com/&#34;&#62;&#10;    &#60;proxy&#62;&#10;        &#60;!-- service class must implements com.meidusa.amoeba.service.Service --&#62;&#10;&#60;service name=&#34;Amoeba for Mysql&#34; class=&#34;com.meidusa.amoeba.net.ServerableConnectionManager&#34;&#62;&#10;            &#60;!-- port --&#62; #&#23450;&#20041;amoeba&#20195;&#29702;&#26381;&#21153;&#22120;&#30340;&#23545;&#22806;&#36830;&#25509;&#30417;&#21548;&#31471;&#21475;&#10;            &#60;property name=&#34;port&#34;&#62;3306&#60;/property&#62;   &#10;            &#60;!-- bind ipAddress --&#62; #&#23450;&#20041;amoeba&#20195;&#29702;&#26381;&#21153;&#22120;&#23545;&#22806;&#36830;&#25509;&#30340;&#30417;&#21548;IP&#10;            &#60;property name=&#34;ipAddress&#34;&#62;172.16.14.1&#60;/property&#62;   &#10;            &#60;property name=&#34;manager&#34;&#62;$&#123;clientConnectioneManager&#125;&#60;/property&#62;&#10;            &#60;property name=&#34;connectionFactory&#34;&#62;&#10;                &#60;bean class=&#34;com.meidusa.amoeba.mysql.net.MysqlClientConnectionFactory&#34;&#62;&#10;                    &#60;property name=&#34;sendBufferSize&#34;&#62;128&#60;/property&#62;&#10;                    &#60;property name=&#34;receiveBufferSize&#34;&#62;64&#60;/property&#62;&#10;                &#60;/bean&#62;&#10;            &#60;/property&#62;   &#10;            &#60;property name=&#34;authenticator&#34;&#62;&#10;                &#60;bean class=&#34;com.meidusa.amoeba.mysql.server.MysqlClientAuthenticator&#34;&#62;             &#10;    #&#23450;&#20041;amoeba&#36830;&#25509;&#29992;&#25143;&#21517;&#21644;&#23494;&#30721;&#65292;&#23458;&#25143;&#31471;&#25110;&#31243;&#24207;&#21482;&#38656;&#35201;&#20351;&#29992;&#27492;&#29992;&#25143;&#21517;&#21644;&#23494;&#30721;&#36830;&#25509;&#21363;&#21487;&#10;                    &#60;property name=&#34;user&#34;&#62;admin&#60;/property&#62;         &#10;                    &#60;property name=&#34;password&#34;&#62;password&#60;/property&#62;           &#10;                    &#60;property name=&#34;filter&#34;&#62;&#10;                        &#60;bean class=&#34;com.meidusa.amoeba.server.IPAccessController&#34;&#62;&#10;                    &#60;property name=&#34;ipFile&#34;&#62;$&#123;amoeba.home&#125;/conf/access_list.conf&#60;/property&#62;&#10;                        &#60;/bean&#62;&#10;                    &#60;/property&#62;&#10;                &#60;/bean&#62;&#10;            &#60;/property&#62;   &#10;        &#60;/service&#62;&#10;        &#60;!-- server class must implements com.meidusa.amoeba.service.Service --&#62;&#10;        &#60;service name=&#34;Amoeba Monitor Server&#34; class=&#34;com.meidusa.amoeba.monitor.MonitorServer&#34;&#62;&#10;            &#60;!-- port --&#62;&#10;            &#60;!--  default value: random number&#10;            &#60;property name=&#34;port&#34;&#62;9066&#60;/property&#62;&#10;            --&#62;&#10;            &#60;!-- bind ipAddress --&#62;&#10;            &#60;property name=&#34;ipAddress&#34;&#62;127.0.0.1&#60;/property&#62;&#10;            &#60;property name=&#34;daemon&#34;&#62;true&#60;/property&#62;&#10;            &#60;property name=&#34;manager&#34;&#62;$&#123;clientConnectioneManager&#125;&#60;/property&#62;&#10;            &#60;property name=&#34;connectionFactory&#34;&#62;&#10;            &#60;bean class=&#34;com.meidusa.amoeba.monitor.net.MonitorClientConnectionFactory&#34;&#62;&#60;/bean&#62;&#10;            &#60;/property&#62;   &#10;        &#60;/service&#62;&#10;        &#60;runtime class=&#34;com.meidusa.amoeba.mysql.context.MysqlRuntimeContext&#34;&#62;&#10;            &#60;!-- proxy server net IO Read thread size --&#62;&#10;            &#60;property name=&#34;readThreadPoolSize&#34;&#62;20&#60;/property&#62;   &#10;            &#60;!-- proxy server client process thread size --&#62;&#10;            &#60;property name=&#34;clientSideThreadPoolSize&#34;&#62;30&#60;/property&#62;&#10;            &#60;!-- mysql server data packet process thread size --&#62;&#10;            &#60;property name=&#34;serverSideThreadPoolSize&#34;&#62;30&#60;/property&#62;&#10;            &#60;!-- per connection cache prepared statement size  --&#62;&#10;            &#60;property name=&#34;statementCacheSize&#34;&#62;500&#60;/property&#62; &#10;            &#60;!-- query timeout( default: 60 second , TimeUnit:second) --&#62;&#10;            &#60;property name=&#34;queryTimeout&#34;&#62;60&#60;/property&#62;&#10;        &#60;/runtime&#62;&#10;    &#60;/proxy&#62;&#10;    &#60;!--&#10;        Each ConnectionManager will start as thread&#10;        manager responsible for the Connection IO read , Death Detection&#10;    --&#62;&#10;    &#60;connectionManagerList&#62;&#10;    &#60;connectionManager name=&#34;clientConnectioneManager&#34; class=&#34;com.meidusa.amoeba.net.MultiConnectionManagerWrapper&#34;&#62;&#10;    &#60;property name=&#34;subManagerClassName&#34;&#62;com.meidusa.amoeba.net.ConnectionManager&#60;/property&#62;&#10;            &#60;!--&#10;              default value is avaliable Processors&#10;            &#60;property name=&#34;processors&#34;&#62;5&#60;/property&#62;&#10;             --&#62;&#10;        &#60;/connectionManager&#62;&#10;&#60;connectionManager name=&#34;defaultManager&#34; class=&#34;com.meidusa.amoeba.net.MultiConnectionManagerWrapper&#34;&#62;&#10;&#60;property name=&#34;subManagerClassName&#34;&#62;com.meidusa.amoeba.net.AuthingableConnectionManager&#60;/property&#62;&#10;            &#60;!--&#10;              default value is avaliable Processors&#10;            &#60;property name=&#34;processors&#34;&#62;5&#60;/property&#62;&#10;             --&#62;&#10;        &#60;/connectionManager&#62;&#10;    &#60;/connectionManagerList&#62;&#10;&#10;        &#60;!-- default using file loader --&#62;&#10;    &#60;dbServerLoader class=&#34;com.meidusa.amoeba.context.DBServerConfigFileLoader&#34;&#62;&#10;        &#60;property name=&#34;configFile&#34;&#62;$&#123;amoeba.home&#125;/conf/dbServers.xml&#60;/property&#62;&#10;    &#60;/dbServerLoader&#62;&#10;    &#60;queryRouter class=&#34;com.meidusa.amoeba.mysql.parser.MysqlQueryRouter&#34;&#62;&#10;        &#60;property name=&#34;ruleLoader&#34;&#62;&#10;            &#60;bean class=&#34;com.meidusa.amoeba.route.TableRuleFileLoader&#34;&#62;&#10;                &#60;property name=&#34;ruleFile&#34;&#62;$&#123;amoeba.home&#125;/conf/rule.xml&#60;/property&#62;&#10;                &#60;property name=&#34;functionFile&#34;&#62;$&#123;amoeba.home&#125;/conf/ruleFunctionMap.xml&#60;/property&#62;&#10;            &#60;/bean&#62;&#10;        &#60;/property&#62;&#10;        &#60;property name=&#34;sqlFunctionFile&#34;&#62;$&#123;amoeba.home&#125;/conf/functionMap.xml&#60;/property&#62;&#10;        &#60;property name=&#34;LRUMapSize&#34;&#62;1500&#60;/property&#62;&#10;        &#60;property name=&#34;defaultPool&#34;&#62;master&#60;/property&#62;&#10;        #&#23450;&#20041;&#40664;&#35748;&#27744;,&#19968;&#20123;sql&#35821;&#21477;&#40664;&#35748;&#20250;&#22312;&#27492;&#23450;&#20041;&#30340;&#26381;&#21153;&#22120;&#19978;&#25191;&#34892;&#10;        &#60;property name=&#34;writePool&#34;&#62;master&#60;/property&#62;&#10;                #&#23450;&#20041;&#21482;&#20889;&#25968;&#25454;&#24211;&#10;        &#60;property name=&#34;readPool&#34;&#62;slave&#60;/property&#62;&#10;#&#23450;&#20041;&#21482;&#35835;&#25968;&#25454;&#24211;,&#27492;&#22788;&#23450;&#20041;&#30340;&#26159;&#22312;&#34;dbServer.xml&#34;&#25991;&#20214;&#20013;&#23450;&#20041;&#30340;&#21518;&#31471;&#26381;&#21153;&#22120;&#21517;&#31216;&#65292;&#20063;&#21487;&#20197;&#23450;&#20041;&#25968;&#25454;&#24211;&#27744;&#30340;&#21517;&#31216;,&#23454;&#29616;&#36127;&#36733;&#22343;&#34913;&#10;        &#60;property name=&#34;needParse&#34;&#62;true&#60;/property&#62;&#10;    &#60;/queryRouter&#62;&#10;&#60;/amoeba:configuration&#62;</span><br></pre></td></tr></table></figure>
+<h2 id="5、启动amoeba服务并连接测试">5、启动amoeba服务并连接测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@amoeba ~]# /usr/local/amoeba/bin/launcher &#38;&#10;[root@amoeba ~]# ss -tanlp | grep 3306&#10;LISTEN     0      128      ::ffff:172.16.14.1:3306     :::*      users:((&#34;java&#34;,29448,54))&#10;#&#30001;&#19978;&#21487;&#35265;&#24050;&#21551;&#21160;&#25104;&#21151;&#24182;&#30417;&#21548;&#22312;3306&#31471;&#21475;</span><br></pre></td></tr></table></figure>
+<h2 id="6、连接到amoeba代理服务器,执行插入与查询操作,查看是否实现读写分离">6、连接到amoeba代理服务器,执行插入与查询操作,查看是否实现读写分离</h2><p>略…</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/10/15/book-list/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">阅读书单</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Mysql-Master-slave-Read-Write-Splitting-Amoeba" data-title="Mysql主从复制及读写分离的实现-Amoeba" data-url="http://www.mr-wang.cn/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"Mr-wang"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Mr-wang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
