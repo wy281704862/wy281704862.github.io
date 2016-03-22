@@ -192,10 +192,10 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-dedecms-security-settings-on-Nginx" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Let-AMH-virtual-host-support-PATHINFO" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/11/dedecms-security-settings-on-Nginx/" class="article-date">
+      <a href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/" class="article-date">
   	<time datetime="2015-07-11T12:26:27.000Z" itemprop="datePublished">2015-07-11</time>
 </a>
     </div>
@@ -209,7 +209,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/dedecms-security-settings-on-Nginx/">Nginx下dedecms安全设置</a>
+      <a class="article-title" href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/">让AMH虚拟主机支持PATHINFO</a>
     </h1>
   
 
@@ -218,16 +218,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="目录权限设置">目录权限设置</h2><p>织梦可读写、不可执行权限，禁止运行php程序目录：</p>
-<ul>
-<li>templets</li>
-<li>uploads</li>
-<li>data</li>
-<li>images</li>
-<li>a</li>
-</ul>
-<p>具体目录，可以通过后台一键更新时，寻找需要写入权限的目录</p>
-<p>思路：<br>web服务器(AMH)运行的用户应该是www，那么网站的所有者就应该不能设置为www，而应该设置为不同的用户，这里设置为ftpuser用户。同时www、ftpuser用户应该为同一组，这里设置同为www组。</p>
+        <p>现在公司许多程序是在基于ThinkPHP框架上进行开发的， 然而基于此框架开发的程序，URL访问形式如下：</p>
+<p><a href="http://it.ctwoo.com/index.php/Login/index">http://it.ctwoo.com/index.php/Login/index</a></p>
+<p>默认Nginx是不支持PATHINFO的。</p>
+<p>AMH虚拟主机支持PATHINFO更改方法,更改需要支持PATHINFO的主机的配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/vhost/domain.com.conf</span><br></pre></td></tr></table></figure>
+<p>参考配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location ~ ^(.+\.php)(.*)$&#10;&#123;&#10;    fastcgi_pass  unix:/tmp/php-cgi-e-uncommon.com.sock;&#10;    fastcgi_index index.php;&#10;    //begin&#10;    fastcgi_split_path_info ^(.+\.php)(.*)$;&#10;    fastcgi_param PATH_INFO $fastcgi_path_info;&#10;    //end&#10;    include fcgi-host.conf;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>Esc :wq 保存退出。</p>
+<p>进入AMH后台重启Nginx即可。</p>
       
     </div>
     
@@ -246,7 +245,135 @@
 
       
         <p class="article-more-link">
-          <a  href="/2015/07/11/dedecms-security-settings-on-Nginx/#more">more >></a>
+          <a  href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-To-compile-Nginx-which-supports-static-post-pages" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/" class="article-date">
+  	<time datetime="2015-07-11T12:26:27.000Z" itemprop="datePublished">2015-07-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/">AMH重新编译Nginx，使其支持静态页面post</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在实际使用AMH的过程中，公司出现通过post请求静态页面；默认的nginx上，是拒绝通过post方式访问静态页面的。</p>
+<p>网上有2种方法解决这个问题，但是在实际的过程中，发现方法1不奏效,于是使用方法2，重新编译nginx解决问题。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-The-web-server-encountered-PHPDDOS" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/11/The-web-server-encountered-PHPDDOS/" class="article-date">
+  	<time datetime="2015-07-11T12:26:27.000Z" itemprop="datePublished">2015-07-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/11/The-web-server-encountered-PHPDDOS/">记网站服务器遭遇PHPDDOS攻击</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>2014年4月10–11日，公司web服务器遭遇PHPDDOS攻击，导致服务器宽带被大量占用，网络延迟很大，无法远程登陆服务器管理。</p>
+<p>开始以为是访问量太大导致的，10日发现服务器始终向某一固定IP发送UDP 53的包。采用iptables禁用IP。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I OUTPUT -s 119.42.149.69 -j DROP</span><br></pre></td></tr></table></figure>
+<p>然而服务器故障依旧，后来查询资料，发现原来服务器web网站被挂马，PHPDDOS。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iptables/">Iptables</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/11/The-web-server-encountered-PHPDDOS/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -330,10 +457,10 @@
 
 
   
-    <article id="post-Let-AMH-virtual-host-support-PATHINFO" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Netbois-protocol-leads-to-network-congestion" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/" class="article-date">
+      <a href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/" class="article-date">
   	<time datetime="2015-07-11T12:26:27.000Z" itemprop="datePublished">2015-07-11</time>
 </a>
     </div>
@@ -347,7 +474,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/">让AMH虚拟主机支持PATHINFO</a>
+      <a class="article-title" href="/2015/07/11/Netbois-protocol-leads-to-network-congestion/">Netbois协议导致网络阻塞</a>
     </h1>
   
 
@@ -356,15 +483,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>现在公司许多程序是在基于ThinkPHP框架上进行开发的， 然而基于此框架开发的程序，URL访问形式如下：</p>
-<p><a href="http://it.ctwoo.com/index.php/Login/index">http://it.ctwoo.com/index.php/Login/index</a></p>
-<p>默认Nginx是不支持PATHINFO的。</p>
-<p>AMH虚拟主机支持PATHINFO更改方法,更改需要支持PATHINFO的主机的配置文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/vhost/domain.com.conf</span><br></pre></td></tr></table></figure>
-<p>参考配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location ~ ^(.+\.php)(.*)$&#10;&#123;&#10;    fastcgi_pass  unix:/tmp/php-cgi-e-uncommon.com.sock;&#10;    fastcgi_index index.php;&#10;    //begin&#10;    fastcgi_split_path_info ^(.+\.php)(.*)$;&#10;    fastcgi_param PATH_INFO $fastcgi_path_info;&#10;    //end&#10;    include fcgi-host.conf;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>Esc :wq 保存退出。</p>
-<p>进入AMH后台重启Nginx即可。</p>
+        <p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
+<p>在网上有这样的解释：</p>
+<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终竟然导致接入交换机和汇聚交换机、核心交换机间的链路阻塞，使得网络变得基本不通。<br>初步分析了一下捕获到的数据，基本认定原因在于好多个人计算机内包含恶意/流氓软件，会不停地访问btamail.net、bar.baidu.com、 sobar.baidu.com等域名，同时，windows的名字解析机制的顺序是：</p>
+<ol>
+<li>hosts</li>
+<li>net bios, wins, lmhosts</li>
+<li>dns<br>所以，就会在网络中产生大量nbns的数据包</li>
+</ol>
+<p>然后，在那台电脑上杀进程，找到恶意软件。</p>
+
       
     </div>
     
@@ -372,7 +500,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
 	</div>
 
       
@@ -381,138 +509,6 @@
 	</div>
 
 
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-The-web-server-encountered-PHPDDOS" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/The-web-server-encountered-PHPDDOS/" class="article-date">
-  	<time datetime="2015-07-11T12:26:27.000Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/The-web-server-encountered-PHPDDOS/">记网站服务器遭遇PHPDDOS攻击</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2014年4月10–11日，公司web服务器遭遇PHPDDOS攻击，导致服务器宽带被大量占用，网络延迟很大，无法远程登陆服务器管理。</p>
-<p>开始以为是访问量太大导致的，10日发现服务器始终向某一固定IP发送UDP 53的包。采用iptables禁用IP。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I OUTPUT -s 119.42.149.69 -j DROP</span><br></pre></td></tr></table></figure>
-<p>然而服务器故障依旧，后来查询资料，发现原来服务器web网站被挂马，PHPDDOS。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iptables/">Iptables</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/The-web-server-encountered-PHPDDOS/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-To-compile-Nginx-which-supports-static-post-pages" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/" class="article-date">
-  	<time datetime="2015-07-11T12:26:27.000Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/">AMH重新编译Nginx，使其支持静态页面post</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在实际使用AMH的过程中，公司出现通过post请求静态页面；默认的nginx上，是拒绝通过post方式访问静态页面的。</p>
-<p>网上有2种方法解决这个问题，但是在实际的过程中，发现方法1不奏效,于是使用方法2，重新编译nginx解决问题。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
