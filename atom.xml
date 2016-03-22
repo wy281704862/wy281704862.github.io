@@ -4,7 +4,7 @@
   <subtitle><![CDATA[运维笔记]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.mr-wang.cn/"/>
-  <updated>2016-03-21T03:22:53.349Z</updated>
+  <updated>2016-03-21T03:22:54.857Z</updated>
   <id>http://www.mr-wang.cn/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://www.mr-wang.cn/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/"/>
     <id>http://www.mr-wang.cn/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/</id>
     <published>2016-03-05T12:26:27.000Z</published>
-    <updated>2016-03-21T03:22:53.349Z</updated>
+    <updated>2016-03-21T03:22:54.857Z</updated>
     <content type="html"><![CDATA[<h1 id="一、Amoeba简介">一、Amoeba简介</h1><p>Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba for Mysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的 时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分离、可路由相关的到目标数据库、可并发请求多台数据库合并结果。 通过Amoeba你能够完成多数据源的高可用、负载均衡、数据切片的功能，目前Amoeba已在很多企业的生产线上面使用</p>
 <p>Amoeba优缺点<br>优点：<br>1、降低费用，简单易用<br>2、提高系统整体可用性<br>3、易于扩展处理能力与系统规模<br>4、可以直接实现读写分离及负载均衡效果，而不用修改代码<br>缺点：<br>1、不支持事务与存储过程<br>2、暂不支持分库分表，amoeba目前只做到分数据库实例<br>3、不适合从amoeba导数据的场景或者对大数据量查询的query并不合适（比如一次请求返回10w以上甚至更多数据的场合）</p>
 <p>Mysql GTID<br>Mysql 5.6的新特性之一，加入了全局事务性ID(GTID:Global Transactions Identifier)来强化数据库的主备一致性，故障恢复，以及容错能力;也使得复制功能的配置、监控及管理变得更加易于实现，且更加健壮。</p>
