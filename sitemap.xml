@@ -2,83 +2,93 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/</loc>
-    <lastmod>2016-03-23T09:19:11.115Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/</loc>
-    <lastmod>2016-03-23T09:16:07.907Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/16/Shell-Study/</loc>
-    <lastmod>2015-11-17T09:50:07.085Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/10/15/book-list/</loc>
-    <lastmod>2015-10-15T13:06:49.916Z</lastmod>
+    <loc>http://www.mr-wang.cn/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/</loc>
+    <lastmod>2016-04-01T06:28:18.575Z</lastmod>
   </url>
   
   <url>
     <loc>http://www.mr-wang.cn/2015/07/11/To-compile-Nginx-which-supports-static-post-pages/</loc>
-    <lastmod>2015-10-15T13:03:48.721Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/</loc>
-    <lastmod>2015-10-15T13:02:03.284Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/16/CentOS-System-Performance-tuning/</loc>
-    <lastmod>2015-10-15T13:01:51.360Z</lastmod>
+    <lastmod>2016-04-01T06:25:55.112Z</lastmod>
   </url>
   
   <url>
     <loc>http://www.mr-wang.cn/2015/07/11/The-web-server-encountered-PHPDDOS/</loc>
-    <lastmod>2015-10-15T12:59:16.969Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/</loc>
-    <lastmod>2015-10-15T12:59:07.213Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/16/CentOS-Oracle-installation/</loc>
-    <lastmod>2015-10-15T12:58:18.427Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/16/CentOS-nginx-installation/</loc>
-    <lastmod>2015-10-15T12:58:06.391Z</lastmod>
+    <lastmod>2016-04-01T06:25:40.280Z</lastmod>
   </url>
   
   <url>
     <loc>http://www.mr-wang.cn/2015/07/16/Nginx-Tomcat-Memcached-Cluster/</loc>
-    <lastmod>2015-10-15T12:57:48.218Z</lastmod>
+    <lastmod>2016-04-01T06:25:11.311Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/</loc>
+    <lastmod>2016-04-01T06:24:13.182Z</lastmod>
   </url>
   
   <url>
     <loc>http://www.mr-wang.cn/2015/07/16/Linux-Boot-Sequence/</loc>
-    <lastmod>2015-10-15T12:57:29.993Z</lastmod>
+    <lastmod>2016-04-01T06:23:23.654Z</lastmod>
   </url>
   
   <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/</loc>
-    <lastmod>2015-10-15T12:57:18.428Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2015/07/11/dedecms-security-settings-on-Nginx/</loc>
-    <lastmod>2015-10-15T12:56:58.910Z</lastmod>
+    <loc>http://www.mr-wang.cn/2015/07/11/Let-AMH-virtual-host-support-PATHINFO/</loc>
+    <lastmod>2016-04-01T06:23:05.010Z</lastmod>
   </url>
   
   <url>
     <loc>http://www.mr-wang.cn/2015/07/16/Install-Vsftpd/</loc>
-    <lastmod>2015-07-16T12:43:28.081Z</lastmod>
+    <lastmod>2016-04-01T06:22:44.030Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/11/dedecms-security-settings-on-Nginx/</loc>
+    <lastmod>2016-04-01T06:22:27.042Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/16/CentOS-System-Performance-tuning/</loc>
+    <lastmod>2016-04-01T06:22:14.161Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/16/CentOS-Oracle-installation/</loc>
+    <lastmod>2016-04-01T06:20:49.777Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/16/CentOS-nginx-installation/</loc>
+    <lastmod>2016-04-01T06:18:21.188Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/</loc>
+    <lastmod>2016-04-01T05:20:12.388Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/10/15/book-list/</loc>
+    <lastmod>2016-04-01T05:03:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/</loc>
+    <lastmod>2016-04-01T05:03:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/07/16/Shell-Study/</loc>
+    <lastmod>2016-04-01T05:03:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/tags/index.html</loc>
+    <lastmod>2016-04-01T05:03:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/categories/index.html</loc>
+    <lastmod>2016-04-01T05:03:41.000Z</lastmod>
   </url>
   
 </urlset>

@@ -1,400 +1,782 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>CentOS下nginx安装 | Mr-wang的博客 | 运维笔记</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.最小化安装的CentOS没有安装gcc，首先安装gcc、g++和c++库；
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mr wang" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="1.最小化安装的CentOS没有安装gcc，首先安装gcc、g++和c++库；
 1yum -y install gcc-c++
 2.安装pcre库，pcre库是为了使nginx支持http rewrite模块；
-1cd /usr/local/&amp;#10;wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.g">
+1234567cd /usr/local/wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS下nginx安装">
 <meta property="og:url" content="http://www.mr-wang.cn/2015/07/16/CentOS-nginx-installation/index.html">
-<meta property="og:site_name" content="Mr-wang的博客 | 运维笔记">
+<meta property="og:site_name" content="Mr wang">
 <meta property="og:description" content="1.最小化安装的CentOS没有安装gcc，首先安装gcc、g++和c++库；
 1yum -y install gcc-c++
 2.安装pcre库，pcre库是为了使nginx支持http rewrite模块；
-1cd /usr/local/&amp;#10;wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.g">
-<meta property="og:updated_time" content="2015-10-15T12:58:06.391Z">
+1234567cd /usr/local/wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.">
+<meta property="og:updated_time" content="2016-04-01T06:18:21.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS下nginx安装">
 <meta name="twitter:description" content="1.最小化安装的CentOS没有安装gcc，首先安装gcc、g++和c++库；
 1yum -y install gcc-c++
 2.安装pcre库，pcre库是为了使nginx支持http rewrite模块；
-1cd /usr/local/&amp;#10;wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.g">
-  
-    <link rel="alternative" href="/atom.xml" title="Mr-wang的博客 | 运维笔记" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+1234567cd /usr/local/wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> CentOS下nginx安装 | Mr wang </title>
 </head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="http://mr-wang.qiniudn.com/mr_wang.jpg" class="js-avatar">
-			
-		</a>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">Mr-wang</a></h1>
-		</hgroup>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-		
-		<p class="header-subtitle">运维笔记</p>
-		
+  
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						<li>友情链接</li>
-						
-						
-						<li>关于我</li>
-						
-					</ul>
-				</div>
-			</div>
-		
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/categories/技术">技术</a></li>
-				        
-							<li><a href="/categories/资源">资源</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="/#" title="github">github</a>
-					        
-								<a class="weibo" target="_blank" href="http://weibo.com/xiaowang0624" title="weibo">weibo</a>
-					        
-								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Database/" style="font-size: 13.33px;">Database</a> <a href="/tags/Iptables/" style="font-size: 10px;">Iptables</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 16.67px;">Nginx</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/vsftp-ftp/" style="font-size: 10px;">vsftp,ftp</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/通达OA/" style="font-size: 10px;">通达OA</a> <a href="/tags/阅读-书单/" style="font-size: 10px;">阅读,书单</a> <a href="/tags/集群/" style="font-size: 10px;">集群</a>
-					</div>
-				</section>
-				
-				
-				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html">Linux工具箱</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://linux.51yip.com/">Linux命令手册</a>
-			        
-			        </div>
-				</section>
-				
 
-				
-				
-				<section class="switch-part switch-part4">
-				
-					<div id="js-aboutme">我是Mr.wang，运维工程师一枚。</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mr wang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
 </div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">Mr-wang</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img lazy-src="http://mr-wang.qiniudn.com/mr_wang.jpg" class="js-avatar">
-			</div>
-			<hgroup>
-			  <h1 class="header-author">Mr-wang</h1>
-			</hgroup>
-			
-			<p class="header-subtitle">运维笔记</p>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/categories/技术">技术</a></li>
-		        
-					<li><a href="/categories/资源">资源</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="/#" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="http://weibo.com/xiaowang0624" title="weibo">weibo</a>
-			        
-						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
 </nav>
-      <div class="body-wrap"><article id="post-CentOS-nginx-installation" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/07/16/CentOS-nginx-installation/" class="article-date">
-  	<time datetime="2015-07-16T12:26:27.000Z" itemprop="datePublished">2015-07-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
+
   
-    <h1 class="article-title" itemprop="name">
-      CentOS下nginx安装
-    </h1>
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CentOS下nginx安装
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
+              2015-07-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/16/CentOS-nginx-installation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/CentOS-nginx-installation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/07/16/CentOS-nginx-installation/" class="leancloud_visitors" data-flag-title="CentOS下nginx安装">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
       </header>
-      
-      <div class="article-info article-info-post">
-        
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-	</div>
-
-        
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-        <div class="clearfix"></div>
-      </div>
-      
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <p>1.最小化安装的CentOS没有安装gcc，首先安装gcc、g++和c++库；</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc-c++</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -<span class="keyword">y</span> install gcc-<span class="keyword">c</span>++</span><br></pre></td></tr></table></figure>
 <p>2.安装pcre库，pcre库是为了使nginx支持http rewrite模块；</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/&#10;wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.gz&#10;tar -zxvf pcre-8.35.tar.gz&#10;cd pcre-8.35&#10;./configure&#10;make&#10;make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/</span><br><span class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.gz</span><br><span class="line">tar -zxvf pcre-8.35.tar.gz</span><br><span class="line">cd pcre-8.35</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>3.安装nginx，选择 Nginx 安装到 /usr/local/nginx 目录下；</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</span><br><span class="line">wget http://nginx.org/download/nginx-<span class="number">1.2</span>.<span class="number">8</span>.tar.gz</span><br><span class="line">tar -zxvf nginx-<span class="number">1.6</span>.<span class="number">2</span>.tar.gz</span><br><span class="line"><span class="built_in">cd</span> nginx-<span class="number">1.6</span>.<span class="number">2</span></span><br><span class="line">./configure –prefix=/usr/<span class="built_in">local</span>/nginx –with-http_stub_status_module –with-http_gzip_static_module</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/</span><br><span class="line">wget http://nginx.org/download/nginx-1.2.8.tar.gz</span><br><span class="line">tar -zxvf nginx-1.6.2.tar.gz</span><br><span class="line">cd nginx-1.6.2</span><br><span class="line">./configure –prefix=/usr/local/nginx –with-http_stub_status_module –with-http_gzip_static_module</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 <p>–with-http_stub_status_module可以启动Nginx的NginxStatus功能，以监控Nginx的当前状态。</p>
 <p>4.启动nginx 确保系统的 80 端口没被其他程序占用；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
 <p>启动报错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx: error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx: error while loading shared libraries: libpcre.so.1: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
 <p>解决：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /lib/ |grep pcre&#10;libpcre.so.0&#10;libpcre.so.0.0.1&#10;#&#28155;&#21152;&#36719;&#36830;&#25509;&#10;ln -s /lib/libpcre.so.0.0.1 /lib/libpcre.so.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ls</span> /lib/ |<span class="keyword">grep</span> pcre</span><br><span class="line">libpcre.<span class="keyword">so</span>.<span class="number">0</span></span><br><span class="line">libpcre.<span class="keyword">so</span>.<span class="number">0.0</span>.<span class="number">1</span></span><br><span class="line">#添加软连接</span><br><span class="line"><span class="keyword">ln</span> -<span class="keyword">s</span> /lib/libpcre.<span class="keyword">so</span>.<span class="number">0.0</span>.<span class="number">1</span> /lib/libpcre.<span class="keyword">so</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>检查是否启动成功： netstat -ano|grep 80 有结果输入说明启动成功 打开浏览器访问此机器的 IP，如果浏览器出现 Welcome to nginx! 则表示 Nginx 已经安装并运行成功。</p>
 <p>5./usr/local/nginx/config/nginx.conf配置文件详解：<br>Nginx的全局属性配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#23450;&#20041;Nginx&#36816;&#34892;&#30340;&#29992;&#25143;&#21644;&#29992;&#25143;&#32452;&#10;user nobody nobody;&#10;#nginx&#36827;&#31243;&#25968;&#65292;&#24314;&#35758;&#35774;&#32622;&#20026;&#31561;&#20110;CPU&#24635;&#26680;&#24515;&#25968;&#12290;&#10;worker_processes 4;&#10;#&#20840;&#23616;&#38169;&#35823;&#26085;&#24535;&#23450;&#20041;&#31867;&#22411;&#65292;[ debug | info | notice | warn | error | crit ]&#65292;&#20854;&#20013;debug&#36755;&#20986;&#30340;&#26085;&#24535;&#26368;&#20026;&#35814;&#32454;&#65292;&#32780;crit&#36755;&#20986;&#26085;&#24535;&#26368;&#23569;&#10;error_log /var/log/nginx/error.log info;&#10;#&#36827;&#31243;&#25991;&#20214;&#65292;&#25351;&#23450;&#36827;&#31243;id&#30340;&#23384;&#20648;&#25991;&#20214;&#20301;&#32622;&#10;pid /var/run/nginx.pid;&#10;#&#19968;&#20010;nginx&#36827;&#31243;&#25171;&#24320;&#30340;&#26368;&#22810;&#25991;&#20214;&#25551;&#36848;&#31526;&#25968;&#30446;&#65292;&#29702;&#35770;&#20540;&#24212;&#35813;&#26159;&#26368;&#22810;&#25171;&#24320;&#25991;&#20214;&#25968;&#65288;&#31995;&#32479;&#30340;&#20540;ulimit -n&#65289;&#19982;nginx&#36827;&#31243;&#25968;&#30456;&#38500;&#65292;&#20294;&#26159;nginx&#20998;&#37197;&#35831;&#27714;&#24182;&#19981;&#22343;&#21248;&#65292;&#25152;&#20197;&#24314;&#35758;&#19982;ulimit -n&#30340;&#20540;&#20445;&#25345;&#19968;&#33268;&#12290;&#10;worker_rlimit_nofile 65535;&#10;#&#24037;&#20316;&#27169;&#24335;&#19982;&#36830;&#25509;&#25968;&#19978;&#38480;&#10;events&#10;&#123;&#10;# &#21442;&#32771;&#20107;&#20214;&#27169;&#22411;&#65292;use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; &#20854;&#20013;select&#21644;poll&#37117;&#26159;&#26631;&#20934;&#30340;&#24037;&#20316;&#27169;&#24335;&#65292;kqueue&#21644;epoll&#26159;&#39640;&#25928;&#30340;&#24037;&#20316;&#27169;&#24335;&#65292;&#19981;&#21516;&#30340;&#26159;epoll&#27169;&#22411;&#26159;Linux 2.6&#20197;&#19978;&#29256;&#26412;&#20869;&#26680;&#20013;&#30340;&#39640;&#24615;&#33021;&#32593;&#32476;I/O&#27169;&#22411;&#65292;&#22914;&#26524;&#36305;&#22312;FreeBSD&#19978;&#38754;&#65292;&#23601;&#29992;kqueue&#27169;&#22411;&#12290;&#10;use epoll;&#10;#&#21333;&#20010;&#36827;&#31243;&#26368;&#22823;&#36830;&#25509;&#25968;&#65288;&#26368;&#22823;&#36830;&#25509;&#25968;=&#36830;&#25509;&#25968;*&#36827;&#31243;&#25968;&#65289;&#10;worker_connections 65535;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#定义Nginx运行的用户和用户组</span><br><span class="line">user nobody nobody;</span><br><span class="line">#nginx进程数，建议设置为等于CPU总核心数。</span><br><span class="line">worker_processes 4;</span><br><span class="line">#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]，其中debug输出的日志最为详细，而crit输出日志最少</span><br><span class="line">error_log /var/log/nginx/error.log info;</span><br><span class="line">#进程文件，指定进程id的存储文件位置</span><br><span class="line">pid /var/run/nginx.pid;</span><br><span class="line">#一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（系统的值ulimit -n）与nginx进程数相除，但是nginx分配请求并不均匀，所以建议与ulimit -n的值保持一致。</span><br><span class="line">worker_rlimit_nofile 65535;</span><br><span class="line">#工作模式与连接数上限</span><br><span class="line">events</span><br><span class="line">&#123;</span><br><span class="line"># 参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; 其中select和poll都是标准的工作模式，kqueue和epoll是高效的工作模式，不同的是epoll模型是Linux 2.6以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。</span><br><span class="line">use epoll;</span><br><span class="line">#单个进程最大连接数（最大连接数=连接数*进程数）</span><br><span class="line">worker_connections 65535;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>6.http服务器配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http&#123;&#10;#&#35774;&#23450;mime&#31867;&#22411;,&#31867;&#22411;&#30001;mime.type&#25991;&#20214;&#23450;&#20041;&#10;include      conf/mime.types;&#10;default_type  application/octet-stream;&#10;#&#35774;&#23450;&#26085;&#24535;&#26684;&#24335;&#10;log_format main &#8216;$remote_addr &#8211; $remote_user [$time_local] &#8216;&#10; &#8216;&#8220;$request&#8221; $status $bytes_sent &#8216;&#10; &#8216;&#8220;$http_referer&#8221; &#8220;$http_user_agent&#8221; &#8216;&#10; &#8216;&#8220;$gzip_ratio&#8221;&#8216;;&#10; log_format download &#8216;$remote_addr &#8211; $remote_user [$time_local] &#8216;&#10; &#8216;&#8220;$request&#8221; $status $bytes_sent &#8216;&#10; &#8216;&#8220;$http_referer&#8221; &#8220;$http_user_agent&#8221; &#8216;&#10; &#8216;&#8220;$http_range&#8221; &#8220;$sent_http_content_range&#8221;&#8216;;&#10;#&#35774;&#32622;&#20801;&#35768;&#23458;&#25143;&#31471;&#35831;&#27714;&#30340;&#26368;&#22823;&#30340;&#21333;&#20010;&#25991;&#20214;&#23383;&#33410;&#25968;&#10;client_max_body_size  20m;&#10;#&#35774;&#32622;&#26469;&#33258;&#23458;&#25143;&#31471;&#35831;&#27714;&#22836;&#30340;headerbuffer&#22823;&#23567;&#65292;&#21363;&#32531;&#23384;&#21306;&#22823;&#23567;&#10;client_header_buffer_size    32K;&#10;#&#29992;&#26469;&#25351;&#23450;&#23458;&#25143;&#31471;&#35831;&#27714;&#20013;&#36739;&#22823;&#30340;&#28040;&#24687;&#22836;&#30340;&#32531;&#23384;&#26368;&#22823;&#25968;&#37327;&#21644;&#22823;&#23567;&#65292;4&#20026;&#20010;&#25968;&#65292;32k&#20026;&#22823;&#23567;&#65292;&#26368;&#22823;&#32531;&#23384;4&#20010;32K&#10;large_client_header_buffers  4 32k;&#10;#sendfile &#25351;&#20196;&#25351;&#23450; nginx &#26159;&#21542;&#35843;&#29992; sendfile &#20989;&#25968;&#65288;zero copy &#26041;&#24335;&#65289;&#26469;&#36755;&#20986;&#25991;&#20214;&#10;#&#23545;&#20110;&#26222;&#36890;&#24212;&#29992;&#65292;&#24517;&#39035;&#35774;&#20026; on,&#29992;&#26469;&#36827;&#34892;&#19979;&#36733;&#31561;&#24212;&#29992;&#30913;&#30424;IO&#37325;&#36127;&#36733;&#24212;&#29992;&#65292;&#21487;&#35774;&#32622;&#20026; off&#65292;&#20197;&#24179;&#34913;&#30913;&#30424;&#19982;&#32593;&#32476;I/O&#22788;&#29702;&#36895;&#24230;&#65292;&#38477;&#20302;&#31995;&#32479;&#30340;uptime.&#10;#tcp_nopush&#21644;tcp_nodely&#20004;&#20010;&#25351;&#20196;&#35774;&#32622;&#20026;on&#65292;&#29992;&#20110;&#38450;&#27490;&#32593;&#32476;&#38459;&#22622;&#10;Sendfile  on;&#10;tcp_nopush     on;&#10;tcp_nodelay    on;&#10;#&#29992;&#20110;&#35774;&#32622;&#23458;&#25143;&#31471;&#36830;&#25509;&#20445;&#25345;&#27963;&#21160;&#30340;&#36229;&#26102;&#26102;&#38388;&#65292;&#36229;&#36807;&#36825;&#20010;&#26102;&#38388;&#65292;&#26381;&#21153;&#22120;&#20250;&#20851;&#38381;&#35813;&#36830;&#25509;&#10;keepalive_timeout 60;&#10;#&#35774;&#32622;&#23458;&#25143;&#31471;&#35831;&#27714;&#22836;&#35835;&#21462;&#36229;&#26102;&#26102;&#38388;&#12290;&#22914;&#26524;&#36229;&#36807;&#36825;&#20010;&#26102;&#38388;&#65292;&#23458;&#25143;&#31471;&#36824;&#27809;&#26377;&#21457;&#36865;&#20219;&#20309;&#25968;&#25454;&#65292;Nginx&#23558;&#36820;&#22238;&#8220;Request time out&#65288;408&#65289;&#8221;&#38169;&#35823;&#10;client_header_timeout  10;&#10;#&#35774;&#32622;&#23458;&#25143;&#31471;&#35831;&#27714;&#20027;&#20307;&#35835;&#21462;&#36229;&#26102;&#26102;&#38388;&#12290;&#22914;&#26524;&#36229;&#36807;&#36825;&#20010;&#26102;&#38388;&#65292;&#23458;&#25143;&#31471;&#36824;&#27809;&#26377;&#21457;&#36865;&#20219;&#20309;&#25968;&#25454;&#65292;Nginx&#23558;&#36820;&#22238;&#8220;Request time out&#65288;408&#65289;&#8221;&#38169;&#35823;&#65292;&#40664;&#35748;&#20540;&#26159;60&#10;client_body_timeout    10;&#10;#&#25351;&#23450;&#21709;&#24212;&#23458;&#25143;&#31471;&#30340;&#36229;&#26102;&#26102;&#38388;&#12290;&#36825;&#20010;&#36229;&#26102;&#20165;&#38480;&#20110;&#20004;&#20010;&#36830;&#25509;&#27963;&#21160;&#20043;&#38388;&#30340;&#26102;&#38388;&#65292;&#22914;&#26524;&#36229;&#36807;&#36825;&#20010;&#26102;&#38388;&#65292;&#23458;&#25143;&#31471;&#27809;&#26377;&#20219;&#20309;&#27963;&#21160;&#65292;Nginx&#23558;&#20250;&#20851;&#38381;&#36830;&#25509;&#10;send_timeout          10;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">#设定mime类型,类型由mime.type文件定义</span><br><span class="line">include      conf/mime.types;</span><br><span class="line">default_type  application/octet-stream;</span><br><span class="line">#设定日志格式</span><br><span class="line">log_format main ‘$remote_addr – $remote_user [$time_local] ‘</span><br><span class="line"> ‘“$request” $status $bytes_sent ‘</span><br><span class="line"> ‘“$http_referer” “$http_user_agent” ‘</span><br><span class="line"> ‘“$gzip_ratio”‘;</span><br><span class="line"> log_format download ‘$remote_addr – $remote_user [$time_local] ‘</span><br><span class="line"> ‘“$request” $status $bytes_sent ‘</span><br><span class="line"> ‘“$http_referer” “$http_user_agent” ‘</span><br><span class="line"> ‘“$http_range” “$sent_http_content_range”‘;</span><br><span class="line">#设置允许客户端请求的最大的单个文件字节数</span><br><span class="line">client_max_body_size  20m;</span><br><span class="line">#设置来自客户端请求头的headerbuffer大小，即缓存区大小</span><br><span class="line">client_header_buffer_size    32K;</span><br><span class="line">#用来指定客户端请求中较大的消息头的缓存最大数量和大小，4为个数，32k为大小，最大缓存4个32K</span><br><span class="line">large_client_header_buffers  4 32k;</span><br><span class="line">#sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件</span><br><span class="line">#对于普通应用，必须设为 on,用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.</span><br><span class="line">#tcp_nopush和tcp_nodely两个指令设置为on，用于防止网络阻塞</span><br><span class="line">Sendfile  on;</span><br><span class="line">tcp_nopush     on;</span><br><span class="line">tcp_nodelay    on;</span><br><span class="line">#用于设置客户端连接保持活动的超时时间，超过这个时间，服务器会关闭该连接</span><br><span class="line">keepalive_timeout 60;</span><br><span class="line">#设置客户端请求头读取超时时间。如果超过这个时间，客户端还没有发送任何数据，Nginx将返回“Request time out（408）”错误</span><br><span class="line">client_header_timeout  10;</span><br><span class="line">#设置客户端请求主体读取超时时间。如果超过这个时间，客户端还没有发送任何数据，Nginx将返回“Request time out（408）”错误，默认值是60</span><br><span class="line">client_body_timeout    10;</span><br><span class="line">#指定响应客户端的超时时间。这个超时仅限于两个连接活动之间的时间，如果超过这个时间，客户端没有任何活动，Nginx将会关闭连接</span><br><span class="line">send_timeout          10;</span><br></pre></td></tr></table></figure>
 <p>6.HttpGzip模块配置<br>下面配置Nginx的HttpGzip模块。这个模块支持在线实时压缩输出数据流。要查看是否安装了此模块，需要使用下面的命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx  -V&#10;nginx version: nginx/0.7.65&#10;configure arguments: &#8211;with-http_stub_status_module &#8211;with-http_gzip_static_module &#8211;prefix=/opt/nginx</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx  -V</span><br><span class="line">nginx version: nginx/0.7.65</span><br><span class="line">configure arguments: –with-http_stub_status_module –with-http_gzip_static_module –prefix=/opt/nginx</span><br></pre></td></tr></table></figure>
 <p>通过/usr/local/nginx/sbin/nginx -V命令可以查看安装Nginx时的编译选项，由输出可知，我们已经安装了HttpGzip模块。<br>下面是HttpGzip模块在Nginx配置中的相关属性设置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#29992;&#20110;&#35774;&#32622;&#24320;&#21551;&#25110;&#32773;&#20851;&#38381;gzip&#27169;&#22359;&#65292;&#8220;gzip on&#8221;&#34920;&#31034;&#24320;&#21551;GZIP&#21387;&#32553;&#65292;&#23454;&#26102;&#21387;&#32553;&#36755;&#20986;&#25968;&#25454;&#27969;&#10;gzip  on;&#10;#&#35774;&#32622;&#20801;&#35768;&#21387;&#32553;&#30340;&#39029;&#38754;&#26368;&#23567;&#23383;&#33410;&#25968;&#65292;&#39029;&#38754;&#23383;&#33410;&#25968;&#20174;header&#22836;&#30340;Content-Length&#20013;&#33719;&#21462;&#12290;&#40664;&#35748;&#20540;&#26159;0&#65292;&#19981;&#31649;&#39029;&#38754;&#22810;&#22823;&#37117;&#36827;&#34892;&#21387;&#32553;&#12290;&#24314;&#35758;&#35774;&#32622;&#25104;&#22823;&#20110;1K&#30340;&#23383;&#33410;&#25968;&#65292;&#23567;&#20110;1K&#21487;&#33021;&#20250;&#36234;&#21387;&#36234;&#22823;&#12290;&#10;gzip_min_length  1k;&#10;#&#34920;&#31034;&#30003;&#35831;4&#20010;&#21333;&#20301;&#20026;16K&#30340;&#20869;&#23384;&#20316;&#20026;&#21387;&#32553;&#32467;&#26524;&#27969;&#32531;&#23384;&#65292;&#40664;&#35748;&#20540;&#26159;&#30003;&#35831;&#19982;&#21407;&#22987;&#25968;&#25454;&#22823;&#23567;&#30456;&#21516;&#30340;&#20869;&#23384;&#31354;&#38388;&#26469;&#23384;&#20648;gzip&#21387;&#32553;&#32467;&#26524;&#12290;&#10;gzip_buffers     4  16k;&#10;#&#29992;&#20110;&#35774;&#32622;&#35782;&#21035;HTTP&#21327;&#35758;&#29256;&#26412;&#65292;&#40664;&#35748;&#26159;1.1&#65292;&#30446;&#21069;&#22823;&#37096;&#20998;&#27983;&#35272;&#22120;&#24050;&#32463;&#25903;&#25345;GZIP&#35299;&#21387;&#65292;&#20351;&#29992;&#40664;&#35748;&#21363;&#21487;&#10;gzip_http_version  1.1;&#10;#&#29992;&#26469;&#25351;&#23450;GZIP&#21387;&#32553;&#27604;&#65292;1 &#21387;&#32553;&#27604;&#26368;&#23567;&#65292;&#22788;&#29702;&#36895;&#24230;&#26368;&#24555;&#65307;9 &#21387;&#32553;&#27604;&#26368;&#22823;&#65292;&#20256;&#36755;&#36895;&#24230;&#24555;&#65292;&#20294;&#22788;&#29702;&#26368;&#24930;&#65292;&#20063;&#27604;&#36739;&#28040;&#32791;cpu&#36164;&#28304;&#10;gzip_comp_level  2;&#10;#&#29992;&#26469;&#25351;&#23450;&#21387;&#32553;&#30340;&#31867;&#22411;&#65292;&#26080;&#35770;&#26159;&#21542;&#25351;&#23450;&#65292;&#8220;text/html&#8221;&#31867;&#22411;&#24635;&#26159;&#20250;&#34987;&#21387;&#32553;&#30340;&#10;gzip_types  text/plain application/x-javascript text/css application/xml;&#10;#&#35753;&#21069;&#31471;&#30340;&#32531;&#23384;&#26381;&#21153;&#22120;&#32531;&#23384;&#32463;&#36807;GZIP&#21387;&#32553;&#30340;&#39029;&#38754;&#65292;&#20363;&#22914;&#29992;Squid&#32531;&#23384;&#32463;&#36807;Nginx&#21387;&#32553;&#30340;&#25968;&#25454;&#10;gzip_vary  on;</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#用于设置开启或者关闭gzip模块，“gzip <span class="keyword">on</span>”表示开启GZIP压缩，实时压缩输出数据流</span><br><span class="line">gzip  <span class="keyword">on</span>;</span><br><span class="line">#设置允许压缩的页面最小字节数，页面字节数从header头的Content-Length中获取。默认值是<span class="number">0</span>，不管页面多大都进行压缩。建议设置成大于<span class="number">1</span>K的字节数，小于<span class="number">1</span>K可能会越压越大。</span><br><span class="line">gzip_min_length  <span class="number">1</span><span class="keyword">k</span>;</span><br><span class="line">#表示申请<span class="number">4</span>个单位为<span class="number">16</span>K的内存作为压缩结果流缓存，默认值是申请与原始数据大小相同的内存空间来存储gzip压缩结果。</span><br><span class="line">gzip_buffers     <span class="number">4</span>  <span class="number">16</span><span class="keyword">k</span>;</span><br><span class="line">#用于设置识别HTTP协议版本，默认是<span class="number">1.1</span>，目前大部分浏览器已经支持GZIP解压，使用默认即可</span><br><span class="line">gzip_http_version  <span class="number">1.1</span>;</span><br><span class="line">#用来指定GZIP压缩比，<span class="number">1</span> 压缩比最小，处理速度最快；<span class="number">9</span> 压缩比最大，传输速度快，但处理最慢，也比较消耗cpu资源</span><br><span class="line">gzip_comp_level  <span class="number">2</span>;</span><br><span class="line">#用来指定压缩的类型，无论是否指定，“text/html”类型总是会被压缩的</span><br><span class="line">gzip_types  text/plain application/<span class="keyword">x</span>-javascript text/css application/xml;</span><br><span class="line">#让前端的缓存服务器缓存经过GZIP压缩的页面，例如用Squid缓存经过Nginx压缩的数据</span><br><span class="line">gzip_vary  <span class="keyword">on</span>;</span><br></pre></td></tr></table></figure>
 <p>7.StubStatus模块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location /NginxStatus &#123;&#10;#stub_status&#20026;&#8220;on&#8221;&#34920;&#31034;&#21551;&#29992;StubStatus&#30340;&#24037;&#20316;&#26426;&#21046;&#10;stub_status      on;&#10;#access_log&#29992;&#26469;&#25351;&#23450;StubStatus&#27169;&#22359;&#30340;&#35775;&#38382;&#26085;&#24535;&#25991;&#20214;&#65292;&#8220;off&#8221;&#20026;&#20851;&#38381;&#65292;&#24320;&#21551;&#21152;&#36335;&#24452;&#10;access_log       off;&#10;#access_log       logs/NginxStatus.log;&#10;#&#35775;&#38382;&#25511;&#21046;&#10;allow    all;&#10;#auth_basic&#26159;Nginx&#30340;&#19968;&#31181;&#35748;&#35777;&#26426;&#21046;&#65292;auth_basic_user_file&#29992;&#26469;&#25351;&#23450;&#35748;&#35777;&#23494;&#30721;&#10;#auth_basic       &#8220;Nginxstatus&#8221;;&#10;#auth_basic_user_file   ../htpasswd;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">location /NginxStatus &#123;</span><br><span class="line">#stub_status为“on”表示启用StubStatus的工作机制</span><br><span class="line">stub_status      on;</span><br><span class="line">#access_log用来指定StubStatus模块的访问日志文件，“off”为关闭，开启加路径</span><br><span class="line">access_log       off;</span><br><span class="line">#access_log       logs/NginxStatus.log;</span><br><span class="line">#访问控制</span><br><span class="line">allow    all;</span><br><span class="line">#auth_basic是Nginx的一种认证机制，auth_basic_user_file用来指定认证密码</span><br><span class="line">#auth_basic       “Nginxstatus”;</span><br><span class="line">#auth_basic_user_file   ../htpasswd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/16/Install-Vsftpd/" rel="next" title="Vsftpd安装配置">
+                <i class="fa fa-chevron-left"></i> Vsftpd安装配置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/15/book-list/" rel="prev" title="阅读书单">
+                阅读书单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/07/16/CentOS-nginx-installation/"
+     data-title="CentOS下nginx安装"
+     data-content=""
+     data-url="http://www.mr-wang.cn/2015/07/16/CentOS-nginx-installation/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/07/16/CentOS-nginx-installation/"
+           data-title="CentOS下nginx安装" data-url="http://www.mr-wang.cn/2015/07/16/CentOS-nginx-installation/">
+      </div>
     
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/10/15/book-list/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
+
+
+        </div>
         
-          阅读书单
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://mr-wang.qiniudn.com/mr_wang.jpg"
+               alt="Mr wang" />
+          <p class="site-author-name" itemprop="name">Mr wang</p>
+          <p class="site-description motion-element" itemprop="description">运维笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="#" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/xiaowang0624" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">Links</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank">Linux工具箱</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://linux.51yip.com/" target="_blank">Linux命令手册</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2015/07/16/Install-Vsftpd/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vsftpd安装配置</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
+    </main>
 
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-</article>
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr wang</span>
+</div>
 
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
 
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
 </div>
 
 
 
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="CentOS-nginx-installation" data-title="CentOS下nginx安装" data-url="http://www.mr-wang.cn/2015/07/16/CentOS-nginx-installation/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"Mr-wang"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
+      </div>
+    </footer>
 
-
-
-
-</div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2016 Mr-wang
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
     </div>
   </div>
-</footer>
-    </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"mr-wang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
-<script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
-</script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
-
-
-
+  
+    
+  
 
 
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("K2hmmPfUxb5qwb53Y3StaVwj-gzGzoHsz", "BOu82fRz8bYCJtf9P8GfiMW9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
     }
-});
 
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
 
 
-  </div>
+
+  
+
 </body>
 </html>
