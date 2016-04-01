@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/</loc>
+    <lastmod>2016-04-01T06:37:03.575Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/</loc>
+    <lastmod>2016-04-01T06:35:47.334Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.mr-wang.cn/2015/07/11/The-tongda-of-OA-with-Fetion-integrated-access/</loc>
     <lastmod>2016-04-01T06:28:18.575Z</lastmod>
   </url>
@@ -19,11 +29,6 @@
   <url>
     <loc>http://www.mr-wang.cn/2015/07/16/Nginx-Tomcat-Memcached-Cluster/</loc>
     <lastmod>2016-04-01T06:25:11.311Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/</loc>
-    <lastmod>2016-04-01T06:24:13.182Z</lastmod>
   </url>
   
   <url>
@@ -59,11 +64,6 @@
   <url>
     <loc>http://www.mr-wang.cn/2015/07/16/CentOS-nginx-installation/</loc>
     <lastmod>2016-04-01T06:18:21.188Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/</loc>
-    <lastmod>2016-04-01T05:20:12.388Z</lastmod>
   </url>
   
   <url>
