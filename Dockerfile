@@ -6,8 +6,7 @@ FROM nginx
 # Adding HelloWorld page into Nginx server
 RUN rm -rf /usr/share/nginx/html/*
 COPY ./ /usr/share/nginx/html/
-RUN rm -rf /usr/share/nginx/conf/nginx.conf
-COPY nginx.conf /usr/share/nginx/conf/
+
 # The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime
 EXPOSE 80
 
