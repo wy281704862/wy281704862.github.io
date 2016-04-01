@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.mr-wang.cn/"/>
-  <updated>2016-04-01T07:29:51.299Z</updated>
+  <updated>2016-04-01T06:37:03.575Z</updated>
   <id>http://www.mr-wang.cn/</id>
   
   <author>
@@ -13,41 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[测试]]></title>
-    <link href="http://www.mr-wang.cn/2016/04/01/test/"/>
-    <id>http://www.mr-wang.cn/2016/04/01/test/</id>
-    <published>2016-04-01T13:06:27.000Z</published>
-    <updated>2016-04-01T07:29:51.299Z</updated>
-    <content type="html"><![CDATA[<ul>
-<li><p><strong>2015.07阅读清单</strong></p>
-<ul>
-<li>[x] Linux系统命令及Shell脚本实践指南（纸质）</li>
-<li>[x] 高性能Linux服务器构建实战——系统安全、故障排查、自动化运维与集群架构（纸质）</li>
-</ul>
-</li>
-<li><p><strong>2015.10阅读清单</strong></p>
-<ul>
-<li>[ ] 构建高性能Web站点（纸质）</li>
-<li>[ ] 深入理解Nginx（纸质）</li>
-</ul>
-</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<ul>
-<li><p><strong>2015.07阅读清单</strong></p>
-<ul>
-<li>[x] Linux系统命令及Shell脚本实践指南（纸质）</li>
-<li>[x] 高性能Linux服务器构建实战——系统安全、故障排查、自动化运维与集群架构（纸质）</]]>
-    </summary>
-    
-      <category term="阅读,书单" scheme="http://www.mr-wang.cn/tags/%E9%98%85%E8%AF%BB-%E4%B9%A6%E5%8D%95/"/>
-    
-      <category term="读书" scheme="http://www.mr-wang.cn/categories/%E8%AF%BB%E4%B9%A6/"/>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[Mysql主从复制及读写分离的实现-MyCat]]></title>
@@ -518,54 +483,28 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Nginx下dedecms安全设置]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/11/dedecms-security-settings-on-Nginx/"/>
-    <id>http://www.mr-wang.cn/2015/07/11/dedecms-security-settings-on-Nginx/</id>
+    <title><![CDATA[Netbois协议导致网络阻塞]]></title>
+    <link href="http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/"/>
+    <id>http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/</id>
     <published>2015-07-11T12:26:27.000Z</published>
-    <updated>2016-04-01T06:22:27.042Z</updated>
-    <content type="html"><![CDATA[<h2 id="目录权限设置">目录权限设置</h2><p>织梦可读写、不可执行权限，禁止运行php程序目录：</p>
-<ul>
-<li>templets</li>
-<li>uploads</li>
-<li>data</li>
-<li>images</li>
-<li>a</li>
-</ul>
-<p>具体目录，可以通过后台一键更新时，寻找需要写入权限的目录</p>
-<p>思路：<br>web服务器(AMH)运行的用户应该是www，那么网站的所有者就应该不能设置为www，而应该设置为不同的用户，这里设置为ftpuser用户。同时www、ftpuser用户应该为同一组，这里设置同为www组。</p>
-<a id="more"></a>
-<p>1、那么我们将网站目录的所有者设置为ftpuser，用户组设置为www，目录权限设置为为750，文件权限设置为640。这里以AMH控制面板为例：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /home/wwwroot/$web_site</span><br><span class="line">chown -R ftpuser.www web</span><br><span class="line">find web -type d -exec chmod 750 &#123;&#125; \;</span><br><span class="line">find web -not -type d -exec chmod 640 &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-<p>2、针对需要有读写权限的目录，templets、uploads、data、images、a等</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> web</span><br><span class="line">chmod -R <span class="number">770</span> templets uploads data images <span class="keyword">a</span></span><br></pre></td></tr></table></figure>
-<h2 id="禁止执行PHP文件">禁止执行PHP文件</h2><p>针对有读写权限的目录，禁止运行PHP</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/vhost/$web_site.conf</span><br><span class="line">#追加如下</span><br><span class="line">location ~* ^/(templets|uploads|data|images|a)/.*\.(php|php5)$</span><br><span class="line">&#123;</span><br><span class="line">	deny all;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Shell增加变量">Shell增加变量</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#dede_safe.sh</span><br><span class="line">#$1指网站目录</span><br><span class="line">cd /home/wwwroot/$1</span><br><span class="line">chown -R ftpuser.www web</span><br><span class="line">find web -type d -exec chmod 750 &#123;&#125; \;</span><br><span class="line">find web -type f -exec chmod 640 &#123;&#125; \;</span><br><span class="line"></span><br><span class="line">#$2指有读写权限的目录名称（目录名称之间用空格隔开）</span><br><span class="line">cd web</span><br><span class="line">chmod -R 770 $2</span><br><span class="line"></span><br><span class="line">#$3指有读写权限的目录名称（目录名称之间用|隔开）</span><br><span class="line">cd /usr/local/nginx/conf/vhost/</span><br><span class="line">sed -i '/php\$/i\\ \tlocation ~* ^/('"$3"')/.*\.(php|php5)$\n\t&#123;\n\t\tdeny all;\n\t&#125;\n' "$1".conf sed -i '/php\$/i\\ \tlocation ~* ^/('"$3"')/.*\.(php|php5)$\n\t&#123;\n\t\tdeny all;\n\t&#125;\n' "$1".conf</span><br></pre></td></tr></table></figure>
-<p>如何来调用：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./dede_safe.<span class="keyword">sh</span> <span class="string">"www.wangyi.com"</span> <span class="string">"templets uploads"</span> <span class="string">"templets|uploads"</span></span><br></pre></td></tr></table></figure>
-<p>在sed中使用变量</p>
-<p>通常，我们使用sed进行变量替换的时候，替换和被替换变量都是hard-coded的。例如：</p>
-<p><code>sed -n ‘/comm/p’ /tmp/test.log</code></p>
-<p>如果我们用一变量var，它的值根据上下文变化</p>
-<p><code>$ var=”comm”</code>，定义了变量，那么我们在sed的使用中这样使用变量</p>
-<p><code>$ sed -n ‘/’”$var”‘/p’ /tmp/test.log</code></p>
-<p>注意，是用单引号包含双引号来引用变量。</p>
+    <updated>2016-04-01T05:03:41.000Z</updated>
+    <content type="html"><![CDATA[<p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
+<p>在网上有这样的解释：</p>
+<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终竟然导致接入交换机和汇聚交换机、核心交换机间的链路阻塞，使得网络变得基本不通。<br>初步分析了一下捕获到的数据，基本认定原因在于好多个人计算机内包含恶意/流氓软件，会不停地访问btamail.net、bar.baidu.com、 sobar.baidu.com等域名，同时，windows的名字解析机制的顺序是：</p>
+<ol>
+<li>hosts</li>
+<li>net bios, wins, lmhosts</li>
+<li>dns<br>所以，就会在网络中产生大量nbns的数据包</li>
+</ol>
+<p>然后，在那台电脑上杀进程，找到恶意软件。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="目录权限设置">目录权限设置</h2><p>织梦可读写、不可执行权限，禁止运行php程序目录：</p>
-<ul>
-<li>templets</li>
-<li>uploads</li>
-<li>data</li>
-<li>images</li>
-<li>a</li>
-</ul>
-<p>具体目录，可以通过后台一键更新时，寻找需要写入权限的目录</p>
-<p>思路：<br>web服务器(AMH)运行的用户应该是www，那么网站的所有者就应该不能设置为www，而应该设置为不同的用户，这里设置为ftpuser用户。同时www、ftpuser用户应该为同一组，这里设置同为www组。</p>]]>
-    
+    <![CDATA[<p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
+<p>在网上有这样的解释：</p>
+<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终]]>
     </summary>
     
-      <category term="Nginx" scheme="http://www.mr-wang.cn/tags/Nginx/"/>
+      <category term="网络" scheme="http://www.mr-wang.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
     
@@ -779,28 +718,54 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Netbois协议导致网络阻塞]]></title>
-    <link href="http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/"/>
-    <id>http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/</id>
+    <title><![CDATA[Nginx下dedecms安全设置]]></title>
+    <link href="http://www.mr-wang.cn/2015/07/11/dedecms-security-settings-on-Nginx/"/>
+    <id>http://www.mr-wang.cn/2015/07/11/dedecms-security-settings-on-Nginx/</id>
     <published>2015-07-11T12:26:27.000Z</published>
-    <updated>2016-04-01T05:03:41.000Z</updated>
-    <content type="html"><![CDATA[<p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
-<p>在网上有这样的解释：</p>
-<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终竟然导致接入交换机和汇聚交换机、核心交换机间的链路阻塞，使得网络变得基本不通。<br>初步分析了一下捕获到的数据，基本认定原因在于好多个人计算机内包含恶意/流氓软件，会不停地访问btamail.net、bar.baidu.com、 sobar.baidu.com等域名，同时，windows的名字解析机制的顺序是：</p>
-<ol>
-<li>hosts</li>
-<li>net bios, wins, lmhosts</li>
-<li>dns<br>所以，就会在网络中产生大量nbns的数据包</li>
-</ol>
-<p>然后，在那台电脑上杀进程，找到恶意软件。</p>
+    <updated>2016-04-01T06:22:27.042Z</updated>
+    <content type="html"><![CDATA[<h2 id="目录权限设置">目录权限设置</h2><p>织梦可读写、不可执行权限，禁止运行php程序目录：</p>
+<ul>
+<li>templets</li>
+<li>uploads</li>
+<li>data</li>
+<li>images</li>
+<li>a</li>
+</ul>
+<p>具体目录，可以通过后台一键更新时，寻找需要写入权限的目录</p>
+<p>思路：<br>web服务器(AMH)运行的用户应该是www，那么网站的所有者就应该不能设置为www，而应该设置为不同的用户，这里设置为ftpuser用户。同时www、ftpuser用户应该为同一组，这里设置同为www组。</p>
+<a id="more"></a>
+<p>1、那么我们将网站目录的所有者设置为ftpuser，用户组设置为www，目录权限设置为为750，文件权限设置为640。这里以AMH控制面板为例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /home/wwwroot/$web_site</span><br><span class="line">chown -R ftpuser.www web</span><br><span class="line">find web -type d -exec chmod 750 &#123;&#125; \;</span><br><span class="line">find web -not -type d -exec chmod 640 &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<p>2、针对需要有读写权限的目录，templets、uploads、data、images、a等</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> web</span><br><span class="line">chmod -R <span class="number">770</span> templets uploads data images <span class="keyword">a</span></span><br></pre></td></tr></table></figure>
+<h2 id="禁止执行PHP文件">禁止执行PHP文件</h2><p>针对有读写权限的目录，禁止运行PHP</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/vhost/$web_site.conf</span><br><span class="line">#追加如下</span><br><span class="line">location ~* ^/(templets|uploads|data|images|a)/.*\.(php|php5)$</span><br><span class="line">&#123;</span><br><span class="line">	deny all;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Shell增加变量">Shell增加变量</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#dede_safe.sh</span><br><span class="line">#$1指网站目录</span><br><span class="line">cd /home/wwwroot/$1</span><br><span class="line">chown -R ftpuser.www web</span><br><span class="line">find web -type d -exec chmod 750 &#123;&#125; \;</span><br><span class="line">find web -type f -exec chmod 640 &#123;&#125; \;</span><br><span class="line"></span><br><span class="line">#$2指有读写权限的目录名称（目录名称之间用空格隔开）</span><br><span class="line">cd web</span><br><span class="line">chmod -R 770 $2</span><br><span class="line"></span><br><span class="line">#$3指有读写权限的目录名称（目录名称之间用|隔开）</span><br><span class="line">cd /usr/local/nginx/conf/vhost/</span><br><span class="line">sed -i '/php\$/i\\ \tlocation ~* ^/('"$3"')/.*\.(php|php5)$\n\t&#123;\n\t\tdeny all;\n\t&#125;\n' "$1".conf sed -i '/php\$/i\\ \tlocation ~* ^/('"$3"')/.*\.(php|php5)$\n\t&#123;\n\t\tdeny all;\n\t&#125;\n' "$1".conf</span><br></pre></td></tr></table></figure>
+<p>如何来调用：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./dede_safe.<span class="keyword">sh</span> <span class="string">"www.wangyi.com"</span> <span class="string">"templets uploads"</span> <span class="string">"templets|uploads"</span></span><br></pre></td></tr></table></figure>
+<p>在sed中使用变量</p>
+<p>通常，我们使用sed进行变量替换的时候，替换和被替换变量都是hard-coded的。例如：</p>
+<p><code>sed -n ‘/comm/p’ /tmp/test.log</code></p>
+<p>如果我们用一变量var，它的值根据上下文变化</p>
+<p><code>$ var=”comm”</code>，定义了变量，那么我们在sed的使用中这样使用变量</p>
+<p><code>$ sed -n ‘/’”$var”‘/p’ /tmp/test.log</code></p>
+<p>注意，是用单引号包含双引号来引用变量。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>办公室有台电脑，经常导致办公室网络中断。使用抓包工具分析，该电脑在网络组始终在使用Netbois协议进行域名查询，导致网络阻塞。</p>
-<p>在网上有这样的解释：</p>
-<p>最近也发现很多接入交换机出现类似的情况，因为接入交换机端口所属VLAN在核心交换机上也有，最终]]>
+    <![CDATA[<h2 id="目录权限设置">目录权限设置</h2><p>织梦可读写、不可执行权限，禁止运行php程序目录：</p>
+<ul>
+<li>templets</li>
+<li>uploads</li>
+<li>data</li>
+<li>images</li>
+<li>a</li>
+</ul>
+<p>具体目录，可以通过后台一键更新时，寻找需要写入权限的目录</p>
+<p>思路：<br>web服务器(AMH)运行的用户应该是www，那么网站的所有者就应该不能设置为www，而应该设置为不同的用户，这里设置为ftpuser用户。同时www、ftpuser用户应该为同一组，这里设置同为www组。</p>]]>
+    
     </summary>
     
-      <category term="网络" scheme="http://www.mr-wang.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+      <category term="Nginx" scheme="http://www.mr-wang.cn/tags/Nginx/"/>
     
       <category term="技术" scheme="http://www.mr-wang.cn/categories/%E6%8A%80%E6%9C%AF/"/>
     
