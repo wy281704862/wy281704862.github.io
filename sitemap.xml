@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.mr-wang.cn/2016/04/01/test/</loc>
+    <lastmod>2016-04-01T07:29:51.299Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/</loc>
     <lastmod>2016-04-01T06:37:03.575Z</lastmod>
   </url>
@@ -67,17 +72,17 @@
   </url>
   
   <url>
-    <loc>http://www.mr-wang.cn/2015/10/15/book-list/</loc>
-    <lastmod>2016-04-01T05:03:41.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.mr-wang.cn/2015/07/11/Netbois-protocol-leads-to-network-congestion/</loc>
     <lastmod>2016-04-01T05:03:41.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://www.mr-wang.cn/2015/07/16/Shell-Study/</loc>
+    <lastmod>2016-04-01T05:03:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.mr-wang.cn/2015/10/15/book-list/</loc>
     <lastmod>2016-04-01T05:03:41.000Z</lastmod>
   </url>
   
