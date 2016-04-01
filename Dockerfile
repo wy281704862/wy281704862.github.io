@@ -5,8 +5,8 @@ FROM nginx
 # The RUN instruction will execute any commands
 # Adding HelloWorld page into Nginx server
 RUN rm -rf /usr/share/nginx/html/*
-COPY ./ /usr/share/nginx/html
-
+COPY ./ /usr/share/nginx/html/
+COPY nginx.conf /usr/share/nginx/conf/
 # The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime
 EXPOSE 80
 
