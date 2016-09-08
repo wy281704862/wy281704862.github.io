@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.mr-wang.cn/2016/09/08/PyQt-WebView/</loc>
+    <lastmod>2016-09-08T09:09:44.736Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/</loc>
     <lastmod>2016-04-01T06:37:03.575Z</lastmod>
   </url>

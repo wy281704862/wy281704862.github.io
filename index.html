@@ -251,6 +251,129 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/08/PyQt-WebView/" itemprop="url">
+                  pyqt实现WebView
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-08T17:26:27+08:00" content="2016-09-08">
+              2016-09-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/08/PyQt-WebView/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/08/PyQt-WebView/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/08/PyQt-WebView/" class="leancloud_visitors" data-flag-title="pyqt实现WebView">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python&#10;# __*__ coding:utf-8 __*__&#10;&#10;import sys,time&#10;from PyQt4.Qt import *&#10;from PyQt4.QtWebKit import *&#10;from PyQt4.QtCore import *&#10;from PyQt4 import QtGui&#10;import ConfigParser&#10;&#10;&#10;class WebView(QWebView):&#10;    def __init__(self):&#10;        super(WebView,self).__init__()&#10;&#10;        #&#35835;&#21462;&#37197;&#32622;&#25991;&#20214;&#65292;&#37197;&#32622;&#25991;&#20214;&#31649;&#29702;&#35775;&#38382;&#30340;url&#21450;&#31383;&#21475;&#26159;&#21542;&#20840;&#23631;&#10;        cf = ConfigParser.ConfigParser()&#10;        cf.read(&#39;WeChat.conf&#39;)&#10;        url = cf.get(&#39;WeChat&#39;,&#39;url&#39;)&#10;        showFullScreen_enable = cf.get(&#39;WeChat&#39;,&#39;showFullScreen_enable&#39;)&#10;&#10;        #&#25171;&#24320;url&#10;        self.load(QUrl(url))&#10;        self.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)&#10;        self.page().linkClicked.connect(self.linkClicked)&#10;&#10;        #&#35774;&#32622;&#31383;&#21475;&#26631;&#39064;&#12289;&#22270;&#26631;&#10;        self.setWindowTitle(u&#39;&#20108;&#32500;&#30721;&#25195;&#30721;&#39;)&#10;        self.setWindowIcon(QtGui.QIcon(&#39;WeChat.png&#39;))&#10;&#10;        #&#21019;&#24314;&#25176;&#30424;&#10;        self.createTrayIcon()&#10;        #&#25176;&#30424;&#28857;&#20987;&#20107;&#20214;&#10;        self.trayIcon.activated.connect(self.iconActivated)&#10;&#10;        if showFullScreen_enable == &#39;True&#39;:&#10;            self.showFullScreen()&#10;        else:&#10;            pass&#10;&#10;        self.show()&#10;&#10;&#10;    def linkClicked(self, url):&#10;        self.load(QUrl(url))&#10;&#10;    def closeEvent(self, event):&#10;        QtGui.QMessageBox.about(self,u&#39;&#25552;&#31034; &#39;,u&#39;&#19981;&#20801;&#35768;&#20851;&#38381;! &#39;)&#10;        event.ignore()&#10;&#10;    def focusOutEvent(self, QFocusEvent):&#10;        self.trayIcon.showMessage(&#34;&#35686;&#21578;&#34;, &#34;&#31383;&#21475;&#24050;&#22833;&#28966;&#34;, 2,2000*3000)&#10;&#10;    def focusInEvent(self, QFocusEvent):&#10;        self.trayIcon.showMessage(&#34;&#25552;&#31034;&#34;, &#34;&#31383;&#21475;&#24050;&#32858;&#28966;&#34;, 1,2000*3000)&#10;&#10;    def createTrayIcon(self):&#10;         icon = QtGui.QIcon(&#39;WeChat.png&#39;)&#10;         self.trayIcon = QtGui.QSystemTrayIcon(self)&#10;         self.trayIcon.setIcon(icon)&#10;         self.trayIcon.setToolTip(self.tr(&#34;&#20108;&#32500;&#30721;&#25195;&#30721;&#34;))&#10;         self.trayIcon.setVisible(True)&#10;&#10;    def iconActivated(self, reason):&#10;        if reason in (QtGui.QSystemTrayIcon.Trigger, QtGui.QSystemTrayIcon.DoubleClick):&#10;            self.showFullScreen()&#10;        elif reason == QtGui.QSystemTrayIcon.MiddleClick:&#10;            self.showFullScreen()&#10;&#10;&#10;if __name__ == &#39;__main__&#39;:&#10;&#10;    app = QApplication(sys.argv)&#10;&#10;    #&#35299;&#20915;&#25171;&#21253;exe&#21518;&#65292;&#39029;&#38754;&#20013;&#25991;&#20081;&#30721;&#38382;&#39064;&#10;    app.Encoding(QApplication.UnicodeUTF8)&#10;    utfcodec = QTextCodec.codecForName(&#34;UTF-8&#34;)&#10;    QTextCodec.setCodecForTr(utfcodec)&#10;    QTextCodec.setCodecForLocale(utfcodec)&#10;    QTextCodec.setCodecForCStrings(utfcodec)&#10;&#10;    webView = WebView()&#10;&#10;    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/" itemprop="url">
                   Mysql主从复制及读写分离的实现-MyCat
                 </a>
@@ -653,8 +776,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/07/16/CentOS-nginx-installation/" itemprop="url">
-                  CentOS下nginx安装
+                <a class="post-title-link" href="/2015/07/16/CentOS-Oracle-installation/" itemprop="url">
+                  CentOS下Oracle安装
                 </a>
               
             
@@ -697,8 +820,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/07/16/CentOS-nginx-installation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/CentOS-nginx-installation/" itemprop="commentsCount"></span>
+                <a href="/2015/07/16/CentOS-Oracle-installation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/CentOS-Oracle-installation/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -708,7 +831,7 @@
 
           
           
-             <span id="/2015/07/16/CentOS-nginx-installation/" class="leancloud_visitors" data-flag-title="CentOS下nginx安装">
+             <span id="/2015/07/16/CentOS-Oracle-installation/" class="leancloud_visitors" data-flag-title="CentOS下Oracle安装">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -730,141 +853,13 @@
 
       
         
-          <p>1.最小化安装的CentOS没有安装gcc，首先安装gcc、g++和c++库；</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -<span class="keyword">y</span> install gcc-<span class="keyword">c</span>++</span><br></pre></td></tr></table></figure>
-<p>2.安装pcre库，pcre库是为了使nginx支持http rewrite模块；</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/</span><br><span class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.gz</span><br><span class="line">tar -zxvf pcre-8.35.tar.gz</span><br><span class="line">cd pcre-8.35</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+          <h1 id="安装前准备">安装前准备</h1><h2 id="安装依赖包">安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">binutils-<span class="number">2.17</span>.<span class="number">50.0</span>.<span class="number">6</span></span><br><span class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span></span><br><span class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span> (<span class="number">32</span> bit)</span><br><span class="line">elfutils-libelf-<span class="number">0.125</span></span><br><span class="line">elfutils-libelf-devel-<span class="number">0.125</span></span><br><span class="line">gcc-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">gcc-<span class="keyword">c</span>++-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span></span><br><span class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span> (<span class="number">32</span> bit)</span><br><span class="line">glibc-common-<span class="number">2.5</span></span><br><span class="line">glibc-devel-<span class="number">2.5</span></span><br><span class="line">glibc-devel-<span class="number">2.5</span> (<span class="number">32</span> bit)</span><br><span class="line">glibc-headers-<span class="number">2.5</span></span><br><span class="line">ksh-<span class="number">20060214</span></span><br><span class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span></span><br><span class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</span><br><span class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span></span><br><span class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</span><br><span class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</span><br><span class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</span><br><span class="line">libstdc++-devel <span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line"><span class="keyword">make</span>-<span class="number">3.81</span></span><br><span class="line">sysstat-<span class="number">7.0</span>.<span class="number">2</span></span><br><span class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">libXp</span><br></pre></td></tr></table></figure>
+<p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
+<p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 注意：该程序包与ksh冲突，如果已经安装ksh，建议使用命令 rpm -<span class="keyword">e</span> ksh-* 卸载</span><br><span class="line"></span><br><span class="line">rpm -ivh pdksh-<span class="number">5.2</span>.<span class="number">14</span>-<span class="number">37</span>.el5_8.<span class="number">1</span>.x86_64.rpm</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/16/CentOS-nginx-installation/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/16/Install-Vsftpd/" itemprop="url">
-                  Vsftpd安装配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
-              2015-07-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/16/Install-Vsftpd/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/Install-Vsftpd/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2015/07/16/Install-Vsftpd/" class="leancloud_visitors" data-flag-title="Vsftpd安装配置">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>安装vsftp</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -<span class="keyword">y</span> vsftpd</span><br></pre></td></tr></table></figure>
-<p>将vsftpd加入系统自启动，并启动服务</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd start</span><br><span class="line">chkconfig --level <span class="number">3</span> vsftpd <span class="keyword">on</span></span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/16/Install-Vsftpd/#more" rel="contents">
+            <a class="btn" href="/2015/07/16/CentOS-Oracle-installation/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1302,8 +1297,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/07/16/CentOS-Oracle-installation/" itemprop="url">
-                  CentOS下Oracle安装
+                <a class="post-title-link" href="/2015/07/16/Install-Vsftpd/" itemprop="url">
+                  Vsftpd安装配置
                 </a>
               
             
@@ -1346,8 +1341,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/07/16/CentOS-Oracle-installation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/CentOS-Oracle-installation/" itemprop="commentsCount"></span>
+                <a href="/2015/07/16/Install-Vsftpd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/Install-Vsftpd/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1357,7 +1352,7 @@
 
           
           
-             <span id="/2015/07/16/CentOS-Oracle-installation/" class="leancloud_visitors" data-flag-title="CentOS下Oracle安装">
+             <span id="/2015/07/16/Install-Vsftpd/" class="leancloud_visitors" data-flag-title="Vsftpd安装配置">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1379,13 +1374,12 @@
 
       
         
-          <h1 id="安装前准备">安装前准备</h1><h2 id="安装依赖包">安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">binutils-<span class="number">2.17</span>.<span class="number">50.0</span>.<span class="number">6</span></span><br><span class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span></span><br><span class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span> (<span class="number">32</span> bit)</span><br><span class="line">elfutils-libelf-<span class="number">0.125</span></span><br><span class="line">elfutils-libelf-devel-<span class="number">0.125</span></span><br><span class="line">gcc-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">gcc-<span class="keyword">c</span>++-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span></span><br><span class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span> (<span class="number">32</span> bit)</span><br><span class="line">glibc-common-<span class="number">2.5</span></span><br><span class="line">glibc-devel-<span class="number">2.5</span></span><br><span class="line">glibc-devel-<span class="number">2.5</span> (<span class="number">32</span> bit)</span><br><span class="line">glibc-headers-<span class="number">2.5</span></span><br><span class="line">ksh-<span class="number">20060214</span></span><br><span class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span></span><br><span class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</span><br><span class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span></span><br><span class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</span><br><span class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</span><br><span class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</span><br><span class="line">libstdc++-devel <span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line"><span class="keyword">make</span>-<span class="number">3.81</span></span><br><span class="line">sysstat-<span class="number">7.0</span>.<span class="number">2</span></span><br><span class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">libXp</span><br></pre></td></tr></table></figure>
-<p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
-<p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 注意：该程序包与ksh冲突，如果已经安装ksh，建议使用命令 rpm -<span class="keyword">e</span> ksh-* 卸载</span><br><span class="line"></span><br><span class="line">rpm -ivh pdksh-<span class="number">5.2</span>.<span class="number">14</span>-<span class="number">37</span>.el5_8.<span class="number">1</span>.x86_64.rpm</span><br></pre></td></tr></table></figure>
+          <p>安装vsftp</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -<span class="keyword">y</span> vsftpd</span><br></pre></td></tr></table></figure>
+<p>将vsftpd加入系统自启动，并启动服务</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd start</span><br><span class="line">chkconfig --level <span class="number">3</span> vsftpd <span class="keyword">on</span></span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/16/CentOS-Oracle-installation/#more" rel="contents">
+            <a class="btn" href="/2015/07/16/Install-Vsftpd/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1432,8 +1426,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/07/16/CentOS-System-Performance-tuning/" itemprop="url">
-                  CentOS 安装与调优配置
+                <a class="post-title-link" href="/2015/07/16/CentOS-nginx-installation/" itemprop="url">
+                  CentOS下nginx安装
                 </a>
               
             
@@ -1476,8 +1470,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/07/16/CentOS-System-Performance-tuning/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/CentOS-System-Performance-tuning/" itemprop="commentsCount"></span>
+                <a href="/2015/07/16/CentOS-nginx-installation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/CentOS-nginx-installation/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1487,7 +1481,7 @@
 
           
           
-             <span id="/2015/07/16/CentOS-System-Performance-tuning/" class="leancloud_visitors" data-flag-title="CentOS 安装与调优配置">
+             <span id="/2015/07/16/CentOS-nginx-installation/" class="leancloud_visitors" data-flag-title="CentOS下nginx安装">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1509,11 +1503,12 @@
 
       
         
-          <h2 id="分区">分区</h2><p>至少2个分区，/以及swap分区。另外设置独立/boot分区。<br>所以生产环境分3个分区。</p>
-<p>分区案例：<a href="http://oldboy.blog.51cto.com/2561410/634725">http://oldboy.blog.51cto.com/2561410/634725</a></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#分区查看</span><br><span class="line">df -Th</span><br><span class="line"></span><br><span class="line">Filesystem     Type   Size  Used Avail Use% Mounted <span class="keyword">on</span></span><br><span class="line">/dev/sda2      ext4   <span class="number">8.6</span>G  <span class="number">2.5</span>G  <span class="number">5.7</span>G  <span class="number">31</span>% /</span><br><span class="line">tmpfs          tmpfs  <span class="number">242</span>M     <span class="number">0</span>  <span class="number">242</span>M   <span class="number">0</span>% /dev/shm</span><br><span class="line">/dev/sda1      ext4   <span class="number">190</span>M   <span class="number">53</span>M  <span class="number">128</span>M  <span class="number">30</span>% /boot</span><br></pre></td></tr></table></figure>
+          <p>1.最小化安装的CentOS没有安装gcc，首先安装gcc、g++和c++库；</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -<span class="keyword">y</span> install gcc-<span class="keyword">c</span>++</span><br></pre></td></tr></table></figure>
+<p>2.安装pcre库，pcre库是为了使nginx支持http rewrite模块；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/</span><br><span class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.gz</span><br><span class="line">tar -zxvf pcre-8.35.tar.gz</span><br><span class="line">cd pcre-8.35</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/16/CentOS-System-Performance-tuning/#more" rel="contents">
+            <a class="btn" href="/2015/07/16/CentOS-nginx-installation/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1584,7 +1579,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1601,7 +1596,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
