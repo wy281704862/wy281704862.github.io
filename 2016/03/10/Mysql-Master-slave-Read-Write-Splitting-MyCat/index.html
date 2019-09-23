@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,18 +34,48 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Database," />
@@ -47,75 +84,66 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Mr wang" type="application/atom+xml" />
 
 
 
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
-
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
 
 
-<meta name="description" content="MyCat介绍什么是MyCat
-一个彻底开源的，面向企业应用开发的大数据库集群
-支持事务、ACID、可以替代MySQL的加强版数据库
-一个可以视为MySQL集群的企业级数据库，用来替代昂贵的Oracle集群
-一个融合内存缓存技术、NoSQL技术、HDFS大数据的新型SQL Server
-结合传统数据库和新型分布式数据仓库的新一代企业级数据库产品
-一个新颖的数据库中间件产品
 
-MyCat官网：htt">
+<meta name="description" content="MyCat介绍什么是MyCat 一个彻底开源的，面向企业应用开发的大数据库集群 支持事务、ACID、可以替代MySQL的加强版数据库 一个可以视为MySQL集群的企业级数据库，用来替代昂贵的Oracle集群 一个融合内存缓存技术、NoSQL技术、HDFS大数据的新型SQL Server 结合传统数据库和新型分布式数据仓库的新一代企业级数据库产品 一个新颖的数据库中间件产品  MyCat官网：htt">
+<meta name="keywords" content="Database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql主从复制及读写分离的实现-MyCat">
 <meta property="og:url" content="http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/index.html">
 <meta property="og:site_name" content="Mr wang">
-<meta property="og:description" content="MyCat介绍什么是MyCat
-一个彻底开源的，面向企业应用开发的大数据库集群
-支持事务、ACID、可以替代MySQL的加强版数据库
-一个可以视为MySQL集群的企业级数据库，用来替代昂贵的Oracle集群
-一个融合内存缓存技术、NoSQL技术、HDFS大数据的新型SQL Server
-结合传统数据库和新型分布式数据仓库的新一代企业级数据库产品
-一个新颖的数据库中间件产品
-
-MyCat官网：htt">
-<meta property="og:updated_time" content="2016-04-01T06:37:03.575Z">
+<meta property="og:description" content="MyCat介绍什么是MyCat 一个彻底开源的，面向企业应用开发的大数据库集群 支持事务、ACID、可以替代MySQL的加强版数据库 一个可以视为MySQL集群的企业级数据库，用来替代昂贵的Oracle集群 一个融合内存缓存技术、NoSQL技术、HDFS大数据的新型SQL Server 结合传统数据库和新型分布式数据仓库的新一代企业级数据库产品 一个新颖的数据库中间件产品  MyCat官网：htt">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-04-01T06:37:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql主从复制及读写分离的实现-MyCat">
-<meta name="twitter:description" content="MyCat介绍什么是MyCat
-一个彻底开源的，面向企业应用开发的大数据库集群
-支持事务、ACID、可以替代MySQL的加强版数据库
-一个可以视为MySQL集群的企业级数据库，用来替代昂贵的Oracle集群
-一个融合内存缓存技术、NoSQL技术、HDFS大数据的新型SQL Server
-结合传统数据库和新型分布式数据仓库的新一代企业级数据库产品
-一个新颖的数据库中间件产品
-
-MyCat官网：htt">
+<meta name="twitter:description" content="MyCat介绍什么是MyCat 一个彻底开源的，面向企业应用开发的大数据库集群 支持事务、ACID、可以替代MySQL的加强版数据库 一个可以视为MySQL集群的企业级数据库，用来替代昂贵的Oracle集群 一个融合内存缓存技术、NoSQL技术、HDFS大数据的新型SQL Server 结合传统数据库和新型分布式数据仓库的新一代企业级数据库产品 一个新颖的数据库中间件产品  MyCat官网：htt">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
+    tabs: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> Mysql主从复制及读写分离的实现-MyCat | Mr wang </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/"/>
+
+
+
+
+
+  <title>Mysql主从复制及读写分离的实现-MyCat | Mr wang</title>
   
+
+
 
 
 
@@ -123,7 +151,7 @@ MyCat官网：htt">
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
+      hm.src = "https://hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -136,34 +164,44 @@ MyCat官网：htt">
 
 
 
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Mr wang</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr wang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-  <p class="site-subtitle"></p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -176,7 +214,7 @@ MyCat官网：htt">
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -184,9 +222,9 @@ MyCat官网：htt">
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -194,9 +232,9 @@ MyCat官网：htt">
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -204,11 +242,21 @@ MyCat官网：htt">
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="/wiki/wiki.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Wiki
           </a>
         </li>
       
@@ -216,7 +264,7 @@ MyCat官网：htt">
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="popup-trigger">
+            <a href="javascript:;" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -231,17 +279,30 @@ MyCat官网：htt">
   
     <div class="site-search">
       
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
 </div>
+
 
 
     </div>
   
 </nav>
+
+
 
  </div>
     </header>
@@ -256,49 +317,68 @@ MyCat官网：htt">
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Mysql主从复制及读写分离的实现-MyCat
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Mysql主从复制及读写分离的实现-MyCat</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T20:26:27+08:00" content="2016-03-10">
-              2016-03-10
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-10T20:26:27+08:00">
+                2016-03-10
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
                   </a>
@@ -306,48 +386,48 @@ MyCat官网：htt">
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
              <span id="/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/" class="leancloud_visitors" data-flag-title="Mysql主从复制及读写分离的实现-MyCat">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <h1 id="MyCat介绍">MyCat介绍</h1><h2 id="什么是MyCat">什么是MyCat</h2><ul>
+        <h1 id="MyCat介绍"><a href="#MyCat介绍" class="headerlink" title="MyCat介绍"></a>MyCat介绍</h1><h2 id="什么是MyCat"><a href="#什么是MyCat" class="headerlink" title="什么是MyCat"></a>什么是MyCat</h2><ul>
 <li>一个彻底开源的，面向企业应用开发的大数据库集群</li>
 <li>支持事务、ACID、可以替代MySQL的加强版数据库</li>
 <li>一个可以视为MySQL集群的企业级数据库，用来替代昂贵的Oracle集群</li>
@@ -356,42 +436,51 @@ MyCat官网：htt">
 <li>一个新颖的数据库中间件产品</li>
 </ul>
 <p>MyCat官网：<a href="http://www.mycat.org.cn/" target="_blank" rel="external">http://www.mycat.org.cn/</a></p>
-<h2 id="优势">优势</h2><p>copy官方的说明：<br>基于阿里开源的Cobar产品而研发，Cobar的稳定性、可靠性、优秀的架构和性能以及众多成熟的使用案例使得MYCAT一开始就拥有一个很好的起点，站在巨人的肩膀上，我们能看到更远。业界优秀的开源项目和创新思路被广泛融入到MYCAT的基因中，使得MYCAT在很多方面都领先于目前其他一些同类的开源项目，甚至超越某些商业产品。</p>
+<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><p>copy官方的说明：<br>基于阿里开源的Cobar产品而研发，Cobar的稳定性、可靠性、优秀的架构和性能以及众多成熟的使用案例使得MYCAT一开始就拥有一个很好的起点，站在巨人的肩膀上，我们能看到更远。业界优秀的开源项目和创新思路被广泛融入到MYCAT的基因中，使得MYCAT在很多方面都领先于目前其他一些同类的开源项目，甚至超越某些商业产品。</p>
 <p>MYCAT背后有一支强大的技术团队，其参与者都是5年以上资深软件工程师、架构师、DBA等，优秀的技术团队保证了MYCAT的产品质量。</p>
 <p>MYCAT并不依托于任何一个商业公司，因此不像某些开源项目，将一些重要的特性封闭在其商业产品中，使得开源项目成了一个摆设（猜测是说的淘宝的TDDL，只开源动态数据源，分表分库部分还未开源）。</p>
 <a id="more"></a>
-<h1 id="Mysql主从配置">Mysql主从配置</h1><h2 id="环境介绍：">环境介绍：</h2><p>两台Mysql数据库实现主从配置<br>Mycat:172.16.14.1<br>Mysql Master:172.16.14.2<br>Mysql Slave:172.16.14.3</p>
-<h2 id="在Master服务器上安装并配置Mysql">在Master服务器上安装并配置Mysql</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#安装Mysql并加入到系统服务</span><br><span class="line">[root@master ~]# tar xf mysql-<span class="number">5.6</span>.<span class="number">13</span>-linux-glibc2.<span class="number">5</span>-x86_64.tar.gz -C /usr/local/</span><br><span class="line">[root@master ~]# <span class="keyword">cd</span> /usr/local/</span><br><span class="line">[root@master local]# <span class="keyword">ln</span> -<span class="keyword">s</span> mysql-<span class="number">5.6</span>.<span class="number">13</span>-linux-glibc2.<span class="number">5</span>-x86_64 mysql</span><br><span class="line">[root@master local]# <span class="keyword">cd</span> mysql</span><br><span class="line">[root@master mysql]# <span class="keyword">cp</span> support-<span class="keyword">files</span>/mysql.server /etc/init.<span class="keyword">d</span>/mysqld</span><br><span class="line">[root@master mysql]# chmod +<span class="keyword">x</span> /etc/init.<span class="keyword">d</span>/mysqld</span><br><span class="line">[root@master mysql]# chkconfig --<span class="built_in">add</span> mysqld</span><br><span class="line">[root@master mysql]# <span class="keyword">echo</span> <span class="string">"PATH=/usr/local/mysql/bin:$PATH"</span> &gt;&gt; /etc/<span class="keyword">profile</span></span><br><span class="line">[root@master mysql]# . /etc/<span class="keyword">profile</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">#提供主配置文件</span><br><span class="line">[root@master mysql]# <span class="keyword">vim</span> /etc/my.<span class="keyword">cnf</span></span><br><span class="line">[client]</span><br><span class="line">#定义mysql client的密码</span><br><span class="line">#password       = your_password</span><br><span class="line">port            = <span class="number">3306</span></span><br><span class="line">socket          = /tmp/mysql.sock</span><br><span class="line">[mysqld]</span><br><span class="line">port            = <span class="number">3306</span></span><br><span class="line">socket          = /tmp/mysql.sock</span><br><span class="line">skip-external-locking</span><br><span class="line">key_buffer_size = <span class="number">256</span>M</span><br><span class="line">max_allowed_packet = <span class="number">1</span>M</span><br><span class="line">table_open_cache = <span class="number">256</span></span><br><span class="line">sort_buffer_size = <span class="number">1</span>M</span><br><span class="line">read_buffer_size = <span class="number">1</span>M</span><br><span class="line">read_rnd_buffer_size = <span class="number">4</span>M</span><br><span class="line">myisam_sort_buffer_size = <span class="number">64</span>M</span><br><span class="line">thread_cache_size = <span class="number">8</span></span><br><span class="line">query_cache_size= <span class="number">16</span>M</span><br><span class="line">thread_concurrency = <span class="number">8</span></span><br><span class="line">binlog-format=ROW</span><br><span class="line">#开启GTID模式</span><br><span class="line"><span class="built_in">log</span>-slave-updates=true</span><br><span class="line">gtid-<span class="built_in">mode</span>=<span class="keyword">on</span></span><br><span class="line">enforce-gtid-consistency=true</span><br><span class="line"></span><br><span class="line">master-info-repository=TABLE</span><br><span class="line">relay-<span class="built_in">log</span>-info-repository=TABLE</span><br><span class="line"><span class="keyword">sync</span>-master-info=<span class="number">1</span></span><br><span class="line">slave-parallel-workers=<span class="number">2</span></span><br><span class="line">binlog-checksum=CRC32</span><br><span class="line">master-verify-checksum=<span class="number">1</span></span><br><span class="line">slave-sql-verify-checksum=<span class="number">1</span></span><br><span class="line">binlog-rows-query-log_events=<span class="number">1</span></span><br><span class="line">report-port=<span class="number">3306</span></span><br><span class="line">datadir=/data</span><br><span class="line">report-host=<span class="number">172.16</span>.<span class="number">14.2</span></span><br><span class="line"><span class="built_in">log</span>-bin=mysql-bin</span><br><span class="line">server-id       = <span class="number">10</span></span><br><span class="line">[mysqldump]</span><br><span class="line">quick</span><br><span class="line">max_allowed_packet = <span class="number">16</span>M</span><br><span class="line">[mysql]</span><br><span class="line"><span class="keyword">no</span>-auto-rehash</span><br><span class="line">[myisamchk]</span><br><span class="line">key_buffer_size = <span class="number">128</span>M</span><br><span class="line">sort_buffer_size = <span class="number">128</span>M</span><br><span class="line">read_buffer = <span class="number">2</span>M</span><br><span class="line">write_buffer = <span class="number">2</span>M</span><br><span class="line">[mysqlhotcopy]</span><br><span class="line">interactive-timeout</span><br></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#初始化Mysql</span><br><span class="line">[root@master mysql]# useradd -<span class="keyword">r</span> mysql</span><br><span class="line">[root@master mysql]# <span class="built_in">mkdir</span> /data</span><br><span class="line">[root@master mysql]# chown -R mysql.mysql /data</span><br><span class="line">[root@master mysql]# chown -R root.mysql /usr/local/mysql/*</span><br><span class="line">[root@master mysql]# ./scripts/mysql_install_db --user=mysql --datadir=/data/</span><br><span class="line">[root@master ~]# service mysqld start</span><br></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#在Slave服务器上安装Mysql与在Master服务器上安装方法相同，而在Slave服务器上安装Mysql有两个参数与Master服务器不同；如下</span><br><span class="line">server-id=<span class="number">11</span></span><br><span class="line">report-host=<span class="number">172.16</span>.<span class="number">14.3</span></span><br><span class="line">[root@slave ~]# service mysqld start</span><br></pre></td></tr></table></figure>
-<h2 id="在Master服务器上为Slave创建复制用户并测试连接">在Master服务器上为Slave创建复制用户并测试连接</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# mysql</span><br><span class="line">mysql&gt; grant replication slave,replication client <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'slave'</span>@<span class="string">'172.16.%.%'</span> identified by <span class="string">'passwd'</span>;</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line">######测试连接</span><br><span class="line">[root@slave ~]# mysql -uslave -ppasswd -<span class="keyword">h</span> <span class="number">172.16</span>.<span class="number">14.2</span></span><br></pre></td></tr></table></figure>
-<h2 id="启动从节点的复制线程">启动从节点的复制线程</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@slave ~]# mysql</span><br><span class="line">mysql&gt; change master to master_host='172.16.14.2',master_user='slave',master_password='passwd',master_auto_position=1;</span><br><span class="line">mysql&gt; start slave;</span><br><span class="line">mysql&gt; show slave status\G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">               Slave_IO_State: Waiting for master to send event</span><br><span class="line">                  Master_Host: 172.16.14.2</span><br><span class="line">                  Master_User: slave</span><br><span class="line">                  Master_Port: 3306</span><br><span class="line">                Connect_Retry: 60</span><br><span class="line">              Master_Log_File: mysql-bin.000005</span><br><span class="line">          Read_Master_Log_Pos: 191</span><br><span class="line">               Relay_Log_File: slave-relay-bin.000003</span><br><span class="line">                Relay_Log_Pos: 401</span><br><span class="line">        Relay_Master_Log_File: mysql-bin.000005</span><br><span class="line">             Slave_IO_Running: Yes      #主要看这两项为“YES”说明成功</span><br><span class="line">            Slave_SQL_Running: Yes</span><br></pre></td></tr></table></figure>
-<h2 id="在Master服务器创建数据库查看Slave服务器是否更新">在Master服务器创建数据库查看Slave服务器是否更新</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]# mysql -<span class="keyword">e</span> <span class="string">'create database allen;'</span></span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line">[root@slave ~]# mysql -<span class="keyword">e</span> <span class="string">'show databases;'</span></span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| allen              |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| test               |</span><br><span class="line">+--------------------+</span><br><span class="line">#由上可见，新创建的<span class="string">"allen"</span>数据库已成功同步</span><br></pre></td></tr></table></figure>
+<h1 id="Mysql主从配置"><a href="#Mysql主从配置" class="headerlink" title="Mysql主从配置"></a>Mysql主从配置</h1><p>##环境介绍：</p>
+<p>两台Mysql数据库实现主从配置<br>Mycat:172.16.14.1<br>Mysql Master:172.16.14.2<br>Mysql Slave:172.16.14.3</p>
+<p>##在Master服务器上安装并配置Mysql</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#安装Mysql并加入到系统服务</div><div class="line">[root@master ~]# tar xf mysql-<span class="number">5.6</span>.<span class="number">13</span>-linux-glibc2.<span class="number">5</span>-x86_64.tar.gz -C /usr/local/</div><div class="line">[root@master ~]# <span class="keyword">cd</span> /usr/local/</div><div class="line">[root@master local]# <span class="keyword">ln</span> -s mysql-<span class="number">5.6</span>.<span class="number">13</span>-linux-glibc2.<span class="number">5</span>-x86_64 mysql</div><div class="line">[root@master local]# <span class="keyword">cd</span> mysql</div><div class="line">[root@master mysql]# <span class="keyword">cp</span> support-<span class="keyword">files</span>/mysql.server /etc/init.d/mysqld</div><div class="line">[root@master mysql]# chmod +<span class="keyword">x</span> /etc/init.d/mysqld</div><div class="line">[root@master mysql]# chkconfig --<span class="built_in">add</span> mysqld</div><div class="line">[root@master mysql]# <span class="keyword">echo</span> <span class="string">"PATH=/usr/local/mysql/bin:$PATH"</span> &gt;&gt; /etc/<span class="keyword">profile</span></div><div class="line">[root@master mysql]# . /etc/<span class="keyword">profile</span></div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">#提供主配置文件</div><div class="line">[root@master mysql]# <span class="keyword">vim</span> /etc/my.<span class="keyword">cnf</span></div><div class="line">[client]</div><div class="line">#定义mysql client的密码</div><div class="line">#password       = your_password</div><div class="line">port            = <span class="number">3306</span></div><div class="line">socket          = /tmp/mysql.sock</div><div class="line">[mysqld]</div><div class="line">port            = <span class="number">3306</span></div><div class="line">socket          = /tmp/mysql.sock</div><div class="line">skip-external-locking</div><div class="line">key_buffer_size = <span class="number">256</span>M</div><div class="line">max_allowed_packet = <span class="number">1</span>M</div><div class="line">table_open_cache = <span class="number">256</span></div><div class="line">sort_buffer_size = <span class="number">1</span>M</div><div class="line">read_buffer_size = <span class="number">1</span>M</div><div class="line">read_rnd_buffer_size = <span class="number">4</span>M</div><div class="line">myisam_sort_buffer_size = <span class="number">64</span>M</div><div class="line">thread_cache_size = <span class="number">8</span></div><div class="line">query_cache_size= <span class="number">16</span>M</div><div class="line">thread_concurrency = <span class="number">8</span></div><div class="line">binlog-format=ROW</div><div class="line">#开启GTID模式</div><div class="line"><span class="built_in">log</span>-slave-updates=true</div><div class="line">gtid-<span class="keyword">mode</span>=<span class="keyword">on</span></div><div class="line">enforce-gtid-consistency=true</div><div class="line"></div><div class="line">master-info-repository=TABLE</div><div class="line">relay-<span class="built_in">log</span>-info-repository=TABLE</div><div class="line"><span class="keyword">sync</span>-master-info=<span class="number">1</span></div><div class="line">slave-parallel-workers=<span class="number">2</span></div><div class="line">binlog-checksum=CRC32</div><div class="line">master-verify-checksum=<span class="number">1</span></div><div class="line">slave-sql-verify-checksum=<span class="number">1</span></div><div class="line">binlog-rows-query-log_events=<span class="number">1</span></div><div class="line">report-port=<span class="number">3306</span></div><div class="line">datadir=/data</div><div class="line">report-host=<span class="number">172.16</span>.<span class="number">14.2</span></div><div class="line"><span class="built_in">log</span>-bin=mysql-bin</div><div class="line">server-id       = <span class="number">10</span></div><div class="line">[mysqldump]</div><div class="line">quick</div><div class="line">max_allowed_packet = <span class="number">16</span>M</div><div class="line">[mysql]</div><div class="line"><span class="keyword">no</span>-auto-rehash</div><div class="line">[myisamchk]</div><div class="line">key_buffer_size = <span class="number">128</span>M</div><div class="line">sort_buffer_size = <span class="number">128</span>M</div><div class="line">read_buffer = <span class="number">2</span>M</div><div class="line">write_buffer = <span class="number">2</span>M</div><div class="line">[mysqlhotcopy]</div><div class="line">interactive-timeout</div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#初始化Mysql</div><div class="line">[root@master mysql]# useradd -r mysql</div><div class="line">[root@master mysql]# <span class="built_in">mkdir</span> /data</div><div class="line">[root@master mysql]# chown -R mysql.mysql /data</div><div class="line">[root@master mysql]# chown -R root.mysql /usr/local/mysql/*</div><div class="line">[root@master mysql]# ./scripts/mysql_install_db --user=mysql --datadir=/data/</div><div class="line">[root@master ~]# service mysqld start</div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#在Slave服务器上安装Mysql与在Master服务器上安装方法相同，而在Slave服务器上安装Mysql有两个参数与Master服务器不同；如下</div><div class="line">server-id=<span class="number">11</span></div><div class="line">report-host=<span class="number">172.16</span>.<span class="number">14.3</span></div><div class="line">[root@slave ~]# service mysqld start</div></pre></td></tr></table></figure>
+<p>##在Master服务器上为Slave创建复制用户并测试连接<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@master ~]# mysql</div><div class="line">mysql&gt; grant replication slave,replication client on *.* to 'slave'@'172.16.%.%' identified by 'passwd';</div><div class="line">mysql&gt; flush privileges;</div><div class="line">------------------------------------------------------------------------</div><div class="line">######测试连接</div><div class="line">[root@slave ~]# mysql -uslave -ppasswd -h <span class="number">172.16</span>.<span class="number">14.2</span></div></pre></td></tr></table></figure></p>
+<p>##启动从节点的复制线程<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[root@slave ~]# mysql</div><div class="line">mysql&gt; change master to master_host='172.16.14.2',master_user='slave',master_password='passwd',master_auto_position=1;</div><div class="line">mysql&gt; start slave;</div><div class="line">mysql&gt; show slave status\G;</div><div class="line">*************************** <span class="number">1</span>. row ***************************</div><div class="line">               Slave_IO_State: Waiting <span class="keyword">for</span> master <span class="keyword">to</span> send event</div><div class="line">                  Master_Hos<span class="variable">t:</span> <span class="number">172.16</span>.<span class="number">14.2</span></div><div class="line">                  Master_User: slave</div><div class="line">                  Master_Por<span class="variable">t:</span> <span class="number">3306</span></div><div class="line">                Connect_Retry: <span class="number">60</span></div><div class="line">              Master_Log_File: mysql-bin.<span class="number">000005</span></div><div class="line">          Read_Master_Log_Po<span class="variable">s:</span> <span class="number">191</span></div><div class="line">               Relay_Log_File: slave-relay-bin.<span class="number">000003</span></div><div class="line">                Relay_Log_Po<span class="variable">s:</span> <span class="number">401</span></div><div class="line">        Relay_Master_Log_File: mysql-bin.<span class="number">000005</span></div><div class="line">             Slave_IO_Runnin<span class="variable">g:</span> Yes      #主要看这两项为“YES”说明成功</div><div class="line">            Slave_SQL_Runnin<span class="variable">g:</span> Yes</div></pre></td></tr></table></figure></p>
+<p>##在Master服务器创建数据库查看Slave服务器是否更新<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[root@master ~]# mysql -<span class="keyword">e</span> <span class="string">'create database allen;'</span></div><div class="line">------------------------------------------------------------------------</div><div class="line">[root@slave ~]# mysql -<span class="keyword">e</span> <span class="string">'show databases;'</span></div><div class="line">+--------------------+</div><div class="line">| Database           |</div><div class="line">+--------------------+</div><div class="line">| information_schema |</div><div class="line">| allen              |</div><div class="line">| mysql              |</div><div class="line">| performance_schema |</div><div class="line">| test               |</div><div class="line">+--------------------+</div><div class="line">#由上可见，新创建的<span class="string">"allen"</span>数据库已成功同步</div></pre></td></tr></table></figure></p>
 <p>至此Mysql 5.6 基于GTID的复制已经完成，下面将介绍如何基于Mysql的主从复制架构做读写分离</p>
-<h1 id="读写分离配置">读写分离配置</h1><p>基于前面做的Mysql主从架构，然后在前端加一台服务器，用于实现Mysql的读写分离，IP地址为：172.16.14.1；由于Mycat是java程序所研发，所以需要先安装JDK程序</p>
-<h2 id="安装JDK">安装JDK</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@amoeba ~]# tar xzvf jdk-7u72-linux-x64.tar.gz</span><br><span class="line">[root@amoeba ~]# chown -R /usr/local/java</span><br><span class="line">[root@amoeba ~]# mv jdk1.7.0_72 /usr/local/java</span><br><span class="line">[root@amoeba ~]# vim /etc/profile</span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.7.0_72</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">[root@amoeba ~]# source /etc/profile</span><br><span class="line">[root@amoeba ~]# java -version</span><br><span class="line">java version "1.7.0_72"</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.7.0_72-b14)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 24.72-b04, mixed mode)</span><br></pre></td></tr></table></figure>
-<h2 id="安装MyCat">安装MyCat</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@amoeba ~]# tar xzvf Mycat-server-<span class="number">1.5</span>-RELEASE-<span class="number">20160309173032</span>-linux.tar.gz </span><br><span class="line">[root@amoeba ~]# mv Mycat /usr/local/</span><br></pre></td></tr></table></figure>
-<h2 id="授权Mysql用户，用于实现前端MyCat连接">授权Mysql用户，用于实现前端MyCat连接</h2><p>由于上面授权的主从复制帐号不能同步”mysql”数据库，所以用户名也无法同步，要在两台数据库上同时授权，用户名密码保持一致</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#主mysql</span><br><span class="line">[root@master ~]# mysql</span><br><span class="line">mysql&gt; grant <span class="keyword">all</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'mycat'</span>@<span class="string">'172.16.%.%'</span> identified by <span class="string">'123456'</span>;</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line"></span><br><span class="line">#备mysql</span><br><span class="line">[root@slave ~]# mysql</span><br><span class="line">mysql&gt; grant <span class="keyword">all</span> <span class="keyword">on</span> *.* <span class="keyword">to</span> <span class="string">'mycat'</span>@<span class="string">'172.16.%.%'</span> identified by <span class="string">'123456'</span>;</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
-<h2 id="配置MyCat">配置MyCat</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">[root@mycat ~]# <span class="keyword">cd</span> /usr/local/mycat/<span class="keyword">conf</span>/  #主要配置文件为以下两个</span><br><span class="line">schema.xml        #定义数据库读写分离及节点管理信息等</span><br><span class="line">server.xml        #保存了所有mycat需要的系统配置信息,mycat服务用户密码等</span><br><span class="line"></span><br><span class="line">[root@mycat ~]# <span class="keyword">vi</span> schema.xml</span><br><span class="line">&lt;?xml <span class="keyword">version</span>=<span class="string">"1.0"</span>?&gt;</span><br><span class="line">&lt;!DOCTYPE myca<span class="variable">t:schema</span> SYSTEM <span class="string">"schema.dtd"</span>&gt;</span><br><span class="line">&lt;myca<span class="variable">t:schema</span> xmln<span class="variable">s:mycat</span>=<span class="string">"http://org.opencloudb/"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--schema标签用于定义MyCat实例中的逻辑库，MyCat可有多个逻辑库，每个逻辑库都有自己的相关配置。可以使用 schema 标签来划分不同的逻辑库。--&gt;</span><br><span class="line">&lt;!--这里定义一个TESTDB的逻辑库，包含dn1这个分片 --&gt;</span><br><span class="line">	&lt;schema name=<span class="string">"TESTDB"</span> checkSQLschema=<span class="string">"false"</span> sqlMaxLimit=<span class="string">"100"</span> dataNode=<span class="string">"dn1"</span>&gt;</span><br><span class="line">	    &lt;!--可配置分片规则,user表根据latest-month-calldate规则分片到dn2,dn3节点，其他没定义的表默认在dn1节点--&gt; </span><br><span class="line">		&lt;!-- auto sharding by id (long) --&gt;</span><br><span class="line">		&lt;!-- &lt;table name=<span class="string">"user"</span> primaryKey=<span class="string">"ID"</span> dataNode=<span class="string">"dn2，dn3"</span> rule=<span class="string">"latest-month-calldate"</span> /&gt; --&gt;</span><br><span class="line">	&lt;/schema&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!--定义数据分片节点，使用名字为localhost1库实例上的wytest物理数据库，就组成一个数据分片，可配置多个 --&gt;</span><br><span class="line">	&lt;dataNode name=<span class="string">"dn1"</span> dataHost=<span class="string">"localhost1"</span> database=<span class="string">"wytest"</span> /&gt;</span><br><span class="line">	&lt;!--&lt;dataNode name=<span class="string">"dn4"</span> dataHost=<span class="string">"sequoiadb1"</span> database=<span class="string">"SAMPLE"</span> /&gt;</span><br><span class="line">	 &lt;dataNode name=<span class="string">"jdbc_dn1"</span> dataHost=<span class="string">"jdbchost"</span> database=<span class="string">"db1"</span> /&gt; </span><br><span class="line">	&lt;dataNode	name=<span class="string">"jdbc_dn2"</span> dataHost=<span class="string">"jdbchost"</span> database=<span class="string">"db2"</span> /&gt; </span><br><span class="line">	&lt;dataNode name=<span class="string">"jdbc_dn3"</span> 	dataHost=<span class="string">"jdbchost"</span> database=<span class="string">"db3"</span> /&gt; --&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!--定义具体的数据实例--&gt;</span><br><span class="line">	&lt;!--balance 负载均衡类型，目前的取值有 <span class="number">3</span> 种：</span><br><span class="line">     <span class="number">1</span>. balance=<span class="string">"0"</span>,不开启读写分离机制，所有读操作都发送到当前可用的writeHost上。</span><br><span class="line">     <span class="number">2</span>. balance=<span class="string">"1"</span>，全部的readHost与stand by writeHost参与select查询的负载均衡，简单的说，当双主双从模式(M1-&gt;S1，M2-&gt;S2，并且M1与M2互为主备)，正常情冴下，M2,S1,S2 都参不 select 查询的负载均衡。</span><br><span class="line">     <span class="number">3</span>. balance=<span class="string">"2"</span>，所有读操作都随机的在 writeHost、readhost 上分发。</span><br><span class="line">     <span class="number">4</span>. balance=<span class="string">"3"</span>，所有读请求随机的分发到wiriterHost对应的readhost执行，writerHost不负担读压力，注意 balance=<span class="number">3</span> 叧在 <span class="number">1.4</span> 及其以后版本有，<span class="number">1.3</span> 没有。--&gt;</span><br><span class="line">	&lt;dataHost name=<span class="string">"localhost1"</span> maxCon=<span class="string">"1000"</span> minCon=<span class="string">"10"</span> balance=<span class="string">"1"</span></span><br><span class="line">		writeType=<span class="string">"0"</span> dbType=<span class="string">"mysql"</span> dbDriver=<span class="string">"native"</span> switchType=<span class="string">"1"</span>  slaveThreshold=<span class="string">"100"</span>&gt;</span><br><span class="line">		&lt;heartbeat&gt;select user()&lt;/heartbeat&gt;</span><br><span class="line">		&lt;!-- can have multi <span class="keyword">write</span> hosts --&gt;</span><br><span class="line">		&lt;!--在一个dataHost内可定义多个writeHost和readHost。但是，如果writeHost指定的后端数据库宕机，那么这个writeHost绑定的所有readHost都将不可用。另一方面，由于这个writeHost宕机，系统会自动的检测到，并切换到备用的writeHost上去--&gt;</span><br><span class="line">		&lt;writeHost host=<span class="string">"hostM1"</span> url=<span class="string">"172.16.14.2:3306"</span> user=<span class="string">"mycat"</span> password=<span class="string">"123456"</span>&gt;</span><br><span class="line">		&lt;!-- can have multi <span class="keyword">read</span> hosts --&gt;</span><br><span class="line">        &lt;readHost host=<span class="string">"hostS1"</span> url=<span class="string">"172.16.14.3:3306"</span> user=<span class="string">"mycat"</span> password=<span class="string">"123456"</span> /&gt;</span><br><span class="line">		&lt;/writeHost&gt;</span><br><span class="line">		&lt;!-- &lt;writeHost host=<span class="string">"hostM2"</span> url=<span class="string">"localhost:3316"</span> user=<span class="string">"root"</span> password=<span class="string">"123456"</span>/&gt; --&gt;</span><br><span class="line">	&lt;/dataHost&gt;</span><br><span class="line">&lt;/myca<span class="variable">t:schema</span>&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">[root@mycat ~]# <span class="keyword">vi</span> server.xml</span><br><span class="line">&lt;?xml <span class="keyword">version</span>=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;!DOCTYPE myca<span class="variable">t:server</span> SYSTEM <span class="string">"server.dtd"</span>&gt;</span><br><span class="line">&lt;myca<span class="variable">t:server</span> xmln<span class="variable">s:mycat</span>=<span class="string">"http://org.opencloudb/"</span>&gt;</span><br><span class="line">	&lt;<span class="built_in">system</span>&gt;</span><br><span class="line">	&lt;property name=<span class="string">"defaultSqlParser"</span>&gt;druidparser&lt;/property&gt;</span><br><span class="line">      &lt;!--  &lt;property name=<span class="string">"useCompression"</span>&gt;<span class="number">1</span>&lt;/property&gt;--&gt; &lt;!--<span class="number">1</span>为开启mysql压缩协议--&gt;</span><br><span class="line">	&lt;!-- &lt;property name=<span class="string">"processorBufferChunk"</span>&gt;<span class="number">40960</span>&lt;/property&gt; --&gt;</span><br><span class="line">	&lt;!-- </span><br><span class="line">	&lt;property name=<span class="string">"processors"</span>&gt;<span class="number">1</span>&lt;/property&gt; </span><br><span class="line">	&lt;property name=<span class="string">"processorExecutor"</span>&gt;<span class="number">32</span>&lt;/property&gt; </span><br><span class="line">	 --&gt;</span><br><span class="line">		&lt;!--默认是<span class="number">65535</span> <span class="number">64</span>K 用于sql解析时最大文本长度 --&gt;</span><br><span class="line">		&lt;!--&lt;property name=<span class="string">"maxStringLiteralLength"</span>&gt;<span class="number">65535</span>&lt;/property&gt;--&gt;</span><br><span class="line">		&lt;!--&lt;property name=<span class="string">"sequnceHandlerType"</span>&gt;<span class="number">0</span>&lt;/property&gt;--&gt;</span><br><span class="line">		&lt;!--&lt;property name=<span class="string">"backSocketNoDelay"</span>&gt;<span class="number">1</span>&lt;/property&gt;--&gt;</span><br><span class="line">		&lt;!--&lt;property name=<span class="string">"frontSocketNoDelay"</span>&gt;<span class="number">1</span>&lt;/property&gt;--&gt;</span><br><span class="line">		&lt;!--&lt;property name=<span class="string">"processorExecutor"</span>&gt;<span class="number">16</span>&lt;/property&gt;--&gt;</span><br><span class="line">		&lt;!-- </span><br><span class="line">			&lt;property name=<span class="string">"mutiNodeLimitType"</span>&gt;<span class="number">1</span>&lt;/property&gt; <span class="number">0</span>：开启小数量级（默认） ；<span class="number">1</span>：开启亿级数据排序</span><br><span class="line">	    	&lt;property name=<span class="string">"mutiNodePatchSize"</span>&gt;<span class="number">100</span>&lt;/property&gt; 亿级数量排序批量</span><br><span class="line">			&lt;property name=<span class="string">"processors"</span>&gt;<span class="number">32</span>&lt;/property&gt;</span><br><span class="line">			&lt;property name=<span class="string">"processorExecutor"</span>&gt;<span class="number">32</span>&lt;/property&gt; </span><br><span class="line">			&lt;property name=<span class="string">"serverPort"</span>&gt;<span class="number">8066</span>&lt;/property&gt; </span><br><span class="line">			&lt;property name=<span class="string">"managerPort"</span>&gt;<span class="number">9066</span>&lt;/property&gt; </span><br><span class="line">			&lt;property name=<span class="string">"idleTimeout"</span>&gt;<span class="number">300000</span>&lt;/property&gt; </span><br><span class="line">			&lt;property name=<span class="string">"bindIp"</span>&gt;<span class="number">0.0</span>.<span class="number">0.0</span>&lt;/property&gt; </span><br><span class="line">			&lt;property name=<span class="string">"frontWriteQueueSize"</span>&gt;<span class="number">4096</span>&lt;/property&gt; </span><br><span class="line">			&lt;property name=<span class="string">"processors"</span>&gt;<span class="number">32</span>&lt;/property&gt; --&gt;</span><br><span class="line">	&lt;/<span class="built_in">system</span>&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!--定义test用户，访问TESTDB的逻辑库(schema.xml中定义)--&gt;</span><br><span class="line">	&lt;user name=<span class="string">"test"</span>&gt;</span><br><span class="line">		&lt;property name=<span class="string">"password"</span>&gt;test&lt;/property&gt;</span><br><span class="line">		&lt;property name=<span class="string">"schemas"</span>&gt;TESTDB&lt;/property&gt;</span><br><span class="line">	&lt;/user&gt;</span><br><span class="line"></span><br><span class="line">	&lt;user name=<span class="string">"user"</span>&gt;</span><br><span class="line">		&lt;property name=<span class="string">"password"</span>&gt;user&lt;/property&gt;</span><br><span class="line">		&lt;property name=<span class="string">"schemas"</span>&gt;TESTDB&lt;/property&gt;</span><br><span class="line">		&lt;property name=<span class="string">"readOnly"</span>&gt;true&lt;/property&gt;</span><br><span class="line">	&lt;/user&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- </span><br><span class="line">	&lt;quarantine&gt; </span><br><span class="line">	   &lt;whitehost&gt;</span><br><span class="line">	      &lt;host host=<span class="string">"127.0.0.1"</span> user=<span class="string">"mycat"</span>/&gt;</span><br><span class="line">	      &lt;host host=<span class="string">"127.0.0.2"</span> user=<span class="string">"mycat"</span>/&gt;</span><br><span class="line">	   &lt;/whitehost&gt;</span><br><span class="line">       &lt;blacklist check=<span class="string">"false"</span>&gt;&lt;/blacklist&gt;</span><br><span class="line">	&lt;/quarantine&gt;</span><br><span class="line">	--&gt;</span><br><span class="line">&lt;/myca<span class="variable">t:server</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>#读写分离配置<br>基于前面做的Mysql主从架构，然后在前端加一台服务器，用于实现Mysql的读写分离，IP地址为：172.16.14.1；由于Mycat是java程序所研发，所以需要先安装JDK程序</p>
+<p>##安装JDK<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@amoeba ~]# tar xzvf jdk-<span class="number">7</span>u72-linux-x64.tar.gz</div><div class="line">[root@amoeba ~]# chown -R /usr/local/java</div><div class="line">[root@amoeba ~]# mv jdk1.<span class="number">7.0</span>_72 /usr/local/java</div><div class="line">[root@amoeba ~]# <span class="keyword">vim</span> /etc/<span class="keyword">profile</span></div><div class="line">export JAVA_HOME=/usr/local/java/jdk1.<span class="number">7.0</span>_72</div><div class="line">export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</div><div class="line">export PATH=$PATH:$JAVA_HOME/bin</div><div class="line">[root@amoeba ~]# <span class="keyword">source</span> /etc/<span class="keyword">profile</span></div><div class="line">[root@amoeba ~]# java -<span class="keyword">version</span></div><div class="line">java <span class="keyword">version</span> <span class="string">"1.7.0_72"</span></div><div class="line">Java(TM) SE Runtime Environment (build <span class="number">1.7</span>.<span class="number">0</span>_72-b14)</div><div class="line">Java HotSpot(TM) <span class="number">64</span>-Bit Server VM (build <span class="number">24.72</span>-b04, mixed <span class="keyword">mode</span>)</div></pre></td></tr></table></figure></p>
+<p>##安装MyCat<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@amoeba ~]# tar xzvf Mycat-server-<span class="number">1.5</span>-RELEASE-<span class="number">20160309173032</span>-linux.tar.gz </div><div class="line">[root@amoeba ~]# mv Mycat /usr/local/</div></pre></td></tr></table></figure></p>
+<p>##授权Mysql用户，用于实现前端MyCat连接<br>由于上面授权的主从复制帐号不能同步”mysql”数据库，所以用户名也无法同步，要在两台数据库上同时授权，用户名密码保持一致</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#主mysql</div><div class="line">[root@master ~]# mysql</div><div class="line">mysql&gt; grant all on *.* to 'mycat'@'172.16.%.%' identified by '123456';</div><div class="line">mysql&gt; flush privileges;</div><div class="line"></div><div class="line">#备mysql</div><div class="line">[root@slave ~]# mysql</div><div class="line">mysql&gt; grant all on *.* to 'mycat'@'172.16.%.%' identified by '123456';</div><div class="line">mysql&gt; flush privileges;</div></pre></td></tr></table></figure>
+<p>##配置MyCat<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">[root@mycat ~]# <span class="keyword">cd</span> /usr/local/mycat/<span class="keyword">conf</span>/  #主要配置文件为以下两个</div><div class="line">schema.xml        #定义数据库读写分离及节点管理信息等</div><div class="line">server.xml        #保存了所有mycat需要的系统配置信息,mycat服务用户密码等</div><div class="line"></div><div class="line">[root@mycat ~]# <span class="keyword">vi</span> schema.xml</div><div class="line">&lt;?xml <span class="keyword">version</span>=<span class="string">"1.0"</span>?&gt;</div><div class="line">&lt;!DOCTYPE myca<span class="variable">t:schema</span> SYSTEM <span class="string">"schema.dtd"</span>&gt;</div><div class="line">&lt;myca<span class="variable">t:schema</span> xmln<span class="variable">s:mycat</span>=<span class="string">"http://org.opencloudb/"</span>&gt;</div><div class="line"></div><div class="line">&lt;!--schema标签用于定义MyCat实例中的逻辑库，MyCat可有多个逻辑库，每个逻辑库都有自己的相关配置。可以使用 schema 标签来划分不同的逻辑库。--&gt;</div><div class="line">&lt;!--这里定义一个TESTDB的逻辑库，包含dn1这个分片 --&gt;</div><div class="line">	&lt;schema name=<span class="string">"TESTDB"</span> checkSQLschema=<span class="string">"false"</span> sqlMaxLimit=<span class="string">"100"</span> dataNode=<span class="string">"dn1"</span>&gt;</div><div class="line">	    &lt;!--可配置分片规则,user表根据latest-month-calldate规则分片到dn2,dn3节点，其他没定义的表默认在dn1节点--&gt; </div><div class="line">		&lt;!-- auto sharding by id (long) --&gt;</div><div class="line">		&lt;!-- &lt;table name=<span class="string">"user"</span> primaryKey=<span class="string">"ID"</span> dataNode=<span class="string">"dn2，dn3"</span> rule=<span class="string">"latest-month-calldate"</span> /&gt; --&gt;</div><div class="line">	&lt;/schema&gt;</div><div class="line">	</div><div class="line">	&lt;!--定义数据分片节点，使用名字为localhost1库实例上的wytest物理数据库，就组成一个数据分片，可配置多个 --&gt;</div><div class="line">	&lt;dataNode name=<span class="string">"dn1"</span> dataHost=<span class="string">"localhost1"</span> database=<span class="string">"wytest"</span> /&gt;</div><div class="line">	&lt;!--&lt;dataNode name=<span class="string">"dn4"</span> dataHost=<span class="string">"sequoiadb1"</span> database=<span class="string">"SAMPLE"</span> /&gt;</div><div class="line">	 &lt;dataNode name=<span class="string">"jdbc_dn1"</span> dataHost=<span class="string">"jdbchost"</span> database=<span class="string">"db1"</span> /&gt; </div><div class="line">	&lt;dataNode	name=<span class="string">"jdbc_dn2"</span> dataHost=<span class="string">"jdbchost"</span> database=<span class="string">"db2"</span> /&gt; </div><div class="line">	&lt;dataNode name=<span class="string">"jdbc_dn3"</span> 	dataHost=<span class="string">"jdbchost"</span> database=<span class="string">"db3"</span> /&gt; --&gt;</div><div class="line">	</div><div class="line">	&lt;!--定义具体的数据实例--&gt;</div><div class="line">	&lt;!--balance 负载均衡类型，目前的取值有 <span class="number">3</span> 种：</div><div class="line">     <span class="number">1</span>. balance=<span class="string">"0"</span>,不开启读写分离机制，所有读操作都发送到当前可用的writeHost上。</div><div class="line">     <span class="number">2</span>. balance=<span class="string">"1"</span>，全部的readHost与stand by writeHost参与select查询的负载均衡，简单的说，当双主双从模式(M1-&gt;S1，M2-&gt;S2，并且M1与M2互为主备)，正常情冴下，M2,S1,S2 都参不 select 查询的负载均衡。</div><div class="line">     <span class="number">3</span>. balance=<span class="string">"2"</span>，所有读操作都随机的在 writeHost、readhost 上分发。</div><div class="line">     <span class="number">4</span>. balance=<span class="string">"3"</span>，所有读请求随机的分发到wiriterHost对应的readhost执行，writerHost不负担读压力，注意 balance=<span class="number">3</span> 叧在 <span class="number">1.4</span> 及其以后版本有，<span class="number">1.3</span> 没有。--&gt;</div><div class="line">	&lt;dataHost name=<span class="string">"localhost1"</span> maxCon=<span class="string">"1000"</span> minCon=<span class="string">"10"</span> balance=<span class="string">"1"</span></div><div class="line">		writeType=<span class="string">"0"</span> dbType=<span class="string">"mysql"</span> dbDriver=<span class="string">"native"</span> switchType=<span class="string">"1"</span>  slaveThreshold=<span class="string">"100"</span>&gt;</div><div class="line">		<span class="symbol">&lt;heartbeat&gt;</span>select user()&lt;/heartbeat&gt;</div><div class="line">		&lt;!-- can have multi <span class="keyword">write</span> hosts --&gt;</div><div class="line">		&lt;!--在一个dataHost内可定义多个writeHost和readHost。但是，如果writeHost指定的后端数据库宕机，那么这个writeHost绑定的所有readHost都将不可用。另一方面，由于这个writeHost宕机，系统会自动的检测到，并切换到备用的writeHost上去--&gt;</div><div class="line">		&lt;writeHost host=<span class="string">"hostM1"</span> url=<span class="string">"172.16.14.2:3306"</span> user=<span class="string">"mycat"</span> password=<span class="string">"123456"</span>&gt;</div><div class="line">		&lt;!-- can have multi <span class="keyword">read</span> hosts --&gt;</div><div class="line">        &lt;readHost host=<span class="string">"hostS1"</span> url=<span class="string">"172.16.14.3:3306"</span> user=<span class="string">"mycat"</span> password=<span class="string">"123456"</span> /&gt;</div><div class="line">		&lt;/writeHost&gt;</div><div class="line">		&lt;!-- &lt;writeHost host=<span class="string">"hostM2"</span> url=<span class="string">"localhost:3316"</span> user=<span class="string">"root"</span> password=<span class="string">"123456"</span>/&gt; --&gt;</div><div class="line">	&lt;/dataHost&gt;</div><div class="line">&lt;/myca<span class="variable">t:schema</span>&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">[root@mycat ~]# <span class="keyword">vi</span> server.xml</div><div class="line">&lt;?xml <span class="keyword">version</span>=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</div><div class="line">&lt;!DOCTYPE myca<span class="variable">t:server</span> SYSTEM <span class="string">"server.dtd"</span>&gt;</div><div class="line">&lt;myca<span class="variable">t:server</span> xmln<span class="variable">s:mycat</span>=<span class="string">"http://org.opencloudb/"</span>&gt;</div><div class="line">	<span class="symbol">&lt;system&gt;</span></div><div class="line">	&lt;property name=<span class="string">"defaultSqlParser"</span>&gt;druidparser&lt;/property&gt;</div><div class="line">      &lt;!--  &lt;property name=<span class="string">"useCompression"</span>&gt;<span class="number">1</span>&lt;/property&gt;--&gt; &lt;!--<span class="number">1</span>为开启mysql压缩协议--&gt;</div><div class="line">	&lt;!-- &lt;property name=<span class="string">"processorBufferChunk"</span>&gt;<span class="number">40960</span>&lt;/property&gt; --&gt;</div><div class="line">	&lt;!-- </div><div class="line">	&lt;property name=<span class="string">"processors"</span>&gt;<span class="number">1</span>&lt;/property&gt; </div><div class="line">	&lt;property name=<span class="string">"processorExecutor"</span>&gt;<span class="number">32</span>&lt;/property&gt; </div><div class="line">	 --&gt;</div><div class="line">		&lt;!--默认是<span class="number">65535</span> <span class="number">64</span>K 用于sql解析时最大文本长度 --&gt;</div><div class="line">		&lt;!--&lt;property name=<span class="string">"maxStringLiteralLength"</span>&gt;<span class="number">65535</span>&lt;/property&gt;--&gt;</div><div class="line">		&lt;!--&lt;property name=<span class="string">"sequnceHandlerType"</span>&gt;<span class="number">0</span>&lt;/property&gt;--&gt;</div><div class="line">		&lt;!--&lt;property name=<span class="string">"backSocketNoDelay"</span>&gt;<span class="number">1</span>&lt;/property&gt;--&gt;</div><div class="line">		&lt;!--&lt;property name=<span class="string">"frontSocketNoDelay"</span>&gt;<span class="number">1</span>&lt;/property&gt;--&gt;</div><div class="line">		&lt;!--&lt;property name=<span class="string">"processorExecutor"</span>&gt;<span class="number">16</span>&lt;/property&gt;--&gt;</div><div class="line">		&lt;!-- </div><div class="line">			&lt;property name=<span class="string">"mutiNodeLimitType"</span>&gt;<span class="number">1</span>&lt;/property&gt; <span class="number">0</span>：开启小数量级（默认） ；<span class="number">1</span>：开启亿级数据排序</div><div class="line">	    	&lt;property name=<span class="string">"mutiNodePatchSize"</span>&gt;<span class="number">100</span>&lt;/property&gt; 亿级数量排序批量</div><div class="line">			&lt;property name=<span class="string">"processors"</span>&gt;<span class="number">32</span>&lt;/property&gt;</div><div class="line">			&lt;property name=<span class="string">"processorExecutor"</span>&gt;<span class="number">32</span>&lt;/property&gt; </div><div class="line">			&lt;property name=<span class="string">"serverPort"</span>&gt;<span class="number">8066</span>&lt;/property&gt; </div><div class="line">			&lt;property name=<span class="string">"managerPort"</span>&gt;<span class="number">9066</span>&lt;/property&gt; </div><div class="line">			&lt;property name=<span class="string">"idleTimeout"</span>&gt;<span class="number">300000</span>&lt;/property&gt; </div><div class="line">			&lt;property name=<span class="string">"bindIp"</span>&gt;<span class="number">0.0</span>.<span class="number">0.0</span>&lt;/property&gt; </div><div class="line">			&lt;property name=<span class="string">"frontWriteQueueSize"</span>&gt;<span class="number">4096</span>&lt;/property&gt; </div><div class="line">			&lt;property name=<span class="string">"processors"</span>&gt;<span class="number">32</span>&lt;/property&gt; --&gt;</div><div class="line">	&lt;/<span class="built_in">system</span>&gt;</div><div class="line">	</div><div class="line">	&lt;!--定义test用户，访问TESTDB的逻辑库(schema.xml中定义)--&gt;</div><div class="line">	&lt;user name=<span class="string">"test"</span>&gt;</div><div class="line">		&lt;property name=<span class="string">"password"</span>&gt;test&lt;/property&gt;</div><div class="line">		&lt;property name=<span class="string">"schemas"</span>&gt;TESTDB&lt;/property&gt;</div><div class="line">	&lt;/user&gt;</div><div class="line"></div><div class="line">	&lt;user name=<span class="string">"user"</span>&gt;</div><div class="line">		&lt;property name=<span class="string">"password"</span>&gt;user&lt;/property&gt;</div><div class="line">		&lt;property name=<span class="string">"schemas"</span>&gt;TESTDB&lt;/property&gt;</div><div class="line">		&lt;property name=<span class="string">"readOnly"</span>&gt;true&lt;/property&gt;</div><div class="line">	&lt;/user&gt;</div><div class="line">	</div><div class="line">	&lt;!-- </div><div class="line">	<span class="symbol">&lt;quarantine&gt;</span> </div><div class="line">	   <span class="symbol">&lt;whitehost&gt;</span></div><div class="line">	      &lt;host host=<span class="string">"127.0.0.1"</span> user=<span class="string">"mycat"</span>/&gt;</div><div class="line">	      &lt;host host=<span class="string">"127.0.0.2"</span> user=<span class="string">"mycat"</span>/&gt;</div><div class="line">	   &lt;/whitehost&gt;</div><div class="line">       &lt;blacklist check=<span class="string">"false"</span>&gt;&lt;/blacklist&gt;</div><div class="line">	&lt;/quarantine&gt;</div><div class="line">	--&gt;</div><div class="line">&lt;/myca<span class="variable">t:server</span>&gt;</div></pre></td></tr></table></figure>
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Database/" rel="tag">#Database</a>
+            <a href="/tags/Database/" rel="tag"># Database</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -403,6 +492,8 @@ MyCat官网：htt">
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -417,30 +508,42 @@ MyCat官网：htt">
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/"
-     data-title="Mysql主从复制及读写分离的实现-MyCat"
-     data-content=""
-     data-url="http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
 
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
       
     </div>
   </div>
@@ -449,16 +552,11 @@ MyCat官网：htt">
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/"
-           data-title="Mysql主从复制及读写分离的实现-MyCat" data-url="http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/">
-      </div>
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE2MS81NzI4"></div>
     
   </div>
 
@@ -476,6 +574,7 @@ MyCat官网：htt">
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
@@ -491,25 +590,32 @@ MyCat官网：htt">
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://mr-wang.qiniudn.com/mr_wang.jpg"
                alt="Mr wang" />
           <p class="site-author-name" itemprop="name">Mr wang</p>
-          <p class="site-description motion-element" itemprop="description">运维笔记</p>
+           
+              <p class="site-description motion-element" itemprop="description">运维笔记</p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -517,8 +623,10 @@ MyCat官网：htt">
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -528,72 +636,58 @@ MyCat官网：htt">
         </nav>
 
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
 
         <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="#" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/xiaowang0624" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  weibo
-                </a>
-              </span>
-            
-          
         </div>
 
         
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-            <div class="links-of-blogroll-title">Links</div>
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank">Linux工具箱</a>
+                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" title="Linux工具箱" target="_blank">Linux工具箱</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://linux.51yip.com/" target="_blank">Linux命令手册</a>
+                  <a href="http://linux.51yip.com/" title="Linux命令手册" target="_blank">Linux命令手册</a>
                 </li>
               
             </ul>
-          
-        </div>
+          </div>
+        
+
+        
+
 
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MyCat介绍"><span class="nav-number">1.</span> <span class="nav-text">MyCat介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是MyCat"><span class="nav-number">1.1.</span> <span class="nav-text">什么是MyCat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优势"><span class="nav-number">1.2.</span> <span class="nav-text">优势</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql主从配置"><span class="nav-number">2.</span> <span class="nav-text">Mysql主从配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境介绍："><span class="nav-number">2.1.</span> <span class="nav-text">环境介绍：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Master服务器上安装并配置Mysql"><span class="nav-number">2.2.</span> <span class="nav-text">在Master服务器上安装并配置Mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Master服务器上为Slave创建复制用户并测试连接"><span class="nav-number">2.3.</span> <span class="nav-text">在Master服务器上为Slave创建复制用户并测试连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动从节点的复制线程"><span class="nav-number">2.4.</span> <span class="nav-text">启动从节点的复制线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Master服务器创建数据库查看Slave服务器是否更新"><span class="nav-number">2.5.</span> <span class="nav-text">在Master服务器创建数据库查看Slave服务器是否更新</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#读写分离配置"><span class="nav-number">3.</span> <span class="nav-text">读写分离配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装JDK"><span class="nav-number">3.1.</span> <span class="nav-text">安装JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装MyCat"><span class="nav-number">3.2.</span> <span class="nav-text">安装MyCat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授权Mysql用户，用于实现前端MyCat连接"><span class="nav-number">3.3.</span> <span class="nav-text">授权Mysql用户，用于实现前端MyCat连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置MyCat"><span class="nav-number">3.4.</span> <span class="nav-text">配置MyCat</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MyCat介绍"><span class="nav-number">1.</span> <span class="nav-text">MyCat介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是MyCat"><span class="nav-number">1.1.</span> <span class="nav-text">什么是MyCat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优势"><span class="nav-number">1.2.</span> <span class="nav-text">优势</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql主从配置"><span class="nav-number">2.</span> <span class="nav-text">Mysql主从配置</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -609,15 +703,17 @@ MyCat官网：htt">
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Mr wang</span>
+  <span><a href="http://www.miitbeian.gov.cn">鄂ICP备16016806</a></span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -629,21 +725,22 @@ MyCat官网：htt">
 
 
 
+        
+
+        
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
-
-
-  
-
-
-
 
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
@@ -652,209 +749,435 @@ MyCat官网：htt">
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
 
 
 
-  
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"mr-wang"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-  
 
 
 
 
 
   
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
   
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
     }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';                
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-                            
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
                         }
-                        str += "</li>";
+                      }
                     }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
             });
-            proceedsearch();
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
         }
-    });}
+      });
+    }
 
     // handle and trigger popup window;
-    $('.popup-trigger').mousedown(function(e) {
+    $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
-
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
     });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
   </script>
 
-  
+
+
+
 
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
   <script>AV.initialize("K2hmmPfUxb5qwb53Y3StaVwj-gzGzoHsz", "BOu82fRz8bYCJtf9P8GfiMW9");</script>
   <script>
     function showTime(Counter) {
@@ -883,6 +1206,14 @@ MyCat官网：htt">
             var element = document.getElementById(url);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
           }
         })
         .fail(function (object, error) {
@@ -914,6 +1245,12 @@ MyCat官网：htt">
             });
           } else {
             var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
             newcounter.set("title", title);
             newcounter.set("url", url);
             newcounter.set("time", 1);
@@ -945,6 +1282,14 @@ MyCat官网：htt">
   </script>
 
 
+
+  
+
+  
+
+  
+
+  
 
   
 

@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,18 +34,48 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="集群," />
@@ -47,12 +84,10 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Mr wang" type="application/atom+xml" />
 
 
 
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -60,43 +95,61 @@
 
 
 <meta name="description" content="部署环境系统：Centos软件及依赖包：Nginx:nginx-1.6.2.tar.gz(http://nginx.org/download/nginx-1.6.2.tar.gz)pcre-8.36.tar.gz (ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz)zlib-1.2.8.tar.gz(htt">
+<meta name="keywords" content="集群">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx+Tomcat+Memcached集群">
 <meta property="og:url" content="http://www.mr-wang.cn/2015/07/16/Nginx-Tomcat-Memcached-Cluster/index.html">
 <meta property="og:site_name" content="Mr wang">
 <meta property="og:description" content="部署环境系统：Centos软件及依赖包：Nginx:nginx-1.6.2.tar.gz(http://nginx.org/download/nginx-1.6.2.tar.gz)pcre-8.36.tar.gz (ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz)zlib-1.2.8.tar.gz(htt">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/MSM_1.png">
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/MSM_2.png">
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/MSM_3.png">
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/MSM_4.png">
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/MSM_5.png">
-<meta property="og:updated_time" content="2016-04-01T06:25:11.311Z">
+<meta property="og:updated_time" content="2016-04-01T06:25:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx+Tomcat+Memcached集群">
 <meta name="twitter:description" content="部署环境系统：Centos软件及依赖包：Nginx:nginx-1.6.2.tar.gz(http://nginx.org/download/nginx-1.6.2.tar.gz)pcre-8.36.tar.gz (ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz)zlib-1.2.8.tar.gz(htt">
+<meta name="twitter:image" content="http://wy-uploads.qiniudn.com/MSM_1.png">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
+    tabs: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> Nginx+Tomcat+Memcached集群 | Mr wang </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://www.mr-wang.cn/2015/07/16/Nginx-Tomcat-Memcached-Cluster/"/>
+
+
+
+
+
+  <title>Nginx+Tomcat+Memcached集群 | Mr wang</title>
   
+
+
 
 
 
@@ -104,7 +157,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
+      hm.src = "https://hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -117,34 +170,44 @@
 
 
 
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Mr wang</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr wang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-  <p class="site-subtitle"></p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -157,7 +220,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -165,9 +228,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -175,9 +238,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -185,11 +248,21 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="/wiki/wiki.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Wiki
           </a>
         </li>
       
@@ -197,7 +270,7 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="popup-trigger">
+            <a href="javascript:;" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -212,17 +285,30 @@
   
     <div class="site-search">
       
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
 </div>
+
 
 
     </div>
   
 </nav>
+
+
 
  </div>
     </header>
@@ -237,49 +323,68 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2015/07/16/Nginx-Tomcat-Memcached-Cluster/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Nginx+Tomcat+Memcached集群
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Nginx+Tomcat+Memcached集群</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
-              2015-07-16
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-16T20:26:27+08:00">
+                2015-07-16
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
                   </a>
@@ -287,48 +392,48 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/Nginx-Tomcat-Memcached-Cluster/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
              <span id="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/" class="leancloud_visitors" data-flag-title="Nginx+Tomcat+Memcached集群">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <h2 id="部署环境">部署环境</h2><p>系统：Centos<br>软件及依赖包：<br>Nginx:<br>nginx-1.6.2.tar.gz<br>(<a href="http://nginx.org/download/nginx-1.6.2.tar.gz" target="_blank" rel="external">http://nginx.org/download/nginx-1.6.2.tar.gz</a>)<br>pcre-8.36.tar.gz (ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz)<br>zlib-1.2.8.tar.gz(<a href="http://zlib.net/zlib-1.2.8.tar.gz" target="_blank" rel="external">http://zlib.net/zlib-1.2.8.tar.gz</a>)</p>
+        <h2 id="部署环境"><a href="#部署环境" class="headerlink" title="部署环境"></a>部署环境</h2><p>系统：Centos<br>软件及依赖包：<br>Nginx:<br>nginx-1.6.2.tar.gz<br>(<a href="http://nginx.org/download/nginx-1.6.2.tar.gz" target="_blank" rel="external">http://nginx.org/download/nginx-1.6.2.tar.gz</a>)<br>pcre-8.36.tar.gz (ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz)<br>zlib-1.2.8.tar.gz(<a href="http://zlib.net/zlib-1.2.8.tar.gz" target="_blank" rel="external">http://zlib.net/zlib-1.2.8.tar.gz</a>)</p>
 <p>memcached：<br>memcached-1.4.22.tar.gz(<a href="http://memcached.org/files/memcached-1.4.22.tar.gz" target="_blank" rel="external">http://memcached.org/files/memcached-1.4.22.tar.gz</a>)<br>libevent-2.0.22-stable.tar.gz(<a href="http://libevent.org/" target="_blank" rel="external">http://libevent.org/</a>)</p>
 <p>memcached-session-manager：<br><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/" target="_blank" rel="external">下载地址</a></p>
 <p>Tomcat：<br>apache-tomcat-7.0.59.tar.gz (<a href="http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.tar.gz" target="_blank" rel="external">http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.tar.gz</a>)<br>jdk-7u72-linux-x64.tar.gz</p>
@@ -337,64 +442,73 @@
 <p>了解到kryo序列化方式效率最高。</p>
 <p>相关序列方式，所需不同jar包，可参考<a href="https://code.google.com/p/memcached-session-manager/wiki/SetupAndConfiguration" target="_blank" rel="external">官方文档</a></p>
 <a id="more"></a>
-<h2 id="Nginx安装">Nginx安装</h2><h3 id="安装gcc-c++">安装gcc-c++</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -<span class="keyword">y</span> install gcc-<span class="keyword">c</span>++</span><br></pre></td></tr></table></figure>
-<h3 id="安装pcre库">安装pcre库</h3><p>pcre库是为了使nginx支持http rewrite模块</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src/</span><br><span class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz</span><br><span class="line">tar -xzvf pcre-8.36.tar.gz</span><br><span class="line">cd pcre-8.36</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<h3 id="安装zlib库">安装zlib库</h3><p>zlib库是为了使nginx支持gzip压缩</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src</span><br><span class="line">wget http://zlib.net/zlib-1.2.8.tar.gz</span><br><span class="line">tar -xzvf zlib-1.2.8.tar.gz</span><br><span class="line">cd zlib-1.2.8</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<h3 id="安装Nginx">安装Nginx</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/</span><br><span class="line">wget http://nginx.org/download/nginx-1.6.2.tar.gz</span><br><span class="line">tar -zxvf nginx-1.6.2.tar.gz</span><br><span class="line">cd nginx-1.6.2</span><br><span class="line">./configure --prefix=/usr/local/nginx --with-pcre=/usr/local/src/pcre-8.36 --with-zlib=/usr/local/src/zlib-1.2.8</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<h3 id="配置nginx-conf">配置nginx.conf</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#user  nobody;</span><br><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">#error_log  logs/error.log;</span><br><span class="line">#error_log  logs/error.log  notice;</span><br><span class="line">#error_log  logs/error.log  info;</span><br><span class="line"></span><br><span class="line">#pid        logs/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span><br><span class="line">    #                  '$status $body_bytes_sent "$http_referer" '</span><br><span class="line">    #                  '"$http_user_agent" "$http_x_forwarded_for"';</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    gzip  on;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    #配置后端服务器群组信息</span><br><span class="line">    upstream web_server &#123;</span><br><span class="line">	server	localhost:8080;</span><br><span class="line">	server	localhost:8081;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        charset utf-8;</span><br><span class="line"></span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root              html;</span><br><span class="line">            index             index.html index.htm;</span><br><span class="line">	        #代理设置</span><br><span class="line">	        proxy_pass        http://web_server;</span><br><span class="line">	        proxy_set_header  X-Real-IP  $remote_addr;</span><br><span class="line">            client_max_body_size 100m;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">        # redirect server error pages to the static page /50x.html</span><br><span class="line">        #</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="安装memcached">安装memcached</h2><p>先安装libevent-2.0.22-stable.tar.gz依赖包</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf libevent-<span class="number">2.0</span>.<span class="number">22</span>-stable.tar.gz </span><br><span class="line"><span class="keyword">cd</span> libevent-<span class="number">2.0</span>.<span class="number">22</span>-stable </span><br><span class="line">./configure --prefix=/usr/local/libevent-<span class="number">2.0</span>.<span class="number">22</span></span><br><span class="line"><span class="keyword">make</span></span><br><span class="line"><span class="keyword">make</span> install</span><br></pre></td></tr></table></figure>
-<p>再安装memcached-1.4.22.tar.gz<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf memcached-<span class="number">1.4</span>.<span class="number">22</span>.tar.gz </span><br><span class="line"><span class="keyword">cd</span> memcached-<span class="number">1.4</span>.<span class="number">22</span> </span><br><span class="line">./configure --prefix=/usr/local/memcached-<span class="number">1.4</span>.<span class="number">22</span> --with-libevent=/usr/local/libevent-<span class="number">2.0</span>.<span class="number">22</span>/ </span><br><span class="line"><span class="keyword">make</span> </span><br><span class="line"><span class="keyword">make</span> install</span><br><span class="line"></span><br><span class="line">#以守护进程的方式启动，监听于 <span class="number">127.0</span>.<span class="number">0.1</span> 的<span class="number">11211</span>端口，使用root用户，最大使用<span class="number">512</span>M内存，日志输出到/tmp/memcached.<span class="built_in">log</span>下</span><br><span class="line">/usr/local/memcached-<span class="number">1.4</span>.<span class="number">22</span>/bin/memcached -<span class="keyword">d</span> -<span class="keyword">m</span> <span class="number">512</span> -<span class="keyword">l</span> <span class="number">127.0</span>.<span class="number">0.1</span> -<span class="keyword">p</span> <span class="number">11211</span> -<span class="keyword">u</span> root -vv &gt;&gt; /tmp/memcached.<span class="built_in">log</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">#启动后，可以telnet上去看下状态</span><br><span class="line">telnet <span class="number">127.0</span>.<span class="number">0.1</span> <span class="number">11211</span></span><br><span class="line"></span><br><span class="line">stats</span><br></pre></td></tr></table></figure></p>
-<h2 id="安装tomcat">安装tomcat</h2><h3 id="安装JDK_环境">安装JDK 环境</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#查询是否安装java</span><br><span class="line">rpm -qa | grep java</span><br><span class="line">#卸载openjdk</span><br><span class="line">rpm -e java-1.6.0-openjdk-1.6.0.0-1.45.1.11.1.el6.x86_64</span><br><span class="line">rpm -e tzdata-java-2012c-1.el6.noarch</span><br><span class="line"></span><br><span class="line">#安装java</span><br><span class="line">mkdir /usr/java</span><br><span class="line">cd /usr/java</span><br><span class="line">wget http://.../jdk-7u72-linux-x64.tar.gz</span><br><span class="line">tar -xzvf jdk-7u72-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line">#修改系统环境变量文件</span><br><span class="line">vi /etc/profile</span><br><span class="line"></span><br><span class="line">#添加如下内容</span><br><span class="line">#Set java JDK</span><br><span class="line">JAVA_HOME=/usr/local/jdk1.7.0_72</span><br><span class="line">JRE_HOME=/usr/local/jdk1.7.0_72/jre</span><br><span class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_home/bin</span><br><span class="line">CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar</span><br><span class="line">export JAVA_HOME</span><br><span class="line">export JRE_HOME</span><br><span class="line">export PATH</span><br><span class="line">export CLASSPATH</span><br><span class="line"></span><br><span class="line">#使修改马上生效</span><br><span class="line">source /etc/profile</span><br><span class="line"></span><br><span class="line">#验证是否安装成功</span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
-<h3 id="安装Tomcat应用服务器">安装Tomcat应用服务器</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local</span><br><span class="line">wget http://.../apache-tomcat-7.0.56.tar.gz</span><br><span class="line">tar -xzvf apache-tomcat-7.0.56.tar.gz</span><br><span class="line">mv apache-tomcat-7.0.56 tomcat1</span><br><span class="line">cp -R tomcat1 tomcat2</span><br></pre></td></tr></table></figure>
-<h3 id="配置Tomact的server-conf">配置Tomact的server.conf</h3><p>8080端口实例的tomcat1配置：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;Server port=<span class="string">"8005"</span> shutdown=<span class="string">"SHUTDOWN"</span>&gt;</span><br><span class="line">&lt;Connector port=<span class="string">"8080"</span> protocol=<span class="string">"HTTP/1.1"</span> connectionTimeout=<span class="string">"20000"</span> redirectPort=<span class="string">"8443"</span> /&gt;</span><br><span class="line">&lt;Connector port=<span class="string">"8009"</span> protocol=<span class="string">"AJP/1.3"</span> redirectPort=<span class="string">"8443"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;Engine name=<span class="string">"Catalina"</span> defaultHost=<span class="string">"localhost"</span> jvmRoute=<span class="string">"tomcat1"</span>&gt;</span><br><span class="line">...</span><br><span class="line">&lt;Context path=<span class="string">""</span> docBase=<span class="string">"/home/imcc/web"</span> <span class="keyword">debug</span>=<span class="string">"0"</span> reloadable=<span class="string">"true"</span> crossContext=<span class="string">"true"</span>&gt;    </span><br><span class="line">	&lt;Manager </span><br><span class="line">	  className=<span class="string">"de.javakaffee.web.msm.MemcachedBackupSessionManager"</span></span><br><span class="line">      memcachedNodes=<span class="string">"n1:localhost:11211"</span></span><br><span class="line">	  requestUriIgnorePattern=<span class="string">".*\.(png|gif|jpg|css|js|ico|jpeg|htm|html)$"</span></span><br><span class="line">	  sessionBackupAsync=<span class="string">"false"</span></span><br><span class="line">	  sessionBackupTimeout=<span class="string">"100"</span></span><br><span class="line">	  copyCollectionsForSerialization=<span class="string">"false"</span></span><br><span class="line">	  transcoderFactoryClass=<span class="string">"de.javakaffee.web.msm.serializer.kryo.KryoTranscoderFactory"</span> /&gt;</span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx安装"><a href="#Nginx安装" class="headerlink" title="Nginx安装"></a>Nginx安装</h2><h3 id="安装gcc-c"><a href="#安装gcc-c" class="headerlink" title="安装gcc-c++"></a>安装gcc-c++</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -<span class="keyword">y</span> install gcc-<span class="keyword">c</span>++</div></pre></td></tr></table></figure>
+<h3 id="安装pcre库"><a href="#安装pcre库" class="headerlink" title="安装pcre库"></a>安装pcre库</h3><p>pcre库是为了使nginx支持http rewrite模块</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /usr/local/src/</div><div class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-<span class="number">8.36</span>.tar.gz</div><div class="line">tar -xzvf pcre-<span class="number">8.36</span>.tar.gz</div><div class="line"><span class="keyword">cd</span> pcre-<span class="number">8.36</span></div><div class="line">./configure</div><div class="line"><span class="keyword">make</span></div><div class="line"><span class="keyword">make</span> install</div></pre></td></tr></table></figure>
+<h3 id="安装zlib库"><a href="#安装zlib库" class="headerlink" title="安装zlib库"></a>安装zlib库</h3><p>zlib库是为了使nginx支持gzip压缩</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /usr/local/src</div><div class="line">wget http://zlib.net/zlib-<span class="number">1.2</span>.<span class="number">8</span>.tar.gz</div><div class="line">tar -xzvf zlib-<span class="number">1.2</span>.<span class="number">8</span>.tar.gz</div><div class="line"><span class="keyword">cd</span> zlib-<span class="number">1.2</span>.<span class="number">8</span></div><div class="line">./configure</div><div class="line"><span class="keyword">make</span></div><div class="line"><span class="keyword">make</span> install</div></pre></td></tr></table></figure>
+<h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /usr/local/</div><div class="line">wget http://nginx.org/download/nginx-<span class="number">1.6</span>.<span class="number">2</span>.tar.gz</div><div class="line">tar -zxvf nginx-<span class="number">1.6</span>.<span class="number">2</span>.tar.gz</div><div class="line"><span class="keyword">cd</span> nginx-<span class="number">1.6</span>.<span class="number">2</span></div><div class="line">./configure --prefix=/usr/local/nginx --with-pcre=/usr/local/src/pcre-<span class="number">8.36</span> --with-zlib=/usr/local/src/zlib-<span class="number">1.2</span>.<span class="number">8</span></div><div class="line"><span class="keyword">make</span></div><div class="line"><span class="keyword">make</span> install</div></pre></td></tr></table></figure>
+<h3 id="配置nginx-conf"><a href="#配置nginx-conf" class="headerlink" title="配置nginx.conf"></a>配置nginx.conf</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#user  nobody;</div><div class="line">worker_processes  1;</div><div class="line"></div><div class="line">#error_log  logs/error.log;</div><div class="line">#error_log  logs/error.log  notice;</div><div class="line">#error_log  logs/error.log  info;</div><div class="line"></div><div class="line">#pid        logs/nginx.pid;</div><div class="line"></div><div class="line"></div><div class="line">events &#123;</div><div class="line">    worker_connections  1024;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">http &#123;</div><div class="line">    include       mime.types;</div><div class="line">    default_type  application/octet-stream;</div><div class="line"></div><div class="line">    #log_format  main  <span class="string">'$remote_addr - $remote_user [$time_local] "$request" '</span></div><div class="line">    #                  <span class="string">'$status $body_bytes_sent "$http_referer" '</span></div><div class="line">    #                  '"$http_user_agent" "$http_x_forwarded_for"';</div><div class="line"></div><div class="line">    #access_log  logs/access.log  main;</div><div class="line"></div><div class="line">    sendfile        on;</div><div class="line">    #tcp_nopush     on;</div><div class="line"></div><div class="line">    #keepalive_timeout  0;</div><div class="line">    keepalive_timeout  65;</div><div class="line"></div><div class="line">    gzip  on;</div><div class="line"></div><div class="line"></div><div class="line">    #配置后端服务器群组信息</div><div class="line">    upstream web_server &#123;</div><div class="line">	server	localhost:8080;</div><div class="line">	server	localhost:8081;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    server &#123;</div><div class="line">        listen       80;</div><div class="line">        server_name  localhost;</div><div class="line"></div><div class="line">        charset utf-8;</div><div class="line"></div><div class="line">        #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">            root              html;</div><div class="line">            index             index.html index.htm;</div><div class="line">	        #代理设置</div><div class="line">	        proxy_pass        http://web_server;</div><div class="line">	        proxy_set_header  X-Real-IP  $remote_addr;</div><div class="line">            client_max_body_size 100m;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        #error_page  404              /404.html;</div><div class="line"></div><div class="line">        # redirect server error pages <span class="keyword">to</span> the static page /<span class="number">50</span><span class="keyword">x</span>.html</div><div class="line">        #</div><div class="line">        error_page   500 502 503 504  /50x.html;</div><div class="line">        location = /<span class="number">50</span><span class="keyword">x</span>.html &#123;</div><div class="line">            root   html;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="安装memcached"><a href="#安装memcached" class="headerlink" title="安装memcached"></a>安装memcached</h2><p>先安装libevent-2.0.22-stable.tar.gz依赖包</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tar zxvf libevent-<span class="number">2.0</span>.<span class="number">22</span>-stable.tar.gz </div><div class="line"><span class="keyword">cd</span> libevent-<span class="number">2.0</span>.<span class="number">22</span>-stable </div><div class="line">./configure --prefix=/usr/local/libevent-<span class="number">2.0</span>.<span class="number">22</span></div><div class="line"><span class="keyword">make</span></div><div class="line"><span class="keyword">make</span> install</div></pre></td></tr></table></figure>
+<p>再安装memcached-1.4.22.tar.gz<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">tar zxvf memcached-<span class="number">1.4</span>.<span class="number">22</span>.tar.gz </div><div class="line"><span class="keyword">cd</span> memcached-<span class="number">1.4</span>.<span class="number">22</span> </div><div class="line">./configure --prefix=/usr/local/memcached-<span class="number">1.4</span>.<span class="number">22</span> --with-libevent=/usr/local/libevent-<span class="number">2.0</span>.<span class="number">22</span>/ </div><div class="line"><span class="keyword">make</span> </div><div class="line"><span class="keyword">make</span> install</div><div class="line"></div><div class="line">#以守护进程的方式启动，监听于 <span class="number">127.0</span>.<span class="number">0.1</span> 的<span class="number">11211</span>端口，使用root用户，最大使用<span class="number">512</span>M内存，日志输出到/tmp/memcached.<span class="built_in">log</span>下</div><div class="line">/usr/local/memcached-<span class="number">1.4</span>.<span class="number">22</span>/bin/memcached -d -<span class="keyword">m</span> <span class="number">512</span> -<span class="keyword">l</span> <span class="number">127.0</span>.<span class="number">0.1</span> -<span class="keyword">p</span> <span class="number">11211</span> -<span class="keyword">u</span> root -vv &gt;&gt; /tmp/memcached.<span class="built_in">log</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span></div><div class="line">#启动后，可以telnet上去看下状态</div><div class="line">telnet <span class="number">127.0</span>.<span class="number">0.1</span> <span class="number">11211</span></div><div class="line"></div><div class="line">stats</div></pre></td></tr></table></figure></p>
+<h2 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h2><h3 id="安装JDK-环境"><a href="#安装JDK-环境" class="headerlink" title="安装JDK 环境"></a>安装JDK 环境</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">#查询是否安装java</div><div class="line">rpm -<span class="keyword">qa</span> | <span class="keyword">grep</span> java</div><div class="line">#卸载openjdk</div><div class="line">rpm -<span class="keyword">e</span> java-<span class="number">1.6</span>.<span class="number">0</span>-openjdk-<span class="number">1.6</span>.<span class="number">0.0</span>-<span class="number">1.45</span>.<span class="number">1.11</span>.<span class="number">1</span>.el6.x86_64</div><div class="line">rpm -<span class="keyword">e</span> tzdata-java-<span class="number">2012</span><span class="keyword">c</span>-<span class="number">1</span>.el6.noarch</div><div class="line"></div><div class="line">#安装java</div><div class="line"><span class="built_in">mkdir</span> /usr/java</div><div class="line"><span class="keyword">cd</span> /usr/java</div><div class="line">wget http://.../jdk-<span class="number">7</span>u72-linux-x64.tar.gz</div><div class="line">tar -xzvf jdk-<span class="number">7</span>u72-linux-x64.tar.gz</div><div class="line"></div><div class="line">#修改系统环境变量文件</div><div class="line"><span class="keyword">vi</span> /etc/<span class="keyword">profile</span></div><div class="line"></div><div class="line">#添加如下内容</div><div class="line">#Set java JDK</div><div class="line">JAVA_HOME=/usr/local/jdk1.<span class="number">7.0</span>_72</div><div class="line">JRE_HOME=/usr/local/jdk1.<span class="number">7.0</span>_72/jre</div><div class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_home/bin</div><div class="line">CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar</div><div class="line">export JAVA_HOME</div><div class="line">export JRE_HOME</div><div class="line">export PATH</div><div class="line">export CLASSPATH</div><div class="line"></div><div class="line">#使修改马上生效</div><div class="line"><span class="keyword">source</span> /etc/<span class="keyword">profile</span></div><div class="line"></div><div class="line">#验证是否安装成功</div><div class="line">java -<span class="keyword">version</span></div></pre></td></tr></table></figure>
+<h3 id="安装Tomcat应用服务器"><a href="#安装Tomcat应用服务器" class="headerlink" title="安装Tomcat应用服务器"></a>安装Tomcat应用服务器</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /usr/local</div><div class="line">wget http://.../apache-tomcat-<span class="number">7.0</span>.<span class="number">56</span>.tar.gz</div><div class="line">tar -xzvf apache-tomcat-<span class="number">7.0</span>.<span class="number">56</span>.tar.gz</div><div class="line">mv apache-tomcat-<span class="number">7.0</span>.<span class="number">56</span> tomcat1</div><div class="line"><span class="keyword">cp</span> -R tomcat1 tomcat2</div></pre></td></tr></table></figure>
+<h3 id="配置Tomact的server-conf"><a href="#配置Tomact的server-conf" class="headerlink" title="配置Tomact的server.conf"></a>配置Tomact的server.conf</h3><p>8080端口实例的tomcat1配置：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;Server port=<span class="string">"8005"</span> shutdown=<span class="string">"SHUTDOWN"</span>&gt;</div><div class="line">&lt;Connector port=<span class="string">"8080"</span> protocol=<span class="string">"HTTP/1.1"</span> connectionTimeout=<span class="string">"20000"</span> redirectPort=<span class="string">"8443"</span> /&gt;</div><div class="line">&lt;Connector port=<span class="string">"8009"</span> protocol=<span class="string">"AJP/1.3"</span> redirectPort=<span class="string">"8443"</span> /&gt;</div><div class="line"></div><div class="line">&lt;Engine name=<span class="string">"Catalina"</span> defaultHost=<span class="string">"localhost"</span> jvmRoute=<span class="string">"tomcat1"</span>&gt;</div><div class="line">...</div><div class="line">&lt;Context path=<span class="string">""</span> docBase=<span class="string">"/home/imcc/web"</span> <span class="keyword">debug</span>=<span class="string">"0"</span> reloadable=<span class="string">"true"</span> crossContext=<span class="string">"true"</span>&gt;    </div><div class="line">	&lt;Manager </div><div class="line">	  className=<span class="string">"de.javakaffee.web.msm.MemcachedBackupSessionManager"</span></div><div class="line">      memcachedNodes=<span class="string">"n1:localhost:11211"</span></div><div class="line">	  requestUriIgnorePattern=<span class="string">".*\.(png|gif|jpg|css|js|ico|jpeg|htm|html)$"</span></div><div class="line">	  sessionBackupAsync=<span class="string">"false"</span></div><div class="line">	  sessionBackupTimeout=<span class="string">"100"</span></div><div class="line">	  copyCollectionsForSerialization=<span class="string">"false"</span></div><div class="line">	  transcoderFactoryClass=<span class="string">"de.javakaffee.web.msm.serializer.kryo.KryoTranscoderFactory"</span> /&gt;</div><div class="line">&lt;/Context&gt;</div></pre></td></tr></table></figure>
 <p>8081端口实例的tomcat1配置：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;Server port=<span class="string">"8006"</span> shutdown=<span class="string">"SHUTDOWN"</span>&gt;</span><br><span class="line">&lt;Connector port=<span class="string">"8081"</span> protocol=<span class="string">"HTTP/1.1"</span> connectionTimeout=<span class="string">"20000"</span> redirectPort=<span class="string">"8443"</span> /&gt;</span><br><span class="line">&lt;Connector port=<span class="string">"9009"</span> protocol=<span class="string">"AJP/1.3"</span> redirectPort=<span class="string">"8443"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;Engine name=<span class="string">"Catalina"</span> defaultHost=<span class="string">"localhost"</span> jvmRoute=<span class="string">"tomcat2"</span>&gt;</span><br><span class="line">...</span><br><span class="line">&lt;Context path=<span class="string">""</span> docBase=<span class="string">"/home/imcc/web"</span> <span class="keyword">debug</span>=<span class="string">"0"</span> reloadable=<span class="string">"true"</span> crossContext=<span class="string">"true"</span>&gt;    </span><br><span class="line">	&lt;Manager </span><br><span class="line">	  className=<span class="string">"de.javakaffee.web.msm.MemcachedBackupSessionManager"</span></span><br><span class="line">      memcachedNodes=<span class="string">"n1:localhost:11211"</span></span><br><span class="line">	  requestUriIgnorePattern=<span class="string">".*\.(png|gif|jpg|css|js|ico|jpeg|htm|html)$"</span></span><br><span class="line">	  sessionBackupAsync=<span class="string">"false"</span></span><br><span class="line">	  sessionBackupTimeout=<span class="string">"100"</span></span><br><span class="line">	  copyCollectionsForSerialization=<span class="string">"false"</span></span><br><span class="line">	  transcoderFactoryClass=<span class="string">"de.javakaffee.web.msm.serializer.kryo.KryoTranscoderFactory"</span> /&gt;</span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;Server port=<span class="string">"8006"</span> shutdown=<span class="string">"SHUTDOWN"</span>&gt;</div><div class="line">&lt;Connector port=<span class="string">"8081"</span> protocol=<span class="string">"HTTP/1.1"</span> connectionTimeout=<span class="string">"20000"</span> redirectPort=<span class="string">"8443"</span> /&gt;</div><div class="line">&lt;Connector port=<span class="string">"9009"</span> protocol=<span class="string">"AJP/1.3"</span> redirectPort=<span class="string">"8443"</span> /&gt;</div><div class="line"></div><div class="line">&lt;Engine name=<span class="string">"Catalina"</span> defaultHost=<span class="string">"localhost"</span> jvmRoute=<span class="string">"tomcat2"</span>&gt;</div><div class="line">...</div><div class="line">&lt;Context path=<span class="string">""</span> docBase=<span class="string">"/home/imcc/web"</span> <span class="keyword">debug</span>=<span class="string">"0"</span> reloadable=<span class="string">"true"</span> crossContext=<span class="string">"true"</span>&gt;    </div><div class="line">	&lt;Manager </div><div class="line">	  className=<span class="string">"de.javakaffee.web.msm.MemcachedBackupSessionManager"</span></div><div class="line">      memcachedNodes=<span class="string">"n1:localhost:11211"</span></div><div class="line">	  requestUriIgnorePattern=<span class="string">".*\.(png|gif|jpg|css|js|ico|jpeg|htm|html)$"</span></div><div class="line">	  sessionBackupAsync=<span class="string">"false"</span></div><div class="line">	  sessionBackupTimeout=<span class="string">"100"</span></div><div class="line">	  copyCollectionsForSerialization=<span class="string">"false"</span></div><div class="line">	  transcoderFactoryClass=<span class="string">"de.javakaffee.web.msm.serializer.kryo.KryoTranscoderFactory"</span> /&gt;</div><div class="line">&lt;/Context&gt;</div></pre></td></tr></table></figure>
 <p>备注：</p>
 <p>Manager标签属性说明:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">className  必须</span><br><span class="line">类名：de.javakaffee.web.msm.MemcachedBackupSessionManager</span><br><span class="line"></span><br><span class="line">memcachedNodes  必须</span><br><span class="line">memcached节点：此属性应该包含所有运行的memcached节点或者membase bucket的uri地址，每一个memcached节点的属性定义格式为&lt;id&gt;:&lt;host&gt;:&lt;port&gt;，多个节点定义直接使用空格或者逗号分隔，形如：memcachedNodes="n1:app01:11211,n2:app02:11211"，如果只有单个的memcached节点，则&lt;id&gt;是可选项，只需配置&lt;host&gt;:&lt;port&gt;即可，形如：memcachedNodes="localhost:11211"。</span><br><span class="line">如果我们配置的是membase，那么从1.6.0版本开始，我们可以配置指定一个或者多个membase bucket uris，形如：http://host1:8091/pools,http://host2:8091/pools。Bucket 名称和密码通过属性username,password来定义。membase buckets连接需要遵循memcached协议，传输数据通过二进制流方式。</span><br><span class="line"></span><br><span class="line">failoverNodes 可选项</span><br><span class="line">故障转移节点：可选项，对非黏性session不可用，属性必须包含memcached节点集群的所有ids。节点id之间用空格或者逗号分隔。</span><br><span class="line"></span><br><span class="line">username 可选项</span><br><span class="line">从1.6.0版开始使用，并且是可选的。用来进行membase bucket或者SASL验证，密码可以为空。</span><br><span class="line"></span><br><span class="line">password 可选项</span><br><span class="line">从1.6.0版开始使用，并且是可选的。用来进行membase bucket或者SASL验证，密码可以为空。</span><br><span class="line"></span><br><span class="line">memcachedProtocol    可选项</span><br><span class="line">定义memcached协议，默认使用text文本，出属性指明memcached使用的存储协议。只支持text或者binary。</span><br><span class="line"></span><br><span class="line">sticky    可选项</span><br><span class="line">定义session方式为黏性或非黏性，默认为true，多个tomcat时需使用非黏性</span><br><span class="line"></span><br><span class="line">lockingMode    可选项</span><br><span class="line">只有非黏性session才使用，默认值为none</span><br><span class="line">none: 从不对session进行锁定</span><br><span class="line">all: session将一直被锁定，直到请求结束</span><br><span class="line">auto: 对于只读请求，session将不会被锁定，如果是非只读请求，则session会被锁定</span><br><span class="line">uriPattern:&lt;regexp&gt;: 通过正则表达式的方式来对请求uri以及查询字符串进行匹配，只有匹配上的才会被锁定。</span><br><span class="line"></span><br><span class="line">requestUriIgnorePattern   可选项</span><br><span class="line">此属性是那些不能改备份Session的请求的正则表达式。如果像css,javascript,图片等静态文件被同一个Tomcat和同一个应用上下文来提供，这些请求也会通过memcached-session-manager。但是这些请求在一个http会话中几乎没什么改变，所以他们没必要触发Session备份。所以那些静态文件没必要触发Session备份，你就可以使用此属性定义。此属性必须符合java regex正则规范。</span><br><span class="line">    如：".*\.(png|gif|jpg|css|js)$" </span><br><span class="line"></span><br><span class="line">sessionBackupAsync   可选项</span><br><span class="line">指定Session是否应该被异步保存到Memcached中。 如果被设置为true，backupThreadCount设置起作用，如果设置false，通过sessionBackupTimeout设置的过期时间起作用。</span><br><span class="line"></span><br><span class="line">backupThreadCount    可选项</span><br><span class="line">用来异步保存Session的线程数，(如果sessionBackupAsync="true")。默认值为cup的内核数。</span><br><span class="line"></span><br><span class="line">sessionBackupTimeout    可选项</span><br><span class="line">设置备份一个Session所用的时间，如果操作超过时间那么保存失败。此属性只sessionBackupAsync="false"是起作用。默认100毫秒</span><br><span class="line"></span><br><span class="line">operationTimeout    可选项</span><br><span class="line">从1.6.0版开始使用， 默认值为1000</span><br><span class="line"></span><br><span class="line">sessionAttributeFilter    可选项</span><br><span class="line">此属性是用来控制Session中的那个属性值保存到Memcached中的正则表达式。正则表达式被用来匹配Session中属性名称。如sessionAttributeFilter="^(userName|sessionHistory)$" 指定了只有"userName"和"sessionHistory"属性保存到Memcached中。依赖于选择的序列化策略。</span><br><span class="line"></span><br><span class="line">transcoderFactoryClass    可选项</span><br><span class="line">此属性值是创建序列化和反序列化保存到Memcached中的Session的编码转换器的工厂类名。这个指定的类必须实现了de.javakaffee.web.msm.TranscoderFactory和提供一个无参的构造方法。例如其他的有效的实现在其他packages/jars中提供如：msm-kryo-serializer,msm-xstrea-serializer和msm-javolution-serializer.</span><br><span class="line">默认为 de.javakaffee.web.msm.JavaSerializationTranscoderFactory</span><br><span class="line"></span><br><span class="line">copyCollectionsForSerialization    可选项</span><br><span class="line">默认值为false。</span><br><span class="line"></span><br><span class="line">customConverter    可选项</span><br><span class="line">自己定义特殊的类注册到kryo自定义转换器中，实现序列化</span><br><span class="line"></span><br><span class="line">enableStatistics    可选项</span><br><span class="line">用来指定是否进行统计。 默认值为true。</span><br><span class="line"></span><br><span class="line">enabled   可选项</span><br><span class="line">指定Session保存到Memcached中是否可用和是否可以通过JMX进行改变。只用于粘性Session。 默认值为true。</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">className  必须</div><div class="line">类名：de.javakaffee.web.msm.MemcachedBackupSessionManager</div><div class="line"></div><div class="line">memcachedNodes  必须</div><div class="line">memcached节点：此属性应该包含所有运行的memcached节点或者membase bucket的uri地址，每一个memcached节点的属性定义格式为<span class="symbol">&lt;id&gt;</span>:<span class="symbol">&lt;host&gt;</span>:<span class="symbol">&lt;port&gt;</span>，多个节点定义直接使用空格或者逗号分隔，形如：memcachedNodes=<span class="string">"n1:app01:11211,n2:app02:11211"</span>，如果只有单个的memcached节点，则<span class="symbol">&lt;id&gt;</span>是可选项，只需配置<span class="symbol">&lt;host&gt;</span>:<span class="symbol">&lt;port&gt;</span>即可，形如：memcachedNodes=<span class="string">"localhost:11211"</span>。</div><div class="line">如果我们配置的是membase，那么从<span class="number">1.6</span>.<span class="number">0</span>版本开始，我们可以配置指定一个或者多个membase bucket uris，形如：http://host1:<span class="number">8091</span>/pools,http://host2:<span class="number">8091</span>/pools。Bucket 名称和密码通过属性username,password来定义。membase buckets连接需要遵循memcached协议，传输数据通过二进制流方式。</div><div class="line"></div><div class="line">failoverNodes 可选项</div><div class="line">故障转移节点：可选项，对非黏性session不可用，属性必须包含memcached节点集群的所有ids。节点id之间用空格或者逗号分隔。</div><div class="line"></div><div class="line">username 可选项</div><div class="line">从<span class="number">1.6</span>.<span class="number">0</span>版开始使用，并且是可选的。用来进行membase bucket或者SASL验证，密码可以为空。</div><div class="line"></div><div class="line">password 可选项</div><div class="line">从<span class="number">1.6</span>.<span class="number">0</span>版开始使用，并且是可选的。用来进行membase bucket或者SASL验证，密码可以为空。</div><div class="line"></div><div class="line">memcachedProtocol    可选项</div><div class="line">定义memcached协议，默认使用text文本，出属性指明memcached使用的存储协议。只支持text或者binary。</div><div class="line"></div><div class="line">sticky    可选项</div><div class="line">定义session方式为黏性或非黏性，默认为true，多个tomcat时需使用非黏性</div><div class="line"></div><div class="line">lockingMode    可选项</div><div class="line">只有非黏性session才使用，默认值为none</div><div class="line">none: 从不对session进行锁定</div><div class="line"><span class="keyword">al</span><span class="variable">l:</span> session将一直被锁定，直到请求结束</div><div class="line">auto: 对于只读请求，session将不会被锁定，如果是非只读请求，则session会被锁定</div><div class="line">uriPattern:<span class="symbol">&lt;regexp&gt;</span>: 通过正则表达式的方式来对请求uri以及查询字符串进行匹配，只有匹配上的才会被锁定。</div><div class="line"></div><div class="line">requestUriIgnorePattern   可选项</div><div class="line">此属性是那些不能改备份Session的请求的正则表达式。如果像css,javascript,图片等静态文件被同一个Tomcat和同一个应用上下文来提供，这些请求也会通过memcached-session-manager。但是这些请求在一个http会话中几乎没什么改变，所以他们没必要触发Session备份。所以那些静态文件没必要触发Session备份，你就可以使用此属性定义。此属性必须符合java regex正则规范。</div><div class="line">    如：<span class="string">".*\.(png|gif|jpg|css|js)$"</span> </div><div class="line"></div><div class="line">sessionBackupAsync   可选项</div><div class="line">指定Session是否应该被异步保存到Memcached中。 如果被设置为true，backupThreadCount设置起作用，如果设置false，通过sessionBackupTimeout设置的过期时间起作用。</div><div class="line"></div><div class="line">backupThreadCount    可选项</div><div class="line">用来异步保存Session的线程数，(如果sessionBackupAsync=<span class="string">"true"</span>)。默认值为cup的内核数。</div><div class="line"></div><div class="line">sessionBackupTimeout    可选项</div><div class="line">设置备份一个Session所用的时间，如果操作超过时间那么保存失败。此属性只sessionBackupAsync=<span class="string">"false"</span>是起作用。默认<span class="number">100</span>毫秒</div><div class="line"></div><div class="line">operationTimeout    可选项</div><div class="line">从<span class="number">1.6</span>.<span class="number">0</span>版开始使用， 默认值为<span class="number">1000</span></div><div class="line"></div><div class="line">sessionAttributeFilter    可选项</div><div class="line">此属性是用来控制Session中的那个属性值保存到Memcached中的正则表达式。正则表达式被用来匹配Session中属性名称。如sessionAttributeFilter=<span class="string">"^(userName|sessionHistory)$"</span> 指定了只有<span class="string">"userName"</span>和<span class="string">"sessionHistory"</span>属性保存到Memcached中。依赖于选择的序列化策略。</div><div class="line"></div><div class="line">transcoderFactoryClass    可选项</div><div class="line">此属性值是创建序列化和反序列化保存到Memcached中的Session的编码转换器的工厂类名。这个指定的类必须实现了de.javakaffee.web.msm.TranscoderFactory和提供一个无参的构造方法。例如其他的有效的实现在其他packages/jars中提供如：msm-kryo-serializer,msm-xstrea-serializer和msm-javolution-serializer.</div><div class="line">默认为 de.javakaffee.web.msm.JavaSerializationTranscoderFactory</div><div class="line"></div><div class="line">copyCollectionsForSerialization    可选项</div><div class="line">默认值为false。</div><div class="line"></div><div class="line">customConverter    可选项</div><div class="line">自己定义特殊的类注册到kryo自定义转换器中，实现序列化</div><div class="line"></div><div class="line">enableStatistics    可选项</div><div class="line">用来指定是否进行统计。 默认值为true。</div><div class="line"></div><div class="line">enabled   可选项</div><div class="line">指定Session保存到Memcached中是否可用和是否可以通过JMX进行改变。只用于粘性Session。 默认值为true。</div></pre></td></tr></table></figure>
 <p>添加memcached-session-manager的依赖包到$TOMCATHOME/lib目录下</p>
-<h2 id="测试">测试</h2><p>添加测试页面<code>/home/imcc/web/index.jsp</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SessionID:&lt;%=session.getId()%&gt;  </span><br><span class="line">&lt;BR&gt;  </span><br><span class="line">SessionIP:&lt;%=request.getServerName()%&gt;  </span><br><span class="line">&lt;BR&gt;  </span><br><span class="line">SessionPort:&lt;%=request.getServerPort()%&gt;  </span><br><span class="line">&lt;%  </span><br><span class="line">out.println("This is Tomcat Server!");  </span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>添加测试页面<code>/home/imcc/web/index.jsp</code></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">SessionID:&lt;%=session.getId()%&gt;  </div><div class="line"><span class="symbol">&lt;BR&gt;</span>  </div><div class="line">SessionIP:&lt;%=request.getServerName()%&gt;  </div><div class="line"><span class="symbol">&lt;BR&gt;</span>  </div><div class="line">SessionPor<span class="variable">t:</span>&lt;%=request.getServerPort()%&gt;  </div><div class="line">&lt;%  </div><div class="line">out.println("This is Tomcat Server!");  </div><div class="line">%&gt;</div></pre></td></tr></table></figure>
 <p>通过浏览器访问,并刷新:<br><img src="http://wy-uploads.qiniudn.com/MSM_3.png" alt="此处输入图片的描述"><br><img src="http://wy-uploads.qiniudn.com/MSM_4.png" alt="此处输入图片的描述"></p>
 <p>查看memcached日志：<br><img src="http://wy-uploads.qiniudn.com/MSM_5.png" alt="此处输入图片的描述"><br>通过观察SessionID没有发生变化，证明session共享成功。</p>
-<p>参考：<br><a href="http://www.iteye.com/topic/1125301" target="_blank" rel="external">MSM—Memcached_Session_Manager介绍及使用</a><br><a href="http://blog.csdn.net/wh0426/article/details/44699449" target="_blank" rel="external">交易系统架构之会话篇：tomcat msm部署</a><br><a href="http://blog.csdn.net/shimiso/article/details/8979044" target="_blank" rel="external">Nginx+Tomcat+Memcached集群Session共享</a><br><a href="http://passover.blog.51cto.com/2431658/648182" target="_blank" rel="external">利用nginx+tomcat+memcached组建web服务器负载均衡</a><br><a href="http://www.cnblogs.com/phirothing/archive/2013/12/05/3459814.html" target="_blank" rel="external">Nginx+Tomcat+Memcached集群</a></p>
+<p>参考：<br><a href="http://www.iteye.com/topic/1125301" target="_blank" rel="external">MSM–Memcached_Session_Manager介绍及使用</a><br><a href="http://blog.csdn.net/wh0426/article/details/44699449" target="_blank" rel="external">交易系统架构之会话篇：tomcat msm部署</a><br><a href="http://blog.csdn.net/shimiso/article/details/8979044" target="_blank" rel="external">Nginx+Tomcat+Memcached集群Session共享</a><br><a href="http://passover.blog.51cto.com/2431658/648182" target="_blank" rel="external">利用nginx+tomcat+memcached组建web服务器负载均衡</a><br><a href="http://www.cnblogs.com/phirothing/archive/2013/12/05/3459814.html" target="_blank" rel="external">Nginx+Tomcat+Memcached集群</a></p>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/集群/" rel="tag">#集群</a>
+            <a href="/tags/集群/" rel="tag"># 集群</a>
           
         </div>
+      
+
+      
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/16/Linux-Boot-Sequence/" rel="next" title="linux的运行级别及自启动程序">
-                <i class="fa fa-chevron-left"></i> linux的运行级别及自启动程序
+              <a href="/2015/07/16/CentOS-Oracle-installation/" rel="next" title="CentOS下Oracle安装">
+                <i class="fa fa-chevron-left"></i> CentOS下Oracle安装
               </a>
             
           </div>
 
+          <span class="post-nav-divider"></span>
+
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/16/Shell-Study/" rel="prev" title="TIPS">
-                TIPS <i class="fa fa-chevron-right"></i>
+              <a href="/2015/07/16/Linux-Boot-Sequence/" rel="prev" title="linux的运行级别及自启动程序">
+                linux的运行级别及自启动程序 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -404,30 +518,42 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/07/16/Nginx-Tomcat-Memcached-Cluster/"
-     data-title="Nginx+Tomcat+Memcached集群"
-     data-content=""
-     data-url="http://www.mr-wang.cn/2015/07/16/Nginx-Tomcat-Memcached-Cluster/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
 
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
       
     </div>
   </div>
@@ -436,16 +562,11 @@
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/07/16/Nginx-Tomcat-Memcached-Cluster/"
-           data-title="Nginx+Tomcat+Memcached集群" data-url="http://www.mr-wang.cn/2015/07/16/Nginx-Tomcat-Memcached-Cluster/">
-      </div>
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE2MS81NzI4"></div>
     
   </div>
 
@@ -463,6 +584,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
@@ -478,25 +600,32 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://mr-wang.qiniudn.com/mr_wang.jpg"
                alt="Mr wang" />
           <p class="site-author-name" itemprop="name">Mr wang</p>
-          <p class="site-description motion-element" itemprop="description">运维笔记</p>
+           
+              <p class="site-description motion-element" itemprop="description">运维笔记</p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -504,8 +633,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -515,72 +646,58 @@
         </nav>
 
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
 
         <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="#" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/xiaowang0624" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  weibo
-                </a>
-              </span>
-            
-          
         </div>
 
         
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-            <div class="links-of-blogroll-title">Links</div>
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank">Linux工具箱</a>
+                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" title="Linux工具箱" target="_blank">Linux工具箱</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://linux.51yip.com/" target="_blank">Linux命令手册</a>
+                  <a href="http://linux.51yip.com/" title="Linux命令手册" target="_blank">Linux命令手册</a>
                 </li>
               
             </ul>
-          
-        </div>
+          </div>
+        
+
+        
+
 
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#部署环境"><span class="nav-number">1.</span> <span class="nav-text">部署环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx安装"><span class="nav-number">2.</span> <span class="nav-text">Nginx安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gcc-c++"><span class="nav-number">2.1.</span> <span class="nav-text">安装gcc-c++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装pcre库"><span class="nav-number">2.2.</span> <span class="nav-text">安装pcre库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装zlib库"><span class="nav-number">2.3.</span> <span class="nav-text">安装zlib库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Nginx"><span class="nav-number">2.4.</span> <span class="nav-text">安装Nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置nginx-conf"><span class="nav-number">2.5.</span> <span class="nav-text">配置nginx.conf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装memcached"><span class="nav-number">3.</span> <span class="nav-text">安装memcached</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装tomcat"><span class="nav-number">4.</span> <span class="nav-text">安装tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JDK_环境"><span class="nav-number">4.1.</span> <span class="nav-text">安装JDK 环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Tomcat应用服务器"><span class="nav-number">4.2.</span> <span class="nav-text">安装Tomcat应用服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Tomact的server-conf"><span class="nav-number">4.3.</span> <span class="nav-text">配置Tomact的server.conf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">5.</span> <span class="nav-text">测试</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#部署环境"><span class="nav-number">1.</span> <span class="nav-text">部署环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx安装"><span class="nav-number">2.</span> <span class="nav-text">Nginx安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gcc-c"><span class="nav-number">2.1.</span> <span class="nav-text">安装gcc-c++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装pcre库"><span class="nav-number">2.2.</span> <span class="nav-text">安装pcre库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装zlib库"><span class="nav-number">2.3.</span> <span class="nav-text">安装zlib库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Nginx"><span class="nav-number">2.4.</span> <span class="nav-text">安装Nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置nginx-conf"><span class="nav-number">2.5.</span> <span class="nav-text">配置nginx.conf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装memcached"><span class="nav-number">3.</span> <span class="nav-text">安装memcached</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装tomcat"><span class="nav-number">4.</span> <span class="nav-text">安装tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JDK-环境"><span class="nav-number">4.1.</span> <span class="nav-text">安装JDK 环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Tomcat应用服务器"><span class="nav-number">4.2.</span> <span class="nav-text">安装Tomcat应用服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Tomact的server-conf"><span class="nav-number">4.3.</span> <span class="nav-text">配置Tomact的server.conf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">5.</span> <span class="nav-text">测试</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -596,15 +713,17 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Mr wang</span>
+  <span><a href="http://www.miitbeian.gov.cn">鄂ICP备16016806</a></span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -616,21 +735,22 @@
 
 
 
+        
+
+        
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
-
-
-  
-
-
-
 
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
@@ -639,209 +759,435 @@
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
 
 
 
-  
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"mr-wang"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-  
 
 
 
 
 
   
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
   
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
     }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';                
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-                            
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
                         }
-                        str += "</li>";
+                      }
                     }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
             });
-            proceedsearch();
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
         }
-    });}
+      });
+    }
 
     // handle and trigger popup window;
-    $('.popup-trigger').mousedown(function(e) {
+    $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
-
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
     });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
   </script>
 
-  
+
+
+
 
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
   <script>AV.initialize("K2hmmPfUxb5qwb53Y3StaVwj-gzGzoHsz", "BOu82fRz8bYCJtf9P8GfiMW9");</script>
   <script>
     function showTime(Counter) {
@@ -870,6 +1216,14 @@
             var element = document.getElementById(url);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
           }
         })
         .fail(function (object, error) {
@@ -901,6 +1255,12 @@
             });
           } else {
             var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
             newcounter.set("title", title);
             newcounter.set("url", url);
             newcounter.set("time", 1);
@@ -932,6 +1292,14 @@
   </script>
 
 
+
+  
+
+  
+
+  
+
+  
 
   
 

@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,18 +34,48 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Mr wang, Linux, 运维" />
@@ -47,12 +84,10 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Mr wang" type="application/atom+xml" />
 
 
 
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -65,32 +100,48 @@
 <meta property="og:url" content="http://www.mr-wang.cn/index.html">
 <meta property="og:site_name" content="Mr wang">
 <meta property="og:description" content="运维笔记">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mr wang">
 <meta name="twitter:description" content="运维笔记">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
+    tabs: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> Mr wang </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://www.mr-wang.cn/"/>
+
+
+
+
+
+  <title>Mr wang</title>
   
+
+
 
 
 
@@ -98,7 +149,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
+      hm.src = "https://hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -111,36 +162,46 @@
 
 
 
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
+  <div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Mr wang</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr wang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-  <p class="site-subtitle"></p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -153,7 +214,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -161,9 +222,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -171,9 +232,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -181,11 +242,21 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="/wiki/wiki.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Wiki
           </a>
         </li>
       
@@ -193,7 +264,7 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="popup-trigger">
+            <a href="javascript:;" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -208,17 +279,30 @@
   
     <div class="site-search">
       
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
 </div>
+
 
 
     </div>
   
 </nav>
+
+
 
  </div>
     </header>
@@ -233,13 +317,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2016/09/08/PyQt-WebView/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
@@ -247,38 +345,42 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/09/08/PyQt-WebView/" itemprop="url">
-                  PyQt实现WebView
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/09/08/PyQt-WebView/" itemprop="url">PyQt实现WebView</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-08T17:26:27+08:00" content="2016-09-08">
-              2016-09-08
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-08T17:26:27+08:00">
+                2016-09-08
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
                   </a>
@@ -286,41 +388,41 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/08/PyQt-WebView/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/08/PyQt-WebView/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
              <span id="/2016/09/08/PyQt-WebView/" class="leancloud_visitors" data-flag-title="PyQt实现WebView">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -329,17 +431,24 @@
       
         
           
-            <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># __*__ coding:utf-8 __*__</span><br><span class="line"></span><br><span class="line">import sys,time</span><br><span class="line">from PyQt4.Qt import *</span><br><span class="line">from PyQt4.QtWebKit import *</span><br><span class="line">from PyQt4.QtCore import *</span><br><span class="line">from PyQt4 import QtGui</span><br><span class="line">import ConfigParser</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class WebView(QWebView):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super(WebView,self).__init__()</span><br><span class="line"></span><br><span class="line">        #读取配置文件，配置文件管理访问的url及窗口是否全屏</span><br><span class="line">        cf = ConfigParser.ConfigParser()</span><br><span class="line">        cf.read('WeChat.conf')</span><br><span class="line">        url = cf.get('WeChat','url')</span><br><span class="line">        showFullScreen_enable = cf.get('WeChat','showFullScreen_enable')</span><br><span class="line"></span><br><span class="line">        #打开url</span><br><span class="line">        self.load(QUrl(url))</span><br><span class="line">        self.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)</span><br><span class="line">        self.page().linkClicked.connect(self.linkClicked)</span><br><span class="line"></span><br><span class="line">        #设置窗口标题、图标</span><br><span class="line">        self.setWindowTitle(u'二维码扫码')</span><br><span class="line">        self.setWindowIcon(QtGui.QIcon('WeChat.png'))</span><br><span class="line"></span><br><span class="line">        #创建托盘</span><br><span class="line">        self.createTrayIcon()</span><br><span class="line">        #托盘点击事件</span><br><span class="line">        self.trayIcon.activated.connect(self.iconActivated)</span><br><span class="line"></span><br><span class="line">        if showFullScreen_enable == 'True':</span><br><span class="line">            self.showFullScreen()</span><br><span class="line">        else:</span><br><span class="line">            pass</span><br><span class="line"></span><br><span class="line">        self.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def linkClicked(self, url):</span><br><span class="line">        self.load(QUrl(url))</span><br><span class="line"></span><br><span class="line">    def closeEvent(self, event):</span><br><span class="line">        QtGui.QMessageBox.about(self,u'提示 ',u'不允许关闭! ')</span><br><span class="line">        event.ignore()</span><br><span class="line"></span><br><span class="line">    def focusOutEvent(self, QFocusEvent):</span><br><span class="line">        self.trayIcon.showMessage("警告", "窗口已失焦", 2)</span><br><span class="line"></span><br><span class="line">    def focusInEvent(self, QFocusEvent):</span><br><span class="line">        self.trayIcon.showMessage("提示", "窗口已聚焦", 1)</span><br><span class="line"></span><br><span class="line">    def createTrayIcon(self):</span><br><span class="line">         icon = QtGui.QIcon('WeChat.png')</span><br><span class="line">         self.trayIcon = QtGui.QSystemTrayIcon(self)</span><br><span class="line">         self.trayIcon.setIcon(icon)</span><br><span class="line">         self.trayIcon.setToolTip(self.tr("二维码扫码"))</span><br><span class="line">         self.trayIcon.setVisible(True)</span><br><span class="line"></span><br><span class="line">    def iconActivated(self, reason):</span><br><span class="line">        if reason in (QtGui.QSystemTrayIcon.Trigger, QtGui.QSystemTrayIcon.DoubleClick):</span><br><span class="line">            self.showFullScreen()</span><br><span class="line">        elif reason == QtGui.QSystemTrayIcon.MiddleClick:</span><br><span class="line">            self.showFullScreen()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == '__main__':</span><br><span class="line"></span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line"></span><br><span class="line">    #解决打包exe后，页面中文乱码问题</span><br><span class="line">    app.Encoding(QApplication.UnicodeUTF8)</span><br><span class="line">    utfcodec = QTextCodec.codecForName("UTF-8")</span><br><span class="line">    QTextCodec.setCodecForTr(utfcodec)</span><br><span class="line">    QTextCodec.setCodecForLocale(utfcodec)</span><br><span class="line">    QTextCodec.setCodecForCStrings(utfcodec)</span><br><span class="line"></span><br><span class="line">    webView = WebView()</span><br><span class="line"></span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+            <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env <span class="keyword">python</span></div><div class="line"># __*__ codin<span class="variable">g:utf</span>-<span class="number">8</span> __*__</div><div class="line"></div><div class="line">import sys,time</div><div class="line">from PyQt4.Qt import *</div><div class="line">from PyQt4.QtWebKit import *</div><div class="line">from PyQt4.QtCore import *</div><div class="line">from PyQt4 import QtGui</div><div class="line">import ConfigParser</div><div class="line"></div><div class="line"></div><div class="line">class WebView(QWebView):</div><div class="line">    def __init__(self):</div><div class="line">        super(WebView,self).__init__()</div><div class="line"></div><div class="line">        #读取配置文件，配置文件管理访问的url及窗口是否全屏</div><div class="line">        <span class="keyword">cf</span> = ConfigParser.ConfigParser()</div><div class="line">        <span class="keyword">cf</span>.<span class="keyword">read</span>(<span class="string">'WeChat.conf'</span>)</div><div class="line">        url = <span class="keyword">cf</span>.<span class="built_in">get</span>(<span class="string">'WeChat'</span>,<span class="string">'url'</span>)</div><div class="line">        showFullScreen_enable = <span class="keyword">cf</span>.<span class="built_in">get</span>(<span class="string">'WeChat'</span>,<span class="string">'showFullScreen_enable'</span>)</div><div class="line"></div><div class="line">        #打开url</div><div class="line">        self.load(QUrl(url))</div><div class="line">        self.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)</div><div class="line">        self.page().linkClicked.connect(self.linkClicked)</div><div class="line"></div><div class="line">        #设置窗口标题、图标</div><div class="line">        self.setWindowTitle(<span class="keyword">u</span><span class="string">'二维码扫码'</span>)</div><div class="line">        self.setWindowIcon(QtGui.QIcon(<span class="string">'WeChat.png'</span>))</div><div class="line"></div><div class="line">        #创建托盘</div><div class="line">        self.createTrayIcon()</div><div class="line">        #托盘点击事件</div><div class="line">        self.trayIcon.activated.connect(self.iconActivated)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> showFullScreen_enable == <span class="string">'True'</span>:</div><div class="line">            self.showFullScreen()</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            pass</div><div class="line"></div><div class="line">        self.show()</div><div class="line"></div><div class="line"></div><div class="line">    def linkClicked(self, url):</div><div class="line">        self.load(QUrl(url))</div><div class="line"></div><div class="line">    def closeEvent(self, event):</div><div class="line">        QtGui.QMessageBox.about(self,<span class="keyword">u</span><span class="string">'提示 '</span>,<span class="keyword">u</span><span class="string">'不允许关闭! '</span>)</div><div class="line">        event.ignore()</div><div class="line"></div><div class="line">    def focusOutEvent(self, QFocusEvent):</div><div class="line">        self.trayIcon.showMessage(<span class="string">"警告"</span>, <span class="string">"窗口已失焦"</span>, <span class="number">2</span>)</div><div class="line"></div><div class="line">    def focusInEvent(self, QFocusEvent):</div><div class="line">        self.trayIcon.showMessage(<span class="string">"提示"</span>, <span class="string">"窗口已聚焦"</span>, <span class="number">1</span>)</div><div class="line"></div><div class="line">    def createTrayIcon(self):</div><div class="line">         icon = QtGui.QIcon(<span class="string">'WeChat.png'</span>)</div><div class="line">         self.trayIcon = QtGui.QSystemTrayIcon(self)</div><div class="line">         self.trayIcon.setIcon(icon)</div><div class="line">         self.trayIcon.setToolTip(self.<span class="keyword">tr</span>(<span class="string">"二维码扫码"</span>))</div><div class="line">         self.trayIcon.setVisible(True)</div><div class="line"></div><div class="line">    def iconActivated(self, reason):</div><div class="line">        <span class="keyword">if</span> reason in (QtGui.QSystemTrayIcon.Trigger, QtGui.QSystemTrayIcon.DoubleClick):</div><div class="line">            self.showFullScreen()</div><div class="line">        elif reason == QtGui.QSystemTrayIcon.MiddleClick:</div><div class="line">            self.showFullScreen()</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line"></div><div class="line">    app = QApplication(sys.<span class="built_in">argv</span>)</div><div class="line"></div><div class="line">    #解决打包<span class="keyword">exe</span>后，页面中文乱码问题</div><div class="line">    app.Encoding(QApplication.UnicodeUTF8)</div><div class="line">    utfcodec = QTextCodec.codecForName(<span class="string">"UTF-8"</span>)</div><div class="line">    QTextCodec.setCodecForTr(utfcodec)</div><div class="line">    QTextCodec.setCodecForLocale(utfcodec)</div><div class="line">    QTextCodec.setCodecForCStrings(utfcodec)</div><div class="line"></div><div class="line">    webView = WebView()</div><div class="line"></div><div class="line">    sys.<span class="keyword">exit</span>(app.exec_())</div></pre></td></tr></table></figure>
           
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -349,6 +458,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -356,13 +469,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
@@ -370,38 +497,42 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/" itemprop="url">
-                  Mysql主从复制及读写分离的实现-MyCat
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/" itemprop="url">Mysql主从复制及读写分离的实现-MyCat</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T20:26:27+08:00" content="2016-03-10">
-              2016-03-10
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-10T20:26:27+08:00">
+                2016-03-10
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
                   </a>
@@ -409,41 +540,41 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
              <span id="/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/" class="leancloud_visitors" data-flag-title="Mysql主从复制及读写分离的实现-MyCat">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -451,7 +582,7 @@
 
       
         
-          <h1 id="MyCat介绍">MyCat介绍</h1><h2 id="什么是MyCat">什么是MyCat</h2><ul>
+          <h1 id="MyCat介绍"><a href="#MyCat介绍" class="headerlink" title="MyCat介绍"></a>MyCat介绍</h1><h2 id="什么是MyCat"><a href="#什么是MyCat" class="headerlink" title="什么是MyCat"></a>什么是MyCat</h2><ul>
 <li>一个彻底开源的，面向企业应用开发的大数据库集群</li>
 <li>支持事务、ACID、可以替代MySQL的加强版数据库</li>
 <li>一个可以视为MySQL集群的企业级数据库，用来替代昂贵的Oracle集群</li>
@@ -459,24 +590,33 @@
 <li>结合传统数据库和新型分布式数据仓库的新一代企业级数据库产品</li>
 <li>一个新颖的数据库中间件产品</li>
 </ul>
-<p>MyCat官网：<a href="http://www.mycat.org.cn/">http://www.mycat.org.cn/</a></p>
-<h2 id="优势">优势</h2><p>copy官方的说明：<br>基于阿里开源的Cobar产品而研发，Cobar的稳定性、可靠性、优秀的架构和性能以及众多成熟的使用案例使得MYCAT一开始就拥有一个很好的起点，站在巨人的肩膀上，我们能看到更远。业界优秀的开源项目和创新思路被广泛融入到MYCAT的基因中，使得MYCAT在很多方面都领先于目前其他一些同类的开源项目，甚至超越某些商业产品。</p>
+<p>MyCat官网：<a href="http://www.mycat.org.cn/" target="_blank" rel="external">http://www.mycat.org.cn/</a></p>
+<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><p>copy官方的说明：<br>基于阿里开源的Cobar产品而研发，Cobar的稳定性、可靠性、优秀的架构和性能以及众多成熟的使用案例使得MYCAT一开始就拥有一个很好的起点，站在巨人的肩膀上，我们能看到更远。业界优秀的开源项目和创新思路被广泛融入到MYCAT的基因中，使得MYCAT在很多方面都领先于目前其他一些同类的开源项目，甚至超越某些商业产品。</p>
 <p>MYCAT背后有一支强大的技术团队，其参与者都是5年以上资深软件工程师、架构师、DBA等，优秀的技术团队保证了MYCAT的产品质量。</p>
 <p>MYCAT并不依托于任何一个商业公司，因此不像某些开源项目，将一些重要的特性封闭在其商业产品中，使得开源项目成了一个摆设（猜测是说的淘宝的TDDL，只开源动态数据源，分表分库部分还未开源）。</p>
-          <div class="post-more-link text-center">
+          <!--noindex-->
+          <div class="post-button text-center">
             <a class="btn" href="/2016/03/10/Mysql-Master-slave-Read-Write-Splitting-MyCat/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -486,6 +626,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -493,13 +637,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
@@ -507,38 +665,42 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/" itemprop="url">
-                  Mysql主从复制及读写分离的实现-Amoeba
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/" itemprop="url">Mysql主从复制及读写分离的实现-Amoeba</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-05T20:26:27+08:00" content="2016-03-05">
-              2016-03-05
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-05T20:26:27+08:00">
+                2016-03-05
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
                   </a>
@@ -546,41 +708,41 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
              <span id="/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/" class="leancloud_visitors" data-flag-title="Mysql主从复制及读写分离的实现-Amoeba">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -588,23 +750,33 @@
 
       
         
-          <h1 id="Amoeba简介">Amoeba简介</h1><p>Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba for Mysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的 时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分离、可路由相关的到目标数据库、可并发请求多台数据库合并结果。 通过Amoeba你能够完成多数据源的高可用、负载均衡、数据切片的功能，目前Amoeba已在很多企业的生产线上面使用</p>
+          <p>#Amoeba简介</p>
+<p>Amoeba(变形虫)项目,该开源框架于2008年开始发布一款 Amoeba for Mysql软件。这个软件致力于MySQL的分布式数据库前端代理层，它主要在应用层访问MySQL的 时候充当SQL路由功能，专注于分布式数据库代理层（Database Proxy）开发。座落与 Client、DB Server(s)之间,对客户端透明。具有负载均衡、高可用性、SQL 过滤、读写分离、可路由相关的到目标数据库、可并发请求多台数据库合并结果。 通过Amoeba你能够完成多数据源的高可用、负载均衡、数据切片的功能，目前Amoeba已在很多企业的生产线上面使用</p>
 <p>Amoeba优缺点<br>优点：<br>1、降低费用，简单易用<br>2、提高系统整体可用性<br>3、易于扩展处理能力与系统规模<br>4、可以直接实现读写分离及负载均衡效果，而不用修改代码<br>缺点：<br>1、不支持事务与存储过程<br>2、暂不支持分库分表，amoeba目前只做到分数据库实例<br>3、不适合从amoeba导数据的场景或者对大数据量查询的query并不合适（比如一次请求返回10w以上甚至更多数据的场合）</p>
 <p>Mysql GTID<br>Mysql 5.6的新特性之一，加入了全局事务性ID(GTID:Global Transactions Identifier)来强化数据库的主备一致性，故障恢复，以及容错能力;也使得复制功能的配置、监控及管理变得更加易于实现，且更加健壮。</p>
-          <div class="post-more-link text-center">
+          <!--noindex-->
+          <div class="post-button text-center">
             <a class="btn" href="/2016/03/05/Mysql-Master-slave-Read-Write-Splitting-Amoeba/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -614,6 +786,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -621,13 +797,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2016/02/08/Nginx-ngx-pagespeed/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
@@ -635,38 +825,207 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2015/10/15/book-list/" itemprop="url">
-                  阅读书单
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/02/08/Nginx-ngx-pagespeed/" itemprop="url">Nginx配置ngx_pagespeed</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-15T21:06:27+08:00" content="2015-10-15">
-              2015-10-15
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-08T15:26:27+08:00">
+                2016-02-08
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/02/08/Nginx-ngx-pagespeed/" class="leancloud_visitors" data-flag-title="Nginx配置ngx_pagespeed">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="pagespeed介绍"><a href="#pagespeed介绍" class="headerlink" title="pagespeed介绍"></a>pagespeed介绍</h1><p>pagespeed是 Goolge 为 Apache 和 nginx 开发的前端优化扩展模块，其中适用 Apache 环境的叫 mod_pagespeed，适用于 nginx 环境的叫 ngx_pagespeed。</p>
+<p>pagespeed 的功能包括但不限于以下方面：</p>
+<p>优化传输带宽（过滤）（压缩图片、CSS、JS文件，去除html空白、注释…）、降低请求（CSS、JS文件合并、图片雪碧、识别并重定向常用JS库、缓存控制）、域名映射（支持CDN）、提升客户端体验（图片预加载、延迟加载，移动端图像优化），同时还提供对 https 的支持。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装方法 Google pagespeed 网站上有<a href="https://developers.google.com/speed/pagespeed/module/build_ngx_pagespeed_from_source" target="_blank" rel="external">详细介绍</a>，复制过来方便不能翻墙的朋友查看。</p>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>RedHat, CentOS, or Fedora:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum install gcc-c++ pcre-devel zlib-devel make unzip</div></pre></td></tr></table></figure></p>
+<p>Ubuntu or Debian:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential zlib1g-dev libpcre3 libpcre3-dev unzip</div></pre></td></tr></table></figure></p>
+<h2 id="安装ngx-pagespeed"><a href="#安装ngx-pagespeed" class="headerlink" title="安装ngx_pagespeed"></a>安装ngx_pagespeed</h2><p>目前 ngx_pagespeed 最新的版本是 1.12.34.2 beta版（要求 gcc ≥ 4.8 or clang ≥ 3.3），查看<a href="https://modpagespeed.com/doc/release_notes" target="_blank" rel="external">最新版本</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /opt</div><div class="line">NPS_VERSION=1.12.34.2</div><div class="line">wget https://github.com/pagespeed/ngx_pagespeed/archive/v$&#123;NPS_VERSION&#125;-beta.zip</div><div class="line">unzip v$&#123;NPS_VERSION&#125;-beta.zip</div><div class="line">cd ngx_pagespeed-$&#123;NPS_VERSION&#125;-beta/</div><div class="line">wget https://dl.google.com/dl/page-speed/psol/$&#123;NPS_VERSION&#125;-x64.tar.gz</div><div class="line">tar -xzvf $&#123;NPS_VERSION&#125;-x64.tar.gz</div></pre></td></tr></table></figure></p>
+<p>下载 nginx 并编译 ngx_pagespeed 模块</p>
+<p>编译 ngx_pagespeed 模块</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cd</div><div class="line"><span class="meta">#</span> check http://nginx.org/en/download.html for the latest version</div><div class="line">NGINX_VERSION=1.10.3</div><div class="line">wget http://nginx.org/download/nginx-$&#123;NGINX_VERSION&#125;.tar.gz</div><div class="line">tar -xvzf nginx-$&#123;NGINX_VERSION&#125;.tar.gz</div><div class="line">cd nginx-$&#123;NGINX_VERSION&#125;/</div><div class="line">./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_gzip_static_module --with-http_ssl_module --add-module=/opt/ngx_pagespeed-1.12.34.2-beta</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+<p>因为ngx_pagespeed模块的编译需要gcc ≥ 4.8 or clang ≥ 3.3，而我们使用的centos6系列gcc源版本只有4.7。官网给了一个解决方案：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rpm --import https://linux.web.cern.ch/linux/scientific6/docs/repository/cern/slc6X/i386/RPM-GPG-KEY-cern</div><div class="line">wget -O /etc/yum.repos.d/slc6-devtoolset.repo https://linux.web.cern.ch/linux/scientific6/docs/repository/cern/devtoolset/slc6-devtoolset.repo</div><div class="line">yum install devtoolset-2-gcc-c++ devtoolset-2-binutils</div></pre></td></tr></table></figure></p>
+<p>然后编译nginx的时候使用<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_gzip_static_module --with-http_ssl_module --add-module=/opt/ngx_pagespeed-1.12.34.2-beta --with-cc=/opt/rh/devtoolset-2/root/usr/bin/gcc</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
+<p>我理解的是通过yum源将高版本的gcc已经安装到了/opt/rh/devtoolset-2/root/usr/bin/gcc目录下，然后编译的时候指定由高版本的gcc来进行编译。</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2015/10/15/book-list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/10/15/book-list/" itemprop="url">阅读书单</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-15T21:06:27+08:00">
+                2015-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/读书/" itemprop="url" rel="index">
                     <span itemprop="name">读书</span>
                   </a>
@@ -674,41 +1033,41 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/15/book-list/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/15/book-list/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
              <span id="/2015/10/15/book-list/" class="leancloud_visitors" data-flag-title="阅读书单">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -720,14 +1079,14 @@
             <ul>
 <li><p><strong>2015.07阅读清单</strong></p>
 <ul>
-<li>[x] Linux系统命令及Shell脚本实践指南（纸质）</li>
-<li>[x] 高性能Linux服务器构建实战——系统安全、故障排查、自动化运维与集群架构（纸质）</li>
+<li style="list-style: none"><input type="checkbox" checked> Linux系统命令及Shell脚本实践指南（纸质）</li>
+<li style="list-style: none"><input type="checkbox" checked> 高性能Linux服务器构建实战—-系统安全、故障排查、自动化运维与集群架构（纸质）</li>
 </ul>
 </li>
 <li><p><strong>2015.10阅读清单</strong></p>
 <ul>
-<li>[ ] 构建高性能Web站点（纸质）</li>
-<li>[ ] 深入理解Nginx（纸质）</li>
+<li style="list-style: none"><input type="checkbox"> 构建高性能Web站点（纸质）</li>
+<li style="list-style: none"><input type="checkbox"> 深入理解Nginx（纸质）</li>
 </ul>
 </li>
 </ul>
@@ -736,12 +1095,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -751,6 +1117,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -758,13 +1128,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2015/07/16/Shell-Study/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
@@ -772,168 +1156,42 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2015/07/16/CentOS-Oracle-installation/" itemprop="url">
-                  CentOS下Oracle安装
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2015/07/16/Shell-Study/" itemprop="url">TIPS</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
-              2015-07-16
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-16T20:26:27+08:00">
+                2015-07-16
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
+                <span class="post-meta-item-text">分类于</span>
               
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/16/CentOS-Oracle-installation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/CentOS-Oracle-installation/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2015/07/16/CentOS-Oracle-installation/" class="leancloud_visitors" data-flag-title="CentOS下Oracle安装">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="安装前准备">安装前准备</h1><h2 id="安装依赖包">安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">binutils-<span class="number">2.17</span>.<span class="number">50.0</span>.<span class="number">6</span></span><br><span class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span></span><br><span class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span> (<span class="number">32</span> bit)</span><br><span class="line">elfutils-libelf-<span class="number">0.125</span></span><br><span class="line">elfutils-libelf-devel-<span class="number">0.125</span></span><br><span class="line">gcc-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">gcc-<span class="keyword">c</span>++-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span></span><br><span class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span> (<span class="number">32</span> bit)</span><br><span class="line">glibc-common-<span class="number">2.5</span></span><br><span class="line">glibc-devel-<span class="number">2.5</span></span><br><span class="line">glibc-devel-<span class="number">2.5</span> (<span class="number">32</span> bit)</span><br><span class="line">glibc-headers-<span class="number">2.5</span></span><br><span class="line">ksh-<span class="number">20060214</span></span><br><span class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span></span><br><span class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</span><br><span class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span></span><br><span class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</span><br><span class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</span><br><span class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</span><br><span class="line">libstdc++-devel <span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line"><span class="keyword">make</span>-<span class="number">3.81</span></span><br><span class="line">sysstat-<span class="number">7.0</span>.<span class="number">2</span></span><br><span class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">libXp</span><br></pre></td></tr></table></figure>
-<p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
-<p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 注意：该程序包与ksh冲突，如果已经安装ksh，建议使用命令 rpm -<span class="keyword">e</span> ksh-* 卸载</span><br><span class="line"></span><br><span class="line">rpm -ivh pdksh-<span class="number">5.2</span>.<span class="number">14</span>-<span class="number">37</span>.el5_8.<span class="number">1</span>.x86_64.rpm</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/16/CentOS-Oracle-installation/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
               
-                
-                <a class="post-title-link" href="/2015/07/16/Shell-Study/" itemprop="url">
-                  TIPS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
-              2015-07-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/资源/" itemprop="url" rel="index">
                     <span itemprop="name">资源</span>
                   </a>
@@ -941,41 +1199,41 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/16/Shell-Study/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/Shell-Study/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
              <span id="/2015/07/16/Shell-Study/" class="leancloud_visitors" data-flag-title="TIPS">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -984,11 +1242,11 @@
       
         
           
-            <h2 id="OPS运维工具">OPS运维工具</h2><p><a href="http://mr-wang.qiniudn.com/Ansible-notes.pdf" target="_blank" rel="external">Ansible中文手册</a></p>
+            <h2 id="OPS运维工具"><a href="#OPS运维工具" class="headerlink" title="OPS运维工具"></a>OPS运维工具</h2><p><a href="http://mr-wang.qiniudn.com/Ansible-notes.pdf" target="_blank" rel="external">Ansible中文手册</a></p>
 <p><a href="http://www.cnblogs.com/deerchao/archive/2006/08/24/zhengzhe30fengzhongjiaocheng.html" target="_blank" rel="external">正则表达式30分钟入门教程</a></p>
-<h2 id="性能调优">性能调优</h2><p><a href="http://mr-wang.qiniudn.com/performance-optimization.pdf" target="_blank" rel="external">性能分析笔记</a></p>
+<h2 id="性能调优"><a href="#性能调优" class="headerlink" title="性能调优"></a>性能调优</h2><p><a href="http://mr-wang.qiniudn.com/performance-optimization.pdf" target="_blank" rel="external">性能分析笔记</a></p>
 <p><a href="http://www.linuxprocess.com/" target="_blank" rel="external">Linux进程</a></p>
-<h2 id="运维相关">运维相关</h2><p><a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank" rel="external">Linux Shell命令</a></p>
+<h2 id="运维相关"><a href="#运维相关" class="headerlink" title="运维相关"></a>运维相关</h2><p><a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank" rel="external">Linux Shell命令</a></p>
 <p><a href="http://linux.51yip.com/" target="_blank" rel="external">Linux 命令手册</a></p>
 <p><a href="http://www.gslb.cn/list.htm" target="_blank" rel="external">GSLB全局负载均衡系统是如何构建</a></p>
 
@@ -996,12 +1254,19 @@
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1011,6 +1276,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1018,13 +1287,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2015/07/16/Linux-Boot-Sequence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
@@ -1032,38 +1315,42 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/" itemprop="url">
-                  Nginx+Tomcat+Memcached集群
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2015/07/16/Linux-Boot-Sequence/" itemprop="url">linux的运行级别及自启动程序</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
-              2015-07-16
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-16T20:26:27+08:00">
+                2015-07-16
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
                   </a>
@@ -1071,174 +1358,41 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/Nginx-Tomcat-Memcached-Cluster/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/" class="leancloud_visitors" data-flag-title="Nginx+Tomcat+Memcached集群">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="部署环境">部署环境</h2><p>系统：Centos<br>软件及依赖包：<br>Nginx:<br>nginx-1.6.2.tar.gz<br>(<a href="http://nginx.org/download/nginx-1.6.2.tar.gz">http://nginx.org/download/nginx-1.6.2.tar.gz</a>)<br>pcre-8.36.tar.gz (ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz)<br>zlib-1.2.8.tar.gz(<a href="http://zlib.net/zlib-1.2.8.tar.gz">http://zlib.net/zlib-1.2.8.tar.gz</a>)</p>
-<p>memcached：<br>memcached-1.4.22.tar.gz(<a href="http://memcached.org/files/memcached-1.4.22.tar.gz">http://memcached.org/files/memcached-1.4.22.tar.gz</a>)<br>libevent-2.0.22-stable.tar.gz(<a href="http://libevent.org/">http://libevent.org/</a>)</p>
-<p>memcached-session-manager：<br><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/">下载地址</a></p>
-<p>Tomcat：<br>apache-tomcat-7.0.59.tar.gz (<a href="http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.tar.gz">http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.tar.gz</a>)<br>jdk-7u72-linux-x64.tar.gz</p>
-<p>jar包：<br>我采用的是截止目前最新的版本，其中序列化方式是可选的。<br>序列化方式使用kryo时,jar包：<a href="http://wy-uploads.qiniudn.com/MSM_kryo.zip">下载地址</a><br><img src="http://wy-uploads.qiniudn.com/MSM_1.png" alt="此处输入图片的描述"></p>
-<p>序列化方式使用javolution时,jar包：<a href="http://wy-uploads.qiniudn.com/MSM_javolution.zip">下载地址</a><br><img src="http://wy-uploads.qiniudn.com/MSM_2.png" alt="此处输入图片的描述"></p>
-<p>了解到kryo序列化方式效率最高。</p>
-<p>相关序列方式，所需不同jar包，可参考<a href="https://code.google.com/p/memcached-session-manager/wiki/SetupAndConfiguration">官方文档</a></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/16/Linux-Boot-Sequence/" itemprop="url">
-                  linux的运行级别及自启动程序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
-              2015-07-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/16/Linux-Boot-Sequence/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/Linux-Boot-Sequence/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
              <span id="/2015/07/16/Linux-Boot-Sequence/" class="leancloud_visitors" data-flag-title="linux的运行级别及自启动程序">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1246,23 +1400,32 @@
 
       
         
-          <h2 id="Linux运行级别：">Linux运行级别：</h2><p>Linux运行级别有七种：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> - 停机（千万不能把initdefault 设置为<span class="number">0</span> ）</span><br><span class="line"><span class="number">1</span> - 单用户模式</span><br><span class="line"><span class="number">2</span> - 多用户，没有 NFS</span><br><span class="line"><span class="number">3</span> - 完全多用户模式(标准的运行级)</span><br><span class="line"><span class="number">4</span> - 没有用到</span><br><span class="line"><span class="number">5</span> - X11 （xwindow)</span><br><span class="line"><span class="number">6</span> - 重新启动 （千万不要把initdefault 设置为<span class="number">6</span> ）</span><br></pre></td></tr></table></figure>
+          <h2 id="Linux运行级别："><a href="#Linux运行级别：" class="headerlink" title="Linux运行级别："></a>Linux运行级别：</h2><p>Linux运行级别有七种：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span> - 停机（千万不能把initdefault 设置为<span class="number">0</span> ）</div><div class="line"><span class="number">1</span> - 单用户模式</div><div class="line"><span class="number">2</span> - 多用户，没有 NFS</div><div class="line"><span class="number">3</span> - 完全多用户模式(标准的运行级)</div><div class="line"><span class="number">4</span> - 没有用到</div><div class="line"><span class="number">5</span> - X11 （xwindow)</div><div class="line"><span class="number">6</span> - 重新启动 （千万不要把initdefault 设置为<span class="number">6</span> ）</div></pre></td></tr></table></figure>
 <p>默认的运行级别在/etc/inittab文件中进行设置。</p>
-          <div class="post-more-link text-center">
+          <!--noindex-->
+          <div class="post-button text-center">
             <a class="btn" href="/2015/07/16/Linux-Boot-Sequence/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1272,6 +1435,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1279,13 +1446,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2015/07/16/Nginx-Tomcat-Memcached-Cluster/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
@@ -1293,38 +1474,42 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2015/07/16/Install-Vsftpd/" itemprop="url">
-                  Vsftpd安装配置
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/" itemprop="url">Nginx+Tomcat+Memcached集群</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
-              2015-07-16
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-16T20:26:27+08:00">
+                2015-07-16
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
                   </a>
@@ -1332,41 +1517,41 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/16/Install-Vsftpd/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/Install-Vsftpd/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
-             <span id="/2015/07/16/Install-Vsftpd/" class="leancloud_visitors" data-flag-title="Vsftpd安装配置">
-               &nbsp; | &nbsp;
+             <span id="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/" class="leancloud_visitors" data-flag-title="Nginx+Tomcat+Memcached集群">
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1374,24 +1559,37 @@
 
       
         
-          <p>安装vsftp</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -<span class="keyword">y</span> vsftpd</span><br></pre></td></tr></table></figure>
-<p>将vsftpd加入系统自启动，并启动服务</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd start</span><br><span class="line">chkconfig --level <span class="number">3</span> vsftpd <span class="keyword">on</span></span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/16/Install-Vsftpd/#more" rel="contents">
+          <h2 id="部署环境"><a href="#部署环境" class="headerlink" title="部署环境"></a>部署环境</h2><p>系统：Centos<br>软件及依赖包：<br>Nginx:<br>nginx-1.6.2.tar.gz<br>(<a href="http://nginx.org/download/nginx-1.6.2.tar.gz" target="_blank" rel="external">http://nginx.org/download/nginx-1.6.2.tar.gz</a>)<br>pcre-8.36.tar.gz (ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz)<br>zlib-1.2.8.tar.gz(<a href="http://zlib.net/zlib-1.2.8.tar.gz" target="_blank" rel="external">http://zlib.net/zlib-1.2.8.tar.gz</a>)</p>
+<p>memcached：<br>memcached-1.4.22.tar.gz(<a href="http://memcached.org/files/memcached-1.4.22.tar.gz" target="_blank" rel="external">http://memcached.org/files/memcached-1.4.22.tar.gz</a>)<br>libevent-2.0.22-stable.tar.gz(<a href="http://libevent.org/" target="_blank" rel="external">http://libevent.org/</a>)</p>
+<p>memcached-session-manager：<br><a href="http://repo1.maven.org/maven2/de/javakaffee/msm/" target="_blank" rel="external">下载地址</a></p>
+<p>Tomcat：<br>apache-tomcat-7.0.59.tar.gz (<a href="http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.tar.gz" target="_blank" rel="external">http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.59/bin/apache-tomcat-7.0.59.tar.gz</a>)<br>jdk-7u72-linux-x64.tar.gz</p>
+<p>jar包：<br>我采用的是截止目前最新的版本，其中序列化方式是可选的。<br>序列化方式使用kryo时,jar包：<a href="http://wy-uploads.qiniudn.com/MSM_kryo.zip" target="_blank" rel="external">下载地址</a><br><img src="http://wy-uploads.qiniudn.com/MSM_1.png" alt="此处输入图片的描述"></p>
+<p>序列化方式使用javolution时,jar包：<a href="http://wy-uploads.qiniudn.com/MSM_javolution.zip" target="_blank" rel="external">下载地址</a><br><img src="http://wy-uploads.qiniudn.com/MSM_2.png" alt="此处输入图片的描述"></p>
+<p>了解到kryo序列化方式效率最高。</p>
+<p>相关序列方式，所需不同jar包，可参考<a href="https://code.google.com/p/memcached-session-manager/wiki/SetupAndConfiguration" target="_blank" rel="external">官方文档</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1401,6 +1599,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1408,13 +1610,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2015/07/16/CentOS-Oracle-installation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
@@ -1422,38 +1638,42 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2015/07/16/CentOS-nginx-installation/" itemprop="url">
-                  CentOS下nginx安装
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2015/07/16/CentOS-Oracle-installation/" itemprop="url">CentOS下Oracle安装</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
-              2015-07-16
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-16T20:26:27+08:00">
+                2015-07-16
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
                   </a>
@@ -1461,41 +1681,41 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/16/CentOS-nginx-installation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/CentOS-nginx-installation/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
-             <span id="/2015/07/16/CentOS-nginx-installation/" class="leancloud_visitors" data-flag-title="CentOS下nginx安装">
-               &nbsp; | &nbsp;
+             <span id="/2015/07/16/CentOS-Oracle-installation/" class="leancloud_visitors" data-flag-title="CentOS下Oracle安装">
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -1503,24 +1723,34 @@
 
       
         
-          <p>1.最小化安装的CentOS没有安装gcc，首先安装gcc、g++和c++库；</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -<span class="keyword">y</span> install gcc-<span class="keyword">c</span>++</span><br></pre></td></tr></table></figure>
-<p>2.安装pcre库，pcre库是为了使nginx支持http rewrite模块；</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/</span><br><span class="line">wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.gz</span><br><span class="line">tar -zxvf pcre-8.35.tar.gz</span><br><span class="line">cd pcre-8.35</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/16/CentOS-nginx-installation/#more" rel="contents">
+          <h1 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h1><h2 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">binutils-<span class="number">2.17</span>.<span class="number">50.0</span>.<span class="number">6</span></div><div class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span></div><div class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span> (<span class="number">32</span> bit)</div><div class="line">elfutils-libelf-<span class="number">0.125</span></div><div class="line">elfutils-libelf-devel-<span class="number">0.125</span></div><div class="line">gcc-<span class="number">4.1</span>.<span class="number">2</span></div><div class="line">gcc-<span class="keyword">c</span>++-<span class="number">4.1</span>.<span class="number">2</span></div><div class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span></div><div class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span> (<span class="number">32</span> bit)</div><div class="line">glibc-common-<span class="number">2.5</span></div><div class="line">glibc-devel-<span class="number">2.5</span></div><div class="line">glibc-devel-<span class="number">2.5</span> (<span class="number">32</span> bit)</div><div class="line">glibc-headers-<span class="number">2.5</span></div><div class="line">ksh-<span class="number">20060214</span></div><div class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span></div><div class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</div><div class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span></div><div class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</div><div class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span></div><div class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</div><div class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span></div><div class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</div><div class="line">libstdc++-devel <span class="number">4.1</span>.<span class="number">2</span></div><div class="line"><span class="keyword">make</span>-<span class="number">3.81</span></div><div class="line">sysstat-<span class="number">7.0</span>.<span class="number">2</span></div><div class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></div><div class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></div><div class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></div><div class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></div><div class="line">libXp</div></pre></td></tr></table></figure>
+<p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
+<p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 注意：该程序包与ksh冲突，如果已经安装ksh，建议使用命令 rpm -<span class="keyword">e</span> ksh-* 卸载</div><div class="line"></div><div class="line">rpm -ivh pdksh-<span class="number">5.2</span>.<span class="number">14</span>-<span class="number">37</span>.el5_8.<span class="number">1</span>.x86_64.rpm</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/07/16/CentOS-Oracle-installation/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -1530,6 +1760,169 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2015/07/16/CentOS-System-Performance-tuning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/07/16/CentOS-System-Performance-tuning/" itemprop="url">CentOS 安装与调优配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-16T20:26:27+08:00">
+                2015-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2015/07/16/CentOS-System-Performance-tuning/" class="leancloud_visitors" data-flag-title="CentOS 安装与调优配置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>至少2个分区，/以及swap分区。另外设置独立/boot分区。<br>所以生产环境分3个分区。</p>
+<p>分区案例：<a href="http://oldboy.blog.51cto.com/2561410/634725" target="_blank" rel="external">http://oldboy.blog.51cto.com/2561410/634725</a></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#分区查看</div><div class="line">df -Th</div><div class="line"></div><div class="line">Filesystem     Type   Size  Used Avail Use% Mounted <span class="keyword">on</span></div><div class="line">/dev/sda2      ext4   <span class="number">8.6</span>G  <span class="number">2.5</span>G  <span class="number">5.7</span>G  <span class="number">31</span>% /</div><div class="line">tmpfs          tmpfs  <span class="number">242</span>M     <span class="number">0</span>  <span class="number">242</span>M   <span class="number">0</span>% /dev/shm</div><div class="line">/dev/sda1      ext4   <span class="number">190</span>M   <span class="number">53</span>M  <span class="number">128</span>M  <span class="number">30</span>% /boot</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/07/16/CentOS-System-Performance-tuning/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -1562,31 +1955,39 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://mr-wang.qiniudn.com/mr_wang.jpg"
                alt="Mr wang" />
           <p class="site-author-name" itemprop="name">Mr wang</p>
-          <p class="site-description motion-element" itemprop="description">运维笔记</p>
+           
+              <p class="site-description motion-element" itemprop="description">运维笔记</p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -1594,8 +1995,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -1605,60 +2008,41 @@
         </nav>
 
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
 
         <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="#" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/xiaowang0624" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  weibo
-                </a>
-              </span>
-            
-          
         </div>
 
         
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-            <div class="links-of-blogroll-title">Links</div>
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank">Linux工具箱</a>
+                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" title="Linux工具箱" target="_blank">Linux工具箱</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://linux.51yip.com/" target="_blank">Linux命令手册</a>
+                  <a href="http://linux.51yip.com/" title="Linux命令手册" target="_blank">Linux命令手册</a>
                 </li>
               
             </ul>
-          
-        </div>
+          </div>
+        
+
+        
+
 
       </section>
+
+      
 
       
 
@@ -1675,15 +2059,17 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Mr wang</span>
+  <span><a href="http://www.miitbeian.gov.cn">鄂ICP备16016806</a></span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -1695,21 +2081,22 @@
 
 
 
+        
+
+        
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
-
-
-  
-
-
-
 
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
@@ -1718,204 +2105,424 @@
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"mr-wang"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-  
 
 
 
 
 
   
+
+
+
+
+
+
+
+
+
+
+
+
   
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
     }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';                
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-                            
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
                         }
-                        str += "</li>";
+                      }
                     }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
             });
-            proceedsearch();
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
         }
-    });}
+      });
+    }
 
     // handle and trigger popup window;
-    $('.popup-trigger').mousedown(function(e) {
+    $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
-
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
     });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
   </script>
 
-  
+
+
+
 
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
   <script>AV.initialize("K2hmmPfUxb5qwb53Y3StaVwj-gzGzoHsz", "BOu82fRz8bYCJtf9P8GfiMW9");</script>
   <script>
     function showTime(Counter) {
@@ -1944,6 +2551,14 @@
             var element = document.getElementById(url);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
           }
         })
         .fail(function (object, error) {
@@ -1975,6 +2590,12 @@
             });
           } else {
             var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
             newcounter.set("title", title);
             newcounter.set("url", url);
             newcounter.set("time", 1);
@@ -2006,6 +2627,14 @@
   </script>
 
 
+
+  
+
+  
+
+  
+
+  
 
   
 

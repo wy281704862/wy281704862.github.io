@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,18 +34,48 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="vsftp,ftp," />
@@ -47,60 +84,66 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Mr wang" type="application/atom+xml" />
 
 
 
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
-
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
 
 
-<meta name="description" content="安装vsftp
-1yum install -y vsftpd
-将vsftpd加入系统自启动，并启动服务
-12service vsftpd startchkconfig --level 3 vsftpd on">
+
+<meta name="description" content="安装vsftp 1yum install -y vsftpd 将vsftpd加入系统自启动，并启动服务 12service vsftpd startchkconfig --level 3 vsftpd on">
+<meta name="keywords" content="vsftp,ftp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vsftpd安装配置">
 <meta property="og:url" content="http://www.mr-wang.cn/2015/07/16/Install-Vsftpd/index.html">
 <meta property="og:site_name" content="Mr wang">
-<meta property="og:description" content="安装vsftp
-1yum install -y vsftpd
-将vsftpd加入系统自启动，并启动服务
-12service vsftpd startchkconfig --level 3 vsftpd on">
-<meta property="og:updated_time" content="2016-04-01T06:22:44.030Z">
+<meta property="og:description" content="安装vsftp 1yum install -y vsftpd 将vsftpd加入系统自启动，并启动服务 12service vsftpd startchkconfig --level 3 vsftpd on">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-04-01T06:22:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vsftpd安装配置">
-<meta name="twitter:description" content="安装vsftp
-1yum install -y vsftpd
-将vsftpd加入系统自启动，并启动服务
-12service vsftpd startchkconfig --level 3 vsftpd on">
+<meta name="twitter:description" content="安装vsftp 1yum install -y vsftpd 将vsftpd加入系统自启动，并启动服务 12service vsftpd startchkconfig --level 3 vsftpd on">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
+    tabs: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> Vsftpd安装配置 | Mr wang </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://www.mr-wang.cn/2015/07/16/Install-Vsftpd/"/>
+
+
+
+
+
+  <title>Vsftpd安装配置 | Mr wang</title>
   
+
+
 
 
 
@@ -108,7 +151,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
+      hm.src = "https://hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -121,34 +164,44 @@
 
 
 
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Mr wang</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr wang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-  <p class="site-subtitle"></p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -161,7 +214,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -169,9 +222,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -179,9 +232,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -189,11 +242,21 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="/wiki/wiki.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Wiki
           </a>
         </li>
       
@@ -201,7 +264,7 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="popup-trigger">
+            <a href="javascript:;" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -216,17 +279,30 @@
   
     <div class="site-search">
       
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
 </div>
+
 
 
     </div>
   
 </nav>
+
+
 
  </div>
     </header>
@@ -241,49 +317,68 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2015/07/16/Install-Vsftpd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Vsftpd安装配置
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">Vsftpd安装配置</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
-              2015-07-16
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-16T20:26:27+08:00">
+                2015-07-16
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
                   </a>
@@ -291,41 +386,41 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/16/Install-Vsftpd/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/Install-Vsftpd/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
              <span id="/2015/07/16/Install-Vsftpd/" class="leancloud_visitors" data-flag-title="Vsftpd安装配置">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -333,31 +428,38 @@
 
       
         <p>安装vsftp</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -<span class="keyword">y</span> vsftpd</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -<span class="keyword">y</span> vsftpd</div></pre></td></tr></table></figure>
 <p>将vsftpd加入系统自启动，并启动服务</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd start</span><br><span class="line">chkconfig --level <span class="number">3</span> vsftpd <span class="keyword">on</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service vsftpd start</div><div class="line">chkconfig --level <span class="number">3</span> vsftpd <span class="keyword">on</span></div></pre></td></tr></table></figure>
 <a id="more"></a> 
 <p>配置文件：</p>
 <p>/etc/vsftpd/vsftpd.conf   //主配置文件<br>/etc/vsftpd/ftpusers //被禁止登录FTP的用户文件<br>/etc/vsftpd/user_list    //允许登录FTP的用户文件<br>/etc/vsftpd/userconfig   //用户目录配置文件</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br></pre></td><td class="code"><pre><span class="line">#匿名账号是否允许登陆</span><br><span class="line">#anonymous_enable=YES</span><br><span class="line"> </span><br><span class="line">#设定本地用户可以访问。注：如使用虚拟宿主用户，在该项目设定为NO的情况下所有虚拟用户将无法访问。</span><br><span class="line">local_enable=YES</span><br><span class="line"> </span><br><span class="line">#使用户不能离开主目录</span><br><span class="line">#chroot_local_user=YES</span><br><span class="line"> </span><br><span class="line">#是否可以写入</span><br><span class="line">write_enable=YES</span><br><span class="line"> </span><br><span class="line"># Default umask for local users is 077. You may wish to change this to 022,</span><br><span class="line"># if your users expect that (022 is used by most other ftpd's)</span><br><span class="line">#设定上传后文件的权限掩码</span><br><span class="line">local_umask=022</span><br><span class="line">#</span><br><span class="line"># Uncomment this to allow the anonymous FTP user to upload files. This only</span><br><span class="line"># has an effect if the above global write enable is activated. Also, you will</span><br><span class="line"># obviously need to create a directory writable by the FTP user.</span><br><span class="line">#匿名用户是否可以上传</span><br><span class="line">#anon_upload_enable=YES</span><br><span class="line">anon_upload_enable=NO</span><br><span class="line">#</span><br><span class="line"># Uncomment this if you want the anonymous FTP user to be able to create</span><br><span class="line"># new directories.</span><br><span class="line">#匿名用户是否可以建立目录</span><br><span class="line">#anon_mkdir_write_enable=YES</span><br><span class="line">anon_mkdir_write_enable=NO</span><br><span class="line">#</span><br><span class="line"># Activate directory messages - messages given to remote users when they</span><br><span class="line"># go into a certain directory.</span><br><span class="line">#进入每个目录是否显示欢迎信息，在每个目录下建立.message文件在里面写欢迎信息</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">#</span><br><span class="line"># The target log file can be vsftpd_log_file or xferlog_file.</span><br><span class="line"># This depends on setting xferlog_std_format parameter</span><br><span class="line">#上传/下载文件时是否记录日志</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">#</span><br><span class="line"># Make sure PORT transfer connections originate from port 20 (ftp-data).</span><br><span class="line">#是否使用port主动模式</span><br><span class="line">port_enable=YES</span><br><span class="line">#是否使用20端口传输数据</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">#不使用20端口时，指定port模式的端口号</span><br><span class="line">#ftp_data_port=2020</span><br><span class="line">#是否使用安全的port模式</span><br><span class="line">port_promiscuous=NO</span><br><span class="line">#</span><br><span class="line"># If you want, you can arrange for uploaded anonymous files to be owned by</span><br><span class="line"># a different user. Note! Using "root" for uploaded files is not</span><br><span class="line"># recommended!</span><br><span class="line">#匿名用户上传文件是否更改宿主</span><br><span class="line">#chown_uploads=YES</span><br><span class="line">#匿名用户上传文件宿主更改为谁</span><br><span class="line">#chown_username=whoever</span><br><span class="line">#</span><br><span class="line"># The name of log file when xferlog_enable=YES and xferlog_std_format=YES</span><br><span class="line"># WARNING - changing this filename affects /etc/logrotate.d/vsftpd.log</span><br><span class="line">#设定Vsftpd的服务日志保存路径，需手动创建该文件并有写入权限</span><br><span class="line">xferlog_file=/var/log/xferlog</span><br><span class="line">#</span><br><span class="line"># Switches between logging into vsftpd_log_file and xferlog_file files.</span><br><span class="line"># NO writes to vsftpd_log_file, YES to xferlog_file</span><br><span class="line">#设定日志使用标准的记录格式</span><br><span class="line">xferlog_std_format=YES</span><br><span class="line">#</span><br><span class="line"># You may change the default value for timing out an idle session.</span><br><span class="line">#设定空闲连接超时时间，如果不指定的话，还是使用这里的默认值600，单位秒</span><br><span class="line">#idle_session_timeout=600</span><br><span class="line">#</span><br><span class="line"># You may change the default value for timing out a data connection.</span><br><span class="line">#设定单次最大连续传输时间，如果不指定的话，还是使用这里的默认值120，单位秒</span><br><span class="line">#data_connection_timeout=120</span><br><span class="line">#</span><br><span class="line"># It is recommended that you define on your system a unique user which the</span><br><span class="line"># ftp server can use as a totally isolated and unprivileged user.</span><br><span class="line">#设定支撑Vsftpd服务的宿主用户</span><br><span class="line">#nopriv_user=ftpsecure</span><br><span class="line">#</span><br><span class="line"># Enable this and the server will recognise asynchronous ABOR requests. Not</span><br><span class="line"># recommended for security (the code is non-trivial). Not enabling it,</span><br><span class="line"># however, may confuse older FTP clients.</span><br><span class="line">#设定是否支持异步传输功能</span><br><span class="line">#async_abor_enable=YES</span><br><span class="line">#</span><br><span class="line"># By default the server will pretend to allow ASCII mode but in fact ignore</span><br><span class="line"># the request. Turn on the below options to have the server actually do ASCII</span><br><span class="line"># mangling on files when in ASCII mode.</span><br><span class="line"># Beware that on some FTP servers, ASCII support allows a denial of service</span><br><span class="line"># attack (DoS) via the command "SIZE /big/file" in ASCII mode. vsftpd</span><br><span class="line"># predicted this attack and has always been safe, reporting the size of the</span><br><span class="line"># raw file.</span><br><span class="line"># ASCII mangling is a horrible feature of the protocol.</span><br><span class="line">#设定支持ASCII模式的上传和下载功能</span><br><span class="line">ascii_upload_enable=YES</span><br><span class="line">ascii_download_enable=YES</span><br><span class="line"> </span><br><span class="line"># You may fully customise the login banner string:</span><br><span class="line">#设定Vsftpd的登陆标语</span><br><span class="line">#ftpd_banner=Welcome to blah FTP service.</span><br><span class="line">#</span><br><span class="line"># You may specify a file of disallowed anonymous e-mail addresses. Apparently</span><br><span class="line"># useful for combatting certain DoS attacks.</span><br><span class="line">#deny_email_enable=YES</span><br><span class="line"># (default follows)</span><br><span class="line">#banned_email_file=/etc/vsftpd/banned_emails</span><br><span class="line">#</span><br><span class="line"># You may specify an explicit list of local users to chroot() to their home</span><br><span class="line"># directory. If chroot_local_user is YES, then this list becomes a list of</span><br><span class="line"># users to NOT chroot().</span><br><span class="line">#是否限制所有的本地用户在自家目录</span><br><span class="line">#chroot_local_user=YES</span><br><span class="line">#是否允许chroot_list中用户登出自己的FTP主目录</span><br><span class="line">#chroot_list_enable=YES</span><br><span class="line"># (default follows)</span><br><span class="line">#配置chroot_list文件路径</span><br><span class="line">#chroot_list_file=/etc/vsftpd/chroot_list</span><br><span class="line">#</span><br><span class="line"># You may activate the "-R" option to the builtin ls. This is disabled by</span><br><span class="line"># default to avoid remote users being able to cause excessive I/O on large</span><br><span class="line"># sites. However, some broken FTP clients such as "ncftp" and "mirror" assume</span><br><span class="line"># the presence of the "-R" option, so there is a strong case for enabling it.</span><br><span class="line">#是否允许使用ls -R命令，该命令会对服务器性能造成巨大开销</span><br><span class="line">#ls_recurse_enable=YES</span><br><span class="line">#</span><br><span class="line"># When "listen" directive is enabled, vsftpd runs in standalone mode and</span><br><span class="line"># listens on IPv4 sockets. This directive cannot be used in conjunction</span><br><span class="line"># with the listen_ipv6 directive.</span><br><span class="line">#开启ipv4监听</span><br><span class="line">listen=YES</span><br><span class="line">#设定ipv4监听端口</span><br><span class="line">listen_port=2121</span><br><span class="line">#</span><br><span class="line"># This directive enables listening on IPv6 sockets. To listen on IPv4 and IPv6</span><br><span class="line"># sockets, you must run two copies of vsftpd with two configuration files.</span><br><span class="line"># Make sure, that one of the listen options is commented !!</span><br><span class="line">#开启ipv6监听</span><br><span class="line">#listen_ipv6=YES</span><br><span class="line"> </span><br><span class="line">#使用pam模块控制，vsftpd文件在/etc/pam.d目录下</span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line"> </span><br><span class="line">#userlist_enable、userlist_deny配合使用，userlist_enable选项被激活后，vsftpd将读取userlist_file参数所指定的文件中的用户列表，而userlist_deny选项定义list中用户是否被禁止登陆。当列表中的用户登录FTP服务器时，该用户在提示输入密码之前就被禁止了。即该用户名输入后，vsftpd查到该用户名在列表中，vsftpd就直接禁止掉该用户，不会再进行询问密码等后续步聚</span><br><span class="line">#userlist_enable=YES</span><br><span class="line">#userlist_file=/etc/vsftpd/vsftpd.user_list</span><br><span class="line">#userlist_deny=YES</span><br><span class="line"> </span><br><span class="line">#是否允许tcp_wrappers管理</span><br><span class="line">tcp_wrappers=YES</span><br><span class="line"> </span><br><span class="line">#所有用户的根目录，，对匿名用户无效</span><br><span class="line">#local_root=/home/ftp</span><br><span class="line"> </span><br><span class="line">#匿名用户的最大传输速度，单位是Byts/s</span><br><span class="line">#anon_max_rate=1024000</span><br><span class="line"> </span><br><span class="line">#本地用户的最大传输速度，单位是Byts/s</span><br><span class="line">#local_max_rate=1024000</span><br><span class="line"> </span><br><span class="line">#是否使用pasv被动模式</span><br><span class="line">pasv_enable=YES</span><br><span class="line">#指定被动模式的最小、最大端口</span><br><span class="line">pasv_min_port=2123</span><br><span class="line">pasv_max_port=2125</span><br><span class="line">#是否屏蔽对pasv进行安全检查</span><br><span class="line">pasv_promiscuous=NO</span><br><span class="line">#被动模式是否用设置好的的地址返回给客户端</span><br><span class="line">#pasv_addr_resolve=YES</span><br><span class="line">#服务器传回的ip地址，让客户端知道</span><br><span class="line">#pasv_address=101.71.51.65</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div></pre></td><td class="code"><pre><div class="line">#匿名账号是否允许登陆</div><div class="line">#anonymous_enable=YES</div><div class="line"> </div><div class="line">#设定本地用户可以访问。注：如使用虚拟宿主用户，在该项目设定为NO的情况下所有虚拟用户将无法访问。</div><div class="line">local_enable=YES</div><div class="line"> </div><div class="line">#使用户不能离开主目录</div><div class="line">#chroot_local_user=YES</div><div class="line"> </div><div class="line">#是否可以写入</div><div class="line">write_enable=YES</div><div class="line"> </div><div class="line"># Default umask <span class="keyword">for</span> local users <span class="keyword">is</span> <span class="number">077</span>. You may wish <span class="keyword">to</span> <span class="keyword">change</span> this <span class="keyword">to</span> <span class="number">022</span>,</div><div class="line"># <span class="keyword">if</span> your users expect that (<span class="number">022</span> <span class="keyword">is</span> used by most other ftpd<span class="string">'s)</span></div><div class="line"><span class="string">#设定上传后文件的权限掩码</span></div><div class="line"><span class="string">local_umask=022</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># Uncomment this to allow the anonymous FTP user to upload files. This only</span></div><div class="line"><span class="string"># has an effect if the above global write enable is activated. Also, you will</span></div><div class="line"><span class="string"># obviously need to create a directory writable by the FTP user.</span></div><div class="line"><span class="string">#匿名用户是否可以上传</span></div><div class="line"><span class="string">#anon_upload_enable=YES</span></div><div class="line"><span class="string">anon_upload_enable=NO</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># Uncomment this if you want the anonymous FTP user to be able to create</span></div><div class="line"><span class="string"># new directories.</span></div><div class="line"><span class="string">#匿名用户是否可以建立目录</span></div><div class="line"><span class="string">#anon_mkdir_write_enable=YES</span></div><div class="line"><span class="string">anon_mkdir_write_enable=NO</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># Activate directory messages - messages given to remote users when they</span></div><div class="line"><span class="string"># go into a certain directory.</span></div><div class="line"><span class="string">#进入每个目录是否显示欢迎信息，在每个目录下建立.message文件在里面写欢迎信息</span></div><div class="line"><span class="string">dirmessage_enable=YES</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># The target log file can be vsftpd_log_file or xferlog_file.</span></div><div class="line"><span class="string"># This depends on setting xferlog_std_format parameter</span></div><div class="line"><span class="string">#上传/下载文件时是否记录日志</span></div><div class="line"><span class="string">xferlog_enable=YES</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># Make sure PORT transfer connections originate from port 20 (ftp-data).</span></div><div class="line"><span class="string">#是否使用port主动模式</span></div><div class="line"><span class="string">port_enable=YES</span></div><div class="line"><span class="string">#是否使用20端口传输数据</span></div><div class="line"><span class="string">connect_from_port_20=YES</span></div><div class="line"><span class="string">#不使用20端口时，指定port模式的端口号</span></div><div class="line"><span class="string">#ftp_data_port=2020</span></div><div class="line"><span class="string">#是否使用安全的port模式</span></div><div class="line"><span class="string">port_promiscuous=NO</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># If you want, you can arrange for uploaded anonymous files to be owned by</span></div><div class="line"><span class="string"># a different user. Note! Using "root" for uploaded files is not</span></div><div class="line"><span class="string"># recommended!</span></div><div class="line"><span class="string">#匿名用户上传文件是否更改宿主</span></div><div class="line"><span class="string">#chown_uploads=YES</span></div><div class="line"><span class="string">#匿名用户上传文件宿主更改为谁</span></div><div class="line"><span class="string">#chown_username=whoever</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># The name of log file when xferlog_enable=YES and xferlog_std_format=YES</span></div><div class="line"><span class="string"># WARNING - changing this filename affects /etc/logrotate.d/vsftpd.log</span></div><div class="line"><span class="string">#设定Vsftpd的服务日志保存路径，需手动创建该文件并有写入权限</span></div><div class="line"><span class="string">xferlog_file=/var/log/xferlog</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># Switches between logging into vsftpd_log_file and xferlog_file files.</span></div><div class="line"><span class="string"># NO writes to vsftpd_log_file, YES to xferlog_file</span></div><div class="line"><span class="string">#设定日志使用标准的记录格式</span></div><div class="line"><span class="string">xferlog_std_format=YES</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># You may change the default value for timing out an idle session.</span></div><div class="line"><span class="string">#设定空闲连接超时时间，如果不指定的话，还是使用这里的默认值600，单位秒</span></div><div class="line"><span class="string">#idle_session_timeout=600</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># You may change the default value for timing out a data connection.</span></div><div class="line"><span class="string">#设定单次最大连续传输时间，如果不指定的话，还是使用这里的默认值120，单位秒</span></div><div class="line"><span class="string">#data_connection_timeout=120</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># It is recommended that you define on your system a unique user which the</span></div><div class="line"><span class="string"># ftp server can use as a totally isolated and unprivileged user.</span></div><div class="line"><span class="string">#设定支撑Vsftpd服务的宿主用户</span></div><div class="line"><span class="string">#nopriv_user=ftpsecure</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># Enable this and the server will recognise asynchronous ABOR requests. Not</span></div><div class="line"><span class="string"># recommended for security (the code is non-trivial). Not enabling it,</span></div><div class="line"><span class="string"># however, may confuse older FTP clients.</span></div><div class="line"><span class="string">#设定是否支持异步传输功能</span></div><div class="line"><span class="string">#async_abor_enable=YES</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># By default the server will pretend to allow ASCII mode but in fact ignore</span></div><div class="line"><span class="string"># the request. Turn on the below options to have the server actually do ASCII</span></div><div class="line"><span class="string"># mangling on files when in ASCII mode.</span></div><div class="line"><span class="string"># Beware that on some FTP servers, ASCII support allows a denial of service</span></div><div class="line"><span class="string"># attack (DoS) via the command "SIZE /big/file" in ASCII mode. vsftpd</span></div><div class="line"><span class="string"># predicted this attack and has always been safe, reporting the size of the</span></div><div class="line"><span class="string"># raw file.</span></div><div class="line"><span class="string"># ASCII mangling is a horrible feature of the protocol.</span></div><div class="line"><span class="string">#设定支持ASCII模式的上传和下载功能</span></div><div class="line"><span class="string">ascii_upload_enable=YES</span></div><div class="line"><span class="string">ascii_download_enable=YES</span></div><div class="line"><span class="string"> </span></div><div class="line"><span class="string"># You may fully customise the login banner string:</span></div><div class="line"><span class="string">#设定Vsftpd的登陆标语</span></div><div class="line"><span class="string">#ftpd_banner=Welcome to blah FTP service.</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># You may specify a file of disallowed anonymous e-mail addresses. Apparently</span></div><div class="line"><span class="string"># useful for combatting certain DoS attacks.</span></div><div class="line"><span class="string">#deny_email_enable=YES</span></div><div class="line"><span class="string"># (default follows)</span></div><div class="line"><span class="string">#banned_email_file=/etc/vsftpd/banned_emails</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># You may specify an explicit list of local users to chroot() to their home</span></div><div class="line"><span class="string"># directory. If chroot_local_user is YES, then this list becomes a list of</span></div><div class="line"><span class="string"># users to NOT chroot().</span></div><div class="line"><span class="string">#是否限制所有的本地用户在自家目录</span></div><div class="line"><span class="string">#chroot_local_user=YES</span></div><div class="line"><span class="string">#是否允许chroot_list中用户登出自己的FTP主目录</span></div><div class="line"><span class="string">#chroot_list_enable=YES</span></div><div class="line"><span class="string"># (default follows)</span></div><div class="line"><span class="string">#配置chroot_list文件路径</span></div><div class="line"><span class="string">#chroot_list_file=/etc/vsftpd/chroot_list</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># You may activate the "-R" option to the builtin ls. This is disabled by</span></div><div class="line"><span class="string"># default to avoid remote users being able to cause excessive I/O on large</span></div><div class="line"><span class="string"># sites. However, some broken FTP clients such as "ncftp" and "mirror" assume</span></div><div class="line"><span class="string"># the presence of the "-R" option, so there is a strong case for enabling it.</span></div><div class="line"><span class="string">#是否允许使用ls -R命令，该命令会对服务器性能造成巨大开销</span></div><div class="line"><span class="string">#ls_recurse_enable=YES</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># When "listen" directive is enabled, vsftpd runs in standalone mode and</span></div><div class="line"><span class="string"># listens on IPv4 sockets. This directive cannot be used in conjunction</span></div><div class="line"><span class="string"># with the listen_ipv6 directive.</span></div><div class="line"><span class="string">#开启ipv4监听</span></div><div class="line"><span class="string">listen=YES</span></div><div class="line"><span class="string">#设定ipv4监听端口</span></div><div class="line"><span class="string">listen_port=2121</span></div><div class="line"><span class="string">#</span></div><div class="line"><span class="string"># This directive enables listening on IPv6 sockets. To listen on IPv4 and IPv6</span></div><div class="line"><span class="string"># sockets, you must run two copies of vsftpd with two configuration files.</span></div><div class="line"><span class="string"># Make sure, that one of the listen options is commented !!</span></div><div class="line"><span class="string">#开启ipv6监听</span></div><div class="line"><span class="string">#listen_ipv6=YES</span></div><div class="line"><span class="string"> </span></div><div class="line"><span class="string">#使用pam模块控制，vsftpd文件在/etc/pam.d目录下</span></div><div class="line"><span class="string">pam_service_name=vsftpd</span></div><div class="line"><span class="string"> </span></div><div class="line"><span class="string">#userlist_enable、userlist_deny配合使用，userlist_enable选项被激活后，vsftpd将读取userlist_file参数所指定的文件中的用户列表，而userlist_deny选项定义list中用户是否被禁止登陆。当列表中的用户登录FTP服务器时，该用户在提示输入密码之前就被禁止了。即该用户名输入后，vsftpd查到该用户名在列表中，vsftpd就直接禁止掉该用户，不会再进行询问密码等后续步聚</span></div><div class="line"><span class="string">#userlist_enable=YES</span></div><div class="line"><span class="string">#userlist_file=/etc/vsftpd/vsftpd.user_list</span></div><div class="line"><span class="string">#userlist_deny=YES</span></div><div class="line"><span class="string"> </span></div><div class="line"><span class="string">#是否允许tcp_wrappers管理</span></div><div class="line"><span class="string">tcp_wrappers=YES</span></div><div class="line"><span class="string"> </span></div><div class="line"><span class="string">#所有用户的根目录，，对匿名用户无效</span></div><div class="line"><span class="string">#local_root=/home/ftp</span></div><div class="line"><span class="string"> </span></div><div class="line"><span class="string">#匿名用户的最大传输速度，单位是Byts/s</span></div><div class="line"><span class="string">#anon_max_rate=1024000</span></div><div class="line"><span class="string"> </span></div><div class="line"><span class="string">#本地用户的最大传输速度，单位是Byts/s</span></div><div class="line"><span class="string">#local_max_rate=1024000</span></div><div class="line"><span class="string"> </span></div><div class="line"><span class="string">#是否使用pasv被动模式</span></div><div class="line"><span class="string">pasv_enable=YES</span></div><div class="line"><span class="string">#指定被动模式的最小、最大端口</span></div><div class="line"><span class="string">pasv_min_port=2123</span></div><div class="line"><span class="string">pasv_max_port=2125</span></div><div class="line"><span class="string">#是否屏蔽对pasv进行安全检查</span></div><div class="line"><span class="string">pasv_promiscuous=NO</span></div><div class="line"><span class="string">#被动模式是否用设置好的的地址返回给客户端</span></div><div class="line"><span class="string">#pasv_addr_resolve=YES</span></div><div class="line"><span class="string">#服务器传回的ip地址，让客户端知道</span></div><div class="line"><span class="string">#pasv_address=101.71.51.65</span></div></pre></td></tr></table></figure>
 <p><a href="http://heylinux.com/archives/356.html" target="_blank" rel="external">基于本地用户的Vsftp配置</a><br><a href="http://heylinux.com/archives/713.html" target="_blank" rel="external">Vsftp服务器配置详解</a></p>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/vsftp-ftp/" rel="tag">#vsftp,ftp</a>
+            <a href="/tags/vsftp-ftp/" rel="tag"># vsftp,ftp</a>
           
         </div>
+      
+
+      
+      
       
 
       
@@ -370,10 +472,12 @@
             
           </div>
 
+          <span class="post-nav-divider"></span>
+
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/16/Linux-Boot-Sequence/" rel="prev" title="linux的运行级别及自启动程序">
-                linux的运行级别及自启动程序 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/07/16/CentOS-System-Performance-tuning/" rel="prev" title="CentOS 安装与调优配置">
+                CentOS 安装与调优配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -383,30 +487,42 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/07/16/Install-Vsftpd/"
-     data-title="Vsftpd安装配置"
-     data-content=""
-     data-url="http://www.mr-wang.cn/2015/07/16/Install-Vsftpd/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
 
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
       
     </div>
   </div>
@@ -415,16 +531,11 @@
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/07/16/Install-Vsftpd/"
-           data-title="Vsftpd安装配置" data-url="http://www.mr-wang.cn/2015/07/16/Install-Vsftpd/">
-      </div>
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE2MS81NzI4"></div>
     
   </div>
 
@@ -442,40 +553,39 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://mr-wang.qiniudn.com/mr_wang.jpg"
                alt="Mr wang" />
           <p class="site-author-name" itemprop="name">Mr wang</p>
-          <p class="site-description motion-element" itemprop="description">运维笔记</p>
+           
+              <p class="site-description motion-element" itemprop="description">运维笔记</p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -483,8 +593,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -494,72 +606,42 @@
         </nav>
 
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
 
         <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="#" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/xiaowang0624" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  weibo
-                </a>
-              </span>
-            
-          
         </div>
 
         
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-            <div class="links-of-blogroll-title">Links</div>
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank">Linux工具箱</a>
+                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" title="Linux工具箱" target="_blank">Linux工具箱</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://linux.51yip.com/" target="_blank">Linux命令手册</a>
+                  <a href="http://linux.51yip.com/" title="Linux命令手册" target="_blank">Linux命令手册</a>
                 </li>
               
             </ul>
-          
-        </div>
+          </div>
+        
+
+        
+
 
       </section>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
+
       
 
     </div>
@@ -575,15 +657,17 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Mr wang</span>
+  <span><a href="http://www.miitbeian.gov.cn">鄂ICP备16016806</a></span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -595,21 +679,22 @@
 
 
 
+        
+
+        
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
-
-
-  
-
-
-
 
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
@@ -618,209 +703,435 @@
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
 
 
 
-  
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"mr-wang"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-  
 
 
 
 
 
   
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
   
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
     }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';                
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-                            
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
                         }
-                        str += "</li>";
+                      }
                     }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
             });
-            proceedsearch();
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
         }
-    });}
+      });
+    }
 
     // handle and trigger popup window;
-    $('.popup-trigger').mousedown(function(e) {
+    $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
-
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
     });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
   </script>
 
-  
+
+
+
 
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
   <script>AV.initialize("K2hmmPfUxb5qwb53Y3StaVwj-gzGzoHsz", "BOu82fRz8bYCJtf9P8GfiMW9");</script>
   <script>
     function showTime(Counter) {
@@ -849,6 +1160,14 @@
             var element = document.getElementById(url);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
           }
         })
         .fail(function (object, error) {
@@ -880,6 +1199,12 @@
             });
           } else {
             var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
             newcounter.set("title", title);
             newcounter.set("url", url);
             newcounter.set("time", 1);
@@ -911,6 +1236,14 @@
   </script>
 
 
+
+  
+
+  
+
+  
+
+  
 
   
 

@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,18 +34,48 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Oracle," />
@@ -47,26 +84,24 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Mr wang" type="application/atom+xml" />
 
 
 
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
-
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
 
 
-<meta name="description" content="安装前准备安装依赖包oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序
-123456789101112131415161718192021222324252627282930binutils-2.17.50.0.6compat-libstdc++-33-3.2.3compat-libstdc++-33-3.2.3 (32 bit)elfutils-libelf-0.12">
+
+<meta name="description" content="安装前准备安装依赖包oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序 123456789101112131415161718192021222324252627282930binutils-2.17.50.0.6compat-libstdc++-33-3.2.3compat-libstdc++-33-3.2.3 (32 bit)elfutils-libelf-0.12">
+<meta name="keywords" content="Oracle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS下Oracle安装">
 <meta property="og:url" content="http://www.mr-wang.cn/2015/07/16/CentOS-Oracle-installation/index.html">
 <meta property="og:site_name" content="Mr wang">
-<meta property="og:description" content="安装前准备安装依赖包oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序
-123456789101112131415161718192021222324252627282930binutils-2.17.50.0.6compat-libstdc++-33-3.2.3compat-libstdc++-33-3.2.3 (32 bit)elfutils-libelf-0.12">
+<meta property="og:description" content="安装前准备安装依赖包oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序 123456789101112131415161718192021222324252627282930binutils-2.17.50.0.6compat-libstdc++-33-3.2.3compat-libstdc++-33-3.2.3 (32 bit)elfutils-libelf-0.12">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/oracle_1.png">
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/oracle_2.png">
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/oracle_3.png">
@@ -114,34 +149,49 @@
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/oracle_45.png">
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/oracle_46.png">
 <meta property="og:image" content="http://wy-uploads.qiniudn.com/oracle_47.png">
-<meta property="og:updated_time" content="2016-04-01T06:20:49.777Z">
+<meta property="og:updated_time" content="2016-04-01T06:20:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS下Oracle安装">
-<meta name="twitter:description" content="安装前准备安装依赖包oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序
-123456789101112131415161718192021222324252627282930binutils-2.17.50.0.6compat-libstdc++-33-3.2.3compat-libstdc++-33-3.2.3 (32 bit)elfutils-libelf-0.12">
+<meta name="twitter:description" content="安装前准备安装依赖包oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序 123456789101112131415161718192021222324252627282930binutils-2.17.50.0.6compat-libstdc++-33-3.2.3compat-libstdc++-33-3.2.3 (32 bit)elfutils-libelf-0.12">
+<meta name="twitter:image" content="http://wy-uploads.qiniudn.com/oracle_1.png">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
+    tabs: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> CentOS下Oracle安装 | Mr wang </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://www.mr-wang.cn/2015/07/16/CentOS-Oracle-installation/"/>
+
+
+
+
+
+  <title>CentOS下Oracle安装 | Mr wang</title>
   
+
+
 
 
 
@@ -149,7 +199,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
+      hm.src = "https://hm.baidu.com/hm.js?d78a3b95f026f839475df84d2536cb19";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -162,34 +212,44 @@
 
 
 
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Mr wang</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr wang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-  <p class="site-subtitle"></p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -202,7 +262,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -210,9 +270,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -220,9 +280,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -230,11 +290,21 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="/wiki/wiki.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Wiki
           </a>
         </li>
       
@@ -242,7 +312,7 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="#" class="popup-trigger">
+            <a href="javascript:;" class="popup-trigger">
           
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
@@ -257,17 +327,30 @@
   
     <div class="site-search">
       
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
 </div>
+
 
 
     </div>
   
 </nav>
+
+
 
  </div>
     </header>
@@ -282,49 +365,68 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.mr-wang.cn/2015/07/16/CentOS-Oracle-installation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mr-wang.qiniudn.com/mr_wang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr wang">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                CentOS下Oracle安装
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">CentOS下Oracle安装</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-16T20:26:27+08:00" content="2015-07-16">
-              2015-07-16
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-16T20:26:27+08:00">
+                2015-07-16
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
                   </a>
@@ -332,59 +434,59 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/16/CentOS-Oracle-installation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/CentOS-Oracle-installation/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
              <span id="/2015/07/16/CentOS-Oracle-installation/" class="leancloud_visitors" data-flag-title="CentOS下Oracle安装">
-               &nbsp; | &nbsp;
+               <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <h1 id="安装前准备">安装前准备</h1><h2 id="安装依赖包">安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">binutils-<span class="number">2.17</span>.<span class="number">50.0</span>.<span class="number">6</span></span><br><span class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span></span><br><span class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span> (<span class="number">32</span> bit)</span><br><span class="line">elfutils-libelf-<span class="number">0.125</span></span><br><span class="line">elfutils-libelf-devel-<span class="number">0.125</span></span><br><span class="line">gcc-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">gcc-<span class="keyword">c</span>++-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span></span><br><span class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span> (<span class="number">32</span> bit)</span><br><span class="line">glibc-common-<span class="number">2.5</span></span><br><span class="line">glibc-devel-<span class="number">2.5</span></span><br><span class="line">glibc-devel-<span class="number">2.5</span> (<span class="number">32</span> bit)</span><br><span class="line">glibc-headers-<span class="number">2.5</span></span><br><span class="line">ksh-<span class="number">20060214</span></span><br><span class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span></span><br><span class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</span><br><span class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span></span><br><span class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</span><br><span class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</span><br><span class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</span><br><span class="line">libstdc++-devel <span class="number">4.1</span>.<span class="number">2</span></span><br><span class="line"><span class="keyword">make</span>-<span class="number">3.81</span></span><br><span class="line">sysstat-<span class="number">7.0</span>.<span class="number">2</span></span><br><span class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></span><br><span class="line">libXp</span><br></pre></td></tr></table></figure>
+        <h1 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h1><h2 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h2><p>oracle 安装所需程序包,可以到安装步骤时，查看缺少什么程序就安装什么程序</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">binutils-<span class="number">2.17</span>.<span class="number">50.0</span>.<span class="number">6</span></div><div class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span></div><div class="line">compat-libstdc++-<span class="number">33</span>-<span class="number">3.2</span>.<span class="number">3</span> (<span class="number">32</span> bit)</div><div class="line">elfutils-libelf-<span class="number">0.125</span></div><div class="line">elfutils-libelf-devel-<span class="number">0.125</span></div><div class="line">gcc-<span class="number">4.1</span>.<span class="number">2</span></div><div class="line">gcc-<span class="keyword">c</span>++-<span class="number">4.1</span>.<span class="number">2</span></div><div class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span></div><div class="line">glibc-<span class="number">2.5</span>-<span class="number">24</span> (<span class="number">32</span> bit)</div><div class="line">glibc-common-<span class="number">2.5</span></div><div class="line">glibc-devel-<span class="number">2.5</span></div><div class="line">glibc-devel-<span class="number">2.5</span> (<span class="number">32</span> bit)</div><div class="line">glibc-headers-<span class="number">2.5</span></div><div class="line">ksh-<span class="number">20060214</span></div><div class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span></div><div class="line">libaio-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</div><div class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span></div><div class="line">libaio-devel-<span class="number">0.3</span>.<span class="number">106</span> (<span class="number">32</span> bit)</div><div class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span></div><div class="line">libgcc-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</div><div class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span></div><div class="line">libstdc++-<span class="number">4.1</span>.<span class="number">2</span> (<span class="number">32</span> bit)</div><div class="line">libstdc++-devel <span class="number">4.1</span>.<span class="number">2</span></div><div class="line"><span class="keyword">make</span>-<span class="number">3.81</span></div><div class="line">sysstat-<span class="number">7.0</span>.<span class="number">2</span></div><div class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></div><div class="line">unixODBC-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></div><div class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6 (x86_64) <span class="built_in">or</span> <span class="keyword">later</span></div><div class="line">unixODBC-devel-<span class="number">2.2</span>.<span class="number">14</span>-<span class="number">11</span>.el6.i686 <span class="built_in">or</span> <span class="keyword">later</span></div><div class="line">libXp</div></pre></td></tr></table></figure>
 <p>使用命令 yum install -y ‘package name’ 安装所缺的程序包，pdksh包除外</p>
 <p>安装pdksh包，使用rz命令上传pdksh-5.2.14-37.el5_8.1.x86_64.rpm文件到/opt/目录下</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 注意：该程序包与ksh冲突，如果已经安装ksh，建议使用命令 rpm -<span class="keyword">e</span> ksh-* 卸载</span><br><span class="line"></span><br><span class="line">rpm -ivh pdksh-<span class="number">5.2</span>.<span class="number">14</span>-<span class="number">37</span>.el5_8.<span class="number">1</span>.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 注意：该程序包与ksh冲突，如果已经安装ksh，建议使用命令 rpm -<span class="keyword">e</span> ksh-* 卸载</div><div class="line"></div><div class="line">rpm -ivh pdksh-<span class="number">5.2</span>.<span class="number">14</span>-<span class="number">37</span>.el5_8.<span class="number">1</span>.x86_64.rpm</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="创建用户及安装目录">创建用户及安装目录</h2><p>使用rz上传p10404530_112030_Linux-x86-64_1of7.zip、p10404530_112030_Linux-x86-64_2of7.zip到/opt/目录下</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 分别解压上传的文件,解压得到database文件夹</span><br><span class="line">unzip -x p10404530_112030_Linux-x86-64_1of7.zip</span><br><span class="line">unzip -x p10404530_112030_Linux-x86-64_2of7.zip</span><br><span class="line"></span><br><span class="line"># 创建oracle用户和组,并设置密码</span><br><span class="line">groupadd oinstall</span><br><span class="line">groupadd dba</span><br><span class="line">useradd -g oinstall -G dba oracle</span><br><span class="line">passwd oracle</span><br><span class="line"></span><br><span class="line"># 创建oracl安装目录，并将目录权限赋予oracle用户</span><br><span class="line">mkdir -p /data/DBSoft/oracle/product/11.2.0/db_1</span><br><span class="line">chown -R oracle:oinstall /data/DBSoft/oracle</span><br><span class="line">chmod -R 755 /data/DBSoft/oracle</span><br><span class="line"></span><br><span class="line"># 安装时还需要设置Inventory目录，所以创建并赋予权限</span><br><span class="line">mkdir -p /data/DBSoft/oraInventory</span><br><span class="line">chown -R oracle:oinstall /data/DBSoft/oraInventory</span><br><span class="line">chmod -R 755 /data/DBSoft/oraInventory</span><br></pre></td></tr></table></figure>
-<h2 id="修改系统参数">修改系统参数</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 修改hosts文件，将127.0.0.1修改为本机的ip，避免安装Oracle在Oracle Net Configuration Assistant时会失败</span><br><span class="line">vi /etc/hosts</span><br><span class="line"></span><br><span class="line">192.168.1.250   dbsrver localhost</span><br><span class="line">::1     localhost6 localhost6.localdomain6</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 修改内核参数</span><br><span class="line">vi /etc/sysctl.conf</span><br><span class="line"></span><br><span class="line">kernel.shmmni = 4096</span><br><span class="line">kernel.sem = 250 32000 100 128</span><br><span class="line">net.ipv4.ip_local_port_range = 9000 65500</span><br><span class="line">fs.file-max = 6815744</span><br><span class="line">net.core.rmem_default = 262144</span><br><span class="line">net.core.rmem_max = 4194304</span><br><span class="line">net.core.wmem_default = 262144</span><br><span class="line">net.core.wmem_max = 1048576</span><br><span class="line">fs.aio-max-nr = 1048576</span><br><span class="line"></span><br><span class="line"># 再执行以下命令使以上配置立即生效</span><br><span class="line">sysctl -p</span><br><span class="line"></span><br><span class="line"># 编辑系统资源限制配置文件</span><br><span class="line">vi /etc/security/limits.conf</span><br><span class="line"></span><br><span class="line">oracle soft nproc 2047</span><br><span class="line">oracle hard nproc 16384</span><br><span class="line">oracle soft nofile 1024</span><br><span class="line">oracle hard nofile 65536</span><br></pre></td></tr></table></figure>
-<h2 id="配置oracle默认安装参数">配置oracle默认安装参数</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 切换到orcale用户，修改/home/oracle/.bash_profile文件</span><br><span class="line">su - oracle</span><br><span class="line">vi ~/.bash_profile</span><br><span class="line"></span><br><span class="line"># 设置oracle用户环境变量，添加如下</span><br><span class="line">#安装目录</span><br><span class="line">export ORACLE_BASE=/data/DBSoft/oracle</span><br><span class="line">#oracle家目录</span><br><span class="line">export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/db_1</span><br><span class="line">export PATH=$ORACLE_HOME/bin:$PATH</span><br><span class="line"></span><br><span class="line"># 保存退出后执行如下命令使以上设置立即生效,并env或者echo $PATH查看下</span><br><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
-<h1 id="开始安装oracle">开始安装oracle</h1><h2 id="配置远程安装环境">配置远程安装环境</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># oracle安装需要X-window环境，但是考虑到最大化利用服务器性能，一般服务器中不会安装X-windows环境。所以选择远程来安装oracle。</span><br><span class="line"></span><br><span class="line"># 设置语言环境LANG和LC_ALL,改为英文环境</span><br><span class="line">export LANG=en_US</span><br><span class="line">export LC_ALL=en_US</span><br><span class="line"></span><br><span class="line"># 使用Xmanager来远程显示oracle的安装界面，安装过程中可能遇到界面显示不完全的问题，因为我是在虚拟机中安装，猜测是与内存大小有关</span><br><span class="line">export DISPLAY=192.168.1.233:0.0</span><br><span class="line">./runInstall</span><br></pre></td></tr></table></figure>
-<h2 id="安装数据库软件">安装数据库软件</h2><p>1.进入图形化界面，一步步安装，取消勾选I wish…（依照个人），点击Next，弹出确认框再点Yes<br><img src="http://wy-uploads.qiniudn.com/oracle_1.png" alt="此处输入图片的描述"><br><img src="http://wy-uploads.qiniudn.com/oracle_2.png" alt="此处输入图片的描述"></p>
+<h2 id="创建用户及安装目录"><a href="#创建用户及安装目录" class="headerlink" title="创建用户及安装目录"></a>创建用户及安装目录</h2><p>使用rz上传p10404530_112030_Linux-x86-64_1of7.zip、p10404530_112030_Linux-x86-64_2of7.zip到/opt/目录下</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># 分别解压上传的文件,解压得到database文件夹</div><div class="line">unzip -<span class="keyword">x</span> p10404530_112030_Linux-x86-<span class="number">64</span>_1of7.zip</div><div class="line">unzip -<span class="keyword">x</span> p10404530_112030_Linux-x86-<span class="number">64</span>_2of7.zip</div><div class="line"></div><div class="line"># 创建oracle用户和组,并设置密码</div><div class="line">groupadd oinstall</div><div class="line">groupadd dba</div><div class="line">useradd -g oinstall -G dba oracle</div><div class="line">passwd oracle</div><div class="line"></div><div class="line"># 创建oracl安装目录，并将目录权限赋予oracle用户</div><div class="line"><span class="built_in">mkdir</span> -<span class="keyword">p</span> /data/DBSoft/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1</div><div class="line">chown -R oracle:oinstall /data/DBSoft/oracle</div><div class="line">chmod -R <span class="number">755</span> /data/DBSoft/oracle</div><div class="line"></div><div class="line"># 安装时还需要设置Inventory目录，所以创建并赋予权限</div><div class="line"><span class="built_in">mkdir</span> -<span class="keyword">p</span> /data/DBSoft/oraInventory</div><div class="line">chown -R oracle:oinstall /data/DBSoft/oraInventory</div><div class="line">chmod -R <span class="number">755</span> /data/DBSoft/oraInventory</div></pre></td></tr></table></figure>
+<h2 id="修改系统参数"><a href="#修改系统参数" class="headerlink" title="修改系统参数"></a>修改系统参数</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"># 修改hosts文件，将<span class="number">127.0</span>.<span class="number">0.1</span>修改为本机的ip，避免安装Oracle在Oracle Net Configuration Assistant时会失败</div><div class="line"><span class="keyword">vi</span> /etc/hosts</div><div class="line"></div><div class="line"><span class="number">192.168</span>.<span class="number">1.250</span>   dbsrver localhost</div><div class="line">::<span class="number">1</span>     localhost6 localhost6.localdomain6</div><div class="line"></div><div class="line"></div><div class="line"># 修改内核参数</div><div class="line"><span class="keyword">vi</span> /etc/sysctl.<span class="keyword">conf</span></div><div class="line"></div><div class="line">kernel.shmmni = <span class="number">4096</span></div><div class="line">kernel.sem = <span class="number">250</span> <span class="number">32000</span> <span class="number">100</span> <span class="number">128</span></div><div class="line">net.ipv4.ip_local_port_range = <span class="number">9000</span> <span class="number">65500</span></div><div class="line">fs.<span class="keyword">file</span>-<span class="built_in">max</span> = <span class="number">6815744</span></div><div class="line">net.core.rmem_default = <span class="number">262144</span></div><div class="line">net.core.rmem_max = <span class="number">4194304</span></div><div class="line">net.core.wmem_default = <span class="number">262144</span></div><div class="line">net.core.wmem_max = <span class="number">1048576</span></div><div class="line">fs.aio-<span class="built_in">max</span>-nr = <span class="number">1048576</span></div><div class="line"></div><div class="line"># 再执行以下命令使以上配置立即生效</div><div class="line">sysctl -<span class="keyword">p</span></div><div class="line"></div><div class="line"># 编辑系统资源限制配置文件</div><div class="line"><span class="keyword">vi</span> /etc/security/limits.<span class="keyword">conf</span></div><div class="line"></div><div class="line">oracle soft nproc <span class="number">2047</span></div><div class="line">oracle hard nproc <span class="number">16384</span></div><div class="line">oracle soft nofile <span class="number">1024</span></div><div class="line">oracle hard nofile <span class="number">65536</span></div></pre></td></tr></table></figure>
+<h2 id="配置oracle默认安装参数"><a href="#配置oracle默认安装参数" class="headerlink" title="配置oracle默认安装参数"></a>配置oracle默认安装参数</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 切换到orcale用户，修改/home/oracle/.bash_profile文件</div><div class="line">su - oracle</div><div class="line"><span class="keyword">vi</span> ~/.bash_profile</div><div class="line"></div><div class="line"># 设置oracle用户环境变量，添加如下</div><div class="line">#安装目录</div><div class="line">export ORACLE_BASE=/data/DBSoft/oracle</div><div class="line">#oracle家目录</div><div class="line">export ORACLE_HOME=$ORACLE_BASE/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1</div><div class="line">export PATH=$ORACLE_HOME/bin:$PATH</div><div class="line"></div><div class="line"># 保存退出后执行如下命令使以上设置立即生效,并env或者<span class="keyword">echo</span> $PATH查看下</div><div class="line"><span class="keyword">source</span> ~/.bash_profile</div></pre></td></tr></table></figure>
+<h1 id="开始安装oracle"><a href="#开始安装oracle" class="headerlink" title="开始安装oracle"></a>开始安装oracle</h1><h2 id="配置远程安装环境"><a href="#配置远程安装环境" class="headerlink" title="配置远程安装环境"></a>配置远程安装环境</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># oracle安装需要<span class="keyword">X</span>-window环境，但是考虑到最大化利用服务器性能，一般服务器中不会安装<span class="keyword">X</span>-windows环境。所以选择远程来安装oracle。</div><div class="line"></div><div class="line"># 设置语言环境LANG和LC_ALL,改为英文环境</div><div class="line">export LANG=en_US</div><div class="line">export LC_ALL=en_US</div><div class="line"></div><div class="line"># 使用Xmanager来远程显示oracle的安装界面，安装过程中可能遇到界面显示不完全的问题，因为我是在虚拟机中安装，猜测是与内存大小有关</div><div class="line">export DISPLAY=<span class="number">192.168</span>.<span class="number">1.233</span>:<span class="number">0.0</span></div><div class="line">./runInstall</div></pre></td></tr></table></figure>
+<h2 id="安装数据库软件"><a href="#安装数据库软件" class="headerlink" title="安装数据库软件"></a>安装数据库软件</h2><p>1.进入图形化界面，一步步安装，取消勾选I wish…（依照个人），点击Next，弹出确认框再点Yes<br><img src="http://wy-uploads.qiniudn.com/oracle_1.png" alt="此处输入图片的描述"><br><img src="http://wy-uploads.qiniudn.com/oracle_2.png" alt="此处输入图片的描述"></p>
 <p>2.询问是否软件升级，选择”Skip software updates”<br><img src="http://wy-uploads.qiniudn.com/oracle_3.png" alt="此处输入图片的描述"></p>
 <p>3.选择第二项：Install database software only，只安装数据库软件<br><img src="http://wy-uploads.qiniudn.com/oracle_4.png" alt="此处输入图片的描述"></p>
 <p>4.保持默认：Singel instance database installation，点击Next<br><img src="http://wy-uploads.qiniudn.com/oracle_5.png" alt="此处输入图片的描述"></p>
@@ -398,14 +500,14 @@
 <p>12.忽略物理内存和交换分区的警告<br><img src="http://wy-uploads.qiniudn.com/oracle_13.png" alt="此处输入图片的描述"></p>
 <p>13.配置确认，安装<br><img src="http://wy-uploads.qiniudn.com/oracle_14.png" alt="此处输入图片的描述"></p>
 <p>14.root用户下，命令执行提示sh文件<br><img src="http://wy-uploads.qiniudn.com/oracle_15.png" alt="此处输入图片的描述"></p>
-<h2 id="安装监听">安装监听</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 在oracle用户下</span><br><span class="line">netca</span><br></pre></td></tr></table></figure>
+<h2 id="安装监听"><a href="#安装监听" class="headerlink" title="安装监听"></a>安装监听</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 在oracle用户下</div><div class="line">netca</div></pre></td></tr></table></figure>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_31.png" alt="此处输入图片的描述"></p>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_32.png" alt="此处输入图片的描述"></p>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_33.png" alt="此处输入图片的描述"></p>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_34.png" alt="此处输入图片的描述"></p>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_35.png" alt="此处输入图片的描述"><br>提示1521端口被占用，这里是因为我安装过程中修改过hostname，导致的<br><img src="http://wy-uploads.qiniudn.com/oracle_36.png" alt="此处输入图片的描述"></p>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_37.png" alt="此处输入图片的描述"></p>
-<h2 id="安装数据库实例">安装数据库实例</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 在oracle用户下</span><br><span class="line">dbca</span><br></pre></td></tr></table></figure>
+<h2 id="安装数据库实例"><a href="#安装数据库实例" class="headerlink" title="安装数据库实例"></a>安装数据库实例</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 在oracle用户下</div><div class="line">dbca</div></pre></td></tr></table></figure>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_16.png" alt="此处输入图片的描述"></p>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_17.png" alt="此处输入图片的描述"></p>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_18.png" alt="此处输入图片的描述"><br>配置全局数据库名称<br><img src="http://wy-uploads.qiniudn.com/oracle_19.png" alt="此处输入图片的描述"><br>取消EM管理界面<br><img src="http://wy-uploads.qiniudn.com/oracle_20.png" alt="此处输入图片的描述"></p>
@@ -417,72 +519,81 @@
 <p><img src="http://wy-uploads.qiniudn.com/oracle_28.png" alt="此处输入图片的描述"></p>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_29.png" alt="此处输入图片的描述"></p>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_30.png" alt="此处输入图片的描述"></p>
-<h2 id="配置本地网络服务名">配置本地网络服务名</h2><p>配置本地网络服务名（使服务器充当oracle客户端，连接自己，对数据库进行操作）</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 在oracle用户下</span><br><span class="line">netca</span><br></pre></td></tr></table></figure>
+<h2 id="配置本地网络服务名"><a href="#配置本地网络服务名" class="headerlink" title="配置本地网络服务名"></a>配置本地网络服务名</h2><p>配置本地网络服务名（使服务器充当oracle客户端，连接自己，对数据库进行操作）</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 在oracle用户下</div><div class="line">netca</div></pre></td></tr></table></figure>
 <p><img src="http://wy-uploads.qiniudn.com/oracle_38.png" alt="此处输入图片的描述"><br><img src="http://wy-uploads.qiniudn.com/oracle_39.png" alt="此处输入图片的描述"><br>输入连接的oracle服务器的数据库的实例名，这里输入本机的。<br><img src="http://wy-uploads.qiniudn.com/oracle_40.png" alt="此处输入图片的描述"><br><img src="http://wy-uploads.qiniudn.com/oracle_41.png" alt="此处输入图片的描述"><br>输入oracle服务器的ip地址，这里输入本机的ip<br><img src="http://wy-uploads.qiniudn.com/oracle_42.png" alt="此处输入图片的描述"><br>选中测试<br><img src="http://wy-uploads.qiniudn.com/oracle_43.png" alt="此处输入图片的描述"><br>点击change Login 输入所连接oracle服务器的其中某一个用户名和密码，点击OK<br><img src="http://wy-uploads.qiniudn.com/oracle_44.png" alt="此处输入图片的描述"><br>看到此界面说明测试成功<br><img src="http://wy-uploads.qiniudn.com/oracle_45.png" alt="此处输入图片的描述"><br>为你所设置的本地网络服务名起个名字，与实例名不能相同<br><img src="http://wy-uploads.qiniudn.com/oracle_46.png" alt="此处输入图片的描述"><br><img src="http://wy-uploads.qiniudn.com/oracle_47.png" alt="此处输入图片的描述"></p>
-<h1 id="遇到的问题">遇到的问题</h1><h2 id="重启linux后，dbca命令无法找到">重启linux后，dbca命令无法找到</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br><span class="line"></span><br><span class="line"># 添加如下内容</span><br><span class="line"># set Oracle</span><br><span class="line">export ORACLE_SID=demo  #数据库实例ID    </span><br><span class="line">export ORACLE_BASE=/DBSoft/oracle #安装目录</span><br><span class="line">export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/db_1 #oracle家目录</span><br><span class="line">export PATH=$ORACLE_HOME/bin:$PATH</span><br><span class="line"></span><br><span class="line"># 使配置生效</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
-<h2 id="安装oracle软件后，安装监听报错">安装oracle软件后，安装监听报错</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Oracle Net Services Configuration:</span><br><span class="line">#</span><br><span class="line"># An unexpected error has been detected by HotSpot Virtual Machine:</span><br><span class="line">#</span><br><span class="line"># SIGSEGV (0xb) at pc=0xa4bf5f4e, pid=11819, tid=3086902976</span><br><span class="line">#</span><br><span class="line"># Java VM: Java HotSpot(TM) Client VM (1.5.0_17-b02 mixed mode)</span><br><span class="line"># Problematic frame:</span><br><span class="line"># C [libclntsh.so.11.1+0x421f4e] snlinGetAddrInfo+0x1b2</span><br><span class="line">#</span><br><span class="line"># An error report file with more information is saved as hs_err_pid11819.log</span><br><span class="line">#</span><br><span class="line"># If you would like to submit a bug report, please visit:</span><br><span class="line">#   http://java.sun.com/webapps/bugreport/crash.jsp</span><br><span class="line">#</span><br><span class="line">/u01/oracle/bin/netca: line 178: 11819 Aborted                 $JRE $JRE_OPTIONS -classpath $CLASSPATH oracle.net.ca.NetCA $*</span><br></pre></td></tr></table></figure>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><h2 id="重启linux后，dbca命令无法找到"><a href="#重启linux后，dbca命令无法找到" class="headerlink" title="重启linux后，dbca命令无法找到"></a>重启linux后，dbca命令无法找到</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">vi</span> /etc/<span class="keyword">profile</span></div><div class="line"></div><div class="line"># 添加如下内容</div><div class="line"># <span class="keyword">set</span> Oracle</div><div class="line">export ORACLE_SID=demo  #数据库实例ID    </div><div class="line">export ORACLE_BASE=/DBSoft/oracle #安装目录</div><div class="line">export ORACLE_HOME=$ORACLE_BASE/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1 #oracle家目录</div><div class="line">export PATH=$ORACLE_HOME/bin:$PATH</div><div class="line"></div><div class="line"># 使配置生效</div><div class="line"><span class="keyword">source</span> /etc/<span class="keyword">profile</span></div></pre></td></tr></table></figure>
+<h2 id="安装oracle软件后，安装监听报错"><a href="#安装oracle软件后，安装监听报错" class="headerlink" title="安装oracle软件后，安装监听报错"></a>安装oracle软件后，安装监听报错</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Oracle Net Services Configuration:</div><div class="line">#</div><div class="line"># An unexpected error <span class="built_in">has</span> been detected by HotSpot Virtual Machine:</div><div class="line">#</div><div class="line"># SIGSEGV (<span class="number">0</span>xb) at <span class="keyword">pc</span>=<span class="number">0</span>xa4bf5f4e, pid=<span class="number">11819</span>, tid=<span class="number">3086902976</span></div><div class="line">#</div><div class="line"># Java VM: Java HotSpot(TM) Client VM (<span class="number">1.5</span>.<span class="number">0</span>_17-b02 mixed <span class="keyword">mode</span>)</div><div class="line"># Problematic frame:</div><div class="line"># C [libclntsh.<span class="keyword">so</span>.<span class="number">11.1</span>+<span class="number">0</span>x421f4e] snlinGetAddrInfo+<span class="number">0</span>x1b2</div><div class="line">#</div><div class="line"># An error report <span class="keyword">file</span> with more information <span class="keyword">is</span> saved <span class="keyword">as</span> hs_err_pid11819.<span class="built_in">log</span></div><div class="line">#</div><div class="line"># If you would like <span class="keyword">to</span> submit <span class="keyword">a</span> bug report, please visi<span class="variable">t:</span></div><div class="line">#   http://java.<span class="keyword">sun</span>.<span class="keyword">com</span>/webapps/bugreport/crash.jsp</div><div class="line">#</div><div class="line">/u01/oracle/bin/netc<span class="variable">a:</span> <span class="built_in">line</span> <span class="number">178</span>: <span class="number">11819</span> Aborted                 $JRE $JRE_OPTIONS -classpath $CLASSPATH oracle.net.<span class="keyword">ca</span>.NetCA $*</div></pre></td></tr></table></figure>
 <p>原因是安装Centos的时候，默认主机名没有修改。对其进行修改。（安装centos时，计算机名必须修改）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#修改hostname</span><br><span class="line">vi /etc/sysconfig/network</span><br><span class="line">HOSTNAME=dbserver</span><br><span class="line">#修改hosts文件</span><br><span class="line">vi /etc/hosts</span><br><span class="line">192.168.1.250   dbsrver localhost</span><br><span class="line">::1  localhost6 localhost6.localdomain6</span><br></pre></td></tr></table></figure>
-<h2 id="安装完监听后，启动监听报错。">安装完监听后，启动监听报错。</h2><p>怀疑与安装监听时提示1521端口被占用有关</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[oracle@dbserver database]$ netstat -an | grep 1521</span><br><span class="line">[oracle@dbserver database]$ lsnrctl stat</span><br><span class="line"></span><br><span class="line">LSNRCTL for Linux: Version 11.2.0.3.0 - Production on 29-MAR-2015 15:09:14</span><br><span class="line"></span><br><span class="line">Copyright (c) 1991, 2011, Oracle.  All rights reserved.</span><br><span class="line"></span><br><span class="line">Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(PORT=1521)))</span><br><span class="line">TNS-12541: TNS:no listener</span><br><span class="line"> TNS-12560: TNS:protocol adapter error</span><br><span class="line">  TNS-00511: No listener</span><br><span class="line">   Linux Error: 111: Connection refused</span><br><span class="line">Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=IPC)(KEY=EXTPROC1521)))</span><br><span class="line">TNS-12541: TNS:no listener</span><br><span class="line"> TNS-12560: TNS:protocol adapter error</span><br><span class="line">  TNS-00511: No listener</span><br><span class="line">   Linux Error: 2: No such file or directory</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#修改<span class="built_in">hostname</span></div><div class="line"><span class="keyword">vi</span> /etc/sysconfig/network</div><div class="line">HOSTNAME=dbserver</div><div class="line">#修改hosts文件</div><div class="line"><span class="keyword">vi</span> /etc/hosts</div><div class="line"><span class="number">192.168</span>.<span class="number">1.250</span>   dbsrver localhost</div><div class="line">::<span class="number">1</span>  localhost6 localhost6.localdomain6</div></pre></td></tr></table></figure>
+<h2 id="安装完监听后，启动监听报错。"><a href="#安装完监听后，启动监听报错。" class="headerlink" title="安装完监听后，启动监听报错。"></a>安装完监听后，启动监听报错。</h2><p>怀疑与安装监听时提示1521端口被占用有关</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[oracle@dbserver database]$ netstat -<span class="keyword">an</span> | <span class="keyword">grep</span> <span class="number">1521</span></div><div class="line">[oracle@dbserver database]$ lsnrctl stat</div><div class="line"></div><div class="line">LSNRCTL <span class="keyword">for</span> Linux: Version <span class="number">11.2</span>.<span class="number">0.3</span>.<span class="number">0</span> - Production <span class="keyword">on</span> <span class="number">29</span>-MAR-<span class="number">2015</span> <span class="number">15</span>:<span class="number">09</span>:<span class="number">14</span></div><div class="line"></div><div class="line">Copyright (<span class="keyword">c</span>) <span class="number">1991</span>, <span class="number">2011</span>, Oracle.  All rights reserved.</div><div class="line"></div><div class="line">Connecting <span class="keyword">to</span> (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(PORT=<span class="number">1521</span>)))</div><div class="line">TNS-<span class="number">12541</span>: TNS:<span class="keyword">no</span> listener</div><div class="line"> TNS-<span class="number">12560</span>: TNS:protocol adapter error</div><div class="line">  TNS-<span class="number">00511</span>: No listener</div><div class="line">   Linux Error: <span class="number">111</span>: Connection refused</div><div class="line">Connecting <span class="keyword">to</span> (DESCRIPTION=(ADDRESS=(PROTOCOL=IPC)(KEY=EXTPROC1521)))</div><div class="line">TNS-<span class="number">12541</span>: TNS:<span class="keyword">no</span> listener</div><div class="line"> TNS-<span class="number">12560</span>: TNS:protocol adapter error</div><div class="line">  TNS-<span class="number">00511</span>: No listener</div><div class="line">   Linux Error: <span class="number">2</span>: No such <span class="keyword">file</span> <span class="built_in">or</span> directory</div></pre></td></tr></table></figure>
 <p>原因是 $ORAACLE_HOME/network/admin/listener.ora 文件中的 host未定义。</p>
-<h1 id="其他知识">其他知识</h1><h2 id="数据库名、实例名、SID、服务名、网络服务名">数据库名、实例名、SID、服务名、网络服务名</h2><p>数据库名：建数据库时候填写的global database name（<code>select name from v$database;</code>）<br>SID：建数据库时候填写的SID<br>实例名：与数据库名一致（<code>select instance_name from v$instance</code>）</p>
-<h2 id="Linux_oracle数据库listener-ora存放路径">Linux oracle数据库listener.ora存放路径</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> /data/DBSoft/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1/network/admin/listener.ora</span><br></pre></td></tr></table></figure>
-<h2 id="Linux_oracle数据库tnsnames-ora存放路径">Linux oracle数据库tnsnames.ora存放路径</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> /data/DBSoft/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1/network/admin/tnsnames.ora</span><br></pre></td></tr></table></figure>
-<h2 id="ORACLE多个实例">ORACLE多个实例</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">LISTENER =</span><br><span class="line">  (DESCRIPTION_LIST =</span><br><span class="line">    (DESCRIPTION =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = <span class="number">1521</span>))</span><br><span class="line">      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  </span><br><span class="line">#SID1、SID2即为<span class="number">2</span>个实例名称</span><br><span class="line">SID_LIST_LISTENER =</span><br><span class="line">  (SID_LIST =</span><br><span class="line">    (SID_DESC =</span><br><span class="line">      (GLOBAL_DBNAME = SID1)</span><br><span class="line">      (ORACLE_HOME = /data/DBSoft/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1)</span><br><span class="line">      (SID_NAME = SID1)</span><br><span class="line">    )</span><br><span class="line">    (SID_DESC =</span><br><span class="line">      (GLOBAL_DBNAME = SID2)</span><br><span class="line">      (ORACLE_HOME = /data/DBSoft/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1)</span><br><span class="line">      (SID_NAME = SID2)</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
-<h2 id="ORACLE启动监听器">ORACLE启动监听器</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#切换至oracle安装用户（一般为oracle）</span><br><span class="line">su - oracle </span><br><span class="line">#启动监听器</span><br><span class="line">lsnrctl start </span><br><span class="line">#停止监听器</span><br><span class="line">lsnrctl <span class="keyword">stop</span></span><br></pre></td></tr></table></figure>
-<h2 id="启动测试oracle">启动测试oracle</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[oracle@oracle ~]$ sqlplus /nolog</span><br><span class="line">SQL*Plus: Release 11.2.0.1.0 Production on Fri Jul 27 02:12:12 2012</span><br><span class="line">Copyright (c) 1982, 2009, Oracle. All rights reserved.</span><br><span class="line">#关闭数据库</span><br><span class="line">SQL&gt; shutdown</span><br><span class="line">#启动数据库</span><br><span class="line">SQL&gt; startup</span><br><span class="line">SQL&gt; quit</span><br></pre></td></tr></table></figure>
+<h1 id="其他知识"><a href="#其他知识" class="headerlink" title="其他知识"></a>其他知识</h1><h2 id="数据库名、实例名、SID、服务名、网络服务名"><a href="#数据库名、实例名、SID、服务名、网络服务名" class="headerlink" title="数据库名、实例名、SID、服务名、网络服务名"></a>数据库名、实例名、SID、服务名、网络服务名</h2><p>数据库名：建数据库时候填写的global database name（<code>select name from v$database;</code>）<br>SID：建数据库时候填写的SID<br>实例名：与数据库名一致（<code>select instance_name from v$instance</code>）</p>
+<h2 id="Linux-oracle数据库listener-ora存放路径"><a href="#Linux-oracle数据库listener-ora存放路径" class="headerlink" title="Linux oracle数据库listener.ora存放路径"></a>Linux oracle数据库listener.ora存放路径</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /data/DBSoft/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1/network/admin/listener.ora</div></pre></td></tr></table></figure>
+<h2 id="Linux-oracle数据库tnsnames-ora存放路径"><a href="#Linux-oracle数据库tnsnames-ora存放路径" class="headerlink" title="Linux oracle数据库tnsnames.ora存放路径"></a>Linux oracle数据库tnsnames.ora存放路径</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /data/DBSoft/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1/network/admin/tnsnames.ora</div></pre></td></tr></table></figure>
+<h2 id="ORACLE多个实例"><a href="#ORACLE多个实例" class="headerlink" title="ORACLE多个实例"></a>ORACLE多个实例</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">LISTENER =</div><div class="line">  (DESCRIPTION_LIST =</div><div class="line">    (DESCRIPTION =</div><div class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = <span class="number">1521</span>))</div><div class="line">      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))</div><div class="line">    )</div><div class="line">  )</div><div class="line">  </div><div class="line">#SID1、SID2即为<span class="number">2</span>个实例名称</div><div class="line">SID_LIST_LISTENER =</div><div class="line">  (SID_LIST =</div><div class="line">    (SID_DESC =</div><div class="line">      (GLOBAL_DBNAME = SID1)</div><div class="line">      (ORACLE_HOME = /data/DBSoft/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1)</div><div class="line">      (SID_NAME = SID1)</div><div class="line">    )</div><div class="line">    (SID_DESC =</div><div class="line">      (GLOBAL_DBNAME = SID2)</div><div class="line">      (ORACLE_HOME = /data/DBSoft/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1)</div><div class="line">      (SID_NAME = SID2)</div><div class="line">    )</div><div class="line">  )</div></pre></td></tr></table></figure>
+<h2 id="ORACLE启动监听器"><a href="#ORACLE启动监听器" class="headerlink" title="ORACLE启动监听器"></a>ORACLE启动监听器</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#切换至oracle安装用户（一般为oracle）</div><div class="line">su - oracle </div><div class="line">#启动监听器</div><div class="line">lsnrctl start </div><div class="line">#停止监听器</div><div class="line">lsnrctl <span class="keyword">stop</span></div></pre></td></tr></table></figure>
+<h2 id="启动测试oracle"><a href="#启动测试oracle" class="headerlink" title="启动测试oracle"></a>启动测试oracle</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[oracle@oracle ~]$ sqlplus /nolog</div><div class="line">SQL*Plu<span class="variable">s:</span> Release <span class="number">11.2</span>.<span class="number">0.1</span>.<span class="number">0</span> Production <span class="keyword">on</span> Fri Jul <span class="number">27</span> <span class="number">02</span>:<span class="number">12</span>:<span class="number">12</span> <span class="number">2012</span></div><div class="line">Copyright (<span class="keyword">c</span>) <span class="number">1982</span>, <span class="number">2009</span>, Oracle. All rights reserved.</div><div class="line">#关闭数据库</div><div class="line">SQL&gt; shutdown</div><div class="line">#启动数据库</div><div class="line">SQL&gt; startup</div><div class="line">SQL&gt; <span class="keyword">quit</span></div></pre></td></tr></table></figure>
 <p>测试的另一种方法：找一台windows平台电脑，telnet oracle主机IP地址：1521，通的话，会出现一个黑屏，光标一闪一闪。</p>
-<h2 id="Linux开放1521端口允许网络连接Oracle_Listener">Linux开放1521端口允许网络连接Oracle Listener</h2><p>症状：<br>(1)TCP/IP连接是通的。可以用ping 命令测试。<br>(2)服务器上Oracle Listener已经启动。<br>lsnrctl status 查看listener状态<br>lsnrctl start 启动Oracle listener<br>(3)客户端得到的错误信息通常是：ORA-12170： TNS:连接超时<br>这时，我们基本可以肯定是服务器没有开放1521端口（假设你用默认设置）</p>
+<h2 id="Linux开放1521端口允许网络连接Oracle-Listener"><a href="#Linux开放1521端口允许网络连接Oracle-Listener" class="headerlink" title="Linux开放1521端口允许网络连接Oracle Listener"></a>Linux开放1521端口允许网络连接Oracle Listener</h2><p>症状：<br>(1)TCP/IP连接是通的。可以用ping 命令测试。<br>(2)服务器上Oracle Listener已经启动。<br>lsnrctl status 查看listener状态<br>lsnrctl start 启动Oracle listener<br>(3)客户端得到的错误信息通常是：ORA-12170： TNS:连接超时<br>这时，我们基本可以肯定是服务器没有开放1521端口（假设你用默认设置）</p>
 <p>解决方法：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#编辑iptables, 开放<span class="number">1521</span>端口：</span><br><span class="line"><span class="keyword">vi</span> /etc/sysconfig/iptables</span><br><span class="line">-A INPUT -<span class="keyword">p</span> tcp -<span class="keyword">m</span> state --state NEW -<span class="keyword">m</span> tcp --dport <span class="number">1521</span> -<span class="keyword">j</span> ACCEPT </span><br><span class="line"></span><br><span class="line">#保存配置，以便linux重启后依然有效</span><br><span class="line">service iptables save </span><br><span class="line">#重启防火墙,使规则生效</span><br><span class="line">service iptables restart</span><br><span class="line">#查看防火墙规则：</span><br><span class="line">iptables -L –<span class="keyword">n</span></span><br></pre></td></tr></table></figure>
-<h2 id="linux下创建oracle用户表空间">linux下创建oracle用户表空间</h2><p>就是在已有的数据库实例上创建一个新的帐号，访问一些新的表<br>操作步骤如下：<br>(1)登录linux，以oracle用户登录（如果是root用户登录的，登录后用 su - oracle命令切换成oracle用户）<br>(2)以sysdba方式来打开sqlplus，命令如下： </p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqlplus <span class="string">"/as sysdba"</span></span><br><span class="line">#使用sysdba打开可能会报ORA-<span class="number">12162</span>错误，因为ORACLE_SID未定义</span><br><span class="line">export ORACLE_SID=dbmaster</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#编辑iptables, 开放<span class="number">1521</span>端口：</div><div class="line"><span class="keyword">vi</span> /etc/sysconfig/iptables</div><div class="line">-A INPUT -<span class="keyword">p</span> tcp -<span class="keyword">m</span> state --state NEW -<span class="keyword">m</span> tcp --dport <span class="number">1521</span> -<span class="keyword">j</span> ACCEPT </div><div class="line"></div><div class="line">#保存配置，以便linux重启后依然有效</div><div class="line">service iptables save </div><div class="line">#重启防火墙,使规则生效</div><div class="line">service iptables restart</div><div class="line">#查看防火墙规则：</div><div class="line">iptables -L –n</div></pre></td></tr></table></figure>
+<h2 id="linux下创建oracle用户表空间"><a href="#linux下创建oracle用户表空间" class="headerlink" title="linux下创建oracle用户表空间"></a>linux下创建oracle用户表空间</h2><p>就是在已有的数据库实例上创建一个新的帐号，访问一些新的表<br>操作步骤如下：<br>(1)登录linux，以oracle用户登录（如果是root用户登录的，登录后用 su - oracle命令切换成oracle用户）<br>(2)以sysdba方式来打开sqlplus，命令如下： </p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sqlplus <span class="string">"/as sysdba"</span></div><div class="line">#使用sysdba打开可能会报ORA-<span class="number">12162</span>错误，因为ORACLE_SID未定义</div><div class="line">export ORACLE_SID=dbmaster</div></pre></td></tr></table></figure>
 <p>(3)查看我们常规将用户表空间放置位置：执行如下</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sql：select name from <span class="keyword">v</span>$datafile;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sql：select name from v$datafile;</div></pre></td></tr></table></figure>
 <p>(4)创建用户表空间：<br>根据上步查询出的路径，新建用户表空间</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create tablespace ts_UserName datafile</span><br><span class="line"><span class="string">'/data/dbdata/ewm/UserName_data01.dbf'</span> size <span class="number">2</span>G autoextend <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">100</span>M maxsize <span class="number">31</span><span class="keyword">g</span>,</span><br><span class="line"><span class="string">'/data/dbdata/ewm/UserName_data02.dbf'</span> size <span class="number">2</span>G autoextend <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">100</span>M maxsize <span class="number">31</span><span class="keyword">g</span>,</span><br><span class="line"><span class="string">'/data/dbdata/ewm/UserName_data03.dbf'</span> size <span class="number">2</span>G autoextend <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">100</span>M maxsize <span class="number">31</span><span class="keyword">g</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">create tablespace ts_UserName datafile</div><div class="line"><span class="string">'/data/dbdata/ewm/UserName_data01.dbf'</span> size <span class="number">2</span>G autoextend <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">100</span>M maxsize <span class="number">31</span>g,</div><div class="line"><span class="string">'/data/dbdata/ewm/UserName_data02.dbf'</span> size <span class="number">2</span>G autoextend <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">100</span>M maxsize <span class="number">31</span>g,</div><div class="line">'/data/dbdata/ewm/UserName_data03.dbf' size 2G autoextend on next 100M maxsize 31g;</div></pre></td></tr></table></figure>
 <p>(5)创建用户，指定密码和上边创建的用户表空间</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#注意：oracle有个毛病，密码必须以字母开头，如果以数字开头，它不会创建用户</span><br><span class="line">create user UserName identified by PassWord default tablespace ts_UserName <span class="keyword">profile</span> DEFAULT;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#注意：oracle有个毛病，密码必须以字母开头，如果以数字开头，它不会创建用户</div><div class="line">create user UserName identified by PassWord default tablespace ts_UserName profile DEFAULT;</div></pre></td></tr></table></figure>
 <p>(6)赋予权限</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">grant create database link <span class="keyword">to</span> UserName;</span><br><span class="line">grant create procedure <span class="keyword">to</span> UserName;</span><br><span class="line">grant create sequence <span class="keyword">to</span> UserName;</span><br><span class="line">grant create session <span class="keyword">to</span> UserName;</span><br><span class="line">grant create synonym <span class="keyword">to</span> UserName;</span><br><span class="line">grant create table <span class="keyword">to</span> UserName;</span><br><span class="line">grant create trigger <span class="keyword">to</span> UserName;</span><br><span class="line">grant create <span class="keyword">view</span> <span class="keyword">to</span> UserName;</span><br><span class="line">grant select any dictionary <span class="keyword">to</span> UserName;</span><br><span class="line">grant select any table <span class="keyword">to</span> UserName;</span><br><span class="line">grant unlimited tablespace <span class="keyword">to</span> UserName;</span><br><span class="line">grant <span class="keyword">update</span> any table <span class="keyword">to</span> UserName;</span><br><span class="line">grant <span class="keyword">debug</span> connect session <span class="keyword">to</span> UserName;</span><br><span class="line">grant dba <span class="keyword">to</span> UserName;</span><br></pre></td></tr></table></figure>
-<p>—经过以上操作，我们就可以使用UserName/PassWord登录指定的实例，创建我们自己的表了</p>
-<h2 id="设置Oracle自启动">设置Oracle自启动</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br><span class="line">vi /etc/oratab</span><br><span class="line">#将末尾的N修改为Y</span><br><span class="line">dbmaster:/data/DBSoft/oracle/product/11.2.0/db_1:Y</span><br><span class="line">#修改linux自启动文件</span><br><span class="line">vi /etc/rc.d/rc.local</span><br><span class="line">su oracle -lc "/data/DBSoft/oracle/product/11.2.0/db_1/bin/lsnrctl start"</span><br><span class="line"></span><br><span class="line">su oracle -lc "/data/DBSoft/oracle/product/11.2.0/db_1/bin/dbstart"</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">grant create database link to UserName;</div><div class="line">grant create procedure to UserName;</div><div class="line">grant create sequence to UserName;</div><div class="line">grant create session to UserName;</div><div class="line">grant create synonym to UserName;</div><div class="line">grant create table to UserName;</div><div class="line">grant create trigger to UserName;</div><div class="line">grant create view to UserName;</div><div class="line">grant select any dictionary to UserName;</div><div class="line">grant select any table to UserName;</div><div class="line">grant unlimited tablespace to UserName;</div><div class="line">grant update any table to UserName;</div><div class="line">grant debug connect session to UserName;</div><div class="line">grant dba to UserName;</div></pre></td></tr></table></figure>
+<p>–经过以上操作，我们就可以使用UserName/PassWord登录指定的实例，创建我们自己的表了</p>
+<h2 id="设置Oracle自启动"><a href="#设置Oracle自启动" class="headerlink" title="设置Oracle自启动"></a>设置Oracle自启动</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">su root</div><div class="line"><span class="keyword">vi</span> /etc/oratab</div><div class="line">#将末尾的<span class="keyword">N</span>修改为Y</div><div class="line">dbmaster:/data/DBSoft/oracle/product/<span class="number">11.2</span>.<span class="number">0</span>/db_1:Y</div><div class="line">#修改linux自启动文件</div><div class="line"><span class="keyword">vi</span> /etc/rc.d/rc.local</div><div class="line">su oracle -<span class="keyword">lc</span> <span class="string">"/data/DBSoft/oracle/product/11.2.0/db_1/bin/lsnrctl start"</span></div><div class="line"></div><div class="line">su oracle -<span class="keyword">lc</span> <span class="string">"/data/DBSoft/oracle/product/11.2.0/db_1/bin/dbstart"</span></div></pre></td></tr></table></figure>
 <p>参考博客：<br> <a href="http://www.blogjava.net/icewee/archive/2013/01/30/394943.html" target="_blank" rel="external">Linux 64bit下Oracle11g安装手册</a><br> <a href="http://www.cnblogs.com/mophee/archive/2013/06/01/3107137.html" target="_blank" rel="external">亦步亦趋完成在CentOS 6.4下安装Oracle 11gR2</a><br> <a href="http://www.xiyang-liu.com/2012/11/install-oracle-dbserver-with-xmanager-in-windows/" target="_blank" rel="external">使用远程X Server安装Oracle</a><br> <a href="http://www.cnblogs.com/linjiqin/category/349944.html" target="_blank" rel="external">oracle初级系列教程</a></p>
 
       
     </div>
+    
+    
+    
 
-    <div>
-      
-        
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Oracle/" rel="tag">#Oracle</a>
+            <a href="/tags/Oracle/" rel="tag"># Oracle</a>
           
         </div>
+      
+
+      
+      
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/16/Shell-Study/" rel="next" title="TIPS">
-                <i class="fa fa-chevron-left"></i> TIPS
+              <a href="/2015/07/16/CentOS-System-Performance-tuning/" rel="next" title="CentOS 安装与调优配置">
+                <i class="fa fa-chevron-left"></i> CentOS 安装与调优配置
               </a>
             
           </div>
 
+          <span class="post-nav-divider"></span>
+
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/15/book-list/" rel="prev" title="阅读书单">
-                阅读书单 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/07/16/Nginx-Tomcat-Memcached-Cluster/" rel="prev" title="Nginx+Tomcat+Memcached集群">
+                Nginx+Tomcat+Memcached集群 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -492,30 +603,42 @@
       
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/07/16/CentOS-Oracle-installation/"
-     data-title="CentOS下Oracle安装"
-     data-content=""
-     data-url="http://www.mr-wang.cn/2015/07/16/CentOS-Oracle-installation/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
 
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
       
     </div>
   </div>
@@ -524,16 +647,11 @@
           </div>
           
 
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
 
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/07/16/CentOS-Oracle-installation/"
-           data-title="CentOS下Oracle安装" data-url="http://www.mr-wang.cn/2015/07/16/CentOS-Oracle-installation/">
-      </div>
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE2MS81NzI4"></div>
     
   </div>
 
@@ -551,6 +669,7 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
@@ -566,25 +685,32 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://mr-wang.qiniudn.com/mr_wang.jpg"
                alt="Mr wang" />
           <p class="site-author-name" itemprop="name">Mr wang</p>
-          <p class="site-description motion-element" itemprop="description">运维笔记</p>
+           
+              <p class="site-description motion-element" itemprop="description">运维笔记</p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -592,8 +718,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -603,72 +731,58 @@
         </nav>
 
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
 
         <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="#" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/xiaowang0624" target="_blank">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  weibo
-                </a>
-              </span>
-            
-          
         </div>
 
         
         
 
         
-        <div class="links-of-blogroll motion-element">
-          
-            <div class="links-of-blogroll-title">Links</div>
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" target="_blank">Linux工具箱</a>
+                  <a href="http://mr-wang.qiniudn.com/UnixToolbox-zh_CN.html" title="Linux工具箱" target="_blank">Linux工具箱</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://linux.51yip.com/" target="_blank">Linux命令手册</a>
+                  <a href="http://linux.51yip.com/" title="Linux命令手册" target="_blank">Linux命令手册</a>
                 </li>
               
             </ul>
-          
-        </div>
+          </div>
+        
+
+        
+
 
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装前准备"><span class="nav-number">1.</span> <span class="nav-text">安装前准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖包"><span class="nav-number">1.1.</span> <span class="nav-text">安装依赖包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户及安装目录"><span class="nav-number">1.2.</span> <span class="nav-text">创建用户及安装目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改系统参数"><span class="nav-number">1.3.</span> <span class="nav-text">修改系统参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置oracle默认安装参数"><span class="nav-number">1.4.</span> <span class="nav-text">配置oracle默认安装参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始安装oracle"><span class="nav-number">2.</span> <span class="nav-text">开始安装oracle</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置远程安装环境"><span class="nav-number">2.1.</span> <span class="nav-text">配置远程安装环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装数据库软件"><span class="nav-number">2.2.</span> <span class="nav-text">安装数据库软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装监听"><span class="nav-number">2.3.</span> <span class="nav-text">安装监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装数据库实例"><span class="nav-number">2.4.</span> <span class="nav-text">安装数据库实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置本地网络服务名"><span class="nav-number">2.5.</span> <span class="nav-text">配置本地网络服务名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重启linux后，dbca命令无法找到"><span class="nav-number">3.1.</span> <span class="nav-text">重启linux后，dbca命令无法找到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装oracle软件后，安装监听报错"><span class="nav-number">3.2.</span> <span class="nav-text">安装oracle软件后，安装监听报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装完监听后，启动监听报错。"><span class="nav-number">3.3.</span> <span class="nav-text">安装完监听后，启动监听报错。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他知识"><span class="nav-number">4.</span> <span class="nav-text">其他知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库名、实例名、SID、服务名、网络服务名"><span class="nav-number">4.1.</span> <span class="nav-text">数据库名、实例名、SID、服务名、网络服务名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux_oracle数据库listener-ora存放路径"><span class="nav-number">4.2.</span> <span class="nav-text">Linux oracle数据库listener.ora存放路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux_oracle数据库tnsnames-ora存放路径"><span class="nav-number">4.3.</span> <span class="nav-text">Linux oracle数据库tnsnames.ora存放路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ORACLE多个实例"><span class="nav-number">4.4.</span> <span class="nav-text">ORACLE多个实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ORACLE启动监听器"><span class="nav-number">4.5.</span> <span class="nav-text">ORACLE启动监听器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动测试oracle"><span class="nav-number">4.6.</span> <span class="nav-text">启动测试oracle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux开放1521端口允许网络连接Oracle_Listener"><span class="nav-number">4.7.</span> <span class="nav-text">Linux开放1521端口允许网络连接Oracle Listener</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux下创建oracle用户表空间"><span class="nav-number">4.8.</span> <span class="nav-text">linux下创建oracle用户表空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Oracle自启动"><span class="nav-number">4.9.</span> <span class="nav-text">设置Oracle自启动</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装前准备"><span class="nav-number">1.</span> <span class="nav-text">安装前准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖包"><span class="nav-number">1.1.</span> <span class="nav-text">安装依赖包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建用户及安装目录"><span class="nav-number">1.2.</span> <span class="nav-text">创建用户及安装目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改系统参数"><span class="nav-number">1.3.</span> <span class="nav-text">修改系统参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置oracle默认安装参数"><span class="nav-number">1.4.</span> <span class="nav-text">配置oracle默认安装参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始安装oracle"><span class="nav-number">2.</span> <span class="nav-text">开始安装oracle</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置远程安装环境"><span class="nav-number">2.1.</span> <span class="nav-text">配置远程安装环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装数据库软件"><span class="nav-number">2.2.</span> <span class="nav-text">安装数据库软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装监听"><span class="nav-number">2.3.</span> <span class="nav-text">安装监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装数据库实例"><span class="nav-number">2.4.</span> <span class="nav-text">安装数据库实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置本地网络服务名"><span class="nav-number">2.5.</span> <span class="nav-text">配置本地网络服务名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重启linux后，dbca命令无法找到"><span class="nav-number">3.1.</span> <span class="nav-text">重启linux后，dbca命令无法找到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装oracle软件后，安装监听报错"><span class="nav-number">3.2.</span> <span class="nav-text">安装oracle软件后，安装监听报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装完监听后，启动监听报错。"><span class="nav-number">3.3.</span> <span class="nav-text">安装完监听后，启动监听报错。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他知识"><span class="nav-number">4.</span> <span class="nav-text">其他知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库名、实例名、SID、服务名、网络服务名"><span class="nav-number">4.1.</span> <span class="nav-text">数据库名、实例名、SID、服务名、网络服务名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-oracle数据库listener-ora存放路径"><span class="nav-number">4.2.</span> <span class="nav-text">Linux oracle数据库listener.ora存放路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-oracle数据库tnsnames-ora存放路径"><span class="nav-number">4.3.</span> <span class="nav-text">Linux oracle数据库tnsnames.ora存放路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ORACLE多个实例"><span class="nav-number">4.4.</span> <span class="nav-text">ORACLE多个实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ORACLE启动监听器"><span class="nav-number">4.5.</span> <span class="nav-text">ORACLE启动监听器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动测试oracle"><span class="nav-number">4.6.</span> <span class="nav-text">启动测试oracle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux开放1521端口允许网络连接Oracle-Listener"><span class="nav-number">4.7.</span> <span class="nav-text">Linux开放1521端口允许网络连接Oracle Listener</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux下创建oracle用户表空间"><span class="nav-number">4.8.</span> <span class="nav-text">linux下创建oracle用户表空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Oracle自启动"><span class="nav-number">4.9.</span> <span class="nav-text">设置Oracle自启动</span></a></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -684,15 +798,17 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Mr wang</span>
+  <span><a href="http://www.miitbeian.gov.cn">鄂ICP备16016806</a></span>
 </div>
 
+
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -704,21 +820,22 @@
 
 
 
+        
+
+        
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
-
-
-  
-
-
-
 
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
@@ -727,209 +844,435 @@
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
 
-  
-  
 
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
 
 
 
-  
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"mr-wang"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-  
 
 
 
 
 
   
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
   
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
+    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
     }
     var path = "/" + search_path;
     // monitor main search box;
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
     }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
         url: path,
-        dataType: "xml",
+        dataType: isXml ? "xml" : "json",
         async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';                
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = true;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '' && data_content != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title < 0 && index_content < 0 ){
-                                isMatch = false;
-                            } else {
-                                if (index_content < 0) {
-                                    index_content = 0;
-                                }
-                                if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            }
-                        });
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-                            
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
                         }
-                        str += "</li>";
+                      }
                     }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
             });
-            proceedsearch();
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
         }
-    });}
+      });
+    }
 
     // handle and trigger popup window;
-    $('.popup-trigger').mousedown(function(e) {
+    $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
-
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
     });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
   </script>
 
-  
+
+
+
 
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
   <script>AV.initialize("K2hmmPfUxb5qwb53Y3StaVwj-gzGzoHsz", "BOu82fRz8bYCJtf9P8GfiMW9");</script>
   <script>
     function showTime(Counter) {
@@ -958,6 +1301,14 @@
             var element = document.getElementById(url);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
           }
         })
         .fail(function (object, error) {
@@ -989,6 +1340,12 @@
             });
           } else {
             var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
             newcounter.set("title", title);
             newcounter.set("url", url);
             newcounter.set("time", 1);
@@ -1020,6 +1377,14 @@
   </script>
 
 
+
+  
+
+  
+
+  
+
+  
 
   
 
